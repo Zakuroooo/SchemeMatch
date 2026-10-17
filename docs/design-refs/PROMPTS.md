@@ -11,9 +11,9 @@ Each entry: id · tool · aspect · prompt · negative · seed · output file ·
 ## Round 1 — style test (pick one direction before anything else)
 | id | tool | aspect | prompt | status |
 |---|---|---|---|---|
-| style-a | gen.py (Qwen-Image) | 16:9 | a woman in a cotton sari at the doorway of her home in a Maharashtra town, holding a folder of papers and smiling slightly, morning light + paper-cut layered collage style, ink blue and marigold | proposed |
-| style-b | gen.py | 16:9 | same scene + risograph print style, two-colour ink blue and marigold, visible grain | proposed |
-| style-c | gen.py | 16:9 | same scene + painterly gouache editorial illustration | proposed |
+| style-a | gen.py (Qwen-Image) | 16:9 | a woman in a cotton sari at the doorway of her home in a Maharashtra town, holding a folder of papers and smiling slightly, morning light + paper-cut layered collage style, ink blue and marigold | generated — failed |
+| style-b | gen.py | 16:9 | same scene + risograph print style, two-colour ink blue and marigold, visible grain | generated — closest |
+| style-c | gen.py | 16:9 | same scene + painterly gouache editorial illustration | generated — failed |
 
 ### Round 1 results — 2026-10-18 · `concepts/style-{a,b,c}.png` · Qwen-Image-Fast (8 steps), 16:9
 Exact prompt = `SCENE + style phrase + TAIL`:
