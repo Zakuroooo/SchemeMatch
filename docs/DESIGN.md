@@ -27,6 +27,17 @@ flowchart TD
     S6["6 · For NGOs (inverted)<br/>dashboard screenshot + 'screen 30 families a day offline'"]
 ```
 
+### Locked photos (chosen 2026-10-18, credits in [design-refs/CREDITS.md](design-refs/CREDITS.md))
+| Section | Photo | Note |
+|---|---|---|
+| 1 · Hero (dark) | #1 woman in her doorway | Portrait beside the 3D paper-to-card object; no caption about her |
+| 2 · Problem (light) | #6 crowd waiting at a barrier | Sits under the "4,000 schemes" line |
+| 3 · How it works | #7 hand holding a phone | Step 1, "Speak in your language" |
+| Who it's for | #4 four women on a village road | Context only, never labelled as users |
+| 6 · For NGOs (inverted) | #9 village below Kalsubai hill | Wide background behind the dashboard screenshot |
+
+All five get one shared grade (warm, slightly desaturated, ink-blue shadows) so they read as one set.
+
 ## 4. Design tokens (starting point — tune in the build)
 
 | Token | Dark | Light (inverted sections) | Use |
