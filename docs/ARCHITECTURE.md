@@ -1,5 +1,5 @@
 # ARCHITECTURE — SchemeMatch
-*How it works inside. Every part has a diagram.*
+*How it works inside. Every part has a diagram. The **why** behind each choice lives in [adr/](adr/README.md); the rule format in [DATA.md](DATA.md).*
 
 ## 1. System overview
 
@@ -9,16 +9,16 @@ flowchart TB
         M[Mobile app — Expo / React Native<br/>citizen, offline cache]
         W[Web — Next.js<br/>landing + field-worker dashboard + admin]
     end
-    subgraph Backend [API — Node.js + TypeScript, Fastify]
+    subgraph Backend [API — Fastify + TypeScript on Vercel Functions, Mumbai]
         R[REST routes + Zod validation]
         E[Eligibility engine<br/>pure functions, fully tested]
         V[Voice gateway<br/>Sarvam STT/TTS + fallback]
-        J[Background jobs<br/>scheme refresh, reminders]
+        J[Vercel Cron<br/>scheme re-check, keep-alive]
         MET[Metrics + structured logs]
     end
     subgraph Data
-        PG[(Postgres — Neon/Supabase free)]
-        RD[(Redis — Upstash free<br/>cache + rate limit + job queue)]
+        PG[(Supabase Postgres + Auth + RLS<br/>Mumbai)]
+        RD[(Upstash Redis<br/>rate limit + cache)]
         ST[(Object storage — R2 free<br/>scheme PDFs, audio)]
     end
     subgraph Pipeline [Rule extraction — Python]
@@ -37,12 +37,7 @@ flowchart TB
     X --> ST
 ```
 
-**Why these choices (short ADRs):**
-- **Fastify + TypeScript** for the API: same language as web and mobile, fast, schema-first. (Python is used only for the pipeline, where ML libraries live.)
-- **Postgres** because rules, schemes and analytics are relational and need joins and GROUP BY.
-- **Eligibility engine = pure functions** (input profile → output matches). No database inside, so it is easy to unit test 120 profiles.
-- **Redis** for caching scheme lists, rate limiting, and a simple job queue (BullMQ).
-- Everything fits **free tiers** (section 10).
+**Why these choices:** see the ADRs — monorepo ([0001](adr/0001-monorepo-typescript-python.md)), Supabase ([0002](adr/0002-supabase-postgres.md)), pure engine ([0003](adr/0003-pure-engine-rule-dsl.md)), Vercel Functions instead of Render/Fly ([0004](adr/0004-api-hosting-vercel-functions.md)), Groq ([0005](adr/0005-llm-groq-structured-output.md)), Sarvam + fallback ([0006](adr/0006-voice-sarvam-with-device-fallback.md)), offline only in the app ([0007](adr/0007-offline-strategy.md)).
 
 ## 2. Data model
 
@@ -64,8 +59,8 @@ erDiagram
     RULE {
         uuid id
         uuid scheme_id
-        text field "age, income, gender, marital, caste, occupation, land_acres..."
-        text op "eq | in | lt | lte | gt | gte | between"
+        text field "see DATA.md §3 field list"
+        text op "eq | neq | in | not_in | lt | lte | gt | gte | between"
         jsonb value
         text source_quote "exact sentence from the official text"
         text reviewed_by
@@ -98,7 +93,7 @@ flowchart LR
     C -->|field unknown| ASK[Ask one more question]
 ```
 
-- Rules are **AND** inside a group, groups can be **OR** (e.g. "widow OR divorced").
+- Rules are a tree of `all` (AND) / `any` (OR) groups with three-valued logic (PASS / FAIL / UNKNOWN) — exact semantics in [DATA.md](DATA.md) §3.
 - Unknown field → the app asks only the questions that would change the result ("adaptive questions"). This keeps the conversation to ~4 questions.
 - Output always carries the **reason** and the **official source link**.
 - Tested with **120 profiles** whose expected results were written by hand.
@@ -152,11 +147,11 @@ sequenceDiagram
 
 Audio for fixed questions is generated once and cached (saves free credits).
 
-## 6. Offline sync (field-worker dashboard + app)
+## 6. Offline sync (citizen app only in v1 — [ADR 0007](adr/0007-offline-strategy.md))
 
 ```mermaid
 flowchart LR
-    A[Screen a family] --> Q[(Local queue<br/>IndexedDB / SQLite)]
+    A[Save a screening] --> Q[(Local queue<br/>SQLite on device)]
     Q -->|online| S[POST /screenings<br/>with idempotency key]
     S -->|201 or duplicate| D[Remove from queue]
     S -->|network error| B[Retry with back-off]
@@ -176,40 +171,31 @@ The **idempotency key** (a UUID made on the device) means a retry never creates 
 | POST | `/voice/stt`, `/voice/tts` | Voice gateway |
 | Admin | `/admin/schemes`, `/admin/rules/review` | Add scheme, review extracted rules |
 
-All inputs validated with **Zod**; errors return clear 400s; rate-limited per IP with Redis.
+All inputs validated with **Zod**; errors return clear 400s; rate-limited per IP and per install ID with Upstash Redis.
 
 ## 8. Security & privacy
 - DPDP-style minimisation: no name/phone/Aadhaar; district-level analytics only.
-- Auth only for workers/admins (Supabase Auth or Auth.js); citizens never need to log in.
+- Auth only for workers/admins (Supabase Auth); citizens never need to log in.
 - Row-level security: a worker sees only their organisation's screenings.
 - Secrets only in environment variables; never in code or chat.
+- Full data inventory and threat model: [PRIVACY-SECURITY.md](PRIVACY-SECURITY.md).
 
 ## 9. Quality: tests, observability, performance
-
-| Layer | Tool | What |
-|---|---|---|
-| Engine | Vitest | 120 profile tests, property tests for operators |
-| API | Vitest + Supertest | every route, validation errors, idempotency |
-| Mobile | Jest + React Native Testing Library | screens, offline state |
-| Web | Playwright | screening flow, offline, language switch |
-| Pipeline | pytest | quote check, schema validation, eval script |
-| Load | k6 | p50/p95/p99 at 10/50/100 req/s → table in README |
-| Observability | pino logs + /metrics (Prometheus format) + Grafana Cloud free | latency, error rate, voice fallback rate |
-| CI | GitHub Actions | lint, typecheck, tests on every push |
+Test layers, the 120 profiles and merge gates: [TESTING.md](TESTING.md). Eval of the AI pipeline: [EVALS.md](EVALS.md). Monitoring signals and free-tier limits: [RUNBOOK.md](RUNBOOK.md).
 
 ## 10. Free-tier deployment
 
 ```mermaid
 flowchart LR
-    GH[GitHub repo] -->|push| CI[GitHub Actions]
-    CI --> VC[Vercel — web]
-    CI --> RE[Render / Fly free — API container]
+    GH[GitHub repo] -->|push / PR| CI[GitHub Actions<br/>lint · typecheck · tests]
+    GH --> VC[Vercel — web + API functions<br/>region bom1]
+    VC --> CRON[Vercel Cron<br/>scheme re-check, keep-alive]
     CI --> EAS[Expo EAS — Android build]
-    RE --> NE[(Neon/Supabase Postgres)]
-    RE --> UP[(Upstash Redis)]
-    RE --> CF[(Cloudflare R2)]
-    RE --> SV[Sarvam free credits]
-    RE --> GQ[Groq free LLM]
+    VC --> SB[(Supabase Postgres + Auth<br/>Mumbai)]
+    VC --> UP[(Upstash Redis)]
+    VC --> SV[Sarvam free credits]
+    PIPE[Pipeline — runs locally / Kaggle] --> GQ[Groq free LLM]
+    PIPE --> SB
 ```
 
 ## 11. Repo layout (monorepo)
@@ -223,6 +209,7 @@ SchemeMatch/
 ├─ packages/
 │  ├─ engine/      eligibility engine (pure TS, shared by api + offline app)
 │  └─ i18n/        translations
+├─ supabase/       migrations + RLS policies
 ├─ pipeline/       Python rule extraction + eval
 ├─ docs/           these documents
 └─ CLAUDE.md
