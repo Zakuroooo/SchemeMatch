@@ -28,6 +28,12 @@ Exact prompt = `SCENE + style phrase + TAIL`:
 
 **What we learned:** the fast 8-step model ignores style words and falls back to one generic "explainer" look; all three share one composition. The sari is a Kerala-style white-and-gold kasavu, which is wrong for Maharashtra (use a nauvari or a printed cotton sari). **Next:** run the style test on a stronger model (Kaggle T4 with a general SDXL/Flux checkpoint, more steps), name the technique concretely (e.g. "Indian woodblock / Kalighat-inspired linework", "torn-paper collage with photographed paper texture"), and vary the composition.
 
+## Round 1b — style test on a stronger model (2026-10-18)
+- **Tool:** Kaggle T4 kernel `pranaysarkar04/schemematch-style1b`, source in [`tools/kaggle/style1b/run.py`](../../tools/kaggle/style1b/run.py) (prompts are defined there exactly).
+- **Model:** `stabilityai/stable-diffusion-xl-base-1.0` (CreativeML Open RAIL++-M, allows commercial use with use restrictions) + `madebyollin/sdxl-vae-fp16-fix`, DPM++ 2M Karras, 40 steps, CFG 6.5, 1344×768, seeds 7 and 42.
+- **Matrix:** 4 techniques (Kalighat-inspired, linocut woodblock, torn-paper collage, risograph) × 3 compositions (doorway wide shot in a printed nauvari sari, close-up of hands with phone and stamped papers, field worker with a family on a charpai) = 24 images → `concepts/1b/`.
+- **Verdict:** pending review.
+
 ## Round 2 — landing page concepts (after style is chosen)
 | id | section | aspect | prompt (append chosen style) | status |
 |---|---|---|---|---|
