@@ -1,5 +1,5 @@
 # PROMPTS — every generated asset, reproducible
-*Status: **proposed — nothing generated yet.** Pranay approves this list first.*
+*Status: Round 1 generated 2026-10-18 (see results below); Rounds 2–4 proposed.*
 
 Each entry: id · tool · aspect · prompt · negative · seed · output file · status.
 
@@ -14,6 +14,19 @@ Each entry: id · tool · aspect · prompt · negative · seed · output file ·
 | style-a | gen.py (Qwen-Image) | 16:9 | a woman in a cotton sari at the doorway of her home in a Maharashtra town, holding a folder of papers and smiling slightly, morning light + paper-cut layered collage style, ink blue and marigold | proposed |
 | style-b | gen.py | 16:9 | same scene + risograph print style, two-colour ink blue and marigold, visible grain | proposed |
 | style-c | gen.py | 16:9 | same scene + painterly gouache editorial illustration | proposed |
+
+### Round 1 results — 2026-10-18 · `concepts/style-{a,b,c}.png` · Qwen-Image-Fast (8 steps), 16:9
+Exact prompt = `SCENE + style phrase + TAIL`:
+- SCENE: "a confident Indian woman around 38 in a simple cotton sari standing at the doorway of her small home in a Maharashtra town, holding a folder of official papers, a slight hopeful smile, morning light"
+- TAIL: ", deep ink blue, marigold and off-white paper palette, dignified, no text, no watermark, not anime, not cartoon, not 3d render"
+
+| id | Verdict |
+|---|---|
+| style-a paper-cut | Failed: flat vector explainer look, barely any cut-paper layering |
+| style-b risograph | Closest to distinct: grain, two-colour feel. But it drew fake gibberish script on the poster despite "no text" |
+| style-c gouache | Failed: same flat vector look as A, almost no brush texture |
+
+**What we learned:** the fast 8-step model ignores style words and falls back to one generic "explainer" look; all three share one composition. The sari is a Kerala-style white-and-gold kasavu, which is wrong for Maharashtra (use a nauvari or a printed cotton sari). **Next:** run the style test on a stronger model (Kaggle T4 with a general SDXL/Flux checkpoint, more steps), name the technique concretely (e.g. "Indian woodblock / Kalighat-inspired linework", "torn-paper collage with photographed paper texture"), and vary the composition.
 
 ## Round 2 — landing page concepts (after style is chosen)
 | id | section | aspect | prompt (append chosen style) | status |
