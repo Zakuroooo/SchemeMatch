@@ -12,31 +12,31 @@ gantt
     title SchemeMatch v1 build
     dateFormat YYYY-MM-DD
     axisFormat %d %b
-    section W1 Data + engine
-    Monorepo, CI, Supabase schema         :w1a, 2026-10-19, 2d
-    Golden guide + label 10 schemes       :w1b, after w1a, 2d
-    120 profiles (tests first) + engine   :w1c, after w1b, 2d
-    Buffer day                            :milestone, m1, 2026-10-25, 0d
-    section W2 Engine + API
-    Label 20 more schemes                 :w2a, 2026-10-26, 2d
-    Engine done, 100% branch coverage     :w2b, 2026-10-26, 3d
-    Fastify API + Zod + rate limit        :w2c, after w2b, 3d
-    section W3 Pipeline + discovery
-    Rule-extraction pipeline + validators :w3a, 2026-11-02, 3d
-    Eval run: 2 models, first report      :w3b, after w3a, 2d
-    5 discovery conversations             :w3c, 2026-11-02, 6d
+    section W1 Data and engine
+    Monorepo CI and Supabase schema      :w1a, 2026-10-19, 2d
+    Golden guide and 10 schemes labelled :w1b, after w1a, 2d
+    120 profiles first then engine       :w1c, after w1b, 2d
+    Buffer day                           :milestone, m1, 2026-10-25, 0d
+    section W2 Engine and API
+    Label 20 more schemes                :w2a, 2026-10-26, 2d
+    Engine done with full branch tests   :w2b, 2026-10-26, 3d
+    Fastify API with Zod and rate limit  :w2c, after w2b, 3d
+    section W3 Pipeline and discovery
+    Extraction pipeline and validators   :w3a, 2026-11-02, 3d
+    First eval report with 2 models      :w3b, after w3a, 2d
+    5 discovery conversations            :w3c, 2026-11-02, 6d
     section W4 Web
-    Admin review UI                       :w4a, 2026-11-09, 2d
-    Field-worker dashboard (online)       :w4b, after w4a, 3d
-    Staging deploy + RLS tests            :w4c, after w4b, 1d
-    section W5 Mobile + voice
-    Expo screens + offline engine         :w5a, 2026-11-16, 3d
-    Voice: Sarvam + fallback + cached TTS :w5b, after w5a, 2d
-    Offline queue + idempotent sync       :w5c, after w5b, 1d
-    section W6 Proof + polish
-    Landing page (3D, art, Veo)           :w6a, 2026-11-23, 3d
-    k6, Playwright, Maestro, README, demo :w6b, 2026-11-23, 4d
-    Pilot outreach                        :w6c, 2026-11-23, 6d
+    Admin review UI                      :w4a, 2026-11-09, 2d
+    Field-worker dashboard online        :w4b, after w4a, 3d
+    Staging deploy and RLS tests         :w4c, after w4b, 1d
+    section W5 Mobile and voice
+    Expo screens and offline engine      :w5a, 2026-11-16, 3d
+    Voice with Sarvam and fallback       :w5b, after w5a, 2d
+    Offline queue and idempotent sync    :w5c, after w5b, 1d
+    section W6 Proof and polish
+    Landing page with 3D art and Veo     :w6a, 2026-11-23, 3d
+    k6 Playwright Maestro README demo    :w6b, 2026-11-23, 4d
+    Pilot outreach                       :w6c, 2026-11-23, 6d
 ```
 
 ## Week by week — commit-sized tasks
