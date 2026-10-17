@@ -1,0 +1,53 @@
+# RUNBOOK — running SchemeMatch in the real world
+*Skeleton now; filled in as each piece is deployed. Sections marked ⏳ are written when staging exists.*
+
+## 1. Environments
+
+```mermaid
+flowchart LR
+    L[local<br/>Supabase CLI + Expo Go] -->|PR| P[preview<br/>Vercel preview + Supabase branch?]
+    P -->|merge main| S[staging<br/>Vercel + Supabase staging project]
+    S -->|manual promote| PR[production]
+```
+
+| Env | Web/API | DB | Who uses it |
+|---|---|---|---|
+| local | `pnpm dev` | Supabase local (Docker) | you |
+| preview | Vercel preview per PR | staging DB, read-mostly | you, reviewers |
+| staging | Vercel (staging alias) | Supabase project `schemematch-staging` | you, pilot testers |
+| production | Vercel production | Supabase project `schemematch-prod` | real users |
+
+*Supabase free plan allows 2 active projects — staging + prod use both. Preview DB branching may need a paid plan; check before relying on it.*
+
+## 2. Free-tier limits and what breaks first
+
+| Service | Limit to watch (check current pricing page) | Symptom | Action |
+|---|---|---|---|
+| Supabase | Pauses after ~7 days idle; 500 MB DB | API 5xx on a quiet week | Weekly keep-alive cron; restore from dashboard |
+| Vercel Hobby | Function invocations/duration, 1 region, cron frequency | 429 / throttled | Cache `/schemes` at the CDN; reduce cron frequency |
+| Groq | Requests/tokens per minute/day | Pipeline 429s | Back-off + resume; pipeline is batch only |
+| Sarvam | Free credits | Voice falls back to device | Watch fallback-rate metric; cap per install |
+| Upstash Redis | Commands/day | Rate limiter errors | Fail open for reads, closed for writes |
+| Expo EAS | Free build minutes/queue | Slow builds | Build locally when needed |
+
+## 3. Deploy and rollback
+- Web/API: merge to `main` → Vercel deploys staging. Promote to prod from the Vercel dashboard / MCP after the checklist below. **Rollback** = promote the previous deployment (instant).
+- DB: migrations in `supabase/migrations/`, applied to staging first; every migration must be backward compatible with the previous app version (expand → migrate → contract).
+- App: EAS build → internal testing track → release. Scheme data updates ship as a **snapshot**, not an app release.
+
+**Pre-promote checklist:** CI green · migrations applied on staging · smoke test (screen one persona end to end in 2 languages) · no new Sentry/log errors in 15 min.
+
+## 4. Scheme data refresh
+Weekly Vercel Cron re-fetches each `official_url`, compares `source_hash`; changed → `needs_review` (stops matching) + a GitHub issue with the diff. You review within 7 days; `last_checked` shows on every scheme card.
+
+## 5. Monitoring ⏳
+Signals: API error rate, warm p95, voice fallback rate, eligibility requests/day, sync failures. Tooling decided at staging (Vercel logs + a free Grafana Cloud or Axiom tier).
+
+## 6. Incidents ⏳
+Severity: **S1** wrong eligibility shown or data exposure → hide affected schemes / rotate keys immediately · **S2** feature down · **S3** degraded. Every S1/S2 gets a short blameless note in `docs/incidents/`.
+
+## 7. Secrets and rotation
+Where each secret lives (names only, never values): `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_URL`, `SARVAM_API_KEY`, `GROQ_API_KEY`, `UPSTASH_REDIS_REST_TOKEN`, `CRON_SECRET`. Rotate on any suspected leak and every 6 months.
+
+## 8. Security testing
+Once SchemeMatch has a running staging deployment, a separate dedicated session will set up security testing of that staging app (Pranay's own app only).
