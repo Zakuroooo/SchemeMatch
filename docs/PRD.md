@@ -9,6 +9,8 @@
 **Problem in one sentence:** *People don't know which schemes they are entitled to, because finding out requires reading rules they cannot read.*
 
 ## 2. Users and personas
+*These personas are **hypotheses** until confirmed by real conversations — see [DISCOVERY.md](DISCOVERY.md).*
+
 
 | Persona | Who | Device | Needs |
 |---|---|---|---|
@@ -49,33 +51,34 @@ flowchart TD
 
 ## 4. Scope
 
-### v1 (build first — 4 weeks)
+### v1 (build first — see BUILD-PLAN for dates)
 | ID | Feature |
 |---|---|
-| V1-1 | **Scheme catalog**: 60 schemes — central + **Maharashtra** (Krishi Mitr context) + **West Bengal** (your language). |
-| V1-2 | **Rule-extraction pipeline**: scheme text → structured eligibility rules (JSON), **every rule human-reviewed** before going live. |
+| V1-1 | **Scheme catalog**: **30 schemes** — central + **Maharashtra** (Krishi Mitr context) + **West Bengal** (your language). Sourced from official pages, never scraped from myScheme ([DATA.md](DATA.md)). |
+| V1-2 | **Rule-extraction pipeline**: scheme text → structured eligibility rules (JSON, format in [DATA.md](DATA.md) §3), **every rule human-reviewed** before going live; measured per [EVALS.md](EVALS.md). |
 | V1-3 | **Eligibility engine**: profile in → matched schemes out, each with a plain-language *reason* ("you are a widow aged 38 → qualifies"). |
 | V1-4 | **Mobile app (Expo)**: language pick, voice Q&A, result cards, document checklist, offline cache, read-aloud. |
-| V1-5 | **Web dashboard (Next.js)**: screening form for field workers, offline-capable, family list, export. |
+| V1-5 | **Web dashboard (Next.js)**: screening form for field workers, family list, export. **Online-only in v1** ([ADR 0007](adr/0007-offline-strategy.md)); offline in v2 only if field workers ask. |
 | V1-6 | **Voice**: speech-to-text and text-to-speech in Hindi, Marathi, Bengali, English with device fallback when the API fails (your Krishi Mitr pattern). |
-| V1-7 | **Demand analytics**: which schemes match most, by district; eligible-vs-applied funnel. |
+| V1-7 | **Demand analytics (basic)**: events and SQL views built in v1; the district dashboard is shown only once real screenings exist, with groups < 10 suppressed. |
 | V1-8 | **Public landing page** with a no-login demo, so recruiters can try it in 30 seconds. |
 
 ### v2 (only after v1 is solid)
-Document photo check (OCR: "is this an income certificate?") · WhatsApp bot channel · more states · application status tracking · scheme-change alerts.
+Offline field-worker dashboard · full district analytics dashboard · document photo check (OCR: "is this an income certificate?") · WhatsApp bot channel · more states · application status tracking · scheme-change alerts.
 
 ### Out of scope (deliberately)
 Applying on the user's behalf · storing Aadhaar numbers · payments · any claim of being official.
 
 ## 5. Success metrics (what we will actually measure)
+*Every number below is a **target** until a report or test output in the repo proves it.*
 
 | Metric | Target | How measured |
 |---|---|---|
-| Rule-extraction accuracy | ≥ 90% of rules correct before review | Golden set of 60 hand-written rule sets vs AI output |
+| Rule-extraction accuracy | Condition F1 ≥ 0.90 on the held-out set | Golden set: 30 schemes + 10 held-out, hand-labelled ([EVALS.md](EVALS.md)) |
 | Eligibility correctness | 100% on 120 test profiles | Unit tests with expected scheme lists |
 | Time to first result (voice) | < 2 min | Timed sessions |
-| API p95 latency | < 300 ms at 50 req/s | k6 load test, published in README |
-| Works offline | Screening + results with no network | E2E test in airplane mode |
+| API p95 latency | warm p95 < 300 ms at 50 req/s; cold start reported separately | k6 load test, published in README ([ADR 0004](adr/0004-api-hosting-vercel-functions.md)) |
+| Works offline (citizen app) | Screening + results with no network | Maestro E2E in airplane mode |
 | Real usage | Pilot with ≥ 1 NGO / field worker or ≥ 25 real screenings | Analytics events (no personal data) |
 
 ## 6. Building for real users — checklist (an engineer's must-dos)
@@ -104,8 +107,9 @@ Applying on the user's behalf · storing Aadhaar numbers · payments · any clai
 
 | Risk | Mitigation |
 |---|---|
-| Scheme data has no confirmed public API | Curate 60 schemes by hand from official pages; store source URL + last-checked date per scheme |
+| Scheme data has no public API, and myScheme's terms forbid scraping | Curate 30 schemes by hand from ministry/state pages; store source URL, hash and last-checked date; weekly change check ([DATA.md](DATA.md)) |
 | AI extracts a wrong rule | Nothing goes live without human review; golden-set accuracy reported honestly |
 | Voice API cost / outage | Free credits + device speech fallback (proved in Krishi Mitr) |
 | Haqdarshak already exists | Our angle: voice-first, open source, measured rule accuracy, works offline for field workers |
-| No users | Pilot with one NGO / college NSS unit; until then, say "built for", never "used by" |
+| No users | 5 discovery conversations, then a pilot with one NGO / NSS unit ([DISCOVERY.md](DISCOVERY.md)); until then, say "built for", never "used by" |
+| Scope too big for one person alongside placement prep | Cuts already made (30 schemes, online dashboard, analytics later); BUILD-PLAN has buffer days |
