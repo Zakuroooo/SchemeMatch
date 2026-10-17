@@ -54,16 +54,17 @@ flowchart LR
 
 Rules: 48 px+ tap targets, one action per screen, every text has a 🔊 button, icons from the generated art set (consistent style), no colour-only meaning.
 
-## 6. Asset pipeline (your tools — reuse them)
-- **Images:** Kaggle notebook on free T4 GPU — the portfolio pipeline (`~/Desktop/portfolio/tools/gen.py`, `batch.py`, `hd.sh`). Use an SDXL/Flux-class model for this project's non-anime, warm editorial style: paper textures, Indian village and city scenes, document objects.
-- **Video:** Gemini Veo 3.1 for 2–3 short hero/problem clips (~5 per day per account), scroll-scrubbed with the portfolio's `worldvid.sh` approach.
-- **3D:** simple modelled objects (papers, card, stamp) in React Three Fiber, or a free glTF from Poly Pizza / Sketchfab (check licence).
-- Keep every prompt in `docs/design-refs/PROMPTS.md` so assets are reproducible.
-
-**First rough references to generate (Day 1 of design):**
-1. Hero: "floating stack of official Indian government forms dissolving into one glowing marigold card, dark ink background, cinematic depth of field".
-2. Problem: "elderly Indian woman in a village doorway holding papers, warm morning light, editorial illustration".
-3. Icon set: 12 flat-but-textured icons — pension, scholarship, ration, farm, health, house, documents, mic, location, check, cross, bell.
+## 6. Asset pipeline (your tools — what they really are)
+- **Art direction:** warm editorial (paper-cut / risograph / gouache — pick one in Round 1), **not anime**. Your portfolio is anime because it is a personal story; SchemeMatch serves real citizens and must read as trustworthy and dignified.
+- **Concept images (fast):** `~/Desktop/portfolio/tools/gen.py` → Hugging Face Space (Qwen-Image), tokens from the portfolio `.env`.
+- **HD / batches:** Kaggle free T4 notebooks (`~/Desktop/portfolio/kaggle/*/run.py`, account `pranaysarkar04`, pushed with `kaggle kernels push`). They currently load an **anime** SDXL checkpoint → swap for a general SDXL/Flux checkpoint whose licence allows portfolio use.
+- **Upscaling:** `hd.sh` / `worldvid.sh` use **anime** Real-ESRGAN models → use `realesrgan-x4plus` for this project. `.esr/models` was not found on disk; verify before the first run.
+- **Video:** Gemini Veo 3.1 for 2 short clips (hero, problem; ~5 generations/day/account), then `worldvid.sh` for scroll-scrub encoding (short GOP, no audio).
+- **3D:** simple modelled objects (papers, card, stamp) in React Three Fiber, or a CC0 glTF (Poly Pizza) — check every licence.
+- **Mock-ups:** Stitch MCP for quick screen drafts from this doc's tokens.
+- Every prompt, seed and output path goes in [design-refs/PROMPTS.md](design-refs/PROMPTS.md). **Nothing is generated until Pranay approves that list.**
 
 ## 7. Accessibility & India-specific checks
+See also TESTING.md §5 (real-device checks).
+
 Contrast AA in both themes · screen-reader labels in all 4 languages · test on a real low-end Android · test Devanagari and Bengali line height · numbers in Indian format (₹1,20,000).
