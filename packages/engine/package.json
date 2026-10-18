@@ -1,0 +1,18 @@
+{
+  "name": "@schemematch/engine",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Pure eligibility engine shared by the API and the offline app (ADR 0003).",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "vitest": "^5.0.5"
+  }
+}

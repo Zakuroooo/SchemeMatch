@@ -1,0 +1,77 @@
+// Rule format v1 — the contract described in docs/DATA.md §3.
+// Python (pipeline) and TypeScript (engine) must agree on this shape.
+
+export const RULE_FORMAT_VERSION = 1;
+
+/** Profile fields a rule may test. Coarse and non-identifying by design (DATA.md §6). */
+export const FIELDS = [
+  "state",
+  "district",
+  "age",
+  "gender",
+  "marital_status",
+  "annual_family_income",
+  "caste_category",
+  "occupation",
+  "land_acres",
+  "disability_percent",
+  "is_student",
+  "education_level",
+  "household_size",
+  "has_bpl_card",
+  "children_count",
+  "is_pregnant_or_lactating",
+] as const;
+
+export type Field = (typeof FIELDS)[number];
+
+export type Gender = "female" | "male" | "other";
+export type MaritalStatus = "single" | "married" | "widow" | "divorced" | "abandoned";
+export type CasteCategory = "SC" | "ST" | "OBC" | "General" | "EWS";
+
+/** What we know about a person. Every field is optional: unanswered means UNKNOWN. */
+export interface Profile {
+  state?: string;
+  district?: string;
+  age?: number;
+  gender?: Gender;
+  marital_status?: MaritalStatus;
+  annual_family_income?: number;
+  caste_category?: CasteCategory;
+  occupation?: string;
+  land_acres?: number;
+  disability_percent?: number;
+  is_student?: boolean;
+  education_level?: string;
+  household_size?: number;
+  has_bpl_card?: boolean;
+  children_count?: number;
+  is_pregnant_or_lactating?: boolean;
+}
+
+type Scalar = string | number | boolean;
+
+interface ConditionBase {
+  field: Field;
+  /** Exact sentence from the official source that justifies this condition. */
+  source_quote: string;
+}
+
+/** One leaf test. The operator decides the shape of `value`. */
+export type Condition = ConditionBase &
+  (
+    | { op: "eq" | "neq"; value: Scalar }
+    | { op: "in" | "not_in"; value: readonly (string | number)[] }
+    | { op: "lt" | "lte" | "gt" | "gte"; value: number }
+    | { op: "between"; value: readonly [min: number, max: number] }
+  );
+
+export type Op = Condition["op"];
+
+/** `all` = every child must pass (AND); `any` = at least one must pass (OR). */
+export type Group = { all: readonly RuleNode[] } | { any: readonly RuleNode[] };
+
+export type RuleNode = Condition | Group;
+
+/** Three-valued result: UNKNOWN means a needed field was not answered yet. */
+export type Tri = "PASS" | "FAIL" | "UNKNOWN";
