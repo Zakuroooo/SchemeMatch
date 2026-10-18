@@ -43,42 +43,43 @@ flowchart TB
 
 ```mermaid
 erDiagram
-    SCHEME ||--o{ RULE : "has"
-    SCHEME ||--o{ DOCUMENT_REQ : "needs"
+    SCHEME ||--o{ SCHEME_RULE_VERSION : "versions"
+    SCHEME ||--o| SCHEME_RULE_VERSION : "current"
+    SCHEME ||--o{ SCHEME_DOCUMENT : "needs"
     SCHEME ||--o{ SCHEME_TEXT : "translated into"
+    ORGANISATION ||--o{ WORKER_PROFILE : "employs"
     SCHEME {
         uuid id
         text slug
         text level "central | state"
         text state
-        text category "pension, education, farming..."
-        text official_url
+        text category
+        text official_url "https only"
+        text source_hash
         date last_checked
-        text status "draft | live | retired"
+        text status "draft | needs_review | live | retired"
+        uuid current_rule_version_id
     }
-    RULE {
+    SCHEME_RULE_VERSION {
         uuid id
         uuid scheme_id
-        text field "see DATA.md §3 field list"
-        text op "eq | neq | in | not_in | lt | lte | gt | gte | between"
-        jsonb value
-        text source_quote "exact sentence from the official text"
-        text reviewed_by
+        int version
+        int rule_format_version
+        jsonb eligibility "whole all/any tree, DATA.md section 3"
+        bool source_quote_check_passed
+        uuid reviewed_by
+        timestamptz reviewed_at
     }
-    DOCUMENT_REQ { uuid scheme_id  text doc_key "aadhaar, income_cert..."  bool mandatory }
-    SCHEME_TEXT { uuid scheme_id  text lang  text title  text benefit  text how_to_apply }
-    SCREENING ||--o{ MATCH : "produces"
-    SCREENING {
-        uuid id
-        text channel "app | dashboard"
-        text district
-        jsonb profile "no name, no Aadhaar"
-        timestamptz created_at
-    }
-    MATCH { uuid screening_id  uuid scheme_id  text reason  bool applied }
-    WORKER ||--o{ SCREENING : "does"
-    WORKER { uuid id  text org  text role "worker | admin" }
+    SCHEME_DOCUMENT { uuid scheme_id  text doc_key  bool mandatory  jsonb condition }
+    SCHEME_TEXT { uuid scheme_id  text lang "hi | mr | bn | en"  text title  text benefit  text how_to_apply }
+    ORGANISATION { uuid id  text name }
+    WORKER_PROFILE { uuid user_id  uuid org_id  text role "worker | admin" }
+    SCREENING ||--o{ MATCH : "produces (Week 3)"
+    SCREENING { uuid id  text idempotency_key  text channel  text district  jsonb profile "no name, phone or ID" }
+    MATCH { uuid screening_id  uuid scheme_id  uuid rule_version_id  text result  text reason  bool applied }
 ```
+
+**Why rules are one `jsonb` tree per version, not one row per condition:** eligibility nests (`all` containing `any`), and a flat table can't hold "A AND (B OR C)" without parent pointers. Storing the whole tree per version keeps old versions, so any past screening can still be explained. `SCREENING`/`MATCH` arrive in Week 3 with `POST /screenings`. The live migration is in `supabase/migrations/`.
 
 Privacy rule baked into the schema: **no name, phone or Aadhaar is ever stored** in `SCREENING`.
 
