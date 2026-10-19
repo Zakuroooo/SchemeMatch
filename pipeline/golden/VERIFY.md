@@ -12,12 +12,18 @@
 
 Saved copy: [sources/apy.txt](../sources/apy.txt) · Official page: <https://pfrda.org.in/w/faqs/atal-pension-yojana>
 
-- [ ] Age is between 18 and 40 (both included) — quote: "The age of an individual should be between 18 and 40 years."
+- **ALL of these must be true:**
+- [ ] Age is at least 18 — quote: "The age of an individual should be between 18 and 40 years."
+- [ ] Age is less than 40 — quote: "A person can join APY till his/ her 40th birthday."
 
 *Not modelled as rules (shown to users as "you must also confirm"):*
 - [ ] Must have a savings bank or post office savings account — quote: "He / She should have a savings bank account/ post office savings bank account."
 - [ ] Must not be, or have been, an income-tax payer (for accounts opened from 1 Oct 2022) — quote: "any Indian citizen who is or has been an income-tax payer under the Income-tax Act, 1961, as on the date of application will not be eligible to open a new APY account."
 - [ ] Must be a citizen of India — quote: "APY is open to all citizens of India"
+- [ ] Only one APY account per person — quote: "An individual can open only one APY account."
+
+*Flagged as unclear (excluded from accuracy):*
+- The eligibility list says 'between 18 and 40 years', but the FAQ says joining is allowed only until the 40th birthday. In completed years that means 18 to 39 (a person on the exact day of their 40th birthday can still join).
 
 Reviewed by: — · not yet
 
@@ -44,7 +50,6 @@ Saved copy: [sources/ignoaps.txt](../sources/ignoaps.txt) · Official page: <htt
 
 *Flagged as unclear (excluded from accuracy):*
 - This state page says 65 and above; the national NSAP rule has been 60 and above since 2011 (not on this page)
-- The page lists two different monthly amounts for the same age bands
 
 Reviewed by: — · not yet
 
@@ -100,10 +105,15 @@ Saved copy: [sources/mh-sanjay-gandhi-niradhar.txt](../sources/mh-sanjay-gandhi-
 - [ ] Women who were victims of abuse or rescued from prostitution — quote: "Women who have been victims of abuse or rescued from prostitution"
 - [ ] Wives of prisoners serving sentences — quote: "Wives of prisoners serving sentences"
 - [ ] Women undergoing divorce proceedings — quote: "Women undergoing divorce proceedings"
+- [ ] Orphaned children — quote: "Orphaned children"
+- [ ] Transgender individuals — quote: "Transgender individuals"
+- [ ] Devadasis — quote: "Devadasis"
+- [ ] People suffering from sickle cell disease — quote: "Individuals suffering from sickle cell disease"
 
 *Flagged as unclear (excluded from accuracy):*
 - 'Destitute' is not defined and is not modelled; the age band 18 to 65 may apply to all categories or only to destitute men and women
 - 'Not receiving alimony' is not modelled
+- Eight of the twelve listed categories are unmodelled, so a FAIL on the category group can be a false negative
 
 Reviewed by: — · not yet
 
@@ -114,13 +124,14 @@ Saved copy: [sources/pm-kisan.txt](../sources/pm-kisan.txt) · Official page: <h
 - [ ] Land owned (acres) is more than 0 — quote: "all landholding farmers’ families in the country, having cultivable land"
 
 *Not modelled as rules (shown to users as "you must also confirm"):*
+- [ ] Not an institutional land holder — quote: "All Institutional Land holders"
+- [ ] No family member holds or held a constitutional post — quote: "Former and present holders of constitutional posts"
+- [ ] No family member is or was a Minister, MP, MLA, MLC, Mayor or District Panchayat Chairperson — quote: "Former and present Ministers/ State Ministers and former/present Members of Lok Sabha/ Rajya Sabha/ State Legislative Assemblies/ State Legislative Councils"
+- [ ] No family member is a serving or retired government or PSE employee (Group D / MTS excepted) — quote: "All serving or retired officers and employees of Central/ State Government Ministries"
 - [ ] Not a person who paid income tax in the last assessment year — quote: "All Persons who paid Income Tax in last assessment year."
 - [ ] Not a retired pensioner with monthly pension of Rs 10,000 or more — quote: "All superannuated/retired pensioners whose monthly pension is Rs.10,000/-or more"
 - [ ] Not a practising registered professional (doctor, engineer, lawyer, CA, architect) — quote: "Professionals like Doctors, Engineers, Lawyers, Chartered Accountants, and Architects registered with Professional bodies"
 - [ ] Land must be owned as per state land records — quote: "who own cultivable land as per land records of the concerned State/UT"
-
-*Flagged as unclear (excluded from accuracy):*
-- Several other exclusion categories (constitutional posts, government employees) are only partly visible in the extracted text
 
 Reviewed by: — · not yet
 
@@ -149,16 +160,25 @@ Saved copy: [sources/pmmvy.txt](../sources/pmmvy.txt) · Official page: <https:/
 - [ ] &nbsp;&nbsp;&nbsp;&nbsp;Annual family income (₹) is less than ₹800,000 — quote: "Women whose net family income is less than ₹ 8 Lakh per annum"
 - [ ] &nbsp;&nbsp;&nbsp;&nbsp;On the BPL list: yes — quote: "Women holder of BPL ration Card"
 - [ ] &nbsp;&nbsp;&nbsp;&nbsp;Disability (%) is at least 40 — quote: "Women who are partially (40%) or fully disabled (Divyang Jan)"
-- [ ] &nbsp;&nbsp;&nbsp;&nbsp;Caste category is one of SC, ST — quote: "SC Women"
+- [ ] &nbsp;&nbsp;&nbsp;&nbsp;Caste category is SC — quote: "SC Women"
+- [ ] &nbsp;&nbsp;&nbsp;&nbsp;Caste category is ST — quote: "ST Women"
 
 *Not modelled as rules (shown to users as "you must also confirm"):*
 - [ ] Minimum age is 18 years and 7 months at childbirth (not expressible in whole years) — quote: "The age of beneficiary under PMMVY should be 18 years"
-- [ ] Other qualifying categories: MGNREGA job card, PM-KISAN woman farmer, e-Shram card, PMJAY beneficiary, Anganwadi/ASHA worker — quote: "Women holding MGNREGA Job Card"
 - [ ] Second-child benefit only if the second child is a girl — quote: "PMMVY benefit given for second child also, if the second child is girl"
+- [ ] Holds an MGNREGA job card — quote: "Women holding MGNREGA Job Card"
+- [ ] Is a woman farmer receiving PM-KISAN — quote: "Women farmers who are beneficiaries under Kisan Samman Nidhi"
+- [ ] Holds an e-Shram card — quote: "Women holding e-Shram card"
+- [ ] Is a PMJAY (Ayushman Bharat) beneficiary — quote: "Women Beneficiaries under Pradhan Mantri Jan Aarogya Yojana (PMJAY) under Ayushman Bharat"
+- [ ] Is a pregnant or lactating Anganwadi worker, helper or ASHA — quote: "Pregnant and Lactating AWWS/ AWHS/ASHAS"
+- [ ] Holds a ration card under the National Food Security Act (NFSA), 2013 — quote: "Women Beneficiaries holding Ration card under National Food Security Act (NFSA), 2013"
+- [ ] Must register within 270 days of childbirth — quote: "A beneficiary is eligible to register in PMMVY till 270 days from childbirth"
+- [ ] Must register the pregnancy and complete at least two ante-natal check-ups — quote: "Registration of Pregnancy and at least two Ante-Natal Check-up (ANC) preferably within six months from LMP"
+- [ ] First-child benefit is for the first living child — quote: "Benefits would be disbursed in 2 instalments for 1st living child"
+- [ ] Second-child benefit only for a girl born on or after 1 April 2022 — quote: "For beneficiaries of second girl child born on or after 1.04.2022 can apply for benefits"
 
 *Flagged as unclear (excluded from accuracy):*
 - Because some qualifying categories are unmodelled, a FAIL on the category group can be a false negative
-- ST is quoted on a separate line ('ST Women'); both SC and ST are listed
 
 Reviewed by: — · not yet
 
