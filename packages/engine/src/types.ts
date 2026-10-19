@@ -75,3 +75,34 @@ export type RuleNode = Condition | Group;
 
 /** Three-valued result: UNKNOWN means a needed field was not answered yet. */
 export type Tri = "PASS" | "FAIL" | "UNKNOWN";
+
+/** A criterion the source states but no profile field can express (DATA.md §3). */
+export interface UnmodelledCriterion {
+  text: string;
+  source_quote: string;
+}
+
+/** The parts of a scheme the engine needs. Extra fields (texts, documents) are ignored. */
+export interface Scheme {
+  slug: string;
+  level: "central" | "state";
+  /** Two-letter state code for state schemes, e.g. "MH". */
+  state: string | null;
+  /** Defaults to 1 when absent; any other version is refused (fail closed). */
+  rule_format_version?: number;
+  eligibility: RuleNode;
+  unmodelled?: readonly UnmodelledCriterion[];
+}
+
+export interface SchemeResult {
+  slug: string;
+  result: Tri;
+  /** Source quotes of every condition that passed — the "why you qualify". */
+  reasons: string[];
+  /** The first condition that made the scheme fail — the "closest miss". */
+  failed: Condition | null;
+  /** Unanswered fields that could still change an UNKNOWN result. */
+  missing: Field[];
+  /** Criteria the user must confirm themselves (from `unmodelled`). */
+  also_confirm: string[];
+}
