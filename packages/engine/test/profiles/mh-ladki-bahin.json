@@ -1,0 +1,85 @@
+{
+  "scheme": "mh-ladki-bahin",
+  "cases": [
+    {
+      "id": "eligible",
+      "why": "Woman, 30, low income",
+      "profile": {
+        "gender": "female",
+        "age": 30,
+        "annual_family_income": 100000
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "man",
+      "why": "Scheme is for women",
+      "profile": {
+        "gender": "male",
+        "age": 30,
+        "annual_family_income": 100000
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "income-at-limit",
+      "why": "Exactly 2.5 lakh is not 'less than 2.5 lakh'",
+      "profile": {
+        "gender": "female",
+        "age": 30,
+        "annual_family_income": 250000
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "income-just-below",
+      "why": "1 rupee under the limit",
+      "profile": {
+        "gender": "female",
+        "age": 30,
+        "annual_family_income": 249999
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-21",
+      "why": "Lower edge of 21 to 65",
+      "profile": {
+        "gender": "female",
+        "age": 21,
+        "annual_family_income": 100000
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-20",
+      "why": "Just below 21",
+      "profile": {
+        "gender": "female",
+        "age": 20,
+        "annual_family_income": 100000
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "age-66",
+      "why": "Just above 65",
+      "profile": {
+        "gender": "female",
+        "age": 66,
+        "annual_family_income": 100000
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "income-unknown",
+      "why": "Income not asked yet",
+      "profile": {
+        "gender": "female",
+        "age": 30
+      },
+      "expected": "UNKNOWN",
+      "ask_next": "annual_family_income"
+    }
+  ]
+}
