@@ -1,7 +1,7 @@
 // Integration test: needs a running local Supabase (supabase start) and
 // SUPABASE_URL + SUPABASE_ANON_KEY in the environment. Skipped otherwise.
 import { beforeAll, describe, expect, it } from "vitest";
-import { buildApp } from "../src/app.ts";
+import { buildApp } from "../src/build-app.ts";
 import { FileSchemeRepository, GOLDEN_DIR } from "../src/repository.ts";
 import { SupabaseSchemeRepository } from "../src/supabase-repository.ts";
 

@@ -1,6 +1,6 @@
 import { Writable } from "node:stream";
 import { afterEach, describe, expect, it } from "vitest";
-import { DISCLAIMER, buildApp } from "../src/app.ts";
+import { DISCLAIMER, buildApp } from "../src/build-app.ts";
 import { FileSchemeRepository, GOLDEN_DIR } from "../src/repository.ts";
 
 const repo = new FileSchemeRepository(GOLDEN_DIR);

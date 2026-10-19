@@ -1,4 +1,4 @@
-import { buildApp } from "./app.ts";
+import { buildApp } from "./build-app.ts";
 import { FileSchemeRepository, GOLDEN_DIR, type SchemeRepository } from "./repository.ts";
 import { SupabaseSchemeRepository } from "./supabase-repository.ts";
 
@@ -21,4 +21,5 @@ app.log.info(
   { source: repo instanceof SupabaseSchemeRepository ? "supabase" : "files" },
   "scheme source",
 );
-await app.listen({ port, host: "127.0.0.1" });
+// On Vercel (VERCEL=1) the platform routes requests to this listener; locally stay on loopback.
+await app.listen({ port, host: process.env.VERCEL ? "0.0.0.0" : "127.0.0.1" });
