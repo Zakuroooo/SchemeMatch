@@ -1,0 +1,48 @@
+{
+  "slug": "mh-ladki-bahin",
+  "level": "state",
+  "state": "MH",
+  "category": "women",
+  "official_url": "https://www.womenchild.maharashtra.gov.in/en/schemes/mukhyamantri-mazi-ladki-bahin-yojana",
+  "source_file": "sources/mh-ladki-bahin.txt",
+  "eligibility": {
+    "all": [
+      {
+        "field": "gender",
+        "op": "eq",
+        "value": "female",
+        "source_quote": "providing ₹1,500 per month to eligible women across the state"
+      },
+      {
+        "field": "age",
+        "op": "between",
+        "value": [
+          21,
+          65
+        ],
+        "source_quote": "It targets state residents between 21 and 65 years of age"
+      },
+      {
+        "field": "annual_family_income",
+        "op": "lt",
+        "value": 250000,
+        "source_quote": "with an annual family income of less than ₹2.5 lakh"
+      }
+    ]
+  },
+  "unmodelled": [],
+  "ambiguous": [
+    "This is an overview page; the Government Resolution's full exclusion list (e.g. tax payers, government employees) is not on it"
+  ],
+  "documents": [],
+  "text": {
+    "en": {
+      "title": "Mukhyamantri Mazi Ladki Bahin Yojana",
+      "benefit": "Rs 1,500 per month by direct bank transfer.",
+      "how_to_apply": "Apply through the official channel described on the source page."
+    }
+  },
+  "drafted_by": "claude",
+  "reviewed_by": null,
+  "reviewed_at": null
+}

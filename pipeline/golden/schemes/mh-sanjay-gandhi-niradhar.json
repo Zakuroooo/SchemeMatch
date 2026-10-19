@@ -1,0 +1,114 @@
+{
+  "slug": "mh-sanjay-gandhi-niradhar",
+  "level": "state",
+  "state": "MH",
+  "category": "pension",
+  "official_url": "https://sjsa.maharashtra.gov.in/en/scheme/sanjay-gandhi-niradhar-anudan-yojana/",
+  "source_file": "sources/mh-sanjay-gandhi-niradhar.txt",
+  "eligibility": {
+    "all": [
+      {
+        "any": [
+          {
+            "field": "has_bpl_card",
+            "op": "eq",
+            "value": true,
+            "source_quote": "the beneficiary’s name must be on the Below Poverty Line (BPL) list"
+          },
+          {
+            "field": "annual_family_income",
+            "op": "lte",
+            "value": 21000,
+            "source_quote": "the family’s annual income must be up to ₹21,000"
+          }
+        ]
+      },
+      {
+        "any": [
+          {
+            "field": "age",
+            "op": "between",
+            "value": [
+              18,
+              65
+            ],
+            "source_quote": "Destitute men and women aged 18 to 65 years"
+          },
+          {
+            "field": "disability_percent",
+            "op": "gt",
+            "value": 0,
+            "source_quote": "All categories of disabled individuals"
+          },
+          {
+            "field": "marital_status",
+            "op": "eq",
+            "value": "widow",
+            "source_quote": "Destitute widows"
+          },
+          {
+            "field": "marital_status",
+            "op": "eq",
+            "value": "divorced",
+            "source_quote": "divorced women not receiving alimony"
+          },
+          {
+            "all": [
+              {
+                "field": "gender",
+                "op": "eq",
+                "value": "female",
+                "source_quote": "Unmarried women over 35 years of age"
+              },
+              {
+                "field": "marital_status",
+                "op": "eq",
+                "value": "single",
+                "source_quote": "Unmarried women over 35 years of age"
+              },
+              {
+                "field": "age",
+                "op": "gt",
+                "value": 35,
+                "source_quote": "Unmarried women over 35 years of age"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "unmodelled": [
+    {
+      "text": "People unable to support themselves due to severe illness (TB, cancer, AIDS, leprosy)",
+      "source_quote": "unable to sustain themselves due to severe illnesses such as tuberculosis, cancer, AIDS, leprosy"
+    },
+    {
+      "text": "Women who were victims of abuse or rescued from prostitution",
+      "source_quote": "Women who have been victims of abuse or rescued from prostitution"
+    },
+    {
+      "text": "Wives of prisoners serving sentences",
+      "source_quote": "Wives of prisoners serving sentences"
+    },
+    {
+      "text": "Women undergoing divorce proceedings",
+      "source_quote": "Women undergoing divorce proceedings"
+    }
+  ],
+  "ambiguous": [
+    "'Destitute' is not defined and is not modelled; the age band 18 to 65 may apply to all categories or only to destitute men and women",
+    "'Not receiving alimony' is not modelled"
+  ],
+  "documents": [],
+  "text": {
+    "en": {
+      "title": "Sanjay Gandhi Niradhar Anudan Yojana",
+      "benefit": "Rs 1,500 per month.",
+      "how_to_apply": "Apply through the official channel described on the source page."
+    }
+  },
+  "drafted_by": "claude",
+  "reviewed_by": null,
+  "reviewed_at": null
+}
