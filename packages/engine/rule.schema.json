@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemematch.dev/schema/rule-v1.json",
+  "title": "SchemeMatch rule node, format v1 (docs/DATA.md §3)",
+  "$ref": "#/$defs/node",
+  "$defs": {
+    "field": {
+      "enum": [
+        "state",
+        "district",
+        "age",
+        "gender",
+        "marital_status",
+        "annual_family_income",
+        "caste_category",
+        "occupation",
+        "land_acres",
+        "disability_percent",
+        "is_student",
+        "education_level",
+        "household_size",
+        "has_bpl_card",
+        "children_count",
+        "is_pregnant_or_lactating"
+      ]
+    },
+    "quote": { "type": "string", "minLength": 3 },
+    "node": {
+      "oneOf": [
+        { "$ref": "#/$defs/condition" },
+        { "$ref": "#/$defs/all" },
+        { "$ref": "#/$defs/any" }
+      ]
+    },
+    "all": {
+      "type": "object",
+      "required": ["all"],
+      "additionalProperties": false,
+      "properties": { "all": { "type": "array", "items": { "$ref": "#/$defs/node" } } }
+    },
+    "any": {
+      "type": "object",
+      "required": ["any"],
+      "additionalProperties": false,
+      "properties": {
+        "any": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/node" } }
+      }
+    },
+    "condition": {
+      "type": "object",
+      "required": ["field", "op", "value", "source_quote"],
+      "additionalProperties": false,
+      "properties": {
+        "field": { "$ref": "#/$defs/field" },
+        "op": { "enum": ["eq", "neq", "in", "not_in", "lt", "lte", "gt", "gte", "between"] },
+        "value": true,
+        "source_quote": { "$ref": "#/$defs/quote" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "op": { "enum": ["eq", "neq"] } } },
+          "then": { "properties": { "value": { "type": ["string", "number", "boolean"] } } }
+        },
+        {
+          "if": { "properties": { "op": { "enum": ["in", "not_in"] } } },
+          "then": {
+            "properties": {
+              "value": { "type": "array", "minItems": 1, "items": { "type": ["string", "number"] } }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "op": { "enum": ["lt", "lte", "gt", "gte"] } } },
+          "then": { "properties": { "value": { "type": "number" } } }
+        },
+        {
+          "if": { "properties": { "op": { "const": "between" } } },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "array",
+                "prefixItems": [{ "type": "number" }, { "type": "number" }],
+                "minItems": 2,
+                "maxItems": 2
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
