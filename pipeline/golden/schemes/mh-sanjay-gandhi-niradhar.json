@@ -44,10 +44,20 @@
             "source_quote": "Destitute widows"
           },
           {
-            "field": "marital_status",
-            "op": "eq",
-            "value": "divorced",
-            "source_quote": "divorced women not receiving alimony"
+            "all": [
+              {
+                "field": "gender",
+                "op": "eq",
+                "value": "female",
+                "source_quote": "divorced women not receiving alimony"
+              },
+              {
+                "field": "marital_status",
+                "op": "eq",
+                "value": "divorced",
+                "source_quote": "divorced women not receiving alimony"
+              }
+            ]
           },
           {
             "all": [
@@ -76,6 +86,10 @@
     ]
   },
   "unmodelled": [
+    {
+      "text": "Must be destitute (no means of support); the 18 to 65 age band applies to destitute men and women",
+      "source_quote": "Destitute men and women aged 18 to 65 years"
+    },
     {
       "text": "People unable to support themselves due to severe illness (TB, cancer, AIDS, leprosy)",
       "source_quote": "unable to sustain themselves due to severe illnesses such as tuberculosis, cancer, AIDS, leprosy"
@@ -129,5 +143,7 @@
     "start": "the following individuals are eligible for benefits:",
     "end": "To be eligible for this scheme",
     "bullet": "–"
-  }
+  },
+  "meaning_checked_by": "claude",
+  "meaning_checked_at": "2026-10-19"
 }
