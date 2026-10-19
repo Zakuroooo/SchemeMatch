@@ -1,0 +1,44 @@
+{
+  "scheme": "pmsby",
+  "cases": [
+    {
+      "id": "eligible",
+      "why": "45 is within 18 to 70",
+      "profile": {
+        "age": 45
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-70",
+      "why": "Upper edge",
+      "profile": {
+        "age": 70
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-71",
+      "why": "Just past 70",
+      "profile": {
+        "age": 71
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "age-17",
+      "why": "Just below 18",
+      "profile": {
+        "age": 17
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "age-unknown",
+      "why": "Nothing asked yet",
+      "profile": {},
+      "expected": "UNKNOWN",
+      "ask_next": "age"
+    }
+  ]
+}

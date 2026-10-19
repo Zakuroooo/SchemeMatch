@@ -1,0 +1,44 @@
+{
+  "scheme": "pmjjby",
+  "cases": [
+    {
+      "id": "eligible",
+      "why": "30 is within 18 to 50",
+      "profile": {
+        "age": 30
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-50",
+      "why": "Upper edge",
+      "profile": {
+        "age": 50
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-51",
+      "why": "Just past 50",
+      "profile": {
+        "age": 51
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "age-18",
+      "why": "Lower edge",
+      "profile": {
+        "age": 18
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-unknown",
+      "why": "Nothing asked yet",
+      "profile": {},
+      "expected": "UNKNOWN",
+      "ask_next": "age"
+    }
+  ]
+}

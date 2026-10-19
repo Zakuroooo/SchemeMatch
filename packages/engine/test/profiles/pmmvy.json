@@ -1,0 +1,89 @@
+{
+  "scheme": "pmmvy",
+  "cases": [
+    {
+      "id": "eligible-income",
+      "why": "Pregnant, 26, income under 8 lakh",
+      "profile": {
+        "is_pregnant_or_lactating": true,
+        "age": 26,
+        "annual_family_income": 200000
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "not-pregnant",
+      "why": "Not pregnant or lactating",
+      "profile": {
+        "is_pregnant_or_lactating": false,
+        "age": 26,
+        "annual_family_income": 200000
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "income-at-limit",
+      "why": "Exactly 8 lakh is not 'less than 8 lakh', and no other category applies",
+      "profile": {
+        "is_pregnant_or_lactating": true,
+        "age": 26,
+        "annual_family_income": 800000,
+        "has_bpl_card": false,
+        "disability_percent": 0,
+        "caste_category": "General"
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "income-just-below",
+      "why": "1 rupee under 8 lakh",
+      "profile": {
+        "is_pregnant_or_lactating": true,
+        "age": 26,
+        "annual_family_income": 799999
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "sc-path",
+      "why": "Income too high, but SC women qualify on their own",
+      "profile": {
+        "is_pregnant_or_lactating": true,
+        "age": 30,
+        "annual_family_income": 900000,
+        "caste_category": "SC"
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-55",
+      "why": "55 is not 'less than 55'",
+      "profile": {
+        "is_pregnant_or_lactating": true,
+        "age": 55,
+        "annual_family_income": 200000
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "category-unknown",
+      "why": "Income too high and the other categories are not asked yet",
+      "profile": {
+        "is_pregnant_or_lactating": true,
+        "age": 26,
+        "annual_family_income": 900000
+      },
+      "expected": "UNKNOWN"
+    },
+    {
+      "id": "pregnancy-unknown",
+      "why": "Everything else fits; pregnancy not asked",
+      "profile": {
+        "age": 26,
+        "annual_family_income": 200000
+      },
+      "expected": "UNKNOWN",
+      "ask_next": "is_pregnant_or_lactating"
+    }
+  ]
+}
