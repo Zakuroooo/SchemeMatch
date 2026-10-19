@@ -174,6 +174,12 @@ The **idempotency key** (a UUID made on the device) means a retry never creates 
 
 All inputs validated with **Zod**; errors return clear 400s; rate-limited per IP and per install ID with Upstash Redis.
 
+**Built so far (`apps/api`, Week 2):** `GET /health`, `GET /schemes?state=`, `POST /eligibility`.
+- The profile schema is **strict**: any key that isn't a profile field (`name`, `phone`, `aadhaar`, …) is rejected with a 400, and errors never echo values back.
+- Responses carry the reasons (source quotes), the "must also confirm" items, the closest miss, the next question and the disclaimer.
+- Schemes come from a `SchemeRepository` interface: golden files today, Supabase next.
+- Rate limiting is in-memory (60/min per IP) until the deploy step moves it to Upstash. Profiles are redacted from logs.
+
 ## 8. Security & privacy
 - DPDP-style minimisation: no name/phone/Aadhaar; district-level analytics only.
 - Auth only for workers/admins (Supabase Auth); citizens never need to log in.
