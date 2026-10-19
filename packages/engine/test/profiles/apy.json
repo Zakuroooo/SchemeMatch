@@ -19,15 +19,23 @@
     },
     {
       "id": "age-40",
-      "why": "Upper edge",
+      "why": "Aged 40 means the 40th birthday has passed; the FAQ allows joining only until that birthday",
       "profile": {
         "age": 40
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "age-39",
+      "why": "Last whole year before the 40th birthday",
+      "profile": {
+        "age": 39
       },
       "expected": "PASS"
     },
     {
       "id": "age-41",
-      "why": "Just past 40",
+      "why": "Well past the 40th birthday",
       "profile": {
         "age": 41
       },

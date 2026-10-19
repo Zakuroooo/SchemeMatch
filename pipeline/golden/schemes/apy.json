@@ -9,9 +9,15 @@
     "all": [
       {
         "field": "age",
-        "op": "between",
-        "value": [18, 40],
+        "op": "gte",
+        "value": 18,
         "source_quote": "The age of an individual should be between 18 and 40 years."
+      },
+      {
+        "field": "age",
+        "op": "lt",
+        "value": 40,
+        "source_quote": "A person can join APY till his/ her 40th birthday."
       }
     ]
   },
@@ -27,9 +33,15 @@
     {
       "text": "Must be a citizen of India",
       "source_quote": "APY is open to all citizens of India"
+    },
+    {
+      "text": "Only one APY account per person",
+      "source_quote": "An individual can open only one APY account."
     }
   ],
-  "ambiguous": [],
+  "ambiguous": [
+    "The eligibility list says 'between 18 and 40 years', but the FAQ says joining is allowed only until the 40th birthday. In completed years that means 18 to 39 (a person on the exact day of their 40th birthday can still join)."
+  ],
   "documents": [],
   "text": {
     "en": {
@@ -40,5 +52,10 @@
   },
   "drafted_by": "claude",
   "reviewed_by": null,
-  "reviewed_at": null
+  "reviewed_at": null,
+  "coverage": {
+    "start": "who fulfil the following eligibility criteria",
+    "end": "The prospective applicants",
+    "bullet": "("
+  }
 }
