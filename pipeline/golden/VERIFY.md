@@ -201,3 +201,110 @@ Saved copy: [sources/pmsby.txt](../sources/pmsby.txt) · Official page: <https:/
 - Upper age is 'age nearer birthday'
 
 Meaning checked by: claude (2026-10-19) · Human reviewer: not yet
+
+## Annapurna Yojana (`wb-annapurna`)
+
+Saved copy: [sources/wb-annapurna.txt](../sources/wb-annapurna.txt) · Official page: <https://wb.gov.in/government-schemes-details-annaapurna-yojana.aspx>
+
+- **ALL of these must be true:**
+- [ ] Gender is female — quote: "financial assistance to female residents of West Bengal"
+- [ ] Age is between 25 and 60 (both included) — quote: "between the ages of 25 and 60"
+
+*Not modelled as rules (shown to users as "you must also confirm"):*
+- [ ] Must not be in permanent government employment — quote: "must not be any permanent government employment"
+- [ ] Must not be an illegal immigrant — quote: "not an illegal immigrant"
+- [ ] Must not be an income-tax payer — quote: "must not be an income tax payer"
+
+*Flagged as unclear (excluded from accuracy):*
+- 'Between the ages of 25 and 60' does not say whether 25 and 60 themselves are included; the rule includes both
+- The page does not say whether Annapurna replaces Lakshmir Bhandar, which is no longer listed on wb.gov.in
+- Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines
+
+Meaning checked by: claude (2026-10-19) · Human reviewer: not yet
+
+## Jai Johar (old-age pension for ST communities) (`wb-jai-johar`)
+
+Saved copy: [sources/wb-jai-johar.txt](../sources/wb-jai-johar.txt) · Official page: <https://wb.gov.in/government-schemes-details-jai-johar-old-age-pensionfor-st-communities.aspx>
+
+- **ALL of these must be true:**
+- [ ] Caste category is ST — quote: "Individuals belonging to Scheduled Tribe (ST) category."
+- [ ] Age is at least 60 — quote: "Age of 60 years or above."
+
+*Not modelled as rules (shown to users as "you must also confirm"):*
+- [ ] Must be economically disadvantaged with limited or no stable income — quote: "Economically disadvantaged individuals with limited or no stable income."
+- [ ] Must not receive a similar pension under another major government scheme — quote: "Not receiving similar pension benefits under other major government pension schemes"
+- [ ] Must be a resident of West Bengal — quote: "Residents of West Bengal."
+
+*Flagged as unclear (excluded from accuracy):*
+- The page says eligible beneficiaries 'generally include' these groups, so the list may not be complete or strict
+- 'As per applicable guidelines': the guidelines themselves are not on the page
+- No income limit is given for 'economically disadvantaged'
+- Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines
+
+Meaning checked by: claude (2026-10-19) · Human reviewer: not yet
+
+## Medhashree (`wb-medhashree`)
+
+Saved copy: [sources/wb-medhashree.txt](../sources/wb-medhashree.txt) · Official page: <https://wb.gov.in/government-schemes-details-west-bengal-medhashree-scheme.aspx>
+
+- **ALL of these must be true:**
+- [ ] Caste category is OBC — quote: "Must belong to the OBC category."
+- [ ] Is a student: yes — quote: "Must be studying in Classes V-VIII"
+- [ ] Education is one of class_5, class_6, class_7, class_8 — quote: "Must be studying in Classes V-VIII"
+- [ ] Annual family income (₹) is at most ₹250,000 — quote: "Annual family income should generally not exceed Rs 2.5 lakh."
+
+*Not modelled as rules (shown to users as "you must also confirm"):*
+- [ ] Described as for 'meritorious' students (no merit criterion is given) — quote: "financial assistance to meritorious students"
+- [ ] School must be government, government-aided or government-recognised — quote: "in a government, government-aided, or government-recognized school"
+- [ ] Must not receive another similar scholarship — quote: "Student should not be receiving any other similar scholarship."
+- [ ] Must have a valid bank account — quote: "Must have a valid bank account."
+- [ ] Must be a permanent resident of West Bengal — quote: "The applicant must be a permanent resident of West Bengal."
+
+*Flagged as unclear (excluded from accuracy):*
+- Income 'should generally not exceed Rs 2.5 lakh': 'generally' means the limit may not be strict
+- The intro says the scheme supports 'higher education' and 'meritorious' students, but the eligibility list says Classes V to VIII
+- Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines
+
+Meaning checked by: claude (2026-10-19) · Human reviewer: not yet
+
+## Shikshasree (`wb-shikshasree`)
+
+Saved copy: [sources/wb-shikshasree.txt](../sources/wb-shikshasree.txt) · Official page: <https://wb.gov.in/government-schemes-details-west-bengal-shikshasree-scheme.aspx>
+
+- **ALL of these must be true:**
+- [ ] Caste category is one of SC, ST — quote: "Must belong to the Scheduled Caste (SC) or Scheduled Tribe (ST) category."
+- [ ] Is a student: yes — quote: "Must be studying in Classes V-VIII"
+- [ ] Education is one of class_5, class_6, class_7, class_8 — quote: "Must be studying in Classes V-VIII"
+- [ ] Annual family income (₹) is at most ₹250,000 — quote: "Annual family income should generally not exceed Rs 2.5 lakh."
+
+*Not modelled as rules (shown to users as "you must also confirm"):*
+- [ ] School must be government, government-aided or government-recognised — quote: "in a government, government-aided, or government-recognized school"
+- [ ] Must not receive another similar scholarship — quote: "Student should not be receiving any other similar scholarship."
+- [ ] Must have a valid bank account — quote: "Must have a valid bank account."
+- [ ] Must be a permanent resident of West Bengal — quote: "The applicant must be a permanent resident of West Bengal."
+
+*Flagged as unclear (excluded from accuracy):*
+- Income 'should generally not exceed Rs 2.5 lakh': 'generally' means the limit may not be strict
+- Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines
+
+Meaning checked by: claude (2026-10-19) · Human reviewer: not yet
+
+## Taposili Bandhu (`wb-taposili-bandhu`)
+
+Saved copy: [sources/wb-taposili-bandhu.txt](../sources/wb-taposili-bandhu.txt) · Official page: <https://wb.gov.in/government-schemes-details-taposili-bandhu-scheme.aspx>
+
+- **ALL of these must be true:**
+- [ ] Caste category is SC — quote: "Must belongto the Scheduled Caste (SC) community"
+- [ ] Age is at least 60 — quote: "Must be 60 years of age or above"
+
+*Not modelled as rules (shown to users as "you must also confirm"):*
+- [ ] Must be economically disadvantaged (not defined on the page) — quote: "who are economically disadvantaged"
+- [ ] Must not receive any other government pension — quote: "Should not be abeneficiary of any other government pension scheme"
+- [ ] Must have a valid bank account for DBT — quote: "Must have a valid bank account for Direct Benefit Transfer (DBT)"
+- [ ] Must be a permanent resident of West Bengal — quote: "Applicant must be a permanent resident of West Bengal"
+
+*Flagged as unclear (excluded from accuracy):*
+- 'Economically disadvantaged' has no income limit on the page
+- Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines
+
+Meaning checked by: claude (2026-10-19) · Human reviewer: not yet
