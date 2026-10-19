@@ -1,0 +1,71 @@
+{
+  "scheme": "wb-medhashree",
+  "cases": [
+    {
+      "id": "eligible",
+      "why": "OBC student in Class V",
+      "profile": {
+        "caste_category": "OBC",
+        "is_student": true,
+        "education_level": "class_5",
+        "annual_family_income": 90000
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "sc",
+      "why": "SC is covered by Shikshasree, not Medhashree",
+      "profile": {
+        "caste_category": "SC",
+        "is_student": true,
+        "education_level": "class_5",
+        "annual_family_income": 90000
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "class-4",
+      "why": "Class IV is below V",
+      "profile": {
+        "caste_category": "OBC",
+        "is_student": true,
+        "education_level": "class_4",
+        "annual_family_income": 90000
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "income-at-limit",
+      "why": "Exactly 2.5 lakh qualifies",
+      "profile": {
+        "caste_category": "OBC",
+        "is_student": true,
+        "education_level": "class_8",
+        "annual_family_income": 250000
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "income-over",
+      "why": "1 rupee over",
+      "profile": {
+        "caste_category": "OBC",
+        "is_student": true,
+        "education_level": "class_8",
+        "annual_family_income": 250001
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "student-unknown",
+      "why": "Class and income known; 'is a student' not asked",
+      "profile": {
+        "caste_category": "OBC",
+        "education_level": "class_6",
+        "annual_family_income": 90000
+      },
+      "expected": "UNKNOWN",
+      "ask_next": "is_student"
+    }
+  ]
+}

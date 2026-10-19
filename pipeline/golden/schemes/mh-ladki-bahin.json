@@ -29,7 +29,8 @@
   },
   "unmodelled": [],
   "ambiguous": [
-    "This is an overview page; the Government Resolution's full exclusion list (e.g. tax payers, government employees) is not on it"
+    "This is an overview page; the Government Resolution's full exclusion list (e.g. tax payers, government employees) is not on it",
+    "The page says 'between 21 and 65 years of age' without saying whether a 65-year-old qualifies; the rule treats 65 as included until the Government Resolution text is checked (step 2b)"
   ],
   "documents": [],
   "text": {
@@ -41,5 +42,7 @@
   },
   "drafted_by": "claude",
   "reviewed_by": null,
-  "reviewed_at": null
+  "reviewed_at": null,
+  "meaning_checked_by": "claude",
+  "meaning_checked_at": "2026-10-19"
 }

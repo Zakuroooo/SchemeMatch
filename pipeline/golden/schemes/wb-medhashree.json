@@ -1,0 +1,81 @@
+{
+  "slug": "wb-medhashree",
+  "level": "state",
+  "state": "WB",
+  "category": "education",
+  "official_url": "https://wb.gov.in/government-schemes-details-west-bengal-medhashree-scheme.aspx",
+  "source_file": "sources/wb-medhashree.txt",
+  "eligibility": {
+    "all": [
+      {
+        "field": "caste_category",
+        "op": "eq",
+        "value": "OBC",
+        "source_quote": "Must belong to the OBC category."
+      },
+      {
+        "field": "is_student",
+        "op": "eq",
+        "value": true,
+        "source_quote": "Must be studying in Classes V-VIII"
+      },
+      {
+        "field": "education_level",
+        "op": "in",
+        "value": ["class_5", "class_6", "class_7", "class_8"],
+        "source_quote": "Must be studying in Classes V-VIII"
+      },
+      {
+        "field": "annual_family_income",
+        "op": "lte",
+        "value": 250000,
+        "source_quote": "Annual family income should generally not exceed Rs 2.5 lakh."
+      }
+    ]
+  },
+  "unmodelled": [
+    {
+      "text": "Described as for 'meritorious' students (no merit criterion is given)",
+      "source_quote": "financial assistance to meritorious students"
+    },
+    {
+      "text": "School must be government, government-aided or government-recognised",
+      "source_quote": "in a government, government-aided, or government-recognized school"
+    },
+    {
+      "text": "Must not receive another similar scholarship",
+      "source_quote": "Student should not be receiving any other similar scholarship."
+    },
+    {
+      "text": "Must have a valid bank account",
+      "source_quote": "Must have a valid bank account."
+    },
+    {
+      "text": "Must be a permanent resident of West Bengal",
+      "source_quote": "The applicant must be a permanent resident of West Bengal."
+    }
+  ],
+  "ambiguous": [
+    "Income 'should generally not exceed Rs 2.5 lakh': 'generally' means the limit may not be strict",
+    "The intro says the scheme supports 'higher education' and 'meritorious' students, but the eligibility list says Classes V to VIII",
+    "Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines"
+  ],
+  "documents": [],
+  "text": {
+    "en": {
+      "title": "Medhashree",
+      "benefit": "Rs 800 per year, renewable up to Class VIII.",
+      "how_to_apply": "Students are identified by their school, which applies on the official portal."
+    }
+  },
+  "coverage": {
+    "start": "\nEligibility\n",
+    "end": "Application Details",
+    "bullet": ""
+  },
+  "drafted_by": "claude",
+  "meaning_checked_by": "claude",
+  "meaning_checked_at": "2026-10-19",
+  "reviewed_by": null,
+  "reviewed_at": null
+}

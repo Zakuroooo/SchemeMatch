@@ -1,0 +1,50 @@
+{
+  "scheme": "wb-jai-johar",
+  "cases": [
+    {
+      "id": "eligible",
+      "why": "ST, aged 62",
+      "profile": {
+        "caste_category": "ST",
+        "age": 62
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "sc-not-st",
+      "why": "SC is not ST",
+      "profile": {
+        "caste_category": "SC",
+        "age": 70
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "age-60",
+      "why": "'60 years or above'",
+      "profile": {
+        "caste_category": "ST",
+        "age": 60
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-59",
+      "why": "Just below 60",
+      "profile": {
+        "caste_category": "ST",
+        "age": 59
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "age-unknown",
+      "why": "ST; age not asked",
+      "profile": {
+        "caste_category": "ST"
+      },
+      "expected": "UNKNOWN",
+      "ask_next": "age"
+    }
+  ]
+}

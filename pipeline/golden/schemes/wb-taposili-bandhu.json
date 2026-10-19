@@ -1,0 +1,64 @@
+{
+  "slug": "wb-taposili-bandhu",
+  "level": "state",
+  "state": "WB",
+  "category": "pension",
+  "official_url": "https://wb.gov.in/government-schemes-details-taposili-bandhu-scheme.aspx",
+  "source_file": "sources/wb-taposili-bandhu.txt",
+  "eligibility": {
+    "all": [
+      {
+        "field": "caste_category",
+        "op": "eq",
+        "value": "SC",
+        "source_quote": "Must belongto the Scheduled Caste (SC) community"
+      },
+      {
+        "field": "age",
+        "op": "gte",
+        "value": 60,
+        "source_quote": "Must be 60 years of age or above"
+      }
+    ]
+  },
+  "unmodelled": [
+    {
+      "text": "Must be economically disadvantaged (not defined on the page)",
+      "source_quote": "who are economically disadvantaged"
+    },
+    {
+      "text": "Must not receive any other government pension",
+      "source_quote": "Should not be abeneficiary of any other government pension scheme"
+    },
+    {
+      "text": "Must have a valid bank account for DBT",
+      "source_quote": "Must have a valid bank account for Direct Benefit Transfer (DBT)"
+    },
+    {
+      "text": "Must be a permanent resident of West Bengal",
+      "source_quote": "Applicant must be a permanent resident of West Bengal"
+    }
+  ],
+  "ambiguous": [
+    "'Economically disadvantaged' has no income limit on the page",
+    "Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines"
+  ],
+  "documents": [],
+  "text": {
+    "en": {
+      "title": "Taposili Bandhu",
+      "benefit": "Rs 1,000 per month pension by direct bank transfer.",
+      "how_to_apply": "Collect the form from the BDO or municipality office, attach documents and submit it to the local authority."
+    }
+  },
+  "coverage": {
+    "start": "\nEligibility\n",
+    "end": "Application Details",
+    "bullet": ""
+  },
+  "drafted_by": "claude",
+  "meaning_checked_by": "claude",
+  "meaning_checked_at": "2026-10-19",
+  "reviewed_by": null,
+  "reviewed_at": null
+}

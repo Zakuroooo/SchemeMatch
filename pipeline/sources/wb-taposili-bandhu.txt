@@ -1,0 +1,25 @@
+# Source copy for wb-taposili-bandhu
+# official_url: https://wb.gov.in/government-schemes-details-taposili-bandhu-scheme.aspx
+# retrieved: 2026-10-19 (direct fetch, HTML converted to text)
+# sha256 of the text below: c381aa6c456afb959f19dc0442b21023600b0dfdd61f6379e7f25d8129bfe12d
+# This is a copy of public government text, kept so quotes can be checked offline.
+
+The Taposili Bandhu Scheme provides financial assistance in the from of a monthly pension to elderly individuals belonging to Scheduled Caste (SC) community who are economically disadvantaged. lts objective is to ensure basic social security and improve the quality of life for marginalized senior citizens in the state.
+Benefits Offer Under the Scheme
+Provides a monthly pension of Rs 1 ,000 to eligible beneficiaries
+Pension amount is directly transferred to the beneficiary's bank account (DBT)
+Eligibility
+Applicant must be a permanent resident of West Bengal
+Must belongto the Scheduled Caste (SC) community
+Must be 60 years of age or above
+Should not be abeneficiary of any other government pension scheme
+Must have a valid bank account for Direct Benefit Transfer (DBT)
+Application Details
+Collect the application formfrom BOO or Municipality office
+Fill out the application form
+Attach necessary documents (proof of age, caste certificate (SC), residence proof, and bank account details)
+Submit the completed form to the concerned local authority
+The application is verified by local authorities
+Once approved, the beneficiary is enrolled and the pension amount is credited directly to their bank account
+Last updated on: Friday, 26th June, 2026
+Information Source: Department of Information & Cultural Affairs(I&CA), Government of West Bengal

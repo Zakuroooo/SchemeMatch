@@ -7,7 +7,7 @@ pmmvy,Pradhan Mantri Matru Vandana Yojana,central,,maternity,Pregnant/lactating 
 post-matric-sc,Post-Matric Scholarship for SC Students,central,,education,Student persona; caste + income rule; moved to step 2b: official source text lost the income clause,,planned
 mh-ladki-bahin,Mukhyamantri Majhi Ladki Bahin Yojana,state,MH,women,Large Maharashtra scheme; age and income limits,https://www.womenchild.maharashtra.gov.in/en/schemes/mukhyamantri-mazi-ladki-bahin-yojana,drafting
 mh-sanjay-gandhi-niradhar,Sanjay Gandhi Niradhar Anudan Yojana,state,MH,pension,Destitute widows/disabled; OR-group rule,https://sjsa.maharashtra.gov.in/en/scheme/sanjay-gandhi-niradhar-anudan-yojana/,drafting
-wb-lakshmir-bhandar,Lakshmir Bhandar,state,WB,women,Large West Bengal scheme; caste-dependent benefit; moved to step 2b: West Bengal sites unreachable from this network on 2026-10-19,,planned
+wb-lakshmir-bhandar,Lakshmir Bhandar,state,WB,women,Was the large WB women's scheme; not listed on wb.gov.in as of 2026-10-19 (Annapurna Yojana is),,not_listed
 wb-kanyashree,Kanyashree Prakalpa,state,WB,education,Girl students; age and marital status; moved to step 2b: West Bengal sites unreachable from this network on 2026-10-19,,planned
 pmay-g,Pradhan Mantri Awas Yojana Gramin,central,,housing,Housing need coverage,,planned
 pmuy,Pradhan Mantri Ujjwala Yojana,central,,household,LPG for BPL women,,planned
@@ -27,5 +27,8 @@ wb-krishak-bandhu,Krishak Bandhu,state,WB,farming,West Bengal farmer support,,pl
 wb-rupashree,Rupashree Prakalpa,state,WB,women,Marriage grant; income limit,,planned
 wb-swasthya-sathi,Swasthya Sathi,state,WB,health,West Bengal health cover,,planned
 wb-taruner-swapna,Taruner Swapna,state,WB,education,Tablet grant for class 11-12,,planned
-wb-joy-bangla-pension,Jai Bangla Pension,state,WB,pension,SC/ST elderly pension,,planned
-wb-sikshashree,Sikshashree,state,WB,education,SC/ST day scholars,,planned
+wb-annapurna,Annapurna Yojana,state,WB,women,New WB women's cash transfer listed on wb.gov.in,https://wb.gov.in/government-schemes-details-annaapurna-yojana.aspx,drafting
+wb-taposili-bandhu,Taposili Bandhu,state,WB,pension,SC old-age pension,https://wb.gov.in/government-schemes-details-taposili-bandhu-scheme.aspx,drafting
+wb-jai-johar,Jai Johar,state,WB,pension,ST old-age pension,https://wb.gov.in/government-schemes-details-jai-johar-old-age-pensionfor-st-communities.aspx,drafting
+wb-shikshasree,Shikshasree,state,WB,education,"SC/ST students, Classes V-VIII",https://wb.gov.in/government-schemes-details-west-bengal-shikshasree-scheme.aspx,drafting
+wb-medhashree,Medhashree,state,WB,education,"OBC students, Classes V-VIII",https://wb.gov.in/government-schemes-details-west-bengal-medhashree-scheme.aspx,drafting

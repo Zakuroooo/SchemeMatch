@@ -24,6 +24,18 @@
       "expected": "FAIL"
     },
     {
+      "id": "divorced-man",
+      "why": "The divorced category is for women only; a 70-year-old divorced man fits no other category",
+      "profile": {
+        "gender": "male",
+        "marital_status": "divorced",
+        "age": 70,
+        "annual_family_income": 10000,
+        "disability_percent": 0
+      },
+      "expected": "FAIL"
+    },
+    {
       "id": "income-at-limit",
       "why": "Exactly 21,000 is 'up to 21,000'",
       "profile": {

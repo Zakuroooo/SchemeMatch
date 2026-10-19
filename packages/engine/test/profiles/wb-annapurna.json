@@ -1,0 +1,68 @@
+{
+  "scheme": "wb-annapurna",
+  "cases": [
+    {
+      "id": "eligible",
+      "why": "Woman aged 40",
+      "profile": {
+        "gender": "female",
+        "age": 40
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "man",
+      "why": "Scheme is for women",
+      "profile": {
+        "gender": "male",
+        "age": 40
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "age-25",
+      "why": "Lower edge",
+      "profile": {
+        "gender": "female",
+        "age": 25
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-24",
+      "why": "Just below 25",
+      "profile": {
+        "gender": "female",
+        "age": 24
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "age-60",
+      "why": "Upper edge",
+      "profile": {
+        "gender": "female",
+        "age": 60
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-61",
+      "why": "Just above 60",
+      "profile": {
+        "gender": "female",
+        "age": 61
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "gender-unknown",
+      "why": "Age fits; gender not asked",
+      "profile": {
+        "age": 40
+      },
+      "expected": "UNKNOWN",
+      "ask_next": "gender"
+    }
+  ]
+}

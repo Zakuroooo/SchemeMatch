@@ -1,0 +1,50 @@
+{
+  "scheme": "wb-taposili-bandhu",
+  "cases": [
+    {
+      "id": "eligible",
+      "why": "SC, aged 65",
+      "profile": {
+        "caste_category": "SC",
+        "age": 65
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "not-sc",
+      "why": "General category",
+      "profile": {
+        "caste_category": "General",
+        "age": 65
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "age-60",
+      "why": "'60 years of age or above'",
+      "profile": {
+        "caste_category": "SC",
+        "age": 60
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-59",
+      "why": "Just below 60",
+      "profile": {
+        "caste_category": "SC",
+        "age": 59
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "caste-unknown",
+      "why": "Age fits; caste not asked",
+      "profile": {
+        "age": 70
+      },
+      "expected": "UNKNOWN",
+      "ask_next": "caste_category"
+    }
+  ]
+}

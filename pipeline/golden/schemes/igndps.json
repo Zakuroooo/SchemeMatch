@@ -35,5 +35,7 @@
   },
   "drafted_by": "claude",
   "reviewed_by": null,
-  "reviewed_at": null
+  "reviewed_at": null,
+  "meaning_checked_by": "claude",
+  "meaning_checked_at": "2026-10-19"
 }
