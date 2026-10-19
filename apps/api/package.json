@@ -5,11 +5,12 @@
   "type": "module",
   "description": "SchemeMatch HTTP API: wraps the eligibility engine (ADR 0004).",
   "scripts": {
-    "dev": "tsx watch src/server.ts",
-    "start": "tsx src/server.ts",
+    "dev": "tsx watch src/index.ts",
+    "start": "tsx src/index.ts",
     "lint": "eslint .",
     "typecheck": "tsc -p tsconfig.json",
-    "test": "vitest run"
+    "test": "vitest run",
+    "build": "node scripts/bundle-schemes.mjs"
   },
   "dependencies": {
     "@fastify/rate-limit": "^11.2.1",

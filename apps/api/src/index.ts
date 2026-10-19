@@ -1,15 +1,15 @@
-import { buildApp } from "./app.ts";
-import { FileSchemeRepository, GOLDEN_DIR, type SchemeRepository } from "./repository.ts";
+import { buildApp } from "./build-app.ts";
+import { BundledSchemeRepository, type SchemeRepository } from "./repository.ts";
 import { SupabaseSchemeRepository } from "./supabase-repository.ts";
 
 const port = Number(process.env.PORT ?? 3001);
 const { SUPABASE_URL, SUPABASE_ANON_KEY, CLIENT_IP_HEADER } = process.env;
 
-// Database when configured; otherwise the golden files (handy offline).
+// Database when configured; otherwise the golden schemes bundled at build time.
 const repo: SchemeRepository =
   SUPABASE_URL && SUPABASE_ANON_KEY
     ? new SupabaseSchemeRepository({ url: SUPABASE_URL, anonKey: SUPABASE_ANON_KEY })
-    : new FileSchemeRepository(GOLDEN_DIR);
+    : new BundledSchemeRepository();
 
 // CLIENT_IP_HEADER=x-real-ip when deployed behind Vercel; unset for local runs.
 const app = await buildApp({
@@ -21,4 +21,5 @@ app.log.info(
   { source: repo instanceof SupabaseSchemeRepository ? "supabase" : "files" },
   "scheme source",
 );
-await app.listen({ port, host: "127.0.0.1" });
+// On Vercel (VERCEL=1) the platform routes requests to this listener; locally stay on loopback.
+await app.listen({ port, host: process.env.VERCEL ? "0.0.0.0" : "127.0.0.1" });

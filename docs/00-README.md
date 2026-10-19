@@ -20,7 +20,7 @@
 | 12 | [CLAUDE-CODE-PLAYBOOK.md](CLAUDE-CODE-PLAYBOOK.md) | How the agent is used and how you verify its work | 15 min |
 | 13 | [REVERSE-ENGINEERING.md](REVERSE-ENGINEERING.md) | REA scope and workflow | 5 min |
 
-Also: [`../CLAUDE.md`](../CLAUDE.md) (rules Claude Code reads every session) · [`../CONTRIBUTING.md`](../CONTRIBUTING.md) (commits, PRs, definition of done).
+Also: [`../CONTRIBUTING.md`](../CONTRIBUTING.md) (commits, PRs, definition of done). The agent's working rules live in a local `CLAUDE.md` that is deliberately not committed.
 
 ## How the docs connect
 

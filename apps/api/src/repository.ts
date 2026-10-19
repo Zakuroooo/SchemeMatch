@@ -1,6 +1,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { Scheme } from "@schemematch/engine";
+import bundled from "./generated/schemes.json" with { type: "json" };
 
 /** What the API needs to know about a scheme: the engine's rules plus display text. */
 export interface CatalogScheme extends Scheme {
@@ -31,3 +32,10 @@ export class FileSchemeRepository implements SchemeRepository {
 }
 
 export const GOLDEN_DIR = join(import.meta.dirname, "../../../pipeline/golden/schemes");
+
+/** The golden schemes bundled into the API at build time (src/generated/schemes.json). */
+export class BundledSchemeRepository implements SchemeRepository {
+  async listLive(): Promise<CatalogScheme[]> {
+    return bundled as CatalogScheme[];
+  }
+}
