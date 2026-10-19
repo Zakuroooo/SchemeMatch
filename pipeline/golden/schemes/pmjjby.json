@@ -1,0 +1,41 @@
+{
+  "slug": "pmjjby",
+  "level": "central",
+  "state": null,
+  "category": "insurance",
+  "official_url": "https://jansuraksha.gov.in/Files/PMJJBY/English/Rules.pdf",
+  "source_file": "sources/pmjjby.txt",
+  "eligibility": {
+    "all": [
+      {
+        "field": "age",
+        "op": "between",
+        "value": [
+          18,
+          50
+        ],
+        "source_quote": "in the age group of 18 to 50 years are entitled to join"
+      }
+    ]
+  },
+  "unmodelled": [
+    {
+      "text": "Must hold an individual bank or post office account and consent to auto-debit",
+      "source_quote": "Individual bank/ Post office account holders of the participating banks/ Post office"
+    }
+  ],
+  "ambiguous": [
+    "Age is 'age nearer birthday', so the boundary can differ from age in completed years"
+  ],
+  "documents": [],
+  "text": {
+    "en": {
+      "title": "Pradhan Mantri Jeevan Jyoti Bima Yojana",
+      "benefit": "One-year renewable life cover; premium Rs 436 a year.",
+      "how_to_apply": "Apply through the official channel described on the source page."
+    }
+  },
+  "drafted_by": "claude",
+  "reviewed_by": null,
+  "reviewed_at": null
+}

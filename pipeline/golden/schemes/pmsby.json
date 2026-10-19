@@ -1,0 +1,41 @@
+{
+  "slug": "pmsby",
+  "level": "central",
+  "state": null,
+  "category": "insurance",
+  "official_url": "https://jansuraksha.gov.in/Files/PMSBY/English/Rules.pdf",
+  "source_file": "sources/pmsby.txt",
+  "eligibility": {
+    "all": [
+      {
+        "field": "age",
+        "op": "between",
+        "value": [
+          18,
+          70
+        ],
+        "source_quote": "aged between 18 years (completed) and 70 years (age nearer birthday)"
+      }
+    ]
+  },
+  "unmodelled": [
+    {
+      "text": "Must hold an individual bank or post office account and consent to auto-debit",
+      "source_quote": "Individual bank/ Post office account holders of participating banks/ Post office"
+    }
+  ],
+  "ambiguous": [
+    "Upper age is 'age nearer birthday'"
+  ],
+  "documents": [],
+  "text": {
+    "en": {
+      "title": "Pradhan Mantri Suraksha Bima Yojana",
+      "benefit": "One-year renewable accident cover.",
+      "how_to_apply": "Apply through the official channel described on the source page."
+    }
+  },
+  "drafted_by": "claude",
+  "reviewed_by": null,
+  "reviewed_at": null
+}

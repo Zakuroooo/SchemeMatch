@@ -1,0 +1,50 @@
+{
+  "slug": "pm-kisan",
+  "level": "central",
+  "state": null,
+  "category": "farming",
+  "official_url": "https://pmkisan.gov.in/Documents/Revised%20Operational%20Guidelines%20-%20PM-Kisan%20Scheme.pdf",
+  "source_file": "sources/pm-kisan.txt",
+  "eligibility": {
+    "all": [
+      {
+        "field": "land_acres",
+        "op": "gt",
+        "value": 0,
+        "source_quote": "all landholding farmers’ families in the country, having cultivable land"
+      }
+    ]
+  },
+  "unmodelled": [
+    {
+      "text": "Not a person who paid income tax in the last assessment year",
+      "source_quote": "All Persons who paid Income Tax in last assessment year."
+    },
+    {
+      "text": "Not a retired pensioner with monthly pension of Rs 10,000 or more",
+      "source_quote": "All superannuated/retired pensioners whose monthly pension is Rs.10,000/-or more"
+    },
+    {
+      "text": "Not a practising registered professional (doctor, engineer, lawyer, CA, architect)",
+      "source_quote": "Professionals like Doctors, Engineers, Lawyers, Chartered Accountants, and Architects registered with Professional bodies"
+    },
+    {
+      "text": "Land must be owned as per state land records",
+      "source_quote": "who own cultivable land as per land records of the concerned State/UT"
+    }
+  ],
+  "ambiguous": [
+    "Several other exclusion categories (constitutional posts, government employees) are only partly visible in the extracted text"
+  ],
+  "documents": [],
+  "text": {
+    "en": {
+      "title": "PM Kisan Samman Nidhi",
+      "benefit": "Income support for landholding farmer families.",
+      "how_to_apply": "Apply through the official channel described on the source page."
+    }
+  },
+  "drafted_by": "claude",
+  "reviewed_by": null,
+  "reviewed_at": null
+}

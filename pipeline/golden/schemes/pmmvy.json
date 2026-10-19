@@ -1,0 +1,93 @@
+{
+  "slug": "pmmvy",
+  "level": "central",
+  "state": null,
+  "category": "maternity",
+  "official_url": "https://www.spniwcd.wcd.gov.in/uploads/pdf/1710098119_HDEXdpWMb1.pdf",
+  "source_file": "sources/pmmvy.txt",
+  "eligibility": {
+    "all": [
+      {
+        "field": "is_pregnant_or_lactating",
+        "op": "eq",
+        "value": true,
+        "source_quote": "Pregnant Women & Lactating Mothers (PW&LM)"
+      },
+      {
+        "field": "age",
+        "op": "lt",
+        "value": 55,
+        "source_quote": "less than 55 years at the time of child birth"
+      },
+      {
+        "any": [
+          {
+            "field": "annual_family_income",
+            "op": "lt",
+            "value": 800000,
+            "source_quote": "Women whose net family income is less than ₹ 8 Lakh per annum"
+          },
+          {
+            "field": "has_bpl_card",
+            "op": "eq",
+            "value": true,
+            "source_quote": "Women holder of BPL ration Card"
+          },
+          {
+            "field": "disability_percent",
+            "op": "gte",
+            "value": 40,
+            "source_quote": "Women who are partially (40%) or fully disabled (Divyang Jan)"
+          },
+          {
+            "field": "caste_category",
+            "op": "in",
+            "value": [
+              "SC",
+              "ST"
+            ],
+            "source_quote": "SC Women"
+          }
+        ]
+      }
+    ]
+  },
+  "unmodelled": [
+    {
+      "text": "Minimum age is 18 years and 7 months at childbirth (not expressible in whole years)",
+      "source_quote": "The age of beneficiary under PMMVY should be 18 years"
+    },
+    {
+      "text": "Other qualifying categories: MGNREGA job card, PM-KISAN woman farmer, e-Shram card, PMJAY beneficiary, Anganwadi/ASHA worker",
+      "source_quote": "Women holding MGNREGA Job Card"
+    },
+    {
+      "text": "Second-child benefit only if the second child is a girl",
+      "source_quote": "PMMVY benefit given for second child also, if the second child is girl"
+    }
+  ],
+  "ambiguous": [
+    "Because some qualifying categories are unmodelled, a FAIL on the category group can be a false negative",
+    "ST is quoted on a separate line ('ST Women'); both SC and ST are listed"
+  ],
+  "documents": [
+    {
+      "key": "aadhaar",
+      "mandatory": true
+    },
+    {
+      "key": "bank_account",
+      "mandatory": true
+    }
+  ],
+  "text": {
+    "en": {
+      "title": "Pradhan Mantri Matru Vandana Yojana",
+      "benefit": "Rs 5,000 for the first child in two instalments; Rs 6,000 for a second child if she is a girl.",
+      "how_to_apply": "An Anganwadi or ASHA worker can fill the form online, or apply on the PMMVY portal."
+    }
+  },
+  "drafted_by": "claude",
+  "reviewed_by": null,
+  "reviewed_at": null
+}
