@@ -1,0 +1,65 @@
+{
+  "slug": "wb-annapurna",
+  "level": "state",
+  "state": "WB",
+  "category": "women",
+  "official_url": "https://wb.gov.in/government-schemes-details-annaapurna-yojana.aspx",
+  "source_file": "sources/wb-annapurna.txt",
+  "eligibility": {
+    "all": [
+      {
+        "field": "gender",
+        "op": "eq",
+        "value": "female",
+        "source_quote": "financial assistance to female residents of West Bengal"
+      },
+      {
+        "field": "age",
+        "op": "between",
+        "value": [25, 60],
+        "source_quote": "between the ages of 25 and 60"
+      }
+    ]
+  },
+  "unmodelled": [
+    {
+      "text": "Must not be in permanent government employment",
+      "source_quote": "must not be any permanent government employment"
+    },
+    {
+      "text": "Must not be an illegal immigrant",
+      "source_quote": "not an illegal immigrant"
+    },
+    {
+      "text": "Must not be an income-tax payer",
+      "source_quote": "must not be an income tax payer"
+    }
+  ],
+  "ambiguous": [
+    "'Between the ages of 25 and 60' does not say whether 25 and 60 themselves are included; the rule includes both",
+    "The page does not say whether Annapurna replaces Lakshmir Bhandar, which is no longer listed on wb.gov.in",
+    "Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines"
+  ],
+  "documents": [
+    {
+      "key": "epic_voter_id",
+      "mandatory": true
+    },
+    {
+      "key": "aadhaar",
+      "mandatory": true
+    }
+  ],
+  "text": {
+    "en": {
+      "title": "Annapurna Yojana",
+      "benefit": "Rs 3,000 per month.",
+      "how_to_apply": "Submit the Family Level Data Collection form at the BDO, SDO or KMC ward office, or online at socialregistry.wb.gov.in."
+    }
+  },
+  "drafted_by": "claude",
+  "meaning_checked_by": "claude",
+  "meaning_checked_at": "2026-10-19",
+  "reviewed_by": null,
+  "reviewed_at": null
+}

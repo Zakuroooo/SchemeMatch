@@ -1,0 +1,62 @@
+{
+  "slug": "wb-jai-johar",
+  "level": "state",
+  "state": "WB",
+  "category": "pension",
+  "official_url": "https://wb.gov.in/government-schemes-details-jai-johar-old-age-pensionfor-st-communities.aspx",
+  "source_file": "sources/wb-jai-johar.txt",
+  "eligibility": {
+    "all": [
+      {
+        "field": "caste_category",
+        "op": "eq",
+        "value": "ST",
+        "source_quote": "Individuals belonging to Scheduled Tribe (ST) category."
+      },
+      {
+        "field": "age",
+        "op": "gte",
+        "value": 60,
+        "source_quote": "Age of 60 years or above."
+      }
+    ]
+  },
+  "unmodelled": [
+    {
+      "text": "Must be economically disadvantaged with limited or no stable income",
+      "source_quote": "Economically disadvantaged individuals with limited or no stable income."
+    },
+    {
+      "text": "Must not receive a similar pension under another major government scheme",
+      "source_quote": "Not receiving similar pension benefits under other major government pension schemes"
+    },
+    {
+      "text": "Must be a resident of West Bengal",
+      "source_quote": "Residents of West Bengal."
+    }
+  ],
+  "ambiguous": [
+    "The page says eligible beneficiaries 'generally include' these groups, so the list may not be complete or strict",
+    "'As per applicable guidelines': the guidelines themselves are not on the page",
+    "No income limit is given for 'economically disadvantaged'",
+    "Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines"
+  ],
+  "documents": [],
+  "text": {
+    "en": {
+      "title": "Jai Johar (old-age pension for ST communities)",
+      "benefit": "Monthly pension by direct bank transfer (amount not stated on the page).",
+      "how_to_apply": "Apply at the Gram Panchayat, municipal office, BDO, District Welfare Office or a Common Service Centre."
+    }
+  },
+  "coverage": {
+    "start": "\nEligibility\n",
+    "end": "Application Details",
+    "bullet": ""
+  },
+  "drafted_by": "claude",
+  "meaning_checked_by": "claude",
+  "meaning_checked_at": "2026-10-19",
+  "reviewed_by": null,
+  "reviewed_at": null
+}
