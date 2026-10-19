@@ -29,17 +29,28 @@ jobs:
       - run: pnpm turbo run lint typecheck test
 
   db:
-    name: Database migrations and RLS tests
+    name: Database, RLS and API integration tests
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: supabase/setup-cli@1dedf2c611547ede7232d26866dd3c56ab903bbb # v1.7.3
         with:
           version: 2.121.0
-      - run: supabase db start
+      - uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4.4.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      # Minimal stack: Postgres + REST API (PostgREST) + gateway; migrations and seed apply on start.
+      - run: supabase start -x studio,imgproxy,edge-runtime,logflare,vector,mailpit,realtime,storage-api,postgres-meta,supavisor
       - run: supabase db lint --level warning
       - run: supabase test db
+      - name: API integration tests against local Supabase
+        run: |
+          eval "$(supabase status -o env | grep -E '^(API_URL|ANON_KEY)=')"
+          SUPABASE_URL="$API_URL" SUPABASE_ANON_KEY="$ANON_KEY" pnpm turbo run test --filter @schemematch/api
 
   secrets:
     name: Secret scan
