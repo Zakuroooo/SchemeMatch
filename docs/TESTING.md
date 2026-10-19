@@ -1,5 +1,5 @@
 # TESTING — what we test, how, and what blocks a merge
-*Rule from CLAUDE.md: engine/API changes ship with tests, and the real output is shown before anyone says "done".*
+*Project rule: engine/API changes ship with tests, and the real output is shown before anyone says "done".*
 
 ## 1. The pyramid
 

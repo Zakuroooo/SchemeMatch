@@ -218,8 +218,7 @@ SchemeMatch/
 │  └─ i18n/        translations
 ├─ supabase/       migrations + RLS policies
 ├─ pipeline/       Python rule extraction + eval
-├─ docs/           these documents
-└─ CLAUDE.md
+└─ docs/           these documents
 ```
 
 Sharing `packages/engine` means the app can check eligibility **offline** with the exact same code the server uses.

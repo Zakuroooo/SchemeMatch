@@ -14,7 +14,7 @@ flowchart LR
     C --> S
 ```
 
-## 2. Rules the agent follows (in `../CLAUDE.md`)
+## 2. Rules the agent follows (in a local `CLAUDE.md`, not committed)
 Read `docs/` first · never invent features outside the PRD · one feature per session · small commits, no Claude attribution lines · tests with every engine/API change, real output shown · never print or commit secrets · teach each change (English + one Hinglish line for hard parts).
 
 ## 3. Writing a good prompt (the 6 parts)
@@ -33,7 +33,7 @@ Read `docs/` first · never invent features outside the PRD · one feature per s
 | Feature | Use it for on this project | Set up when |
 |---|---|---|
 | **Plan mode** | Anything touching > 2 files; read the plan, push back, then approve | Now |
-| **CLAUDE.md** | Permanent rules (done) | Done |
+| **CLAUDE.md** | Permanent rules, kept locally (git-ignored) | Done |
 | **Subagents** | Read-only research in parallel ("how does Expo SQLite handle migrations?") so the main context stays clean | When needed |
 | **Skills** | Repeatable workflows: `add-scheme` (source → hash → draft → review checklist), `run-eval` (pipeline + report), `release-check` (APK audit with REA) | W2–W3, once the steps are real |
 | **Hooks** | After every edit: `pnpm typecheck` on changed package; before commit: gitleaks. Configured in `.claude/settings.json` | W1, after scaffold |
