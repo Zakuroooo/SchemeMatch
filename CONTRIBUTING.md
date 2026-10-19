@@ -9,8 +9,18 @@ pnpm test                 # lint/typecheck/test run with: pnpm turbo run lint ty
 supabase start            # local Postgres + Auth on ports 553xx (so other local Supabase projects can keep 543xx)
 supabase db reset         # re-apply every migration from zero
 supabase test db          # pgTAP tests in supabase/tests/
-pnpm --filter @schemematch/api dev   # API on http://127.0.0.1:3001
+pnpm --filter @schemematch/api dev   # API on http://127.0.0.1:3001 (reads golden files)
 ```
+
+**API against the local database:** set the two env vars from `supabase status -o env` (never commit them):
+```bash
+eval "$(supabase status -o env | grep -E '^(API_URL|ANON_KEY)=')"
+SUPABASE_URL="$API_URL" SUPABASE_ANON_KEY="$ANON_KEY" pnpm --filter @schemematch/api dev
+```
+The same variables enable the integration tests (`pnpm test`).
+
+**Data changes:** edit `pipeline/golden/schemes/*.json`, then run `python3 pipeline/scripts/make_seed.py` and `supabase db reset`. Never edit `supabase/seed.sql` by hand.
+**New migration:** write the file in `supabase/migrations/` directly. `supabase migration new` reads SQL from stdin, so in scripts run it as `supabase migration new <name> < /dev/null`.
 
 Try it: `curl -X POST localhost:3001/eligibility -H 'content-type: application/json' -d '{"profile":{"state":"MH","age":38,"gender":"female"}}'`
 

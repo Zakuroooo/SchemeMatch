@@ -1,4 +1,5 @@
 -- RLS proof for the v1 schema. Runs in one transaction and is rolled back.
+-- Assertions look only at this file's own fixture rows, so seed data can't affect them.
 begin;
 create extension if not exists pgtap with schema extensions;
 select plan(16);
@@ -31,9 +32,9 @@ update public.schemes set current_rule_version_id = '00000000-0000-0000-0000-000
 
 -- ── 2. Logged-out visitor (anon) ──────────────────────────────────────────
 set local role anon;
-select results_eq('select slug from public.schemes', $$values ('live-pension'::text)$$,
+select results_eq($$select slug from public.schemes where slug in ('live-pension', 'draft-scholarship')$$, $$values ('live-pension'::text)$$,
   'anon sees only live schemes');
-select results_eq('select version from public.scheme_rule_versions', $$values (2)$$,
+select results_eq($$select version from public.scheme_rule_versions where scheme_id = '00000000-0000-0000-0000-0000000000c1'$$, $$values (2)$$,
   'anon sees only the current rule version of a live scheme');
 select is((select count(*)::int from public.worker_profiles), 0, 'anon sees no worker profiles');
 select throws_ok(
@@ -44,7 +45,7 @@ reset role;
 -- ── 3. Logged-in worker (not admin) ───────────────────────────────────────
 set local role authenticated;
 set local request.jwt.claims to '{"sub":"00000000-0000-0000-0000-00000000000b","role":"authenticated"}';
-select results_eq('select slug from public.schemes', $$values ('live-pension'::text)$$,
+select results_eq($$select slug from public.schemes where slug in ('live-pension', 'draft-scholarship')$$, $$values ('live-pension'::text)$$,
   'worker sees only live schemes');
 select results_eq('select user_id from public.worker_profiles',
   $$values ('00000000-0000-0000-0000-00000000000b'::uuid)$$, 'worker sees only their own profile');
@@ -62,7 +63,7 @@ select is(
 -- ── 4. Admin ──────────────────────────────────────────────────────────────
 set local role authenticated;
 set local request.jwt.claims to '{"sub":"00000000-0000-0000-0000-00000000000a","role":"authenticated"}';
-select is((select count(*)::int from public.schemes), 2, 'admin sees draft and live schemes');
+select is((select count(*)::int from public.schemes where slug in ('live-pension', 'draft-scholarship')), 2, 'admin sees draft and live schemes');
 select lives_ok(
   $$insert into public.schemes (slug, level, category, official_url) values ('new-draft', 'central', 'health', 'https://example.gov.in/c')$$,
   'admin can insert a draft scheme');

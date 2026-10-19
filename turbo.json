@@ -12,7 +12,8 @@
       "dependsOn": ["^build"]
     },
     "test": {
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build"],
+      "env": ["SUPABASE_URL", "SUPABASE_ANON_KEY"]
     }
   }
 }
