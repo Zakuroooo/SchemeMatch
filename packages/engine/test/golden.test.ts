@@ -20,6 +20,8 @@ interface GoldenScheme {
   unmodelled: { text: string; source_quote: string }[];
   ambiguous: string[];
   reviewed_by: string | null;
+  /** For list-style sources: every bullet between start and end must be covered by a quote. */
+  coverage?: { start: string; end: string; bullet: string };
 }
 
 const normalise = (t: string) => t.replace(/\s+/g, " ").trim();
@@ -63,6 +65,23 @@ describe("golden set", () => {
       const quotes = [...quotesIn(s.eligibility), ...s.unmodelled.map((u) => u.source_quote)];
       const missing = quotes.filter((q) => !source.includes(normalise(q)));
       expect(missing).toEqual([]);
+    });
+
+    it.runIf(s.coverage)("covers every bullet of the eligibility list (nothing left out)", () => {
+      const { start, end, bullet } = s.coverage!;
+      const raw = readFileSync(join(PIPELINE, s.source_file), "utf8");
+      const section = raw.slice(raw.indexOf(start) + start.length, raw.indexOf(end));
+      expect(section.length, "coverage markers not found in source").toBeGreaterThan(0);
+      const bullets = section
+        .split("\n")
+        .map((l) => normalise(l))
+        .filter((l) => l.startsWith(bullet))
+        .map((l) => normalise(l.slice(bullet.length).replace(/^[ivx]+\)\s*/, "")));
+      const quotes = [...quotesIn(s.eligibility), ...s.unmodelled.map((u) => u.source_quote)].map(
+        normalise,
+      );
+      const uncovered = bullets.filter((b) => !quotes.some((q) => b.includes(q) || q.includes(b)));
+      expect(uncovered).toEqual([]);
     });
   });
 });
