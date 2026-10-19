@@ -35,9 +35,12 @@ export function nextQuestion(results: readonly SchemeResult[]): Field | null {
     for (const f of r.missing) counts.set(f, (counts.get(f) ?? 0) + 1);
   }
   let best: Field | null = null;
+  let bestN = 0;
   for (const [field, n] of counts) {
-    const bestN = best ? (counts.get(best) ?? 0) : -1;
-    if (n > bestN || (n === bestN && best && rank(field) < rank(best))) best = field;
+    if (best === null || n > bestN || (n === bestN && rank(field) < rank(best))) {
+      best = field;
+      bestN = n;
+    }
   }
   return best;
 }

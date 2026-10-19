@@ -4,14 +4,14 @@ import {
   RULE_FORMAT_VERSION,
   type Condition,
   type Field,
+  type Group,
   type Profile,
   type RuleNode,
   type Scheme,
   type SchemeResult,
 } from "./types.ts";
 
-const children = (node: RuleNode): readonly RuleNode[] =>
-  "all" in node ? node.all : "any" in node ? node.any : [];
+const children = (group: Group): readonly RuleNode[] => ("all" in group ? group.all : group.any);
 
 /** A state scheme behaves as if its rules were AND-ed with "lives in that state". */
 function withStateGate(scheme: Scheme): RuleNode {
@@ -38,8 +38,10 @@ function passingQuotes(node: RuleNode, profile: Profile, out: string[] = []): st
 function firstFailure(node: RuleNode, profile: Profile): Condition | null {
   if (evaluateNode(node, profile) !== "FAIL") return null;
   if ("field" in node) return node;
-  const failing = children(node).find((child) => evaluateNode(child, profile) === "FAIL");
-  return failing ? firstFailure(failing, profile) : null;
+  // A failing group always has a failing child: in `all` that child caused it,
+  // and in `any` every child failed. So the first failing child exists.
+  const [failing] = children(node).filter((child) => evaluateNode(child, profile) === "FAIL");
+  return firstFailure(failing as RuleNode, profile);
 }
 
 /** Unanswered fields inside the parts of the tree that are still undecided. */
