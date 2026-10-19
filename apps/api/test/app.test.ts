@@ -1,7 +1,7 @@
 import { Writable } from "node:stream";
 import { afterEach, describe, expect, it } from "vitest";
-import { DISCLAIMER, buildApp } from "../src/build-app.ts";
-import { FileSchemeRepository, GOLDEN_DIR } from "../src/repository.ts";
+import { DISCLAIMER, buildApp } from "../src/build-app.js";
+import { FileSchemeRepository, GOLDEN_DIR } from "../src/repository.js";
 
 const repo = new FileSchemeRepository(GOLDEN_DIR);
 type App = Awaited<ReturnType<typeof buildApp>>;

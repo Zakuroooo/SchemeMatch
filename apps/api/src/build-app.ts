@@ -8,8 +8,8 @@ import {
 } from "fastify-type-provider-zod";
 import { z } from "zod";
 import { evaluateAll, type Profile } from "@schemematch/engine";
-import { ProfileSchema } from "./profile-schema.ts";
-import type { SchemeRepository } from "./repository.ts";
+import { ProfileSchema } from "./profile-schema.js";
+import type { SchemeRepository } from "./repository.js";
 
 export const DISCLAIMER =
   "You are likely eligible — please confirm at the office. SchemeMatch is not an official government app.";

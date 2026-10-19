@@ -1,9 +1,9 @@
 // Vercel's Fastify preset finds the entry file by scanning for a direct import of "fastify".
 // The app itself is built in build-app.ts; this import only makes detection work.
 import "fastify";
-import { buildApp } from "./build-app.ts";
-import { BundledSchemeRepository, type SchemeRepository } from "./repository.ts";
-import { SupabaseSchemeRepository } from "./supabase-repository.ts";
+import { buildApp } from "./build-app.js";
+import { BundledSchemeRepository, type SchemeRepository } from "./repository.js";
+import { SupabaseSchemeRepository } from "./supabase-repository.js";
 
 const port = Number(process.env.PORT ?? 3001);
 const { SUPABASE_URL, SUPABASE_ANON_KEY, CLIENT_IP_HEADER } = process.env;
