@@ -24,5 +24,6 @@ app.log.info(
   { source: repo instanceof SupabaseSchemeRepository ? "supabase" : "files" },
   "scheme source",
 );
-// On Vercel (VERCEL=1) the platform routes requests to this listener; locally stay on loopback.
-await app.listen({ port, host: process.env.VERCEL ? "0.0.0.0" : "127.0.0.1" });
+// Match Vercel's documented pattern: listen on a port with Fastify's default host
+// (localhost). Vercel captures this listener and routes requests to it.
+await app.listen({ port });
