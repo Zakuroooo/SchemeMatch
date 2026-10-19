@@ -28,10 +28,7 @@
           {
             "field": "age",
             "op": "between",
-            "value": [
-              18,
-              65
-            ],
+            "value": [18, 65],
             "source_quote": "Destitute men and women aged 18 to 65 years"
           },
           {

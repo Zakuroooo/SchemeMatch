@@ -10,10 +10,7 @@
       {
         "field": "age",
         "op": "between",
-        "value": [
-          18,
-          70
-        ],
+        "value": [18, 70],
         "source_quote": "aged between 18 years (completed) and 70 years (age nearer birthday)"
       }
     ]
@@ -24,9 +21,7 @@
       "source_quote": "Individual bank/ Post office account holders of participating banks/ Post office"
     }
   ],
-  "ambiguous": [
-    "Upper age is 'age nearer birthday'"
-  ],
+  "ambiguous": ["Upper age is 'age nearer birthday'"],
   "documents": [],
   "text": {
     "en": {

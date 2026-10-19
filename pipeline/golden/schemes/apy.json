@@ -10,10 +10,7 @@
       {
         "field": "age",
         "op": "between",
-        "value": [
-          18,
-          40
-        ],
+        "value": [18, 40],
         "source_quote": "The age of an individual should be between 18 and 40 years."
       }
     ]

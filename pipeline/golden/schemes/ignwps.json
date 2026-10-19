@@ -16,10 +16,7 @@
       {
         "field": "age",
         "op": "between",
-        "value": [
-          40,
-          79
-        ],
+        "value": [40, 79],
         "source_quote": "A widow in age group of 40 to 79 years"
       },
       {

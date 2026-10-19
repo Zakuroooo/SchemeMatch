@@ -10,10 +10,7 @@
       {
         "field": "age",
         "op": "between",
-        "value": [
-          18,
-          50
-        ],
+        "value": [18, 50],
         "source_quote": "in the age group of 18 to 50 years are entitled to join"
       }
     ]

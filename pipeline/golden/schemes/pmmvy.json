@@ -42,10 +42,7 @@
           {
             "field": "caste_category",
             "op": "in",
-            "value": [
-              "SC",
-              "ST"
-            ],
+            "value": ["SC", "ST"],
             "source_quote": "SC Women"
           }
         ]

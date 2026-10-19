@@ -16,10 +16,7 @@
       {
         "field": "age",
         "op": "between",
-        "value": [
-          21,
-          65
-        ],
+        "value": [21, 65],
         "source_quote": "It targets state residents between 21 and 65 years of age"
       },
       {

@@ -16,10 +16,7 @@
       {
         "field": "age",
         "op": "between",
-        "value": [
-          18,
-          79
-        ],
+        "value": [18, 79],
         "source_quote": "A Disable person in the age group of 18 to 79 years"
       }
     ]
