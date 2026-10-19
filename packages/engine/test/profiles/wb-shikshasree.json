@@ -1,0 +1,93 @@
+{
+  "scheme": "wb-shikshasree",
+  "cases": [
+    {
+      "id": "eligible",
+      "why": "SC student in Class VI, low income",
+      "profile": {
+        "caste_category": "SC",
+        "is_student": true,
+        "education_level": "class_6",
+        "annual_family_income": 120000
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "obc",
+      "why": "OBC is covered by Medhashree, not Shikshasree",
+      "profile": {
+        "caste_category": "OBC",
+        "is_student": true,
+        "education_level": "class_6",
+        "annual_family_income": 120000
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "class-9",
+      "why": "Class IX is outside V to VIII",
+      "profile": {
+        "caste_category": "ST",
+        "is_student": true,
+        "education_level": "class_9",
+        "annual_family_income": 120000
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "class-5",
+      "why": "Lower edge",
+      "profile": {
+        "caste_category": "ST",
+        "is_student": true,
+        "education_level": "class_5",
+        "annual_family_income": 120000
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "class-8",
+      "why": "Upper edge",
+      "profile": {
+        "caste_category": "SC",
+        "is_student": true,
+        "education_level": "class_8",
+        "annual_family_income": 120000
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "income-at-limit",
+      "why": "'Not exceed 2.5 lakh': exactly 2.5 lakh qualifies",
+      "profile": {
+        "caste_category": "SC",
+        "is_student": true,
+        "education_level": "class_7",
+        "annual_family_income": 250000
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "income-over",
+      "why": "1 rupee over",
+      "profile": {
+        "caste_category": "SC",
+        "is_student": true,
+        "education_level": "class_7",
+        "annual_family_income": 250001
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "income-unknown",
+      "why": "Income not asked",
+      "profile": {
+        "caste_category": "SC",
+        "is_student": true,
+        "education_level": "class_7"
+      },
+      "expected": "UNKNOWN",
+      "ask_next": "annual_family_income"
+    }
+  ]
+}

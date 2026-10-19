@@ -104,6 +104,25 @@
         "caste_category": "OBC"
       },
       "eligible": ["apy", "pmjjby", "pmsby"]
+    },
+    {
+      "id": "wb-sc-elderly-widow",
+      "why": "West Bengal widow, 62, SC, BPL: Maharashtra schemes must not apply",
+      "profile": {
+        "state": "WB",
+        "gender": "female",
+        "age": 62,
+        "marital_status": "widow",
+        "caste_category": "SC",
+        "annual_family_income": 30000,
+        "has_bpl_card": true,
+        "disability_percent": 0,
+        "land_acres": 0,
+        "is_pregnant_or_lactating": false,
+        "is_student": false
+      },
+      "eligible": ["ignwps", "pmsby", "wb-taposili-bandhu"],
+      "note": "Not Annapurna: 62 is above its 25 to 60 band"
     }
   ]
 }
