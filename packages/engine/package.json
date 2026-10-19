@@ -9,10 +9,11 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc -p tsconfig.json && tsc -p tsconfig.test.json",
     "test": "vitest run"
   },
   "devDependencies": {
+    "@types/node": "^22.20.5",
     "ajv": "^8.20.0",
     "vitest": "^5.0.5"
   }
