@@ -27,6 +27,16 @@ flowchart LR
 5. Env vars (Production + Preview): `SUPABASE_URL`, `SUPABASE_ANON_KEY` (publishable key only, never service-role), `CLIENT_IP_HEADER=x-forwarded-for`.
 6. Smoke test: `GET /health`, `GET /schemes?state=WB`, `POST /eligibility` with the Sunita persona; expect her 5 schemes.
 
+### Staging status (2026-10-20)
+- **API live on Vercel** (project `schemematch-api`, region `bom1`, Fastify preset, root `apps/api`, build `cd ../.. && pnpm turbo run build --filter @schemematch/api`). It serves the **bundled** golden schemes; there is no database yet.
+- **No staging database:** Supabase's free plan allows 2 active projects, and both are in use by live resume demos (Cortexa, FollowUp). Decide on the database in Week 3, when `POST /screenings` needs one.
+- Vercel Authentication is **off** for this project, so the API is public. It only serves public scheme info, validates every input and is rate-limited.
+
+### Deploy lessons (each one cost a failed deploy)
+1. Vercel finds the Fastify entry by a **direct `import ... from "fastify"`** in `src/index.ts`.
+2. Vercel compiles `.ts` to `.js` but **does not rewrite import paths**. Import local files with `.js` paths, and give shared packages a compiled `dist/` (`packages/engine`).
+3. **Never `await app.listen()` at top level.** Vercel replaces `listen()`, and the awaited promise blocked startup forever (requests hung with no logs). Call `app.listen({ port })` without `await`, as in Vercel's docs.
+
 ## 2. Free-tier limits and what breaks first
 
 | Service | Limit to watch (check current pricing page) | Symptom | Action |
