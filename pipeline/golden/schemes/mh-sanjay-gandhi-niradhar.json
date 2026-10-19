@@ -91,11 +91,28 @@
     {
       "text": "Women undergoing divorce proceedings",
       "source_quote": "Women undergoing divorce proceedings"
+    },
+    {
+      "text": "Orphaned children",
+      "source_quote": "Orphaned children"
+    },
+    {
+      "text": "Transgender individuals",
+      "source_quote": "Transgender individuals"
+    },
+    {
+      "text": "Devadasis",
+      "source_quote": "Devadasis"
+    },
+    {
+      "text": "People suffering from sickle cell disease",
+      "source_quote": "Individuals suffering from sickle cell disease"
     }
   ],
   "ambiguous": [
     "'Destitute' is not defined and is not modelled; the age band 18 to 65 may apply to all categories or only to destitute men and women",
-    "'Not receiving alimony' is not modelled"
+    "'Not receiving alimony' is not modelled",
+    "Eight of the twelve listed categories are unmodelled, so a FAIL on the category group can be a false negative"
   ],
   "documents": [],
   "text": {
@@ -107,5 +124,10 @@
   },
   "drafted_by": "claude",
   "reviewed_by": null,
-  "reviewed_at": null
+  "reviewed_at": null,
+  "coverage": {
+    "start": "the following individuals are eligible for benefits:",
+    "end": "To be eligible for this scheme",
+    "bullet": "–"
+  }
 }
