@@ -19,6 +19,14 @@ flowchart LR
 
 *Supabase free plan allows 2 active projects — staging + prod use both. Preview DB branching may need a paid plan; check before relying on it.*
 
+### Staging setup (one time)
+1. **Supabase:** create project `schemematch-staging` in region `ap-south-1` (Mumbai), free plan.
+2. Apply `supabase/migrations/*` in order. Load `supabase/seed.sql` (staging only: the schemes are AI-checked, not human-reviewed).
+3. Run Supabase **security advisors** and fix every finding before step 4.
+4. **Vercel:** new project from the GitHub repo, **Root Directory `apps/api`** (framework auto-detected as Fastify, entry `src/index.ts`, region `bom1` from `apps/api/vercel.json`).
+5. Env vars (Production + Preview): `SUPABASE_URL`, `SUPABASE_ANON_KEY` (publishable key only, never service-role), `CLIENT_IP_HEADER=x-real-ip`.
+6. Smoke test: `GET /health`, `GET /schemes?state=WB`, `POST /eligibility` with the Sunita persona; expect her 5 schemes.
+
 ## 2. Free-tier limits and what breaks first
 
 | Service | Limit to watch (check current pricing page) | Symptom | Action |
