@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { FIELDS } from "@schemematch/engine";
-import { PROFILE_FIELDS, ProfileSchema } from "../src/profile-schema.ts";
+import { PROFILE_FIELDS, ProfileSchema } from "../src/profile-schema.js";
 
 describe("ProfileSchema", () => {
   it("covers exactly the engine's fields", () => {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { BundledSchemeRepository, FileSchemeRepository, GOLDEN_DIR } from "../src/repository.ts";
+import { BundledSchemeRepository, FileSchemeRepository, GOLDEN_DIR } from "../src/repository.js";
 
 describe("bundled schemes", () => {
   it("are an up-to-date copy of the golden files (run `pnpm --filter @schemematch/api build` if not)", async () => {

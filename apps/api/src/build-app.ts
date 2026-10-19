@@ -8,8 +8,8 @@ import {
 } from "fastify-type-provider-zod";
 import { z } from "zod";
 import { evaluateAll, type Profile } from "@schemematch/engine";
-import { ProfileSchema } from "./profile-schema.ts";
-import type { SchemeRepository } from "./repository.ts";
+import { ProfileSchema } from "./profile-schema.js";
+import type { SchemeRepository } from "./repository.js";
 
 export const DISCLAIMER =
   "You are likely eligible — please confirm at the office. SchemeMatch is not an official government app.";
@@ -20,8 +20,8 @@ export interface AppOptions {
   /** Requests per minute per client IP. */
   rateLimitPerMinute?: number;
   /**
-   * Header that holds the real client IP, set by the hosting proxy (e.g. "x-real-ip"
-   * on Vercel, whose edge overwrites any value the client sent).
+   * Header that holds the real client IP, set by the hosting proxy (e.g. "x-forwarded-for"
+   * on Vercel, whose edge overwrites any value the client sent (per Vercel docs)).
    * Unset by default: then the socket address is used and client headers are ignored,
    * so nobody can fake an IP to dodge the limit. Behind a proxy it must be set, or every
    * user would share the proxy's IP and one busy client could block everyone.

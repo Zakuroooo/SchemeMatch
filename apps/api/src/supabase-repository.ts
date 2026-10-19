@@ -1,6 +1,6 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import type { RuleNode, UnmodelledCriterion } from "@schemematch/engine";
-import type { CatalogScheme, SchemeRepository } from "./repository.ts";
+import type { CatalogScheme, SchemeRepository } from "./repository.js";
 
 interface Row {
   slug: string;
