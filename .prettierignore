@@ -3,3 +3,4 @@ docs/
 supabase/migrations/
 tools/
 *.md
+apps/api/src/generated/

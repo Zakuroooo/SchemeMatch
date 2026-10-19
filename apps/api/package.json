@@ -9,7 +9,8 @@
     "start": "tsx src/index.ts",
     "lint": "eslint .",
     "typecheck": "tsc -p tsconfig.json",
-    "test": "vitest run"
+    "test": "vitest run",
+    "build": "node scripts/bundle-schemes.mjs"
   },
   "dependencies": {
     "@fastify/rate-limit": "^11.2.1",
