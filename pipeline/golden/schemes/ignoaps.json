@@ -23,14 +23,13 @@
   },
   "unmodelled": [],
   "ambiguous": [
-    "This state page says 65 and above; the national NSAP rule has been 60 and above since 2011 (not on this page)",
-    "The page lists two different monthly amounts for the same age bands"
+    "This state page says 65 and above; the national NSAP rule has been 60 and above since 2011 (not on this page)"
   ],
   "documents": [],
   "text": {
     "en": {
       "title": "Indira Gandhi National Old Age Pension Scheme",
-      "benefit": "Monthly pension for elderly people on the BPL list.",
+      "benefit": "Rs 200 per month (65 to 79) or Rs 500 (80+) from the Centre, plus a state top-up under the Shravanbal scheme in Maharashtra.",
       "how_to_apply": "Apply through the official channel described on the source page."
     }
   },
