@@ -1,0 +1,31 @@
+slug,name,level,state,category,why_chosen,official_url,status
+pm-kisan,PM Kisan Samman Nidhi,central,,farming,Largest farmer cash transfer; land-holding rule tests land fields,https://pmkisan.gov.in/Documents/Revised%20Operational%20Guidelines%20-%20PM-Kisan%20Scheme.pdf,drafting
+ignoaps,Indira Gandhi National Old Age Pension,central,,pension,Elderly BPL persona; age boundary at 60 and 80,https://sjsa.maharashtra.gov.in/en/scheme/indira-gandhi-national-old-age-pension-scheme/,drafting
+ignwps,Indira Gandhi National Widow Pension,central,,pension,Sunita persona (widow); age band,https://sjsa.maharashtra.gov.in/en/scheme/indira-gandhi-national-widow-pension-scheme/,drafting
+apy,Atal Pension Yojana,central,,pension,Age band 18-40 gives clean boundary tests,https://pfrda.org.in/w/faqs/atal-pension-yojana,drafting
+pmmvy,Pradhan Mantri Matru Vandana Yojana,central,,maternity,Pregnant/lactating field coverage,https://www.spniwcd.wcd.gov.in/uploads/pdf/1710098119_HDEXdpWMb1.pdf,drafting
+post-matric-sc,Post-Matric Scholarship for SC Students,central,,education,Student persona; caste + income rule; moved to step 2b: official source text lost the income clause,,planned
+mh-ladki-bahin,Mukhyamantri Majhi Ladki Bahin Yojana,state,MH,women,Large Maharashtra scheme; age and income limits,https://www.womenchild.maharashtra.gov.in/en/schemes/mukhyamantri-mazi-ladki-bahin-yojana,drafting
+mh-sanjay-gandhi-niradhar,Sanjay Gandhi Niradhar Anudan Yojana,state,MH,pension,Destitute widows/disabled; OR-group rule,https://sjsa.maharashtra.gov.in/en/scheme/sanjay-gandhi-niradhar-anudan-yojana/,drafting
+wb-lakshmir-bhandar,Lakshmir Bhandar,state,WB,women,Large West Bengal scheme; caste-dependent benefit; moved to step 2b: West Bengal sites unreachable from this network on 2026-10-19,,planned
+wb-kanyashree,Kanyashree Prakalpa,state,WB,education,Girl students; age and marital status; moved to step 2b: West Bengal sites unreachable from this network on 2026-10-19,,planned
+pmay-g,Pradhan Mantri Awas Yojana Gramin,central,,housing,Housing need coverage,,planned
+pmuy,Pradhan Mantri Ujjwala Yojana,central,,household,LPG for BPL women,,planned
+igndps,Indira Gandhi National Disability Pension,central,,pension,Disability percent field,https://sjsa.maharashtra.gov.in/en/scheme/indira-gandhi-national-disability-pension-scheme/,drafting
+nfbs,National Family Benefit Scheme,central,,family,Death of breadwinner,,planned
+pmjjby,Pradhan Mantri Jeevan Jyoti Bima Yojana,central,,insurance,Age band 18-50,https://jansuraksha.gov.in/Files/PMJJBY/English/Rules.pdf,drafting
+pmsby,Pradhan Mantri Suraksha Bima Yojana,central,,insurance,Age band 18-70,https://jansuraksha.gov.in/Files/PMSBY/English/Rules.pdf,drafting
+pre-matric-sc,Pre-Matric Scholarship for SC Students,central,,education,Younger students,,planned
+pm-svanidhi,PM SVANidhi,central,,livelihood,Street vendors occupation field,,planned
+sukanya-samriddhi,Sukanya Samriddhi Yojana,central,,savings,Girl child age limit,,planned
+mh-shravanbal,Shravanbal Seva Rajya Nivruttivetan Yojana,state,MH,pension,Maharashtra elderly pension,,planned
+mh-namo-shetkari,Namo Shetkari Mahasanman Nidhi,state,MH,farming,Maharashtra top-up to PM-KISAN,,planned
+mh-mahatma-phule-jay,Mahatma Jyotiba Phule Jan Arogya Yojana,state,MH,health,Maharashtra health cover,,planned
+mh-rajarshi-shahu-scholarship,Rajarshi Chhatrapati Shahu Maharaj Shikshan Shulkh Shishyavrutti,state,MH,education,Maharashtra fee reimbursement,,planned
+mh-ramai-awas,Ramai Awas Yojana,state,MH,housing,SC/Neo-Buddhist housing,,planned
+wb-krishak-bandhu,Krishak Bandhu,state,WB,farming,West Bengal farmer support,,planned
+wb-rupashree,Rupashree Prakalpa,state,WB,women,Marriage grant; income limit,,planned
+wb-swasthya-sathi,Swasthya Sathi,state,WB,health,West Bengal health cover,,planned
+wb-taruner-swapna,Taruner Swapna,state,WB,education,Tablet grant for class 11-12,,planned
+wb-joy-bangla-pension,Jai Bangla Pension,state,WB,pension,SC/ST elderly pension,,planned
+wb-sikshashree,Sikshashree,state,WB,education,SC/ST day scholars,,planned

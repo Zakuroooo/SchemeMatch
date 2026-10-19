@@ -1,0 +1,277 @@
+# Source copy for apy
+# official_url: https://pfrda.org.in/w/faqs/atal-pension-yojana
+# retrieved: 2026-10-19 (via Jina Reader text extraction)
+# sha256 of the text below: 4885a90758043facfd65e4f8c2a0eafd9fb5b9ab2d96e831562dd80f8011789f
+# This is a copy of public government text, kept so quotes can be checked offline.
+
+Title: Atal Pension Yojana
+
+URL Source: https://pfrda.org.in/w/faqs/atal-pension-yojana
+
+Markdown Content:
+A Pension provides a monthly income to the old age people when they are not working.
+
+Need for Pension:
+
+*   Decreased income earning potential during old age.
+*   Increased Life-Expectancy.
+*   Tenure of retired life is almost same as working life.
+*   Rise in cost of living/Inflation.
+*   Migration of earning members.
+*   The rise of culture of the nuclear Family.
+*   Dignified life in the old age due to less financial dependence.
+
+Atal Pension Yojana (APY), is a voluntary pension scheme launched by the Government of India for all Citizens of India, especially the poor, the under-privileged and the workers in the unorganised sector. Under the APY, a minimum guaranteed pension of Rs. 1,000/- or 2,000/- or 3,000/- or 4,000 or 5,000/- per month will start after attaining the age of 60 years, depending on the contributions made by the subscribers for their chosen pension amount.
+
+APY is open to all citizens of India who fulfil the following eligibility criteria: -
+
+(i) The age of an individual should be between 18 and 40 years.
+
+(ii) He / She should have a savings bank account/ post office savings bank account.
+
+(iii) From 1st October, 2022, any Indian citizen who is or has been an income-tax payer under the Income-tax Act, 1961, as on the date of application will not be eligible to open a new APY account.
+
+The prospective applicants may provide a mobile number to the bank during their enrolments under APY to receive periodic updates on their APY account as well as on the scheme. Aadhaar may also be provided at the time of enrolment as the APY is notified for the same.
+
+Approach the bank branch/ post office where the individual’s savings bank account is held or open a savings account in bank or post office if the individual doesn’t have one.
+
+No, from 1st October 2022, any citizen who is or has been an income-tax payer (Income-tax Act,1961), shall not be eligible to open new APY account.
+
+No. The subscribers, who have joined on or before 30th September, 2022, irrespective of their income tax payee status, are eligible to continue their Atal Pension Yojana account and make contributions for availing of benefits provided under the scheme.
+
+Yes, the customer should not be an income-tax payer on the date of making an application for registration under APY. If on a later date, he or she becomes an income-tax payer then there shall not be any effect on their APY account. All such APY subscribers can continue their APY account and contributions to it for availing of benefits provided under the scheme.
+
+Yes.
+
+No. There will not be any penalty on the subscriber. However, the APY account of such subscriber shall be closed and accumulated pension wealth would be given back to the subscriber, as stipulated under the gazette notification dated 10th August 2022.
+
+*   Yes, any Indian citizen, who satisfies the eligibility conditions as specified at point 3 above, can join APY irrespective of his/her employment status with Govt./Public Sector, for availing of benefits guaranteed by Government of India under the scheme.
+*   Further, an existing NPS subscriber can also subscribe to APY, if he/she meets the basic eligibility criteria, for availing benefits guaranteed by the Government of India under the scheme.
+
+Atal Pension Yojana (APY) is a voluntary pension scheme launched by the Government of India for all Citizens of India, especially the poor, the under-privileged and the workers in the unorganised sector. Under the scheme, the subscriber is entitled for the following benefits:
+
+(i) Central Government guaranteed minimum pension amount: Each subscriber under APY shall receive a Central Government guaranteed minimum pension of Rs.1000 per month or Rs.2000 per month or Rs.3000 per month or Rs.4000 per month or Rs.5000 per month, after the age of 60 years until death.
+
+(ii) Central Government guaranteed minimum pension amount to the spouse: After the subscriber’s demise, the spouse of the subscriber shall be entitled to receive the same pension amount as that of the subscriber until the death of the spouse.
+
+(iii) Return of the pension wealth to the nominee of the subscriber: After the demise of both the subscriber and the spouse, the nominee of the subscriber shall be entitled to receive the pension wealth, as accumulated till age 60 of the subscriber.
+
+The subscribers are required to contribute the prescribed contribution amount from the age of joining APY till age 60 to enjoy the triple benefits.
+
+Atal Pension Yojana (APY) has now been included under the Section 7 of the Aadhaar Act. As per the provisions of the Act, any individual who is eligible to receive such benefits under the APY will have to furnish proof of possession of Aadhaar number or undergo enrolment under Aadhaar authentication. Hence, it is desirable (not mandatory) to provide Aadhaar Number for proper identification of the subscriber at the time of enrolment. However, Aadhar details are to be submitted in due course of time, if not submitted at the time of enrolment.
+
+No, the savings bank account/ post office savings bank account is mandatory for joining APY.
+
+Yes, it is mandatory to provide nominee details in APY account.
+
+If the subscriber is unmarried they can nominate any other person as nominee but they have to provide spouse details after marriage. If married, the spouse will be the default nominee. The Aadhaar details of spouse and nominees may be provided.
+
+An individual can open only one APY account. Multiple APY accounts are not permitted. However, all the eligible family members of the subscribers falling under the age bracket of 18- 40 years can open their individual APY Account.
+
+No. A minor cannot open an APY account.
+
+A person can join APY till his/ her 40th birthday. For example, if person ‘X’ becomes 40 years old on 1st January 2023, then, he/she is eligible to join APY till 1st January 2023 and becomes ineligible from 2nd January 2023 to join the scheme.
+
+Yes, any NRI who satisfies the eligibility conditions as specified at point 3 above, is eligible to open APY account.
+
+The scheme is open to the Indian citizens only. Hence, in that event the APY account will be closed and the net actual interest earned on his contributions (after deducting the account maintenance charges) will be refunded, whereas, the Government co-contribution, and the interest earned on the Government co-contribution, if provided, shall not be returned to such subscribers.
+
+The APY account can be kept persistent by making regular contributions towards the scheme. APY provides the option to the subscribers to change the contribution frequency (Monthly/Quarterly/Half Yearly) as per the earning frequency of the subscriber. Also, the 4 subscriber can maintain persistency by paying all the overdue contributions along with the interest.
+
+Yes, if the APY subscriber is an income taxpayer, his/her spouse who is not an income taxpayer and satisfies other eligibility conditions can open their APY account.
+
+An individual should join APY as early as possible to get the benefit of time. By joining early, the overall contribution made by the subscriber is reduced keeping the returns same.
+
+No, the PRAN numbers for APY & NPS are different because PRAN is unique number which is allotted scheme wise.
+
+The contribution amount shall depend on the age of the individual at the time of opening of APY account, frequency of contribution and the pension slab chosen. The age wise, frequency wise and pension slab wise contribution table is provided as Annexure for reference.
+
+The contributions can be made at monthly / quarterly / half yearly intervals through auto debit facility from savings bank account/ post office savings bank account of the subscriber.
+
+APY contributions will be collected through auto-debit of their savings bank account/ post office savings bank account on any date of the particular month, in case of monthly contributions or any day of the first month of the quarter, in case of quarterly contributions or any day of the first month of the half year, in case of half-yearly contributions.
+
+The quarters are defined as April- June as first quarter / July-September as 2nd Quarter/ October - December as 3rd quarter and January – March as 4th quarter. Further, half years are defined as April- Sept as 1st half year and Oct- March as 2nd half year. The subscriber is required to pay entire contribution for that quarter/half year whenever he/she is joining i.e. initial contribution and subsequent contribution would be due in the first month of the next quarter or first month of the next half year as per the frequency opted.
+
+Subscriber will be charged overdue interest for the delayed period in case the APY contribution gets delayed beyond the due date.
+
+For each delayed monthly contribution, the Banks are required to collect Rs.1 of every Rs.100 contribution, or part thereof, per month. The overdue interest collected will be credited to the APY account of the subscriber and it will remain as part of the pension corpus of the subscriber.
+
+In case of inadequate balance in the saving account of the subscriber till the last date of the month / last date of the first month in a quarter / last day of the first month in a half year, as the case may be, it will be treated as a default and contribution will have to be paid in the subsequent month along with overdue interest for delayed contributions. More than one monthly / quarterly / half yearly contribution can be recovered subject to the availability of the funds.
+
+An APY account never gets closed due to non-payment of contributions by the subscriber. Further, the subscriber can regularize his/ her account at any point of time by paying contributions for the overdue period along with the overdue interest. However, the deductions would continue to be made in the subscriber’s APY account for account maintenance charges and other related charges on a periodic basis till it becomes zero.
+
+The contributions under APY are invested as per the investment guidelines prescribed by PFRDA for APY. The contributions thus collected are invested and the funds are managed by the Pension Funds namely SBI Pension Fund Pvt. Ltd, LIC Pension Fund Ltd and UTI Retirement Solution Ltd.
+
+As per the evolving needs, Central Recordkeeping Agency (CRA) appointed by PFRDA has developed and made available the new functionalities categorized in the table below. PFRDA has also enabled digital utilities for these functionalities available online to facilitate subscribers to access their Account without visiting the bank/post office branch. These features are expected to benefit APY Subscribers and empower them to carry out account related activities as described below:
+
+**S.N****Module****Digital Utility Available online**
+1.Subscriber Registration Besides, the traditional method of onboarding wherein the individual used to deposit a physical account opening form to PoP-APY, a digital onboarding facility into APY has also been enabled:
+
+e-APY facility with multiple options is provided to prospective subscribers for enrolment in APY. This ensures wider reach and it is a user-friendly platform and makes enrolment under APY in a complete end to end digital interface without submission of physical form by the prospective subscribers and without visiting a bank branch.
+
+The various options are as follows:
+
+**a) Online APY registration**
+
+The eligible individual can enrol under APY through e-APY wherein the individual’s details are fetched as per Aadhar and individual submits the details through e-sign facility.
+
+**b) APY Lead Generation**
+
+Through this facility, the well-wisher can generate lead for the proposed APY subscriber. The said lead is passed on through the concern bank for onward processing. This facility is very much useful for the people who wish to join APY but are not aware about the modalities.
+
+**c) Migration of NPS Lite Swavalamban Subscribers to APY**
+
+With this facility, the NPS Lite subscribers can migrate to APY through online basis and are not required to submit form in physical at the bank branch.
+2.PRAN Card Printing Atal Pension Yojana (APY) subscribers have an option to opt for physical PRAN Card by accessing eAPY portal. A link has been provided to subscribers providing the instructions for printing APY PRAN Card.
+
+Simultaneously, an ePRAN card/e SoT facility has been made available which is useful for downloading of transaction statement and ePRAN card. The option contains a search with PRAN and without PRAN. The subscriber can download Transaction Statement financial year wise.
+3.Upgrade/ Downgrade Under APY, the Subscriber is required to select the minimum pension of Rs. 1,000/-, 2,000/-, 3,000/-, 4,000 and 5,000/- per month that will be given at the age of 60 years depending on the contributions made by the subscribers. Accordingly, the contribution is deducted from the subscriber’s bank account as per the frequency opted i.e. monthly/quarterly/half yearly. As per PFRDA guidelines, APY Subscribers have an option to upgrade/downgrade the opted pension amount. The window period to change the pension amount is available to Subscriber only once throughout the year from 1st July, 2020.
+4.Continuation of APY Account As per [Notification F. No. 16/1/2015-PR dated 22nd March, 2016](https://pfrda.org.in/w/faqs/Notification%20F.%20No.%2016/1/2015-PR%20dated%2022nd%20March,%202016) issued by Department of Financial Services, Ministry of Finance and PFRDA exit guidelines under APY, a spouse of the Subscriber has an option to continue APY account in case of death of the Subscriber.
+
+The feature has been enabled in the CRA system wherein request for continuation of account by spouse can be processed as part of Subscriber Registration functionality by PoP-APY.
+
+The continuation of APY account by spouse will be with below options:
+
+i). In case of death of the subscriber before 60 years, new PRAN will be generated in the name of the spouse and spouse will be allowed to contribute for the remaining period i.e. till the date on which original/deceased subscriber would have attained the age of 60 years.
+
+ii). Spouse will be allowed to contribute same amount as earlier opted by the original/deceased subscriber.
+
+iii). The balance units available in the subscriber’s APY account will be transferred to the APY account of spouse.
+
+iv). Spouse will be allowed to contribute from his/her own savings Bank account.
+5.CGMS**APY Grievance Module**
+
+The PoP-APY has the facility to raise queries/grievances on behalf of associated subscribers in the CRA login. As part of the functionality, PoP-APY will have below options:
+
+1. Log Grievance request
+
+2. Grievance resolution
+
+3. Grievance status view
+
+4. View and Assign grievance
+
+5. Grievance Master status view
+
+**Grievances raised by the subscriber on its own:**
+
+The facility for raising grievances is also provided in APY mobile application in addition to raising the same through web site.
+
+Direct link to raise a grievance by APY Subscriber on CRA site:
+
+[https://npscra.nsdl.co.in/Logyour-grievance.php](https://npscra.nsdl.co.in/Logyour-grievance.php)
+6.Mobile Application A mobile app is developed for APY subscribers known as “APY and NPS Lite”. APY subscribers with smart phones can down load the said app from Google Play store ‘in search option’ and installing in their mobile phones for real time viewing of APY Accounts.
+
+The various features of Mobile app are as follows:
+
+a) Download Transaction Statement and e-PRAN
+
+b) View value of holdings
+
+c) Check latest 5 contributions credited
+
+d) Check personal details
+
+e) Raising grievances
+
+f) Link for online register through e-APY
+
+g) Link for pension calculator
+
+h) Link for you tube videos for APY on APY ki Pathshala.
+
+APY subscribers can access the mobile app through PRAN and one time password duly received on mobile no registered (active and valid) in CRA system.
+7.Chatbot Facility (KYNA)A chatbot for APY subscriber is developed so that the subscribers can get instant resolution to the APY related queries.
+
+It is very useful for existing APY subscribers as well as for proposed subscribers to get APY related information immediately.
+8.Podcast on APY Podcast has been made available for APY on various topics. Any person can hear the same and get the information about APY and various functionalities in APY. The Podcast is made available in Hindi and English.
+
+The subscribers may visit the following link for accessing the above features[https://www.npscra.nsdl.co.in/scheme-details.php](https://www.npscra.nsdl.co.in/scheme-details.php)
+
+a) Yes, a subscriber can opt to decrease or increase pension amount during the course of the accumulation phase, once a financial year.
+
+b) For subscribers who are of the age of 40 years and below, for upgrading the pension amount, the subscribers need not to pay the differential amount of contribution. As per the Refixation method, contribution is to be paid based on current age and new pension amount, whereas in the case of down gradation, the excess amount of contribution collected from the subscriber would be refunded to the subscribers along with the returns generated.
+
+c) For upgradation or down gradation, other than error cases, the subscribers would be required to pay a fee of Rs. 50, which will be shared equally by PoP-APY and CRA.
+
+The periodical information regarding the activation of PRAN, balance in the account, contribution credits etc. are provided to APY subscribers by way of SMS alerts on the registered mobile number or the same can also be accessed through APY Mobile app launched by CRA. The subscriber will also be receiving physical statement of transactions once in a financial year at their registered address.
+
+Yes, the physical statement of APY account will be provided to the subscribers annually at the registered address by CRA.
+
+The APY contributions will continue to be collected through auto debit of the same savings account uninterruptedly even in case of change of residence / location. As contribution collection is done through bank account which is CBS enabled, subscriber can continue contributing through same savings bank account, even if the residence is changed.
+
+Yes, the subscriber can change the mode (monthly/ quarterly/half yearly) of auto debit facility once in a year.
+
+Yes, the Toll-Free Helpline numbers for APY are:
+
+PFRDA’s toll free no. 1800-110-069 (For prospective subscribers) CRA’s toll free no. 1800-889-1030 (For existing subscribers)
+
+Table of all charges and fees of APY
+
+**Intermediary****Charge head****Applicable fees and charges levied on APY subscribers****Method of collection of charges**
+PRA Opening charges
+Annual PRA Maintenance cost per account
+Charge per transaction
+
+The subscriber will submit the request to the associated bank/Post office branch for drawing the monthly pension. Upon successful submission and processing of the request, the subscriber will start receiving the monthly pension until death. After the death of the subscriber, the same amount of monthly pension will be received by the spouse (default nominee), until death. Upon the death of both the subscriber and the spouse, the nominee will receive the entire pension wealth accumulated till the age of 60 years of the subscriber.
+
+Yes, voluntary exit under APY before 60 years of age is permitted. ,
+
+The subscriber shall only be refunded the contributions made by him along with accrued income earned on his contributions (after deducting the account maintenance charges).
+
+In the case of those subscribers who had joined the scheme before 31st March 2016 and had received Government Co-Contribution, they shall not receive the Government co-contribution and the accrued income earned on the same, if opted for Voluntary exit before 60 years.
+
+However, to avail of the triple guaranteed benefits of the Govt. of India, the subscribers are urged to continue making contributions into the scheme till 60 years of age.
+
+**Option 1:**In case of the death of the subscriber before 60 years, an option will be available to the spouse of the subscriber to continue contribution in the APY account of the subscriber (which can be maintained in the spouse’s name) for the remaining vesting period of the deceased subscriber (till the original subscriber would have attained the age of 60 years). The spouse of the subscriber shall be entitled to receive a lifelong pension from this account. Such APY account would be in addition to the APY account which the spouse would be maintaining in his/ her own name, if any.
+
+**Option 2:** The entire accumulated corpus till date under APY will be returned to the spouse / nominee of the subscriber.
+
+In case of unmarried subscribers, the entire corpus will be returned to the nominee of the subscriber.
+
+The subscriber shall receive the following three benefits on attaining the age of 60:
+
+**(i) Guaranteed minimum pension amount:**Each subscriber under APY shall receive a Government of India guaranteed minimum pension of Rs. 1000 per month or Rs. 2000 per month or Rs. 3000 per month or Rs. 4000 per month or Rs. 5000 per month, after the age of 60 years until death.
+
+**(ii) Guaranteed minimum pension amount to the spouse:** After the subscriber’s demise, the spouse of the subscriber shall be entitled to receive the same pension amount as that of the subscriber, until the death of the spouse.
+
+**(iii) Return of the pension wealth to the nominee of the subscriber:**After the demise of both the subscriber and the spouse, the nominee of the subscriber shall be entitled to receive the pension wealth, as accumulated till age 60 years of the subscriber.
+
+The Swavalamban/NPS Lite Subscribers between 18 to 40 years of age are eligible to migrate to APY.
+
+The eligible Swavalamban subscribers who wish to migrate to APY shall fill up the enrollment form for migration to APY and submit the same along with the copy of PRAN card to the nearest PoP-APY for registration. Subsequent to the registration, the subscriber will be mapped to the bank branch. The PRAN amount balance under the Swavalamban scheme will be shifted to APY on T+1 basis. Also, the subscriber can use eAPY facility to opt for migrating from NPS Lite/ Swavalamban to APY.
+
+Yes, the subscribers under the NPS Lite/Swavalamban scheme who do not wish to continue under the scheme may exit from the scheme as per the guidelines applicable and withdraw the entire amount in lump sum or may prefer to continue till the age of 60 years to be eligible for benefits as per the scheme.
+
+Yes, APY pages are available on social media on the following links:
+
+· Facebook- [https://www.facebook.com/OfficialAPY/](https://www.facebook.com/OfficialAPY/)
+
+· Instagram- [https://www.instagram.com/atalpensionyojanagoi /](https://www.instagram.com/atalpensionyojanagoi%20/)
+
+· Linkedin- [https://www.linkedin.com/in/pfrda-pension-fund-regulator-of-india-051614168/?originalSubdomain=in](https://www.linkedin.com/in/pfrda-pension-fund-regulator-of-india-051614168/?originalSubdomain=in%20)
+
+· Youtube- [https://www.youtube.com/channel/UCLMx1eZWY-LDeyIWCwYu15Q](https://www.youtube.com/channel/UCLMx1eZWY-LDeyIWCwYu15Q)
+
+· APY Ki Pathshala on Youtube-[https://www.youtube.com/channel/UC5SuHg-O6ipH1J_HTfU17ug](https://www.youtube.com/channel/UC5SuHg-O6ipH1J_HTfU17ug)
+
+· Latest APY video : [https://www.youtube.com/watch?v=mt0tijZyHqQ](https://www.youtube.com/watch?v=mt0tijZyHqQ)
+
+· Twitter- [https://twitter.com/pfrdaofficial?lang=e](https://twitter.com/pfrdaofficial?lang=e)
+
+**APY Podcasts :**
+
+**S.No.****Podcast Title****Link**
+1 APY Scheme- Eligibility and Benefits[https://bit.ly/3OFnSXH](https://bit.ly/3OFnSXH)
+2 APY Mobile App - How to download and its features[https://bit.ly/3AN7Bdu](https://bit.ly/3AN7Bdu)
+3 e-APY Process[https://bit.ly/3pDYwxF](https://bit.ly/3pDYwxF)
+4 Downloading APY transaction statement and ePRAN[https://bit.ly/3cfJ6g5](https://bit.ly/3cfJ6g5)
+5 Continuation of APY accounts by spouse[https://bit.ly/3VyWHQE](https://bit.ly/3VyWHQE)
+6 Migration of Swavalamban subscriber to APY[https://bit.ly/3GRym4d](https://bit.ly/3GRym4d)
+7 What if APY subscriber misses his contributions for few months[https://bit.ly/3VgQdGg](https://bit.ly/3VgQdGg)
+8 Funded APY accounts and benefits[https://bit.ly/3uaVwLi](https://bit.ly/3uaVwLi)
+9 How can I modify details registered in APY[https://bit.ly/3F9HMqs](https://bit.ly/3F9HMqs)
+10 Seeding aadhaar in APY PRAN[https://bit.ly/3GX0jrH](https://bit.ly/3GX0jrH)
+11 Account opening in APY[https://bit.ly/3XI0Vr8](https://bit.ly/3XI0Vr8)
+12 How to raise grievance by APY subscriber[https://bit.ly/3IRLM1m](https://bit.ly/3IRLM1m)
+13 How to get PRAN card for APY[https://bit.ly/3iCQeq6](https://bit.ly/3iCQeq6)

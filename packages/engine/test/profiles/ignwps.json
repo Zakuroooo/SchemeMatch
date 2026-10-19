@@ -1,0 +1,75 @@
+{
+  "scheme": "ignwps",
+  "cases": [
+    {
+      "id": "eligible",
+      "why": "Widow, 45, BPL",
+      "profile": {
+        "marital_status": "widow",
+        "age": 45,
+        "has_bpl_card": true
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "not-widow",
+      "why": "Married women are not covered",
+      "profile": {
+        "marital_status": "married",
+        "age": 45,
+        "has_bpl_card": true
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "age-40",
+      "why": "Lower edge of 40 to 79",
+      "profile": {
+        "marital_status": "widow",
+        "age": 40,
+        "has_bpl_card": true
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-39",
+      "why": "Just below 40",
+      "profile": {
+        "marital_status": "widow",
+        "age": 39,
+        "has_bpl_card": true
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "age-79",
+      "why": "Upper edge of 40 to 79",
+      "profile": {
+        "marital_status": "widow",
+        "age": 79,
+        "has_bpl_card": true
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-80",
+      "why": "Just above 79",
+      "profile": {
+        "marital_status": "widow",
+        "age": 80,
+        "has_bpl_card": true
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "bpl-unknown",
+      "why": "Widow of the right age, BPL not asked",
+      "profile": {
+        "marital_status": "widow",
+        "age": 45
+      },
+      "expected": "UNKNOWN",
+      "ask_next": "has_bpl_card"
+    }
+  ]
+}

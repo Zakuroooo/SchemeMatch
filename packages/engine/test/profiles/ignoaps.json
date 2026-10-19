@@ -1,0 +1,58 @@
+{
+  "scheme": "ignoaps",
+  "cases": [
+    {
+      "id": "eligible",
+      "why": "70 and on the BPL list",
+      "profile": {
+        "age": 70,
+        "has_bpl_card": true
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "too-young",
+      "why": "40 is far below 65",
+      "profile": {
+        "age": 40,
+        "has_bpl_card": true
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "age-65",
+      "why": "65 is 'aged 65 and above'",
+      "profile": {
+        "age": 65,
+        "has_bpl_card": true
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-64",
+      "why": "64 is just below the limit",
+      "profile": {
+        "age": 64,
+        "has_bpl_card": true
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "bpl-unknown",
+      "why": "Age fits, BPL not asked yet",
+      "profile": {
+        "age": 70
+      },
+      "expected": "UNKNOWN",
+      "ask_next": "has_bpl_card"
+    },
+    {
+      "id": "fail-beats-unknown",
+      "why": "Age fails, so the unknown BPL answer can't rescue it",
+      "profile": {
+        "age": 50
+      },
+      "expected": "FAIL"
+    }
+  ]
+}

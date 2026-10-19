@@ -96,6 +96,11 @@ flowchart TD
     ASK --> P
 ```
 
+### Criteria we can't model, and unclear text
+- `unmodelled`: criteria with no matching profile field (e.g. "not an income-tax payer", "has a savings account"). Each one is still quoted. The app shows them as **"you must also confirm…"** instead of guessing.
+- `ambiguous`: notes where the source is unclear or conflicts with another official source (e.g. Maharashtra's page says old-age pension from 65; the national rule says 60). These are excluded from accuracy numbers.
+- Residency for state schemes comes from the scheme's `state` field, not from a rule condition.
+
 ## 4. Versioning and change
 - `rule_format_version` on every scheme; the engine refuses unknown versions (fails closed → scheme hidden, error logged).
 - Rule edits are rows with `created_by`, `reviewed_by`, `reviewed_at`; old versions kept so a past screening can be explained.

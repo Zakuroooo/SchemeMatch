@@ -1,0 +1,68 @@
+{
+  "scheme": "mh-sanjay-gandhi-niradhar",
+  "cases": [
+    {
+      "id": "old-widow",
+      "why": "Widow aged 70 with low income: outside the 18 to 65 band, but widows qualify separately",
+      "profile": {
+        "marital_status": "widow",
+        "age": 70,
+        "annual_family_income": 15000
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "income-too-high",
+      "why": "Not BPL and income above 21,000",
+      "profile": {
+        "age": 40,
+        "annual_family_income": 50000,
+        "has_bpl_card": false,
+        "marital_status": "married",
+        "disability_percent": 0
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "income-at-limit",
+      "why": "Exactly 21,000 is 'up to 21,000'",
+      "profile": {
+        "age": 30,
+        "annual_family_income": 21000,
+        "has_bpl_card": false
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "income-just-over",
+      "why": "1 rupee over and not BPL",
+      "profile": {
+        "age": 30,
+        "annual_family_income": 21001,
+        "has_bpl_card": false
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "unmarried-woman-over-35",
+      "why": "Unmarried woman aged 70 qualifies through the 'over 35' clause",
+      "profile": {
+        "gender": "female",
+        "marital_status": "single",
+        "age": 70,
+        "annual_family_income": 10000
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "income-unknown",
+      "why": "Not BPL; income not asked yet",
+      "profile": {
+        "age": 30,
+        "has_bpl_card": false
+      },
+      "expected": "UNKNOWN",
+      "ask_next": "annual_family_income"
+    }
+  ]
+}

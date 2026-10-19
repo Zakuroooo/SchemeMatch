@@ -1,0 +1,64 @@
+{
+  "slug": "pm-kisan",
+  "level": "central",
+  "state": null,
+  "category": "farming",
+  "official_url": "https://pmkisan.gov.in/Documents/Revised%20Operational%20Guidelines%20-%20PM-Kisan%20Scheme.pdf",
+  "source_file": "sources/pm-kisan.txt",
+  "eligibility": {
+    "all": [
+      {
+        "field": "land_acres",
+        "op": "gt",
+        "value": 0,
+        "source_quote": "all landholding farmers’ families in the country, having cultivable land"
+      }
+    ]
+  },
+  "unmodelled": [
+    {
+      "text": "Not an institutional land holder",
+      "source_quote": "All Institutional Land holders"
+    },
+    {
+      "text": "No family member holds or held a constitutional post",
+      "source_quote": "Former and present holders of constitutional posts"
+    },
+    {
+      "text": "No family member is or was a Minister, MP, MLA, MLC, Mayor or District Panchayat Chairperson",
+      "source_quote": "Former and present Ministers/ State Ministers and former/present Members of Lok Sabha/ Rajya Sabha/ State Legislative Assemblies/ State Legislative Councils"
+    },
+    {
+      "text": "No family member is a serving or retired government or PSE employee (Group D / MTS excepted)",
+      "source_quote": "All serving or retired officers and employees of Central/ State Government Ministries"
+    },
+    {
+      "text": "Not a person who paid income tax in the last assessment year",
+      "source_quote": "All Persons who paid Income Tax in last assessment year."
+    },
+    {
+      "text": "Not a retired pensioner with monthly pension of Rs 10,000 or more",
+      "source_quote": "All superannuated/retired pensioners whose monthly pension is Rs.10,000/-or more"
+    },
+    {
+      "text": "Not a practising registered professional (doctor, engineer, lawyer, CA, architect)",
+      "source_quote": "Professionals like Doctors, Engineers, Lawyers, Chartered Accountants, and Architects registered with Professional bodies"
+    },
+    {
+      "text": "Land must be owned as per state land records",
+      "source_quote": "who own cultivable land as per land records of the concerned State/UT"
+    }
+  ],
+  "ambiguous": [],
+  "documents": [],
+  "text": {
+    "en": {
+      "title": "PM Kisan Samman Nidhi",
+      "benefit": "Rs 6,000 per year paid directly into the bank account of eligible farmer families.",
+      "how_to_apply": "Apply through the official channel described on the source page."
+    }
+  },
+  "drafted_by": "claude",
+  "reviewed_by": null,
+  "reviewed_at": null
+}

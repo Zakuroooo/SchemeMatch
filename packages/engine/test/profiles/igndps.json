@@ -1,0 +1,50 @@
+{
+  "scheme": "igndps",
+  "cases": [
+    {
+      "id": "eligible",
+      "why": "Disabled, 30",
+      "profile": {
+        "disability_percent": 60,
+        "age": 30
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "not-disabled",
+      "why": "0% disability",
+      "profile": {
+        "disability_percent": 0,
+        "age": 30
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "age-18",
+      "why": "Lower edge of 18 to 79",
+      "profile": {
+        "disability_percent": 50,
+        "age": 18
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-17",
+      "why": "Just below 18",
+      "profile": {
+        "disability_percent": 50,
+        "age": 17
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "disability-unknown",
+      "why": "Age fits, disability not asked",
+      "profile": {
+        "age": 30
+      },
+      "expected": "UNKNOWN",
+      "ask_next": "disability_percent"
+    }
+  ]
+}

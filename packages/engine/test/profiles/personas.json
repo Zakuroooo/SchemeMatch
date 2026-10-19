@@ -1,0 +1,109 @@
+{
+  "cases": [
+    {
+      "id": "sunita",
+      "why": "PRD persona: widow, 38, Nashik, BPL, 2 children",
+      "profile": {
+        "state": "MH",
+        "gender": "female",
+        "age": 38,
+        "marital_status": "widow",
+        "annual_family_income": 60000,
+        "has_bpl_card": true,
+        "children_count": 2,
+        "is_pregnant_or_lactating": false,
+        "disability_percent": 0,
+        "land_acres": 0,
+        "caste_category": "OBC"
+      },
+      "eligible": ["apy", "pmjjby", "pmsby", "mh-ladki-bahin", "mh-sanjay-gandhi-niradhar"],
+      "note": "Not the widow pension: 38 is below its 40 to 79 band"
+    },
+    {
+      "id": "marathwada-farmer",
+      "why": "Male farmer, 52, 3 acres, not BPL",
+      "profile": {
+        "state": "MH",
+        "gender": "male",
+        "age": 52,
+        "marital_status": "married",
+        "land_acres": 3,
+        "annual_family_income": 90000,
+        "has_bpl_card": false,
+        "disability_percent": 0,
+        "is_pregnant_or_lactating": false,
+        "caste_category": "General"
+      },
+      "eligible": ["pm-kisan", "pmsby"]
+    },
+    {
+      "id": "elderly-widow",
+      "why": "Widow, 72, BPL, very low income",
+      "profile": {
+        "state": "MH",
+        "gender": "female",
+        "age": 72,
+        "marital_status": "widow",
+        "annual_family_income": 12000,
+        "has_bpl_card": true,
+        "disability_percent": 0,
+        "land_acres": 0,
+        "is_pregnant_or_lactating": false,
+        "caste_category": "General"
+      },
+      "eligible": ["ignoaps", "ignwps", "mh-sanjay-gandhi-niradhar"]
+    },
+    {
+      "id": "pregnant-sc-woman",
+      "why": "Pregnant, 24, SC, income 3 lakh",
+      "profile": {
+        "state": "MH",
+        "gender": "female",
+        "age": 24,
+        "marital_status": "married",
+        "caste_category": "SC",
+        "annual_family_income": 300000,
+        "has_bpl_card": false,
+        "disability_percent": 0,
+        "land_acres": 0,
+        "is_pregnant_or_lactating": true
+      },
+      "eligible": ["apy", "pmmvy", "pmjjby", "pmsby"],
+      "note": "Not Ladki Bahin: 3 lakh is above its 2.5 lakh limit"
+    },
+    {
+      "id": "disabled-young-man",
+      "why": "Male, 19, 70% disability, BPL",
+      "profile": {
+        "state": "MH",
+        "gender": "male",
+        "age": 19,
+        "marital_status": "single",
+        "disability_percent": 70,
+        "annual_family_income": 40000,
+        "has_bpl_card": true,
+        "land_acres": 0,
+        "is_pregnant_or_lactating": false,
+        "caste_category": "ST"
+      },
+      "eligible": ["igndps", "apy", "pmjjby", "pmsby", "mh-sanjay-gandhi-niradhar"]
+    },
+    {
+      "id": "bihar-woman",
+      "why": "Woman, 30, from Bihar: Maharashtra schemes must not apply even though she matches their rules",
+      "profile": {
+        "state": "BR",
+        "gender": "female",
+        "age": 30,
+        "marital_status": "single",
+        "annual_family_income": 50000,
+        "has_bpl_card": true,
+        "disability_percent": 0,
+        "land_acres": 0,
+        "is_pregnant_or_lactating": false,
+        "caste_category": "OBC"
+      },
+      "eligible": ["apy", "pmjjby", "pmsby"]
+    }
+  ]
+}
