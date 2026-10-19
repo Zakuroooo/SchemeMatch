@@ -1,0 +1,33 @@
+import { readdirSync, readFileSync } from "node:fs";
+import { join } from "node:path";
+import type { Scheme } from "@schemematch/engine";
+
+/** What the API needs to know about a scheme: the engine's rules plus display text. */
+export interface CatalogScheme extends Scheme {
+  official_url: string;
+  category: string;
+  text: { en: { title: string; benefit: string; how_to_apply: string } };
+}
+
+/** Where schemes come from. Files today; Supabase next step, with no route changes. */
+export interface SchemeRepository {
+  listLive(): Promise<CatalogScheme[]>;
+}
+
+/** Reads the golden scheme files once and serves them from memory. */
+export class FileSchemeRepository implements SchemeRepository {
+  private readonly schemes: CatalogScheme[];
+
+  constructor(dir: string) {
+    this.schemes = readdirSync(dir)
+      .filter((f) => f.endsWith(".json"))
+      .sort()
+      .map((f) => JSON.parse(readFileSync(join(dir, f), "utf8")) as CatalogScheme);
+  }
+
+  async listLive(): Promise<CatalogScheme[]> {
+    return this.schemes;
+  }
+}
+
+export const GOLDEN_DIR = join(import.meta.dirname, "../../../pipeline/golden/schemes");
