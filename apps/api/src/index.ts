@@ -24,6 +24,10 @@ app.log.info(
   { source: repo instanceof SupabaseSchemeRepository ? "supabase" : "files" },
   "scheme source",
 );
-// Match Vercel's documented pattern: listen on a port with Fastify's default host
-// (localhost). Vercel captures this listener and routes requests to it.
-await app.listen({ port });
+// Match Vercel's documented pattern exactly: call listen() WITHOUT awaiting it.
+// Vercel replaces listen() with its own hook; a top-level `await` on it can block the
+// module from finishing loading, so the function would never answer a request.
+app.listen({ port }).catch((err: unknown) => {
+  app.log.error({ err }, "server failed to start");
+  process.exitCode = 1;
+});
