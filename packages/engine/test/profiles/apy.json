@@ -1,0 +1,60 @@
+{
+  "scheme": "apy",
+  "cases": [
+    {
+      "id": "eligible",
+      "why": "25 is within 18 to 40",
+      "profile": {
+        "age": 25
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "too-old",
+      "why": "55 is far above 40",
+      "profile": {
+        "age": 55
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "age-40",
+      "why": "Upper edge",
+      "profile": {
+        "age": 40
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-41",
+      "why": "Just past 40",
+      "profile": {
+        "age": 41
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "age-18",
+      "why": "Lower edge",
+      "profile": {
+        "age": 18
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-17",
+      "why": "Just below 18",
+      "profile": {
+        "age": 17
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "age-unknown",
+      "why": "Nothing asked yet",
+      "profile": {},
+      "expected": "UNKNOWN",
+      "ask_next": "age"
+    }
+  ]
+}

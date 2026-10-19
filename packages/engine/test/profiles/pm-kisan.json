@@ -1,0 +1,48 @@
+{
+  "scheme": "pm-kisan",
+  "cases": [
+    {
+      "id": "owns-land",
+      "why": "Owns cultivable land",
+      "profile": {
+        "land_acres": 2.5,
+        "occupation": "farmer"
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "no-land",
+      "why": "Owns no land",
+      "profile": {
+        "land_acres": 0,
+        "age": 30
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "land-zero-boundary",
+      "why": "Exactly 0 acres is not 'having cultivable land'",
+      "profile": {
+        "land_acres": 0
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "land-tiny",
+      "why": "Any positive land holding counts",
+      "profile": {
+        "land_acres": 0.1
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "land-unknown",
+      "why": "Land not asked yet",
+      "profile": {
+        "age": 45
+      },
+      "expected": "UNKNOWN",
+      "ask_next": "land_acres"
+    }
+  ]
+}
