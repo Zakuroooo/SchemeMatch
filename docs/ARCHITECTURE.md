@@ -177,7 +177,7 @@ All inputs validated with **Zod**; errors return clear 400s; rate-limited per IP
 **Built so far (`apps/api`, Week 2):** `GET /health`, `GET /schemes?state=`, `POST /eligibility`.
 - The profile schema is **strict**: any key that isn't a profile field (`name`, `phone`, `aadhaar`, …) is rejected with a 400, and errors never echo values back.
 - Responses carry the reasons (source quotes), the "must also confirm" items, the closest miss, the next question and the disclaimer.
-- Schemes come from a `SchemeRepository` interface: golden files today, Supabase next.
+- Schemes come from a `SchemeRepository` interface. `SupabaseSchemeRepository` reads with the anon key, so RLS limits it to live schemes and their current rule version (60 s cache); `FileSchemeRepository` reads the golden files for offline work. `supabase/seed.sql` is generated from the golden files, and an integration test proves the database serves exactly what the files contain.
 - Rate limiting is in-memory (60/min per IP) until the deploy step moves it to Upstash. Profiles are redacted from logs.
 
 ## 8. Security & privacy
