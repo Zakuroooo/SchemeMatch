@@ -1,7 +1,17 @@
 # Contributing to SchemeMatch
 
 ## Setup
-Prereqs and commands are added here as each app is scaffolded (Week 1).
+Prereqs: Node 22 (`.nvmrc`), pnpm 10, Docker, Supabase CLI.
+
+```bash
+pnpm install
+pnpm test                 # lint/typecheck/test run with: pnpm turbo run lint typecheck test
+supabase start            # local Postgres + Auth on ports 553xx (so other local Supabase projects can keep 543xx)
+supabase db reset         # re-apply every migration from zero
+supabase test db          # pgTAP tests in supabase/tests/
+```
+
+TypeScript is pinned to 6.0.x: TypeScript 7 (the native compiler) has no JavaScript API yet, and typescript-eslint, Next.js and Expo still need it.
 
 ## Branches and commits
 - `main` is always deployable. Work on `feat/<short-name>`, `fix/<short-name>`, `docs/<short-name>`.
