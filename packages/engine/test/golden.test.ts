@@ -38,8 +38,15 @@ const schemes = files.map(
 );
 
 describe("golden set", () => {
-  it("has the 10 schemes of step 2", () => {
-    expect(schemes).toHaveLength(10);
+  it("matches the catalog rows marked drafting", () => {
+    const catalog = readFileSync(join(PIPELINE, "catalog.csv"), "utf8")
+      .trim()
+      .split(/\r?\n/)
+      .slice(1);
+    const drafting = catalog
+      .filter((row) => row.endsWith(",drafting"))
+      .map((row) => row.split(",")[0]);
+    expect(schemes.map((s) => s.slug).sort()).toEqual(drafting.sort());
   });
 
   describe.each(schemes.map((s) => [s.slug, s] as const))("%s", (slug, s) => {
@@ -70,12 +77,16 @@ describe("golden set", () => {
     it.runIf(s.coverage)("covers every bullet of the eligibility list (nothing left out)", () => {
       const { start, end, bullet } = s.coverage!;
       const raw = readFileSync(join(PIPELINE, s.source_file), "utf8");
-      const section = raw.slice(raw.indexOf(start) + start.length, raw.indexOf(end));
-      expect(section.length, "coverage markers not found in source").toBeGreaterThan(0);
+      const from = raw.indexOf(start);
+      const to = raw.indexOf(end, from);
+      expect(from, `start marker not found: ${start}`).toBeGreaterThanOrEqual(0);
+      expect(to, `end marker not found after start: ${end}`).toBeGreaterThan(from);
+      const section = raw.slice(from + start.length, to);
       const bullets = section
         .split("\n")
         .map((l) => normalise(l))
-        .filter((l) => l.startsWith(bullet))
+        // bullet "" = every line of the section counts; lines ending in ":" are headings
+        .filter((l) => (bullet === "" ? l.length > 0 && !l.endsWith(":") : l.startsWith(bullet)))
         .map((l) => normalise(l.slice(bullet.length).replace(/^[ivx]+\)\s*/, "")));
       const quotes = [...quotesIn(s.eligibility), ...s.unmodelled.map((u) => u.source_quote)].map(
         normalise,
