@@ -20,8 +20,8 @@ export interface AppOptions {
   /** Requests per minute per client IP. */
   rateLimitPerMinute?: number;
   /**
-   * Header that holds the real client IP, set by the hosting proxy (e.g. "x-real-ip"
-   * on Vercel, whose edge overwrites any value the client sent).
+   * Header that holds the real client IP, set by the hosting proxy (e.g. "x-forwarded-for"
+   * on Vercel, whose edge overwrites any value the client sent (per Vercel docs)).
    * Unset by default: then the socket address is used and client headers are ignored,
    * so nobody can fake an IP to dodge the limit. Behind a proxy it must be set, or every
    * user would share the proxy's IP and one busy client could block everyone.

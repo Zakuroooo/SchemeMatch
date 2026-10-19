@@ -24,7 +24,7 @@ flowchart LR
 2. Apply `supabase/migrations/*` in order. Load `supabase/seed.sql` (staging only: the schemes are AI-checked, not human-reviewed).
 3. Run Supabase **security advisors** and fix every finding before step 4.
 4. **Vercel:** new project from the GitHub repo, **Root Directory `apps/api`** (framework auto-detected as Fastify, entry `src/index.ts`, region `bom1` from `apps/api/vercel.json`).
-5. Env vars (Production + Preview): `SUPABASE_URL`, `SUPABASE_ANON_KEY` (publishable key only, never service-role), `CLIENT_IP_HEADER=x-real-ip`.
+5. Env vars (Production + Preview): `SUPABASE_URL`, `SUPABASE_ANON_KEY` (publishable key only, never service-role), `CLIENT_IP_HEADER=x-forwarded-for`.
 6. Smoke test: `GET /health`, `GET /schemes?state=WB`, `POST /eligibility` with the Sunita persona; expect her 5 schemes.
 
 ## 2. Free-tier limits and what breaks first
@@ -45,7 +45,7 @@ flowchart LR
 
 **Pre-promote checklist:** CI green · migrations applied on staging · smoke test (screen one persona end to end in 2 languages) · no new Sentry/log errors in 15 min.
 
-**API deploy setting:** set `CLIENT_IP_HEADER=x-real-ip` on Vercel so rate limiting is per user. Without it, everyone shares the proxy's IP. Locally, leave it unset so faked headers are ignored. Confirm with Vercel docs at deploy time that the edge overwrites `x-real-ip` sent by clients.
+**API deploy setting:** set `CLIENT_IP_HEADER=x-forwarded-for` on Vercel so rate limiting is per user. Without it, everyone shares the proxy's IP. Locally, leave it unset so faked headers are ignored. Vercel's docs confirm the edge overwrites `x-forwarded-for` by default to prevent IP spoofing (checked 2026-10-20).
 
 ## 4. Scheme data refresh
 Weekly Vercel Cron re-fetches each `official_url`, compares `source_hash`; changed → `needs_review` (stops matching) + a GitHub issue with the diff. You review within 7 days; `last_checked` shows on every scheme card.
