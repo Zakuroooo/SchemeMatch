@@ -1,0 +1,49 @@
+{
+  "slug": "ignwps",
+  "level": "central",
+  "state": null,
+  "category": "pension",
+  "official_url": "https://sjsa.maharashtra.gov.in/en/scheme/indira-gandhi-national-widow-pension-scheme/",
+  "source_file": "sources/ignwps.txt",
+  "eligibility": {
+    "all": [
+      {
+        "field": "marital_status",
+        "op": "eq",
+        "value": "widow",
+        "source_quote": "A widow in age group of 40 to 79 years"
+      },
+      {
+        "field": "age",
+        "op": "between",
+        "value": [
+          40,
+          79
+        ],
+        "source_quote": "A widow in age group of 40 to 79 years"
+      },
+      {
+        "field": "has_bpl_card",
+        "op": "eq",
+        "value": true,
+        "source_quote": "whose family falls under Below Poverty Line"
+      }
+    ]
+  },
+  "unmodelled": [],
+  "ambiguous": [
+    "Other sources give the age band as 40 to 59; this page says 40 to 79",
+    "'Family falls under Below Poverty Line' is modelled as holding a BPL card"
+  ],
+  "documents": [],
+  "text": {
+    "en": {
+      "title": "Indira Gandhi National Widow Pension Scheme",
+      "benefit": "Rs 300 per month from the Centre; with the state top-up, Rs 1,500 per month in Maharashtra.",
+      "how_to_apply": "Apply through the official channel described on the source page."
+    }
+  },
+  "drafted_by": "claude",
+  "reviewed_by": null,
+  "reviewed_at": null
+}

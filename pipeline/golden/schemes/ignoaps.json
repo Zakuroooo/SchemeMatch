@@ -1,0 +1,40 @@
+{
+  "slug": "ignoaps",
+  "level": "central",
+  "state": null,
+  "category": "pension",
+  "official_url": "https://sjsa.maharashtra.gov.in/en/scheme/indira-gandhi-national-old-age-pension-scheme/",
+  "source_file": "sources/ignoaps.txt",
+  "eligibility": {
+    "all": [
+      {
+        "field": "age",
+        "op": "gte",
+        "value": 65,
+        "source_quote": "Eligible elderly individuals aged 65 and above"
+      },
+      {
+        "field": "has_bpl_card",
+        "op": "eq",
+        "value": true,
+        "source_quote": "whose names are on the Below Poverty Line (BPL) list"
+      }
+    ]
+  },
+  "unmodelled": [],
+  "ambiguous": [
+    "This state page says 65 and above; the national NSAP rule has been 60 and above since 2011 (not on this page)",
+    "The page lists two different monthly amounts for the same age bands"
+  ],
+  "documents": [],
+  "text": {
+    "en": {
+      "title": "Indira Gandhi National Old Age Pension Scheme",
+      "benefit": "Monthly pension for elderly people on the BPL list.",
+      "how_to_apply": "Apply through the official channel described on the source page."
+    }
+  },
+  "drafted_by": "claude",
+  "reviewed_by": null,
+  "reviewed_at": null
+}

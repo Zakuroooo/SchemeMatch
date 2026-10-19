@@ -1,0 +1,42 @@
+{
+  "slug": "igndps",
+  "level": "central",
+  "state": null,
+  "category": "pension",
+  "official_url": "https://sjsa.maharashtra.gov.in/en/scheme/indira-gandhi-national-disability-pension-scheme/",
+  "source_file": "sources/igndps.txt",
+  "eligibility": {
+    "all": [
+      {
+        "field": "disability_percent",
+        "op": "gt",
+        "value": 0,
+        "source_quote": "A Disable person in the age group of 18 to 79 years"
+      },
+      {
+        "field": "age",
+        "op": "between",
+        "value": [
+          18,
+          79
+        ],
+        "source_quote": "A Disable person in the age group of 18 to 79 years"
+      }
+    ]
+  },
+  "unmodelled": [],
+  "ambiguous": [
+    "This page gives no minimum disability percentage and does not mention BPL; national guidelines add both (not on this page)"
+  ],
+  "documents": [],
+  "text": {
+    "en": {
+      "title": "Indira Gandhi National Disability Pension Scheme",
+      "benefit": "Rs 300 per month from the Centre.",
+      "how_to_apply": "Apply through the official channel described on the source page."
+    }
+  },
+  "drafted_by": "claude",
+  "reviewed_by": null,
+  "reviewed_at": null
+}
