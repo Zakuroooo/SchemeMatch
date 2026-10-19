@@ -17,15 +17,28 @@ export const DISCLAIMER =
 export interface AppOptions {
   repo: SchemeRepository;
   logger?: FastifyServerOptions["logger"];
-  /** Requests per minute per IP. */
+  /** Requests per minute per client IP. */
   rateLimitPerMinute?: number;
+  /**
+   * Header that holds the real client IP, set by the hosting proxy (e.g. "x-real-ip"
+   * on Vercel, whose edge overwrites any value the client sent).
+   * Unset by default: then the socket address is used and client headers are ignored,
+   * so nobody can fake an IP to dodge the limit. Behind a proxy it must be set, or every
+   * user would share the proxy's IP and one busy client could block everyone.
+   */
+  clientIpHeader?: string;
 }
 
 const errorBody = (code: string, message: string, details?: unknown) => ({
   error: { code, message, ...(details === undefined ? {} : { details }) },
 });
 
-export async function buildApp({ repo, logger = false, rateLimitPerMinute = 60 }: AppOptions) {
+export async function buildApp({
+  repo,
+  logger = false,
+  rateLimitPerMinute = 60,
+  clientIpHeader,
+}: AppOptions) {
   const app = Fastify({
     logger:
       logger === false
@@ -43,6 +56,10 @@ export async function buildApp({ repo, logger = false, rateLimitPerMinute = 60 }
   await app.register(rateLimit, {
     max: rateLimitPerMinute,
     timeWindow: "1 minute",
+    keyGenerator: (req) => {
+      const fromProxy = clientIpHeader ? req.headers[clientIpHeader.toLowerCase()] : undefined;
+      return typeof fromProxy === "string" && fromProxy.length > 0 ? fromProxy : req.ip;
+    },
     // The plugin throws whatever this returns, so it must look like an HTTP error.
     errorResponseBuilder: (_req, ctx) => ({
       statusCode: 429,

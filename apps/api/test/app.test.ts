@@ -111,6 +111,22 @@ describe("errors and limits", () => {
     expect((await a.inject("/health")).json().error.code).toBe("RATE_LIMITED");
   });
 
+  it("ignores client-supplied IP headers when no proxy header is configured", async () => {
+    const a = await start({ rateLimitPerMinute: 1 });
+    const hit = (ip: string) =>
+      a.inject({ url: "/health", headers: { "x-forwarded-for": ip, "x-real-ip": ip } });
+    expect((await hit("1.1.1.1")).statusCode).toBe(200);
+    expect((await hit("2.2.2.2")).statusCode).toBe(429); // faking a new IP does not reset the limit
+  });
+
+  it("gives each real client its own bucket behind a proxy that sets the IP header", async () => {
+    const a = await start({ rateLimitPerMinute: 1, clientIpHeader: "x-real-ip" });
+    const hit = (ip: string) => a.inject({ url: "/health", headers: { "x-real-ip": ip } });
+    expect((await hit("1.1.1.1")).statusCode).toBe(200);
+    expect((await hit("2.2.2.2")).statusCode).toBe(200); // a different user is not blocked
+    expect((await hit("1.1.1.1")).statusCode).toBe(429);
+  });
+
   it("returns 500 without details when something unexpected breaks", async () => {
     const broken = {
       listLive: async () => {

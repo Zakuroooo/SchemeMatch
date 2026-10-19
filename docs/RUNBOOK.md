@@ -37,6 +37,8 @@ flowchart LR
 
 **Pre-promote checklist:** CI green · migrations applied on staging · smoke test (screen one persona end to end in 2 languages) · no new Sentry/log errors in 15 min.
 
+**API deploy setting:** set `CLIENT_IP_HEADER=x-real-ip` on Vercel so rate limiting is per user. Without it, everyone shares the proxy's IP. Locally, leave it unset so faked headers are ignored. Confirm with Vercel docs at deploy time that the edge overwrites `x-real-ip` sent by clients.
+
 ## 4. Scheme data refresh
 Weekly Vercel Cron re-fetches each `official_url`, compares `source_hash`; changed → `needs_review` (stops matching) + a GitHub issue with the diff. You review within 7 days; `last_checked` shows on every scheme card.
 
