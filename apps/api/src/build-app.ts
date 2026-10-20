@@ -198,7 +198,9 @@ export async function buildApp({
     async (req, reply) => {
       if (!screenings) return reply.code(503).send(storageMissing);
       const profile = cleanProfile(req.body.profile);
-      const result = evaluateAll(await repo.listLive(), profile);
+      const schemes = await repo.listLive();
+      const stateOf = new Map(schemes.map((s) => [s.slug, s.state]));
+      const result = evaluateAll(schemes, profile);
       try {
         const saved = await screenings.save({
           idempotencyKey: req.headers["idempotency-key"],
@@ -206,7 +208,7 @@ export async function buildApp({
           installId: req.body.install_id,
           channel: "app",
           profile,
-          matches: result.results.map(toMatch),
+          matches: result.results.map((r) => toMatch(r, stateOf.get(r.slug) ?? null)),
         });
         return reply.code(saved.created ? 201 : 200).send({ ...saved, disclaimer: DISCLAIMER });
       } catch (err) {
@@ -219,13 +221,14 @@ export async function buildApp({
   );
 
   // "Delete my data" (PRIVACY-SECURITY §3). The install ID is a random UUID known only to
-  // the device, so holding it is what proves the screenings are yours.
+  // the device, so holding it is what proves the screenings are yours. It works like a
+  // password, so it travels in a header, never in the URL (URLs end up in access logs).
   app.delete(
-    "/installs/:installId/screenings",
-    { schema: { params: z.strictObject({ installId: z.uuid() }) } },
+    "/screenings",
+    { schema: { headers: z.object({ "x-install-id": z.uuid() }) } },
     async (req, reply) => {
       if (!screenings) return reply.code(503).send(storageMissing);
-      return { deleted: await screenings.deleteInstall(req.params.installId) };
+      return { deleted: await screenings.deleteInstall(req.headers["x-install-id"]) };
     },
   );
 
