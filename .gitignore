@@ -9,3 +9,8 @@ coverage/
 supabase/.temp/
 .claude/
 CLAUDE.md
+
+# Python (pipeline)
+.venv/
+__pycache__/
+.pytest_cache/

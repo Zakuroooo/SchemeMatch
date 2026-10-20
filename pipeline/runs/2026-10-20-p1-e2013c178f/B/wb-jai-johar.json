@@ -1,0 +1,52 @@
+{
+  "model": "B",
+  "model_id": "openai/gpt-oss-20b",
+  "slug": "wb-jai-johar",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "caste_category",
+          "op": "eq",
+          "value": "ST",
+          "source_quote": "Individuals belonging to Scheduled Tribe (ST) category."
+        },
+        {
+          "field": "age",
+          "op": "gte",
+          "value": 60,
+          "source_quote": "Age of 60 years or above."
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must be a resident of West Bengal",
+        "source_quote": "Residents of West Bengal."
+      },
+      {
+        "text": "Must be economically disadvantaged with limited or no stable income",
+        "source_quote": "Economically disadvantaged individuals with limited or no stable income."
+      },
+      {
+        "text": "Must not be receiving similar pension benefits under other major government pension schemes",
+        "source_quote": "Not receiving similar pension benefits under other major government pension schemes (as per applicable guidelines)."
+      }
+    ],
+    "ambiguous": []
+  },
+  "usage": {
+    "queue_time": 0.050591893,
+    "prompt_tokens": 3727,
+    "prompt_time": 0.221153867,
+    "completion_tokens": 197,
+    "completion_time": 0.223674702,
+    "total_tokens": 3924,
+    "total_time": 0.444828569,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4
+    }
+  },
+  "latency_s": 0.6
+}

@@ -1,0 +1,55 @@
+{
+  "model": "B",
+  "model_id": "openai/gpt-oss-20b",
+  "slug": "wb-annapurna",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "gender",
+          "op": "eq",
+          "value": "female",
+          "source_quote": "female residents of West Bengal"
+        },
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            25,
+            60
+          ],
+          "source_quote": "between the ages of 25 and 60"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must not be in permanent government employment",
+        "source_quote": "must not be any permanent government employment"
+      },
+      {
+        "text": "Must not be an illegal immigrant",
+        "source_quote": "not an illegal immigrant"
+      },
+      {
+        "text": "Must not be an income tax payer",
+        "source_quote": "must not be an income tax payer"
+      }
+    ],
+    "ambiguous": []
+  },
+  "usage": {
+    "queue_time": 0.396437659,
+    "prompt_tokens": 3494,
+    "prompt_time": 0.237531416,
+    "completion_tokens": 169,
+    "completion_time": 0.1825976,
+    "total_tokens": 3663,
+    "total_time": 0.420129016,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4
+    }
+  },
+  "latency_s": 0.96
+}

@@ -1,0 +1,51 @@
+{
+  "model": "A",
+  "model_id": "openai/gpt-oss-120b",
+  "slug": "pmjjby",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            18,
+            50
+          ],
+          "source_quote": "Individual bank/ Post office account holders of the participating banks/ Post office aged between 18 years (completed) and 50 years (age nearer birthday) who give their consent to join / enable auto-debit"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must be an individual account holder of a participating bank or post office",
+        "source_quote": "Individual bank/ Post office account holders of the participating banks/ Post office"
+      },
+      {
+        "text": "Must give consent to join / enable auto‑debit",
+        "source_quote": "who give their consent to join / enable auto-debit"
+      },
+      {
+        "text": "Eligibility is limited to residents of India (implied by scheme context)",
+        "source_quote": "Individual bank/ Post office account holders of the participating banks/ Post office"
+      }
+    ],
+    "ambiguous": [
+      "The phrase \"age nearer birthday\" is unclear whether the upper bound is inclusive; treated as inclusive here."
+    ]
+  },
+  "usage": {
+    "queue_time": 0.352338558,
+    "prompt_tokens": 5029,
+    "prompt_time": 0.222755442,
+    "completion_tokens": 358,
+    "completion_time": 0.783358905,
+    "total_tokens": 5387,
+    "total_time": 1.006114347,
+    "completion_tokens_details": {
+      "reasoning_tokens": 88
+    }
+  },
+  "latency_s": 1.43
+}

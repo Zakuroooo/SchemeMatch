@@ -1,0 +1,27 @@
+{
+  "eligibility": {
+    "all": [
+      {
+        "field": "education_level",
+        "op": "in",
+        "value": ["undergraduate", "postgraduate"],
+        "source_quote": "Pursuing or completed graduation/post-graduation"
+      }
+    ]
+  },
+  "unmodelled": [
+    {
+      "text": "Must be a student or young professional (no age is given)",
+      "source_quote": "Students and young professionals"
+    },
+    {
+      "text": "Must meet the criteria of the department offering the internship",
+      "source_quote": "Meeting criteria specified by respective departments"
+    },
+    {
+      "text": "Must be an Indian citizen",
+      "source_quote": "Indian citizens"
+    }
+  ],
+  "ambiguous": ["'Young professionals' has no age limit on the page"]
+}

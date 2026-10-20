@@ -1,0 +1,57 @@
+{
+  "model": "B",
+  "model_id": "openai/gpt-oss-20b",
+  "slug": "wb-bmssy",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            18,
+            60
+          ],
+          "source_quote": "Age: 18 to 60 years"
+        },
+        {
+          "field": "occupation",
+          "op": "eq",
+          "value": "unorganized sector worker",
+          "source_quote": "Occupation: Must be an unorganized sector worker (including self-employed)"
+        },
+        {
+          "field": "annual_family_income",
+          "op": "lt",
+          "value": 6500,
+          "source_quote": "Family income within Rs 6500 per month (except construction and transport workers)"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must be a resident of West Bengal",
+        "source_quote": "Residency: Must be a resident of West Bengal"
+      },
+      {
+        "text": "Worker must fall under a specific list of categories (not specified on the page)",
+        "source_quote": "Category coverage: Worker should fall under list"
+      }
+    ],
+    "ambiguous": []
+  },
+  "usage": {
+    "queue_time": 0.394352341,
+    "prompt_tokens": 3591,
+    "prompt_time": 0.179068915,
+    "completion_tokens": 214,
+    "completion_time": 0.219272065,
+    "total_tokens": 3805,
+    "total_time": 0.39834098,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4
+    }
+  },
+  "latency_s": 0.96
+}

@@ -1,0 +1,28 @@
+# Source copy for pm-internship
+# official_url: https://wb.gov.in/government-schemes-details-prime-minister-internship-scheme.aspx
+# retrieved: 2026-10-20 (direct fetch, HTML converted to text)
+# sha256 of the text below: 847576c17d5980e7c10e8a3ca1e46c4b9d053486fecf8efec615ae6b23c5ee49
+# This is a copy of public government text, kept so quotes can be checked offline.
+
+Prime Minister Internship Scheme (PMIS) aims to provide internship opportunities to youth in government departments, public sector organizations, and reputed institutions for skill development and work experience.
+Benefits Offered Under the Scheme
+Practical exposure to real work environment
+Skill development and hands-on experience
+Opportunity to work with government/public sector
+Enhances employability and career prospects
+Certification on completion
+Exposure to policy-making and administration
+Eligibility
+Students and young professionals
+Pursuing or completed graduation/post-graduation
+Meeting criteria specified by respective departments
+Indian citizens
+Application Details
+Apply through official internship portals/notifications
+Submit application form and required documents
+Selection based on eligibility and merit
+Internship duration as specified
+Certification after completion
+Link
+Last updated on: Friday, 26th June, 2026
+Information Source: Department of Information & Cultural Affairs(I&CA), Government of West Bengal

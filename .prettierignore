@@ -4,3 +4,5 @@ supabase/migrations/
 tools/
 *.md
 apps/api/src/generated/
+pipeline/runs/
+pipeline/.venv/

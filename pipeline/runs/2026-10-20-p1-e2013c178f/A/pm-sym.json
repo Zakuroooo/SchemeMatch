@@ -1,0 +1,66 @@
+{
+  "model": "A",
+  "model_id": "openai/gpt-oss-120b",
+  "slug": "pm-sym",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            18,
+            40
+          ],
+          "source_quote": "Age should be between18 and 40 years at the time of enrollment."
+        },
+        {
+          "field": "annual_family_income",
+          "op": "lte",
+          "value": 180000,
+          "source_quote": "Monthly income should be Rs 15,000 or less."
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must be an unorganized sector worker (e.g., street vendors, construction workers, domestic workers, etc.)",
+        "source_quote": "Must be an unorganized sector worker (e.g., street vendors, construction workers, domestic workers, etc.)."
+      },
+      {
+        "text": "Must possess a valid Aadhaar number linked with a mobile number",
+        "source_quote": "Must possess a valid Aadhaar number linked with a mobile number."
+      },
+      {
+        "text": "Should have an active savings bank account or Jan Dhan account",
+        "source_quote": "Should have anactive savings bank account or Jan Ohan account."
+      },
+      {
+        "text": "Must not be covered under any other statutory social security scheme (such as EPF, ESIC, or NPS)",
+        "source_quote": "Must not be covered under any other statutory social security scheme (such as EPF0, ESIC,orNPS)."
+      },
+      {
+        "text": "Must not be an income taxpayer",
+        "source_quote": "Must not be an income taxpayer."
+      }
+    ],
+    "ambiguous": []
+  },
+  "usage": {
+    "queue_time": 0.217812547,
+    "prompt_tokens": 3734,
+    "prompt_time": 0.057572463,
+    "completion_tokens": 562,
+    "completion_time": 1.2772791909999999,
+    "total_tokens": 4296,
+    "total_time": 1.334851654,
+    "prompt_tokens_details": {
+      "cached_tokens": 3072
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 189
+    }
+  },
+  "latency_s": 1.69
+}

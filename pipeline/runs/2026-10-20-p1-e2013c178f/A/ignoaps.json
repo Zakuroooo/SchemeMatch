@@ -1,0 +1,39 @@
+{
+  "model": "A",
+  "model_id": "openai/gpt-oss-120b",
+  "slug": "ignoaps",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "age",
+          "op": "gte",
+          "value": 65,
+          "source_quote": "Eligible elderly individuals aged 65 and above"
+        },
+        {
+          "field": "has_bpl_card",
+          "op": "eq",
+          "value": true,
+          "source_quote": "whose names are on the Below Poverty Line (BPL) list"
+        }
+      ]
+    },
+    "unmodelled": [],
+    "ambiguous": []
+  },
+  "usage": {
+    "queue_time": 0.216617197,
+    "prompt_tokens": 3852,
+    "prompt_time": 0.197811533,
+    "completion_tokens": 180,
+    "completion_time": 0.37566256,
+    "total_tokens": 4032,
+    "total_time": 0.573474093,
+    "completion_tokens_details": {
+      "reasoning_tokens": 54
+    }
+  },
+  "latency_s": 0.94
+}

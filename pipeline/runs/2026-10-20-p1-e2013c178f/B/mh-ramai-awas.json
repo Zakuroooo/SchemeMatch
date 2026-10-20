@@ -1,0 +1,79 @@
+{
+  "model": "B",
+  "model_id": "openai/gpt-oss-20b",
+  "slug": "mh-ramai-awas",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "caste_category",
+          "op": "in",
+          "value": [
+            "SC",
+            "Neo-Buddhist"
+          ],
+          "source_quote": "The applicant must belong to the Scheduled Castes/Neo-Buddhist category."
+        },
+        {
+          "field": "state",
+          "op": "eq",
+          "value": "MH",
+          "source_quote": "resided in Maharashtra for at least 15 years."
+        },
+        {
+          "field": "land_acres",
+          "op": "gte",
+          "value": 0,
+          "source_quote": "The beneficiary must own land/a temporary house."
+        },
+        {
+          "field": "has_bpl_card",
+          "op": "neq",
+          "value": true,
+          "source_quote": "The beneficiary should not have availed of any other housing scheme previously."
+        },
+        {
+          "field": "household_size",
+          "op": "neq",
+          "value": true,
+          "source_quote": "The beneficiary should be outside the priority list criteria of the Social, Economic, and Caste Census-2011 (SECC-2011)."
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must have resided in Maharashtra for at least 15 years",
+        "source_quote": "The applicant must have resided in Maharashtra for at least 15 years."
+      },
+      {
+        "text": "Must own land or a temporary house",
+        "source_quote": "The beneficiary must own land/a temporary house."
+      },
+      {
+        "text": "Must not have availed any other housing scheme previously",
+        "source_quote": "The beneficiary should not have availed of any other housing scheme previously."
+      },
+      {
+        "text": "Must be outside the priority list criteria of SECC-2011",
+        "source_quote": "The beneficiary should be outside the priority list criteria of the Social, Economic, and Caste Census-2011 (SECC-2011)."
+      }
+    ],
+    "ambiguous": [
+      "The phrase 'outside the priority list criteria of SECC-2011' is not directly translatable to a field; it is listed as unmodelled."
+    ]
+  },
+  "usage": {
+    "queue_time": 0.394107053,
+    "prompt_tokens": 3950,
+    "prompt_time": 0.332921617,
+    "completion_tokens": 431,
+    "completion_time": 0.474901797,
+    "total_tokens": 4381,
+    "total_time": 0.807823414,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4
+    }
+  },
+  "latency_s": 1.39
+}

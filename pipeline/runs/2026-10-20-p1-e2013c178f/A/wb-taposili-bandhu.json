@@ -1,0 +1,52 @@
+{
+  "model": "A",
+  "model_id": "openai/gpt-oss-120b",
+  "slug": "wb-taposili-bandhu",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "age",
+          "op": "gte",
+          "value": 60,
+          "source_quote": "Must be 60 years of age or above"
+        },
+        {
+          "field": "caste_category",
+          "op": "eq",
+          "value": "SC",
+          "source_quote": "Must belong to the Scheduled Caste (SC) community"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Applicant must be a permanent resident of West Bengal",
+        "source_quote": "Applicant must be a permanent resident of West Bengal"
+      },
+      {
+        "text": "Must have a valid bank account for Direct Benefit Transfer (DBT)",
+        "source_quote": "Must have a valid bank account for Direct Benefit Transfer (DBT)"
+      },
+      {
+        "text": "Should not be a beneficiary of any other government pension scheme",
+        "source_quote": "Should not be a beneficiary of any other government pension scheme"
+      }
+    ],
+    "ambiguous": []
+  },
+  "usage": {
+    "queue_time": 0.055786975,
+    "prompt_tokens": 3535,
+    "prompt_time": 0.183022315,
+    "completion_tokens": 319,
+    "completion_time": 0.674351243,
+    "total_tokens": 3854,
+    "total_time": 0.857373558,
+    "completion_tokens_details": {
+      "reasoning_tokens": 75
+    }
+  },
+  "latency_s": 1.08
+}

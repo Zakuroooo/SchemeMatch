@@ -3,7 +3,7 @@
 
 > **[STORY.md](STORY.md)** explains the project as a story (the *why*). **This file** is the detailed diary (the *how*). Read STORY first if you're new.
 
-**Latest:** Step 9, the story doc (2026-10-20) · **Next:** Week 3, the AI rule-extraction pipeline
+**Latest:** Step 10, the AI pipeline and the first eval report (2026-10-20) · **Next:** `POST /screenings` and the staging database decision
 
 ---
 
@@ -342,11 +342,71 @@ flowchart LR
 
 ---
 
+## Step 10: AI rule-extraction pipeline (Week 3, branch `feat/extraction-pipeline`, 2026-10-20)
+
+**Goal:** an AI drafts rules from the same saved pages; we score it honestly against the 30-scheme answer key.
+
+**How we did it:**
+1. **Python project** in `pipeline/`, managed by `uv` (fast installer with a lock file), tested with `pytest`.
+2. **`fetch.py`:** moved the two page cleaners into code (`wb` for wb.gov.in, `jina` for others).
+   - Proved the code still makes a byte-identical copy of Taposili.
+   - `--check` re-hashes every saved page; all 30 match.
+3. **`validate.py`:** three checks on every AI rule:
+   - shape (the engine's own `rule.schema.json`);
+   - quote (must be in the page; a small fuzzy allowance for line breaks);
+   - value (e.g. age 0–120, caste only SC/ST/OBC/General/EWS).
+
+   A bad rule is dropped and counted as wrong. All 30 golden files pass.
+4. **`score.py`:** matches AI rules to golden rules → precision, recall, F1, exact-match %, and one label per mistake (`wrong_operator`, `wrong_value`, `missed_condition`, `invented_condition`…). Golden vs itself = a perfect 1.0.
+5. **3 practice examples** (PM Internship, WB post-matric, PM SVANidhi), all **outside** the answer key, with a test that enforces it (the leakage rule).
+6. **`prompt.py` + `extract.py`:**
+   - prompt v1 from the guide's rules and the field list;
+   - Groq call with a strict JSON schema, temperature 0, `reasoning_effort: low`;
+   - retries on rate limits; records tokens and seconds;
+   - tested with a fake Groq (no internet needed).
+7. **`report.py`:** writes `reports/eval-<date>.md` in the EVALS format, re-scoring saved answers without calling the model again.
+8. **CI:** a new `pipeline` job runs all Python tests and the source hash check.
+
+**Problems and fixes:**
+- **Security review finding:** an inner `all` group emptied by the validator would PASS everyone, which widens a rule.
+  - Fix: drop it and record why; also reject groups that have both `all` and `any`.
+  - Then fixed the scorer so a dropped rule is counted once, not twice.
+- **Size limit:** Groq allows about 8,000 tokens a minute. Instructions + examples are ~3,200 tokens, and 3 long PDF pages (APY, PM-KISAN, PMMVY) can't fit.
+  - Decided **before** any run: cap answers at 2,000 tokens, don't retry "too large", and score those 3 as misses.
+  - Splitting pages is the next experiment.
+- Swapped one practice example (Rajya Khadya Suraksha → PM Internship). Two examples with no checkable rules could teach the AI to answer "nothing".
+
+9. **Your key:** you pasted it into a hidden prompt in the terminal, which saved it to `pipeline/.env` (git-ignored, readable only by you). I never saw it, and no file in the repo contains it (checked).
+10. **The run:** 30 schemes × 2 models, about 30 minutes, then the report: [reports/eval-2026-10-20.md](../reports/eval-2026-10-20.md).
+11. **Hand spot-check** of 5 raw answers against their pages, written up in the report's notes.
+
+**First results (dev set, AI-checked answer key):**
+
+| Model | F1, schemes with a usable answer | F1, all 30 | Exact | Answers that failed |
+|---|---|---|---|---|
+| A: gpt-oss-120b (big) | **0.87** (26 schemes) | 0.78 | 50% | 3 too large + 1 bad JSON |
+| B: gpt-oss-20b (small) | 0.59 (22 schemes) | 0.43 | 13% | 3 too large + 5 bad JSON |
+
+**What the spot-check found:**
+- A **scorer bug:** a one-item group was counted as a grouping error. Fixed, with tests, before the final report.
+- Real model mistakes:
+  - NFBS: read the dead breadwinner's age as the applicant's;
+  - IGNWPS: "widow" became `gender`, and BPL became `income < 0`;
+  - pre-matric: the SC/ST income limit was applied to OBC too.
+- Groq "strict" mode **checks** the JSON after it's written; it doesn't force it. The small model broke it 5 times.
+
+**How we checked it:**
+- 51 Python tests pass.
+- Sabotage test: changing PMUY's `gte` to `gt` shows up as exactly one `wrong_operator`.
+- Every raw answer is committed in `pipeline/runs/`, so anyone can re-score without calling the AI.
+
+---
+
 ## Running totals
 
 | Thing | Count | How to check |
 |---|---|---|
-| PRs merged | 11 | GitHub |
+| PRs merged | 12 | GitHub |
 | Golden schemes | 30 (15 central · 6 MH · 9 WB) | `pipeline/catalog.csv` |
 | Hand-written test cases | 174 | `packages/engine/test/profiles/` |
 | Engine tests | 503 | `pnpm turbo run test` |
@@ -355,14 +415,18 @@ flowchart LR
 | Engine code coverage | 100% | CI enforces it |
 | Human-reviewed schemes | 0 of 30 | `reviewed_by` in each file |
 | Real user conversations | 0 of 5 | [DISCOVERY.md](DISCOVERY.md) |
+| Pipeline (Python) tests | 51 | `cd pipeline && uv run pytest` |
+| Eval reports | 1: big model F1 0.87, small 0.59 (dev set) | [reports/](../reports/) |
 
 ---
 
 ## Next step
 
-**Week 3: AI rule-extraction pipeline.**
-- An LLM (Groq) reads the same saved pages and drafts rules in our format.
-- Validators reject wrong shapes and invented quotes.
-- A scoring script compares the drafts with the 30 golden schemes (precision, recall, F1), and the first report goes to `reports/`.
+**Week 3, step 2: `POST /screenings`.** Save a screening (no name, phone or Aadhaar), safe to retry with an idempotency key, plus the staging database decision.
+
+**Later pipeline experiments** (one change at a time, judged on the held-out 10 once labelled):
+1. split long pages;
+2. reject conditions nobody can meet;
+3. retry once when the JSON shape fails.
 
 Your part this week: book the 5 discovery conversations.

@@ -1,0 +1,53 @@
+{
+  "model": "B",
+  "model_id": "openai/gpt-oss-20b",
+  "slug": "pmsby",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            18,
+            70
+          ],
+          "source_quote": "aged between 18 years (completed) and 70 years (age nearer birthday)"
+        },
+        {
+          "field": "is_student",
+          "op": "eq",
+          "value": false,
+          "source_quote": "Individual bank/ Post office account holders of participating banks/ Post office aged between 18 years (completed) and 70 years (age nearer birthday)"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must be an account holder of a participating bank or post office",
+        "source_quote": "Individual bank/ Post office account holders of participating banks/ Post office aged between 18 years (completed) and 70 years (age nearer birthday)"
+      },
+      {
+        "text": "Must give consent to join / enable auto‑debit",
+        "source_quote": "who give their consent to join / enable auto-debit"
+      }
+    ],
+    "ambiguous": [
+      "The phrase 'age nearer birthday' is not precisely defined; unclear if inclusive or exclusive of 70"
+    ]
+  },
+  "usage": {
+    "queue_time": 0.21099022,
+    "prompt_tokens": 4667,
+    "prompt_time": 0.343341916,
+    "completion_tokens": 238,
+    "completion_time": 0.258419305,
+    "total_tokens": 4905,
+    "total_time": 0.601761221,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4
+    }
+  },
+  "latency_s": 0.95
+}

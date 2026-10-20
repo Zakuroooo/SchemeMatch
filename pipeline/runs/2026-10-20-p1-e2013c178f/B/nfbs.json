@@ -1,0 +1,48 @@
+{
+  "model": "B",
+  "model_id": "openai/gpt-oss-20b",
+  "slug": "nfbs",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "annual_family_income",
+          "op": "eq",
+          "value": 0,
+          "source_quote": "BPL Family"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Primary breadwinner must have died accidentally or naturally",
+        "source_quote": "in case of accidental or natural death of a primary bread winner"
+      },
+      {
+        "text": "Primary breadwinner must be aged 18 to 59 years",
+        "source_quote": "in the age group of 18 to 59 years"
+      },
+      {
+        "text": "Family must be BPL (Below Poverty Line)",
+        "source_quote": "BPL Family"
+      }
+    ],
+    "ambiguous": [
+      "The scheme does not specify how to prove BPL status or the exact definition of 'primary bread winner'"
+    ]
+  },
+  "usage": {
+    "queue_time": 0.235249013,
+    "prompt_tokens": 3753,
+    "prompt_time": 0.206065294,
+    "completion_tokens": 173,
+    "completion_time": 0.207809183,
+    "total_tokens": 3926,
+    "total_time": 0.413874477,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4
+    }
+  },
+  "latency_s": 0.84
+}

@@ -59,5 +59,14 @@ Top errors: <label: count, examples>
 What I changed since last run / what I will try next
 ```
 
+## 7b. How it is built (Week 3)
+Code in `pipeline/schemematch_pipeline/`: `fetch`, `validate`, `score`, `prompt`, `strict_schema`, `extract`, `report`. How to run: [RUNBOOK §4](RUNBOOK.md).
+- **Models:** A = `openai/gpt-oss-120b`, B = `openai/gpt-oss-20b` (same family, so the comparison isolates size). Both run at temperature 0, `reasoning_effort: low`, with strict JSON schema output.
+- **Prompt v1:** built only from this guide's rules, the engine's field list and 3 few-shot schemes outside the golden set. Tests check that no golden scheme is an example and no golden rule quote appears in the prompt. The prompt version is a content hash.
+- **Request limit:** a request estimated above the 8K tokens-per-minute limit is not sent. It is recorded as `too_large` and scored as a full miss. In v1 that's apy, pm-kisan and pmmvy (long PDFs); splitting pages is the next experiment.
+- **Matching** uses the condition's direct parent group (all/any) as its "group type".
+- **`ambiguous_source`** is given when the model turns a line the golden set left as unmodelled or ambiguous into a condition. Reports show P/R with and without these.
+- **Validator rejects** count as false positives. A condition dropped from an all-group widens the rule, so validated output is always a draft for human review, never live.
+
 ## 8. What we will *not* claim
 No accuracy number without its report file and the command that produced it. "≥ 90%" in the PRD is a **target**.

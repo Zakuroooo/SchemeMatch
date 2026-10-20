@@ -1,0 +1,41 @@
+{
+  "model": "B",
+  "model_id": "openai/gpt-oss-20b",
+  "slug": "igndps",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            18,
+            79
+          ],
+          "source_quote": "A Disable person in the age group of 18 to 79 years"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must be a disabled person (no field for disability status)",
+        "source_quote": "A Disable person in the age group of 18 to 79 years"
+      }
+    ],
+    "ambiguous": []
+  },
+  "usage": {
+    "queue_time": 0.211175666,
+    "prompt_tokens": 3810,
+    "prompt_time": 0.244125541,
+    "completion_tokens": 161,
+    "completion_time": 0.17796284,
+    "total_tokens": 3971,
+    "total_time": 0.422088381,
+    "completion_tokens_details": {
+      "reasoning_tokens": 55
+    }
+  },
+  "latency_s": 0.7
+}

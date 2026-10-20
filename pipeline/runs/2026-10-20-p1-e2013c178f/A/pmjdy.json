@@ -1,0 +1,50 @@
+{
+  "model": "A",
+  "model_id": "openai/gpt-oss-120b",
+  "slug": "pmjdy",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "age",
+          "op": "gte",
+          "value": 10,
+          "source_quote": "Minimum age:10 years (minors can open accounts with a guardian)"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must be an Indian citizen",
+        "source_quote": "Indian Citizen"
+      },
+      {
+        "text": "Must not already have a basic savings bank account (or can convert an existing account into a PMJDY account)",
+        "source_quote": "Must not already have a basic savings bank account (or can convert an existing account into a PMJDVaccount)"
+      },
+      {
+        "text": "Requires basic KYC documents (Aadhaar card, voter ID, PAN, etc.)",
+        "source_quote": "Requires basic KYC documents (Aadhaar card, voter ID, PAN, etc.)"
+      },
+      {
+        "text": "Priority given to unbanked and financially excluded individuals, especially in rural areas",
+        "source_quote": "Priority given to unbanked and financially excluded individuals, especially in rural areas"
+      }
+    ],
+    "ambiguous": []
+  },
+  "usage": {
+    "queue_time": 0.403994172,
+    "prompt_tokens": 3694,
+    "prompt_time": 0.199093698,
+    "completion_tokens": 370,
+    "completion_time": 0.769689792,
+    "total_tokens": 4064,
+    "total_time": 0.96878349,
+    "completion_tokens_details": {
+      "reasoning_tokens": 98
+    }
+  },
+  "latency_s": 1.48
+}

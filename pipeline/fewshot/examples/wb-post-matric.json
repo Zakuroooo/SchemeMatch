@@ -1,0 +1,40 @@
+{
+  "eligibility": {
+    "all": [
+      {
+        "field": "is_student",
+        "op": "eq",
+        "value": true,
+        "source_quote": "Must be pursuing studies in a recognized institution"
+      },
+      {
+        "field": "education_level",
+        "op": "in",
+        "value": ["class_11", "class_12", "diploma", "undergraduate", "postgraduate"],
+        "source_quote": "Class XI onward, including higher secondary, undergraduate, postgraduate, or professional courses"
+      }
+    ]
+  },
+  "unmodelled": [
+    {
+      "text": "Must be an Indian citizen from SC, ST, OBC or a notified minority group",
+      "source_quote": "Must be an Indian citizen and belong to eligible categories such as SC, ST, OBC, or notified minority groups."
+    },
+    {
+      "text": "Must have passed Class 10 or an equivalent exam from a recognised board",
+      "source_quote": "Should have passed Class 10 (matriculation) or equivalent examination from a recognized board."
+    },
+    {
+      "text": "Family income within the prescribed limit (commonly Rs 2.5 lakh; varies by category and scheme)",
+      "source_quote": "Annual family income should be within the prescribed limit (commonly up to Rs 2.5 lakh, though it may vary by category and scheme)."
+    },
+    {
+      "text": "Must not get another scholarship for the same purpose",
+      "source_quote": "Should not be receiving another scholarship for the same purpose."
+    }
+  ],
+  "ambiguous": [
+    "The category rule includes minorities, which the app cannot ask, so caste is not modelled as a condition",
+    "The income limit is 'commonly' Rs 2.5 lakh and varies, so no number is modelled"
+  ]
+}

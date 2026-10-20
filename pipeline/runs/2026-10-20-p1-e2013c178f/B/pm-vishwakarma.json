@@ -1,0 +1,83 @@
+{
+  "model": "B",
+  "model_id": "openai/gpt-oss-20b",
+  "slug": "pm-vishwakarma",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "age",
+          "op": "gte",
+          "value": 18,
+          "source_quote": "Must be 18 years or above at the time of registration"
+        },
+        {
+          "field": "occupation",
+          "op": "eq",
+          "value": "artisan or craftsperson",
+          "source_quote": "Applicant must be an artisan or craftsperson working with hands and tools in one of the notified traditional trades"
+        },
+        {
+          "field": "occupation",
+          "op": "eq",
+          "value": "self-employed in the unorganised sector",
+          "source_quote": "Should be self-employed in the unorganised sector"
+        },
+        {
+          "field": "occupation",
+          "op": "in",
+          "value": [
+            "Carpenter",
+            "Boat maker",
+            "Armourer",
+            "Black smith",
+            "Hammer and Toolkit maker",
+            "Lock smith",
+            "Sculpture",
+            "Gold smith",
+            "potter",
+            "cobbler",
+            "Masions",
+            "Basket/Mat/Broom maker/Coir waiver",
+            "Doll and Toy maker",
+            "Barber",
+            "Garland maker",
+            "Washerman",
+            "Toiler",
+            "Fishing Net maker"
+          ],
+          "source_quote": "Must be actively engaged in one of the 18 specified family-based traditional trades"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must not have availed similar government self‑employment loans (e.g., PMEGP, Mudra, SVANidhi) in the last 5 years",
+        "source_quote": "Should not have availed similar government self-employment loans (e.g., PMEGP, Mudra, SVANidhi) in the last 5 years"
+      },
+      {
+        "text": "Only one member per family is eligible to avail benefits under the scheme",
+        "source_quote": "Only one member per family is eligible to avail benefits under the scheme"
+      },
+      {
+        "text": "Government employees and their family members are not eligible",
+        "source_quote": "Government employees and their family members are not eligible"
+      }
+    ],
+    "ambiguous": []
+  },
+  "usage": {
+    "queue_time": 0.346307711,
+    "prompt_tokens": 3744,
+    "prompt_time": 0.191168306,
+    "completion_tokens": 428,
+    "completion_time": 0.48500089,
+    "total_tokens": 4172,
+    "total_time": 0.676169196,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4
+    }
+  },
+  "latency_s": 1.08
+}

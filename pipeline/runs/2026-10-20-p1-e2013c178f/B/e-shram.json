@@ -1,0 +1,68 @@
+{
+  "model": "B",
+  "model_id": "openai/gpt-oss-20b",
+  "slug": "e-shram",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            16,
+            59
+          ],
+          "source_quote": "Age should be between 16 and 59 years."
+        },
+        {
+          "field": "is_student",
+          "op": "eq",
+          "value": false,
+          "source_quote": "Must be a worker in the unorganized sector"
+        },
+        {
+          "field": "occupation",
+          "op": "in",
+          "value": [
+            "construction worker",
+            "street vendor",
+            "domestic worker",
+            "migrant worker",
+            "home-based worker",
+            "wage worker"
+          ],
+          "source_quote": "Must be a worker in the unorganized sector (e.g., construction workers, street vendors, domestic workers, migrant workers, etc.)"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must be an Indian citizen",
+        "source_quote": "Must be an Indian citizen."
+      },
+      {
+        "text": "Must not be a member of EPFO, ESIC, or NPS",
+        "source_quote": "Should not be a member of EPFO, ESIC, or NPS (government-funded)."
+      },
+      {
+        "text": "Income typically below Rs 15,000/month for certain linked schemes",
+        "source_quote": "Generally intended for workers with lower or unstable income (typically below Rs 15,000/month for certain linked schemes)."
+      }
+    ],
+    "ambiguous": []
+  },
+  "usage": {
+    "queue_time": 0.316569233,
+    "prompt_tokens": 3911,
+    "prompt_time": 0.197224064,
+    "completion_tokens": 294,
+    "completion_time": 0.302760381,
+    "total_tokens": 4205,
+    "total_time": 0.499984445,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4
+    }
+  },
+  "latency_s": 0.98
+}

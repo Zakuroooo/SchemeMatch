@@ -1,0 +1,68 @@
+{
+  "model": "B",
+  "model_id": "openai/gpt-oss-20b",
+  "slug": "wb-pre-matric",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "education_level",
+          "op": "in",
+          "value": [
+            "class_9",
+            "class_10"
+          ],
+          "source_quote": "Studying in a recognized school (generally Class 9 - 10 for SC/ST/OBC schemes; Class 1–10 in some variants)"
+        },
+        {
+          "field": "is_student",
+          "op": "eq",
+          "value": true,
+          "source_quote": "Must be a regular/full-time student enrolled in school"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must belong to SC, ST or OBC community and possess a valid caste certificate",
+        "source_quote": "Must belong to SC/ST/OBC community and possess a valid caste certificate."
+      },
+      {
+        "text": "Annual family income limit not exceeding Rs 2.5 lakh for SC/ST (slightly higher for OBC depending on state)",
+        "source_quote": "Annual family income limit should not exceed: Rs 2.5 lakh for SC/ST students (varies slightly for OBC depending on scheme/state)."
+      },
+      {
+        "text": "Must not be availing another scholarship for the same purpose",
+        "source_quote": "Only one scholarship at a time: Student should not be availing another scholarship for the same purpose."
+      },
+      {
+        "text": "Must belong to the state/UT from where applying (domicile requirement)",
+        "source_quote": "Domicile requirement: Must belong to the state/UT from where applying."
+      },
+      {
+        "text": "Progression requirement: Students should have passed the previous examination (for renewal cases)",
+        "source_quote": "Progression requirement: Students should have passed the previous examination (for renewal cases)."
+      }
+    ],
+    "ambiguous": [
+      "The exact income limit for OBC varies by state; no single number is modelled."
+    ]
+  },
+  "usage": {
+    "queue_time": 0.051686906,
+    "prompt_tokens": 3733,
+    "prompt_time": 0.050383853,
+    "completion_tokens": 383,
+    "completion_time": 0.395881801,
+    "total_tokens": 4116,
+    "total_time": 0.446265654,
+    "prompt_tokens_details": {
+      "cached_tokens": 3072
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 4
+    }
+  },
+  "latency_s": 0.57
+}

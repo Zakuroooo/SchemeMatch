@@ -1,0 +1,30 @@
+{
+  "eligibility": {
+    "all": []
+  },
+  "unmodelled": [
+    {
+      "text": "Must have been street vending in an urban area on or before 24 March 2020",
+      "source_quote": "Street vendors operating in urban areas as on or before March 24, 2020."
+    },
+    {
+      "text": "Must be identified in the local body's survey or hold a vending certificate or licence",
+      "source_quote": "Vendors identified in survey conducted by Urban Local Bodies or possessing vending certificate/license."
+    },
+    {
+      "text": "Or be recommended by the local body or Town Vending Committee",
+      "source_quote": "Vendors recommended by ULBS or Town Vending Committees."
+    },
+    {
+      "text": "Vendors from peri-urban or rural areas count if they vend inside urban limits",
+      "source_quote": "Vendors in peri-urban or rural areas vending within urban boundaries."
+    },
+    {
+      "text": "Meant for street vendors from economically weaker sections",
+      "source_quote": "Street vendors belonging to economically weaker sections including hawkers, fruit sellers, vegetable vendors, artisans and service providers."
+    }
+  ],
+  "ambiguous": [
+    "Street vending is an occupation the app holds only as free text, so nothing here becomes a checkable condition"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "model": "A",
+  "model_id": "openai/gpt-oss-120b",
+  "slug": "pmsby",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            18,
+            70
+          ],
+          "source_quote": "Individual bank/ Post office account holders of participating banks/ Post office aged between 18 years (completed) and 70 years (age nearer birthday) who give their consent to join / enable auto-debit, as per the above modality, will be enrolled into the scheme."
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must be an individual holder of a bank or post office account with a participating bank/post office",
+        "source_quote": "Individual bank/ Post office account holders of participating banks/ Post office aged between 18 years (completed) and 70 years (age nearer birthday) who give their consent to join / enable auto-debit, as per the above modality, will be enrolled into the scheme."
+      },
+      {
+        "text": "Must give consent to join / enable auto‑debit as per the enrolment modality",
+        "source_quote": "Individual bank/ Post office account holders of participating banks/ Post office aged between 18 years (completed) and 70 years (age nearer birthday) who give their consent to join / enable auto-debit, as per the above modality, will be enrolled into the scheme."
+      }
+    ],
+    "ambiguous": []
+  },
+  "usage": {
+    "queue_time": 0.398853245,
+    "prompt_tokens": 4667,
+    "prompt_time": 0.25754342,
+    "completion_tokens": 388,
+    "completion_time": 0.818944453,
+    "total_tokens": 5055,
+    "total_time": 1.076487873,
+    "completion_tokens_details": {
+      "reasoning_tokens": 81
+    }
+  },
+  "latency_s": 1.64
+}

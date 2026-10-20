@@ -1,0 +1,71 @@
+{
+  "model": "A",
+  "model_id": "openai/gpt-oss-120b",
+  "slug": "wb-pre-matric",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "caste_category",
+          "op": "in",
+          "value": [
+            "SC",
+            "ST",
+            "OBC"
+          ],
+          "source_quote": "Must belong to SC/ST/OBC community and possess a valid caste certificate."
+        },
+        {
+          "field": "annual_family_income",
+          "op": "lte",
+          "value": 250000,
+          "source_quote": "Annual family income limit should not exceed: Rs 2.5 lakh for SC/ST students"
+        },
+        {
+          "field": "is_student",
+          "op": "eq",
+          "value": true,
+          "source_quote": "Must be a regular/full-time student enrolled in school."
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Student must be studying in a recognized school, generally Class 9‑10 for SC/ST/OBC (or Class 1‑10 in some variants).",
+        "source_quote": "Studying in a recognized school (generally Class 9 - 10 for SC/ST/OBC schemes; Class 1–10 in some variants)."
+      },
+      {
+        "text": "Student must have passed the previous examination for renewal cases.",
+        "source_quote": "Progression requirement: Students should have passed the previous examination (for renewal cases)."
+      },
+      {
+        "text": "Student must not be availing another scholarship for the same purpose.",
+        "source_quote": "Only one scholarship at a time: Student should not be availing another scholarship for the same purpose."
+      },
+      {
+        "text": "Applicant must belong to the state/UT from which they are applying.",
+        "source_quote": "Domicile requirement: Must belong to the state/UT from where applying."
+      }
+    ],
+    "ambiguous": [
+      "The exact class range is given as a range (Class 1‑10) without a precise numeric condition; cannot be expressed with available fields."
+    ]
+  },
+  "usage": {
+    "queue_time": 0.219470432,
+    "prompt_tokens": 3733,
+    "prompt_time": 0.050766747,
+    "completion_tokens": 536,
+    "completion_time": 1.274534297,
+    "total_tokens": 4269,
+    "total_time": 1.325301044,
+    "prompt_tokens_details": {
+      "cached_tokens": 3072
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 97
+    }
+  },
+  "latency_s": 14.01
+}

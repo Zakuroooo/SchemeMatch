@@ -1,0 +1,20 @@
+[project]
+name = "schemematch-pipeline"
+version = "0.1.0"
+description = "Rule extraction and evaluation for SchemeMatch (docs/EVALS.md)"
+requires-python = ">=3.12"
+dependencies = [
+  "httpx>=0.28",
+  "jsonschema>=4.23",
+  "pyyaml>=6.0",
+]
+
+[dependency-groups]
+dev = ["pytest>=8.3"]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

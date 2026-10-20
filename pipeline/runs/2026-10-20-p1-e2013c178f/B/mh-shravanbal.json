@@ -1,0 +1,58 @@
+{
+  "model": "B",
+  "model_id": "openai/gpt-oss-20b",
+  "slug": "mh-shravanbal",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "age",
+          "op": "gte",
+          "value": 65,
+          "source_quote": "age 65 years & above"
+        },
+        {
+          "field": "annual_family_income",
+          "op": "lt",
+          "value": 21000,
+          "source_quote": "annual family income is below Rs. 21000/-"
+        },
+        {
+          "field": "is_pregnant_or_lactating",
+          "op": "eq",
+          "value": false,
+          "source_quote": "name is not included in the BPL List"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Beneficiary must be a destitute person",
+        "source_quote": "every destitute person of age 65 years & above"
+      },
+      {
+        "text": "Beneficiary must not be listed in the BPL list",
+        "source_quote": "whose name is not included in the BPL List"
+      },
+      {
+        "text": "Beneficiary must belong to a BPL family (for Category B)",
+        "source_quote": "belonging to BPL family"
+      }
+    ],
+    "ambiguous": []
+  },
+  "usage": {
+    "queue_time": 0.047811737,
+    "prompt_tokens": 4140,
+    "prompt_time": 0.261052091,
+    "completion_tokens": 322,
+    "completion_time": 0.338083864,
+    "total_tokens": 4462,
+    "total_time": 0.599135955,
+    "completion_tokens_details": {
+      "reasoning_tokens": 91
+    }
+  },
+  "latency_s": 0.8
+}
