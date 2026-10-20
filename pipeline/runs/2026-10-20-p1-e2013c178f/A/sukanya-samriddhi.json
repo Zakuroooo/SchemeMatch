@@ -1,0 +1,59 @@
+{
+  "model": "A",
+  "model_id": "openai/gpt-oss-120b",
+  "slug": "sukanya-samriddhi",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "gender",
+          "op": "eq",
+          "value": "female",
+          "source_quote": "The scheme is meant for girl children"
+        },
+        {
+          "field": "age",
+          "op": "lt",
+          "value": 10,
+          "source_quote": "The girl child should be below 10 years of age at the time of account opening."
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Account must be opened by parent or legal guardian",
+        "source_quote": "The account can be opened in the name of a girl child by her parent or legal guardian."
+      },
+      {
+        "text": "Only one account per girl child",
+        "source_quote": "Only one account can be opened in the name of one girl child."
+      },
+      {
+        "text": "A family can generally open accounts for a maximum of two girl children; more may be allowed in special cases",
+        "source_quote": "A family can generally open accounts for a maximum of two girl children."
+      },
+      {
+        "text": "Applicant must submit birth certificate of the girl child and identity/address proof of the guardian",
+        "source_quote": "The applicant must submit the birth certificate of the girl child and identity/address proof of the guardian."
+      }
+    ],
+    "ambiguous": []
+  },
+  "usage": {
+    "queue_time": 0.21743708,
+    "prompt_tokens": 4149,
+    "prompt_time": 0.211273576,
+    "completion_tokens": 411,
+    "completion_time": 1.219282188,
+    "total_tokens": 4560,
+    "total_time": 1.430555764,
+    "prompt_tokens_details": {
+      "cached_tokens": 3072
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 100
+    }
+  },
+  "latency_s": 1.72
+}

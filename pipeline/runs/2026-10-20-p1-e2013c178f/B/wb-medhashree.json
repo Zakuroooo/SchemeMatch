@@ -1,0 +1,63 @@
+{
+  "model": "B",
+  "model_id": "openai/gpt-oss-20b",
+  "slug": "wb-medhashree",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "caste_category",
+          "op": "eq",
+          "value": "OBC",
+          "source_quote": "Must belong to the OBC category."
+        },
+        {
+          "field": "education_level",
+          "op": "in",
+          "value": [
+            "class_5",
+            "class_6",
+            "class_7",
+            "class_8"
+          ],
+          "source_quote": "Must be studying in Classes V-VIII in a government, government-aided, or government-recognized school."
+        },
+        {
+          "field": "annual_family_income",
+          "op": "lte",
+          "value": 250000,
+          "source_quote": "Annual family income should generally not exceed Rs 2.5 lakh."
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must be a permanent resident of West Bengal",
+        "source_quote": "The applicant must be a permanent resident of West Bengal."
+      },
+      {
+        "text": "Must not be receiving any other similar scholarship",
+        "source_quote": "Student should not be receiving any other similar scholarship."
+      },
+      {
+        "text": "Must have a valid bank account",
+        "source_quote": "Must have a valid bank account."
+      }
+    ],
+    "ambiguous": []
+  },
+  "usage": {
+    "queue_time": 0.053805102,
+    "prompt_tokens": 3564,
+    "prompt_time": 0.209070306,
+    "completion_tokens": 257,
+    "completion_time": 0.263268846,
+    "total_tokens": 3821,
+    "total_time": 0.472339152,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4
+    }
+  },
+  "latency_s": 0.64
+}

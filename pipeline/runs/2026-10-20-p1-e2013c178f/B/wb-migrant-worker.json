@@ -1,0 +1,37 @@
+{
+  "model": "B",
+  "model_id": "openai/gpt-oss-20b",
+  "slug": "wb-migrant-worker",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": []
+    },
+    "unmodelled": [
+      {
+        "text": "Must be a resident of West Bengal",
+        "source_quote": "Must be a resident of West Bengal"
+      },
+      {
+        "text": "Must be employed or likely to be employed outside West Bengal (in other states/UTs or abroad)",
+        "source_quote": "Must be employed or likely to be employed outside West Bengal (in other states/UTs or abroad)."
+      }
+    ],
+    "ambiguous": [
+      "The age range is 14 to 60 years; the page does not specify whether the limits are inclusive or exclusive, so the condition is modelled as between [14, 60] with an ambiguous note"
+    ]
+  },
+  "usage": {
+    "queue_time": 0.346062852,
+    "prompt_tokens": 3526,
+    "prompt_time": 0.188118824,
+    "completion_tokens": 196,
+    "completion_time": 0.239092544,
+    "total_tokens": 3722,
+    "total_time": 0.427211368,
+    "completion_tokens_details": {
+      "reasoning_tokens": 46
+    }
+  },
+  "latency_s": 1.16
+}

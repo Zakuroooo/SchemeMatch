@@ -1,0 +1,47 @@
+{
+  "model": "B",
+  "model_id": "openai/gpt-oss-20b",
+  "slug": "mh-ladki-bahin",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            21,
+            65
+          ],
+          "source_quote": "state residents between 21 and 65 years of age"
+        },
+        {
+          "field": "annual_family_income",
+          "op": "lt",
+          "value": 250000,
+          "source_quote": "annual family income of less than ₹2.5 lakh"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must be a resident of Maharashtra",
+        "source_quote": "eligible women across the state"
+      }
+    ],
+    "ambiguous": []
+  },
+  "usage": {
+    "queue_time": 0.395800593,
+    "prompt_tokens": 3903,
+    "prompt_time": 0.233604266,
+    "completion_tokens": 131,
+    "completion_time": 0.139331851,
+    "total_tokens": 4034,
+    "total_time": 0.372936117,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4
+    }
+  },
+  "latency_s": 0.9
+}

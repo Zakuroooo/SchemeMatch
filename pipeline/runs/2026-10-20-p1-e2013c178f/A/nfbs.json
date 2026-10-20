@@ -1,0 +1,45 @@
+{
+  "model": "A",
+  "model_id": "openai/gpt-oss-120b",
+  "slug": "nfbs",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            18,
+            59
+          ],
+          "source_quote": "age group of 18 to 59 years"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Beneficiary must be the primary bread winner of the family",
+        "source_quote": "in case of accidental or natural death of a primary bread winner"
+      },
+      {
+        "text": "Family must be classified as BPL (Below Poverty Line)",
+        "source_quote": "BPL Family"
+      }
+    ],
+    "ambiguous": []
+  },
+  "usage": {
+    "queue_time": 0.353086002,
+    "prompt_tokens": 3753,
+    "prompt_time": 0.179089178,
+    "completion_tokens": 227,
+    "completion_time": 0.48177145,
+    "total_tokens": 3980,
+    "total_time": 0.660860628,
+    "completion_tokens_details": {
+      "reasoning_tokens": 71
+    }
+  },
+  "latency_s": 1.13
+}

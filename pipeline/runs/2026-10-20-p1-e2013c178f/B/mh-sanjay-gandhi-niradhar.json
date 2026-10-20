@@ -1,0 +1,7 @@
+{
+  "model": "B",
+  "model_id": "openai/gpt-oss-20b",
+  "slug": "mh-sanjay-gandhi-niradhar",
+  "prompt_version": "p1-e2013c178f",
+  "error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"{\\\"eligibility\\\": {\\\"all\\\": [{\\\"any\\\": [{\\\"all\\\": [{\\\"field\\\": \\\"age\\\", \\\"op\\\": \\\"between\\\", \\\"value\\\""
+}

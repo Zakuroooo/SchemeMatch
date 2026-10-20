@@ -1,0 +1,7 @@
+{
+  "model": "B",
+  "model_id": "openai/gpt-oss-20b",
+  "slug": "apy",
+  "prompt_version": "p1-e2013c178f",
+  "error": "too_large: about 11408 tokens > max_request_tokens 8000"
+}

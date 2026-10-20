@@ -1,0 +1,48 @@
+{
+  "model": "A",
+  "model_id": "openai/gpt-oss-120b",
+  "slug": "wb-migrant-worker",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            14,
+            60
+          ],
+          "source_quote": "Between 14 and 60 years of age"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must be a resident of West Bengal",
+        "source_quote": "Must be a resident of West Bengal"
+      },
+      {
+        "text": "Must be employed or likely to be employed outside West Bengal (in other states/UTs or abroad)",
+        "source_quote": "Must be employed or likely to be employed outside West Bengal (in other states/UTs or abroad)."
+      }
+    ],
+    "ambiguous": []
+  },
+  "usage": {
+    "queue_time": 0.215780169,
+    "prompt_tokens": 3526,
+    "prompt_time": 0.026827481,
+    "completion_tokens": 286,
+    "completion_time": 0.630046167,
+    "total_tokens": 3812,
+    "total_time": 0.656873648,
+    "prompt_tokens_details": {
+      "cached_tokens": 3072
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 112
+    }
+  },
+  "latency_s": 0.96
+}

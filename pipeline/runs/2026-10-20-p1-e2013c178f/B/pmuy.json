@@ -1,0 +1,58 @@
+{
+  "model": "B",
+  "model_id": "openai/gpt-oss-20b",
+  "slug": "pmuy",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "gender",
+          "op": "eq",
+          "value": "female",
+          "source_quote": "The applicant must be a woman"
+        },
+        {
+          "field": "age",
+          "op": "gte",
+          "value": 18,
+          "source_quote": "has attained18 years of age"
+        },
+        {
+          "field": "has_bpl_card",
+          "op": "eq",
+          "value": true,
+          "source_quote": "must belong to a poor household based on submission of a deprivation declaration"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "No other LPG connection from any OMC in the same household",
+        "source_quote": "There should be no other LPG connection from any Oil Marketing Company (OMC) within the same household."
+      },
+      {
+        "text": "Must have a valid Aadhaar number",
+        "source_quote": "Applicant must have a valid Aadhaar number (for identificationand subsidy transfer)."
+      },
+      {
+        "text": "Must have a bank account to receive subsidy through DBT",
+        "source_quote": "Must have abank account to receive subsidy through Direct Benefit Transfer (DBT)."
+      }
+    ],
+    "ambiguous": []
+  },
+  "usage": {
+    "queue_time": 0.347566078,
+    "prompt_tokens": 3786,
+    "prompt_time": 0.224127978,
+    "completion_tokens": 247,
+    "completion_time": 0.270453456,
+    "total_tokens": 4033,
+    "total_time": 0.494581434,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4
+    }
+  },
+  "latency_s": 0.98
+}

@@ -1,0 +1,77 @@
+{
+  "model": "A",
+  "model_id": "openai/gpt-oss-120b",
+  "slug": "wb-student-credit-card",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "age",
+          "op": "lte",
+          "value": 40,
+          "source_quote": "Must be 40 years or below at the time of application"
+        },
+        {
+          "field": "is_student",
+          "op": "eq",
+          "value": true,
+          "source_quote": "Must be enrolled in a recognized educational institution (India or abroad)"
+        },
+        {
+          "field": "education_level",
+          "op": "in",
+          "value": [
+            "class_9",
+            "class_10",
+            "class_11",
+            "class_12",
+            "undergraduate",
+            "postgraduate",
+            "doctorate",
+            "postdoctorate"
+          ],
+          "source_quote": "Should have completed at least Class IX (Madhyamik or equivalent)"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must be a resident of West Bengal for ten years or more",
+        "source_quote": "Must be a resident of West Bengal for ten years or more"
+      },
+      {
+        "text": "Co‑borrower required (usually a parent/guardian)",
+        "source_quote": "Co-borrower required (usually a parent/guardian)"
+      },
+      {
+        "text": "Applicant or Co‑borrower must not be in default of any bank loan",
+        "source_quote": "Applicant or Co-borrower must not be in default of any bank loan"
+      },
+      {
+        "text": "Only one student credit card per student is allowed",
+        "source_quote": "Only one student credit card per student is allowed"
+      },
+      {
+        "text": "Must apply through the official online portal with valid documents",
+        "source_quote": "Must apply through the official online portal with valid documents"
+      }
+    ],
+    "ambiguous": [
+      "The eligibility mentions \"eligible course (school, UG, PG, or professional)\" but the specific list of courses cannot be expressed with available fields."
+    ]
+  },
+  "usage": {
+    "queue_time": 0.218682393,
+    "prompt_tokens": 3691,
+    "prompt_time": 0.202299703,
+    "completion_tokens": 673,
+    "completion_time": 1.4040948659999999,
+    "total_tokens": 4364,
+    "total_time": 1.6063945689999999,
+    "completion_tokens_details": {
+      "reasoning_tokens": 219
+    }
+  },
+  "latency_s": 1.96
+}

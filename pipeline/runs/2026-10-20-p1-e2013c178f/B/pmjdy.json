@@ -1,0 +1,62 @@
+{
+  "model": "B",
+  "model_id": "openai/gpt-oss-20b",
+  "slug": "pmjdy",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "age",
+          "op": "gte",
+          "value": 10,
+          "source_quote": "Minimum age:10 years"
+        },
+        {
+          "field": "is_student",
+          "op": "eq",
+          "value": false,
+          "source_quote": "Indian Citizen"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must be an Indian citizen",
+        "source_quote": "Indian Citizen"
+      },
+      {
+        "text": "Must not already have a basic savings bank account (or can convert an existing account into a PMJDV account)",
+        "source_quote": "Must not already have a basic savings bank account (or can convert an existing account into a PMJDVaccount)"
+      },
+      {
+        "text": "Requires basic KYC documents (Aadhaar card, voter ID, PAN, etc.)",
+        "source_quote": "Requires basic KYC documents (Aadhaar card, voter ID, PAN, etc.)"
+      },
+      {
+        "text": "If KYC documents are not available, a Small Account can be opened with simplified documentation (subject to certain limits)",
+        "source_quote": "If KYC documents are not available, a Small Account can be opened with simplified documentation (subject to certain limits)"
+      },
+      {
+        "text": "Priority given to unbanked and financially excluded individuals, especially in rural areas",
+        "source_quote": "Priority given to unbanked and financially excluded individuals, especially in rural areas"
+      }
+    ],
+    "ambiguous": [
+      "The phrase 'Indian Citizen' is not modelled as a field; it is listed as unmodelled"
+    ]
+  },
+  "usage": {
+    "queue_time": 0.316899237,
+    "prompt_tokens": 3694,
+    "prompt_time": 0.220085633,
+    "completion_tokens": 328,
+    "completion_time": 0.358990854,
+    "total_tokens": 4022,
+    "total_time": 0.579076487,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4
+    }
+  },
+  "latency_s": 1.03
+}

@@ -1,0 +1,60 @@
+{
+  "model": "A",
+  "model_id": "openai/gpt-oss-120b",
+  "slug": "e-shram",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            16,
+            59
+          ],
+          "source_quote": "Age should be between 16 and 59 years."
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must be an Indian citizen",
+        "source_quote": "Must be an Indian citizen."
+      },
+      {
+        "text": "Must be a worker in the unorganized sector (e.g., construction workers, street vendors, domestic workers, migrant workers, etc.)",
+        "source_quote": "Must be a worker in the unorganized sector (e.g., construction workers, street vendors, domestic workers, migrant workers, etc.)."
+      },
+      {
+        "text": "Should not be a member of EPFO, ESIC, or NPS (government-funded)",
+        "source_quote": "Should not be a member of EPFO, ESIC, or NPS (government-funded)."
+      },
+      {
+        "text": "Should be a self‑employed worker, home‑based worker, or wage worker in informal employment",
+        "source_quote": "Should be a self‑employed worker, home‑based worker, or wage worker in informal employment."
+      },
+      {
+        "text": "Generally intended for workers with lower or unstable income (typically below Rs 15,000/month for certain linked schemes)",
+        "source_quote": "Generally intended for workers with lower or unstable income (typically below Rs 15,000/month for certain linked schemes)."
+      }
+    ],
+    "ambiguous": [
+      "Income limit is given as a typical monthly figure and varies by linked scheme; cannot be expressed precisely.",
+      "‘Unorganized sector’ and specific occupation categories are free‑text descriptions not captured by available fields."
+    ]
+  },
+  "usage": {
+    "queue_time": 0.323047375,
+    "prompt_tokens": 3911,
+    "prompt_time": 0.193968424,
+    "completion_tokens": 552,
+    "completion_time": 1.170564373,
+    "total_tokens": 4463,
+    "total_time": 1.364532797,
+    "completion_tokens_details": {
+      "reasoning_tokens": 149
+    }
+  },
+  "latency_s": 1.88
+}

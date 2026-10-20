@@ -1,0 +1,7 @@
+{
+  "model": "A",
+  "model_id": "openai/gpt-oss-120b",
+  "slug": "pmmvy",
+  "prompt_version": "p1-e2013c178f",
+  "error": "too_large: about 9413 tokens > max_request_tokens 8000"
+}

@@ -1,0 +1,48 @@
+{
+  "model": "B",
+  "model_id": "openai/gpt-oss-20b",
+  "slug": "ignwps",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "gender",
+          "op": "eq",
+          "value": "female",
+          "source_quote": "A widow"
+        },
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            40,
+            79
+          ],
+          "source_quote": "age group of 40 to 79 years"
+        },
+        {
+          "field": "annual_family_income",
+          "op": "lt",
+          "value": 0,
+          "source_quote": "family falls under Below Poverty Line"
+        }
+      ]
+    },
+    "unmodelled": [],
+    "ambiguous": []
+  },
+  "usage": {
+    "queue_time": 0.215662881,
+    "prompt_tokens": 3810,
+    "prompt_time": 0.234871006,
+    "completion_tokens": 127,
+    "completion_time": 0.151951511,
+    "total_tokens": 3937,
+    "total_time": 0.386822517,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4
+    }
+  },
+  "latency_s": 0.74
+}

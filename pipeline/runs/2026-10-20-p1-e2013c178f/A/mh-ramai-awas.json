@@ -1,0 +1,57 @@
+{
+  "model": "A",
+  "model_id": "openai/gpt-oss-120b",
+  "slug": "mh-ramai-awas",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": []
+    },
+    "unmodelled": [
+      {
+        "text": "Applicant must belong to the Scheduled Castes or Neo‑Buddhist category",
+        "source_quote": "The applicant must belong to the Scheduled Castes/Neo-Buddhist category."
+      },
+      {
+        "text": "Applicant must have resided in Maharashtra for at least 15 years",
+        "source_quote": "The applicant must have resided in Maharashtra for at least 15 years."
+      },
+      {
+        "text": "Beneficiary must own land or a temporary house",
+        "source_quote": "The beneficiary must own land/a temporary house."
+      },
+      {
+        "text": "Beneficiary should not have availed any other housing scheme previously",
+        "source_quote": "The beneficiary should not have availed of any other housing scheme previously."
+      },
+      {
+        "text": "Beneficiary should be outside the priority list criteria of SECC‑2011",
+        "source_quote": "The beneficiary should be outside the priority list criteria of the Social, Economic, and Caste Census-2011 (SECC-2011)."
+      },
+      {
+        "text": "Income limit varies by area (rural, hill/Naxal, municipality, municipal corporation) – no field to capture area‑specific income caps",
+        "source_quote": "Income Limit (in lakhs) ... 1.20, 1.20, 3.00, 3.00"
+      },
+      {
+        "text": "Requirement to submit 7/12 extract is relaxed for protected hutment dwellers – not modelled",
+        "source_quote": "For beneficiaries residing on encroached land ... the requirement to submit 7/12 extract has been relaxed as per Government Resolution dated 15.3.2016."
+      }
+    ],
+    "ambiguous": [
+      "'Neo‑Buddhist' is not a standard caste_category value in the model, so it cannot be expressed directly."
+    ]
+  },
+  "usage": {
+    "queue_time": 0.351847833,
+    "prompt_tokens": 3950,
+    "prompt_time": 0.277497917,
+    "completion_tokens": 582,
+    "completion_time": 1.217956608,
+    "total_tokens": 4532,
+    "total_time": 1.495454525,
+    "completion_tokens_details": {
+      "reasoning_tokens": 144
+    }
+  },
+  "latency_s": 2.04
+}

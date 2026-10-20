@@ -1,0 +1,150 @@
+{
+  "model": "A",
+  "model_id": "openai/gpt-oss-120b",
+  "slug": "mh-sanjay-gandhi-niradhar",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "any": [
+            {
+              "all": [
+                {
+                  "field": "age",
+                  "op": "between",
+                  "value": [
+                    18,
+                    65
+                  ],
+                  "source_quote": "Destitute men and women aged 18 to 65 years"
+                }
+              ]
+            },
+            {
+              "all": [
+                {
+                  "field": "marital_status",
+                  "op": "eq",
+                  "value": "widow",
+                  "source_quote": "Destitute widows"
+                }
+              ]
+            },
+            {
+              "all": [
+                {
+                  "field": "gender",
+                  "op": "eq",
+                  "value": "female",
+                  "source_quote": "Women undergoing divorce proceedings or divorced women not receiving alimony"
+                },
+                {
+                  "field": "marital_status",
+                  "op": "eq",
+                  "value": "divorced",
+                  "source_quote": "Women undergoing divorce proceedings or divorced women not receiving alimony"
+                }
+              ]
+            },
+            {
+              "all": [
+                {
+                  "field": "gender",
+                  "op": "eq",
+                  "value": "female",
+                  "source_quote": "Unmarried women over 35 years of age"
+                },
+                {
+                  "field": "marital_status",
+                  "op": "eq",
+                  "value": "single",
+                  "source_quote": "Unmarried women over 35 years of age"
+                },
+                {
+                  "field": "age",
+                  "op": "gt",
+                  "value": 35,
+                  "source_quote": "Unmarried women over 35 years of age"
+                }
+              ]
+            },
+            {
+              "all": [
+                {
+                  "field": "gender",
+                  "op": "eq",
+                  "value": "other",
+                  "source_quote": "Transgender individuals"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "any": [
+            {
+              "field": "has_bpl_card",
+              "op": "eq",
+              "value": true,
+              "source_quote": "beneficiary’s name must be on the Below Poverty Line (BPL) list"
+            },
+            {
+              "field": "annual_family_income",
+              "op": "lte",
+              "value": 21000,
+              "source_quote": "family’s annual income must be up to ₹21,000"
+            }
+          ]
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Orphaned children (no age or other measurable criteria provided)",
+        "source_quote": "Orphaned children"
+      },
+      {
+        "text": "All categories of disabled individuals (disability type/percentage not specified)",
+        "source_quote": "All categories of disabled individuals"
+      },
+      {
+        "text": "Men and women unable to sustain themselves due to severe illnesses such as tuberculosis, cancer, AIDS, leprosy",
+        "source_quote": "Men and women unable to sustain themselves due to severe illnesses such as tuberculosis, cancer, AIDS, leprosy"
+      },
+      {
+        "text": "Women who have been victims of abuse or rescued from prostitution",
+        "source_quote": "Women who have been victims of abuse or rescued from prostitution"
+      },
+      {
+        "text": "Devadasis (specific social category not captured)",
+        "source_quote": "Devadasis"
+      },
+      {
+        "text": "Wives of prisoners serving sentences (spouse status not captured)",
+        "source_quote": "Wives of prisoners serving sentences"
+      },
+      {
+        "text": "Individuals suffering from sickle cell disease",
+        "source_quote": "Individuals suffering from sickle cell disease"
+      }
+    ],
+    "ambiguous": []
+  },
+  "usage": {
+    "queue_time": 0.320842973,
+    "prompt_tokens": 3940,
+    "prompt_time": 0.591993551,
+    "completion_tokens": 1668,
+    "completion_time": 4.008733868,
+    "total_tokens": 5608,
+    "total_time": 4.600727419,
+    "prompt_tokens_details": {
+      "cached_tokens": 3072
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 845
+    }
+  },
+  "latency_s": 5.04
+}

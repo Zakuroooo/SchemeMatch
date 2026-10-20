@@ -1,0 +1,62 @@
+{
+  "model": "A",
+  "model_id": "openai/gpt-oss-120b",
+  "slug": "pm-vishwakarma",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "age",
+          "op": "gte",
+          "value": 18,
+          "source_quote": "Must be 18 years or above at the time of registration"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Applicant must be an artisan or craftsperson working with hands and tools in a notified traditional trade",
+        "source_quote": "Artisan/Craftsperson requirement: Applicant must be an artisan or craftsperson working with hands and tools in one of the notified traditional trades"
+      },
+      {
+        "text": "Applicant should be self‑employed in the unorganised sector",
+        "source_quote": "Type of work: Should be self‑employed in the unorganised sector"
+      },
+      {
+        "text": "Must be actively engaged in one of the 18 specified family‑based traditional trades",
+        "source_quote": "Trade condition: Must be actively engaged in one of the 18 specified family‑based traditional trades"
+      },
+      {
+        "text": "Applicant should not have availed similar government self‑employment loans in the last 5 years",
+        "source_quote": "Loan condition: Should not have availed similar government self‑employment loans (e.g., PMEGP, Mudra, SVANidhi) in the last 5 years"
+      },
+      {
+        "text": "Only one member per family is eligible",
+        "source_quote": "Family restriction: Only one member per family is eligible to avail benefits under the scheme"
+      },
+      {
+        "text": "Government employees and their family members are excluded",
+        "source_quote": "Exclusion: Government employees and their family members are not eligible"
+      },
+      {
+        "text": "List of traditional trades (e.g., Carpenter, Boat maker, etc.) is required but cannot be expressed with available fields",
+        "source_quote": "List of Traditional Trades: Carpenter, Boat maker, Armourer, Black smith, Hammer and Toolkit maker, Lock smith, Sculpture, Gold smith, potter, cobbler, Masions, Basket/Mat/Broom maker/Coir waiver, Doll and Toy maker, Barber, Garland maker, Washerman, Toiler, Fishing Net maker"
+      }
+    ],
+    "ambiguous": []
+  },
+  "usage": {
+    "queue_time": 0.421192978,
+    "prompt_tokens": 3744,
+    "prompt_time": 0.196233628,
+    "completion_tokens": 617,
+    "completion_time": 1.309215523,
+    "total_tokens": 4361,
+    "total_time": 1.505449151,
+    "completion_tokens_details": {
+      "reasoning_tokens": 113
+    }
+  },
+  "latency_s": 2.06
+}

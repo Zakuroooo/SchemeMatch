@@ -1,0 +1,77 @@
+{
+  "model": "B",
+  "model_id": "openai/gpt-oss-20b",
+  "slug": "wb-student-credit-card",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "age",
+          "op": "lte",
+          "value": 40,
+          "source_quote": "Must be 40 years or below at the time of application"
+        },
+        {
+          "field": "education_level",
+          "op": "in",
+          "value": [
+            "class_10",
+            "class_11",
+            "class_12",
+            "diploma",
+            "undergraduate",
+            "postgraduate",
+            "postgraduate",
+            "doctorate"
+          ],
+          "source_quote": "education from class X to Post Doctorate"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must be a resident of West Bengal for ten years or more",
+        "source_quote": "Must be a resident of West Bengal for ten years or more"
+      },
+      {
+        "text": "Must be enrolled in a recognised educational institution (India or abroad)",
+        "source_quote": "Must be enrolled in a recognised educational institution (India or abroad)"
+      },
+      {
+        "text": "Must have completed at least Class IX (Madhyamik or equivalent)",
+        "source_quote": "Should have completed at least Class IX (Madhyamik or equivalent)"
+      },
+      {
+        "text": "Must have secured admission in an eligible course (school, UG, PG, or professional)",
+        "source_quote": "Must have secured admission in an eligible course (school, UG, PG, or professional)"
+      },
+      {
+        "text": "Co‑borrower required (usually a parent/guardian)",
+        "source_quote": "Co-borrower required (usually a parent/guardian)"
+      },
+      {
+        "text": "Applicant or Co‑borrower must not be in default of any bank loan",
+        "source_quote": "Applicant or Co-borrower must not be in default of any bank loan"
+      },
+      {
+        "text": "Only one student credit card per student is allowed",
+        "source_quote": "Only one student credit card per student is allowed"
+      }
+    ],
+    "ambiguous": []
+  },
+  "usage": {
+    "queue_time": 0.394639431,
+    "prompt_tokens": 3691,
+    "prompt_time": 0.390253193,
+    "completion_tokens": 396,
+    "completion_time": 0.419316026,
+    "total_tokens": 4087,
+    "total_time": 0.809569219,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4
+    }
+  },
+  "latency_s": 1.43
+}

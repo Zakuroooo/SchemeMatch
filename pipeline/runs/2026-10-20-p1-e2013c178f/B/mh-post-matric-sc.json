@@ -1,0 +1,7 @@
+{
+  "model": "B",
+  "model_id": "openai/gpt-oss-20b",
+  "slug": "mh-post-matric-sc",
+  "prompt_version": "p1-e2013c178f",
+  "error": "HTTP 400: {\"error\":{\"message\":\"Generated JSON does not match the expected schema. Please adjust your prompt. See 'failed_generation' for more details. Error: jsonschema: '' does not validate with /required: missing properties: 'unmodelled', 'ambiguous'\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_fai"
+}

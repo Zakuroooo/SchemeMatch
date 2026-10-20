@@ -1,0 +1,69 @@
+{
+  "model": "A",
+  "model_id": "openai/gpt-oss-120b",
+  "slug": "mh-sc-fee-reimbursement",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "caste_category",
+          "op": "eq",
+          "value": "SC",
+          "source_quote": "The student must belong to Scheduled Castes (SC) or Neo-Buddhist categories."
+        },
+        {
+          "field": "annual_family_income",
+          "op": "gt",
+          "value": 250000,
+          "source_quote": "The annual income of the student’s parents should be more than ₹2.50 lakh."
+        },
+        {
+          "field": "is_student",
+          "op": "eq",
+          "value": true,
+          "source_quote": "The student should be pursuing education after the matriculation examination."
+        },
+        {
+          "field": "education_level",
+          "op": "in",
+          "value": [
+            "class_11",
+            "class_12",
+            "diploma",
+            "undergraduate",
+            "postgraduate"
+          ],
+          "source_quote": "The student should be pursuing education after the matriculation examination."
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must be a resident of Maharashtra.",
+        "source_quote": "The student should be a resident of Maharashtra."
+      },
+      {
+        "text": "Eligibility also includes Neo‑Buddhist category, which is not captured by the available caste categories.",
+        "source_quote": "The student must belong to Scheduled Castes (SC) or Neo‑Buddhist categories."
+      }
+    ],
+    "ambiguous": []
+  },
+  "usage": {
+    "queue_time": 0.21707369,
+    "prompt_tokens": 4010,
+    "prompt_time": 0.324455369,
+    "completion_tokens": 467,
+    "completion_time": 1.154080718,
+    "total_tokens": 4477,
+    "total_time": 1.478536087,
+    "prompt_tokens_details": {
+      "cached_tokens": 3072
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 123
+    }
+  },
+  "latency_s": 1.77
+}
