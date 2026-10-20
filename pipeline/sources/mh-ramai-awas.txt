@@ -1,0 +1,57 @@
+# Source copy for mh-ramai-awas
+# official_url: https://sjsa.maharashtra.gov.in/en/scheme/ramai-housing-scheme-rural-and-urban/
+# retrieved: 2026-10-20 (via Jina Reader text extraction)
+# sha256 of the text below: 96a56b3b618b301a56e6e75eb567fc4c27efe27651266e227b7c9e2d171387fd
+# This is a copy of public government text, kept so quotes can be checked offline.
+
+Title: Ramai Housing Scheme (Rural and Urban) | Social Justice & Special Assistance Department | India
+
+URL Source: https://sjsa.maharashtra.gov.in/en/scheme/ramai-housing-scheme-rural-and-urban/
+
+Markdown Content:
+**Date :** 15/11/2008 -
+
+**State-Sponsored Scheme**
+
+**Government Resolutions:**
+
+*   Government Resolution No. BCH-2008/Pr. No. 36/Mavak-2, dated 15.11.2008
+*   Government Resolution No. BCH-2009/Pr. No. 159/Mavak-2, dated 9.03.2010
+*   Government Resolution No. Raayo-2016/Pr. No. 578/Buildings, dated 30.9.2016 and 7.01.2017
+*   Government Resolution Rural Development Department No. Praayo-2017/Pr. No. 60/Scheme-10, dated 14.7.2017
+*   Government Resolution No. Raayo-2017/Pr. No. 357/Buildings, dated 1.10.2018 and 13.02.2019
+
+**Main Objective of the Scheme:**
+
+To provide homeless individuals from Scheduled Castes and Neo-Buddhist communities with their own homes.
+
+**Key Conditions of the Scheme:**
+
+*   The applicant must belong to the Scheduled Castes/Neo-Buddhist category.
+*   The applicant must have resided in Maharashtra for at least 15 years.
+*   The beneficiary must own land/a temporary house.
+*   The beneficiary should not have availed of any other housing scheme previously.
+*   The beneficiary should be outside the priority list criteria of the Social, Economic, and Caste Census-2011 (SECC-2011).
+*   For beneficiaries residing on encroached land of the state government, municipal corporation, municipality, local self-government bodies, MMRDA, or government undertakings as of 1.01.1995, and who have received protection as protected hutment dwellers, the requirement to submit 7/12 extract has been relaxed as per Government Resolution dated 15.3.2016.
+
+**Benefits of the Scheme:**
+
+As per Government Resolution dated 7.01.2017, the scheme has been revised as follows:
+| Sr. No. | Area | Cost Limit (in lakhs) | Beneficiary Share | Income Limit (in lakhs) | House Area (sq. ft.) |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Rural | 1.32 | Nil | 1.20 | 269 sq. ft. |
+| 2 | Hill/ Naxal Affected | 1.42 | Nil | 1.20 | 269 sq. ft. |
+| 3 | Municipality/ Municipal Council | 2.50 | 7.5% | 3.00 | 323 sq. ft. |
+| 4 | Municipal Corporation | 2.50 | 10% | 3.00 | 323 sq. ft. |
+
+## Beneficiary:
+
+-
+
+## Benefits:
+
+-
+
+## How To Apply
+
+Contact: Assistant Commissioner of Social Welfare of the respective district

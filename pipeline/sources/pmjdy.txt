@@ -1,0 +1,35 @@
+# Source copy for pmjdy
+# official_url: https://wb.gov.in/government-schemes-details-pradhan-mantri-jan-dhan-yojana.aspx
+# retrieved: 2026-10-20 (direct fetch, HTML converted to text)
+# sha256 of the text below: 6d08863211137140d6f8bd537dbbf6d14f35976f38ea29b3305aa24be36a6b69
+# This is a copy of public government text, kept so quotes can be checked offline.
+
+Pradhan Mantri Jan Dhan Yojana (PMJDY) is a financial inclusion program launched in 2014 to ensure universal access to banking service - such as saving accounts, credit, insurance, and pension - especially for the underserved and unbanked population in India
+Benefits Offer Under the Scheme
+Basic Savings Bank Account with zero minimum balance requirement
+RuPay debit card for easy cash withdrawals and digital transactions
+Accidental insurance cover (typically up to Rs2 lakh, subject to conditions)
+Life insurance cover (available for eligible beneficiaries enrolled initially)
+Overdraft facility (up to Rs10,000 for eligible account holders)
+Direct Benefit Transfer (DBT) access for government subsidies and welfare schemes
+Access to micro-credit, pension, and insurance products
+Financial inclusion support, especially for rural and unbanked populations
+Eligibility
+Indian Citizen
+Minimum age:10 years (minors can open accounts with a guardian)
+Must not already have a basic savings bank account (or can convert an existing account into a PMJDVaccount)
+Requires basic KYC documents (Aadhaar card, voter ID, PAN, etc.)
+If KYC documents are not available, a Small Account can be opened with simplified documentation (subject to certain limits)
+Priority given to unbanked and financially excluded individuals, especially in rural areas
+Application Details
+Visit the nearest bank branch or Business Correspondent (Bank Mitra) outlet
+Request and fill outthePMJDYaccount openingform (available at banks or online)
+Submit required KVC documents (Aadhaar, voter ID, PAN, etc.) or opt for a Small Account with simplified KYC
+Provide passport-sizedphotograph (if not linked with Aadhaar)
+Submit the form and documents to the bank for verification
+Once approved, the bank account is opened
+Receive account details, passbook, and RuPay debit card
+Activate the account by making a first transaction (if required)
+Link
+Last updated on: Friday, 26th June, 2026
+Information Source: Department of Information & Cultural Affairs(I&CA), Government of West Bengal

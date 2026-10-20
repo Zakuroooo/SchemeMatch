@@ -1,0 +1,38 @@
+# Source copy for e-shram
+# official_url: https://wb.gov.in/government-schemes-details-e-shram-card.aspx
+# retrieved: 2026-10-20 (direct fetch, HTML converted to text)
+# sha256 of the text below: 1185436f7a6b446a88a7b05aa5abed96d62fa20d6c10df2376f4b5bc46b5be68
+# This is a copy of public government text, kept so quotes can be checked offline.
+
+The E-Shram Card is a government-issued identification for unorganized sector workers in India, created to build a national database and provide access to social security schemes. It helps workers receive benefits like insurance coverage, financial assistance, and job-related support from various government programs.
+Benefits Offer Under the Scheme
+Possession of an E-Shram Card brings the following benefits for the holder
+Accidental insurance coverage: Up to Rs 2 lakh for accidental death or total disability and Rs 1 lakh for partial disability (via PMSBY).
+Pension benefit: Eligible workers can receive a monthly pension of around Rs 3,000 after the age of 60 (through schemes like PM-SYM).
+Access to multiple government schemes: Integration with welfare schemes such as PMJJBV, PMSBV, PMAV, MGNREGA, Ayushman Bharat, etc.
+Financial assistance in emergencies: Workers may receive support during crises (e.g., pandemics or disasters) using the national database.
+Universal Account Number (UAN): A 12-digit unique ID valid across India for tracking benefits and employment records.
+Job opportunities support: Linkage with the National Career Service (NCS) portal for finding employment.
+Skill development access: Integration with Skill India programs for training and upskilling opportunities.
+Portability of benefits: Workers can access benefits anywhere in India, useful for migrant labourers.
+Easy discovery of schemes: One-stop platform (e-Shram portal) to find and enroll in eligible schemes
+Support to family/spouse: In case of worker's death, benefits such as insurance/pension can be transferred to the spouse
+Eligibility:
+Must be an Indian citizen.
+Age should be between 16 and 59 years.
+Must be a worker in the unorganized sector (e.g., construction workers, street vendors, domestic workers, migrant workers, etc.).
+Should not be a member of EPFO, ESIC, or NPS (government-funded).
+Should be a self-employed worker, home-based worker, or wage worker in informal employment.
+Generally intended for workers with lower or unstable income (typically below Rs 15,000/month for certain linked schemes).
+Application Details:
+Visit the official portal: Go to the e-Shram website or a nearby Common Service Centre (CSC).
+Start registration: Click on "Register on e-Shram" and enter your Aadhaar-linked mobile number to receive an OTP.
+Aadhaar verification: Provide your Aadhaar number and complete OTP or biometric authentication.
+Fill personal details: Enter information such as name, address, date of birth, occupation, and skills.
+Submit bank details: Provide bank account number and IFSC code for benefit transfers. Complete self-declaration:Confirm eligibility and submit the application form.
+Generation of UAN: A 12-digit Universal Account Number (UAN) is created after successful registration.
+Download E-Shram Card: The card can be downloaded instantly in PDF format or printed.
+No registration fee: The entire process is free of cost for applicants.
+Link
+Last updated on: Friday, 26th June, 2026
+Information Source: Department of Information & Cultural Affairs(I&CA), Government of West Bengal
