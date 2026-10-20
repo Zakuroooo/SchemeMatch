@@ -1,6 +1,8 @@
 # The SchemeMatch Story
 *One place to understand the whole project: the problem, the idea, everything built so far, and what comes next. Written in simple English. This file is updated after every step. The newest entry is in the [change log](#11-change-log) at the bottom.*
 
+> Want the detailed *how* of each step (commands, files, bugs, checks)? See **[PROGRESS.md](PROGRESS.md)**, the build log.
+
 > **Where we are (2026-10-20):** Week 2 of 6 is finished early. **30 schemes** are labelled, the **engine** and **API** work, and the API is **live on the internet** in Mumbai. Next up: Week 3, the AI pipeline.
 
 | Week | 1 | 2 | 3 | 4 | 5 | 6 |
@@ -404,6 +406,7 @@ flowchart LR
 
 | Date | Step | What changed |
 |---|---|---|
+| 2026-10-20 | Build log | [PROGRESS.md](PROGRESS.md) added: the detailed how of every step |
 | 2026-10-20 | Story doc | This file created |
 | 2026-10-20 | Step 2c | Schemes 16–30 labelled; 5 WB schemes marked unlisted (PR #10) |
 | 2026-10-20 | Deploy | API live in Mumbai; 3 deploy bugs fixed (PRs #7–#9) |

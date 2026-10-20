@@ -1,0 +1,368 @@
+# PROGRESS: the build log
+*Every step we have finished, in order: **what** we built, **how** we built it, what went wrong, and how we know it works. Simple English. A new entry is added after every step.*
+
+> **[STORY.md](STORY.md)** explains the project as a story (the *why*). **This file** is the detailed diary (the *how*). Read STORY first if you're new.
+
+**Latest:** Step 9, the story doc (2026-10-20) · **Next:** Week 3, the AI rule-extraction pipeline
+
+---
+
+## How every step is built (our routine)
+
+Every step follows the same loop. Once you know this loop, you know how the whole project was built.
+
+```mermaid
+flowchart LR
+    P[1 Plan the step<br/>read docs + sources] --> B[2 New branch<br/>feat/... or docs/...]
+    B --> C[3 Small commits<br/>each one works]
+    C --> T[4 Run every test<br/>locally]
+    T --> PU[5 Push + open PR]
+    PU --> CI[6 CI runs<br/>all checks]
+    CI --> M[7 You merge]
+    M --> L[8 Teach + update<br/>STORY and PROGRESS]
+    L --> P
+```
+
+**Rules we never break:**
+- Small commits, each one working; no giant "did everything" commits.
+- No `Co-Authored-By` lines in commits.
+- Never store name, phone or Aadhaar. Never commit secrets.
+- Free tiers only.
+- Don't scrape myScheme; use official ministry and state pages.
+- Never write "used by" or a number we didn't measure.
+
+---
+
+## The tools we use (and why)
+
+| Tool | What it is | Why we use it |
+|---|---|---|
+| **pnpm** 10 | Installs packages | Fast; handles many packages in one repo |
+| **Turborepo** 2 | Runs tasks across the repo | One command runs lint/test for every package, and caches results |
+| **TypeScript** 6.0 | JavaScript with types | Catches mistakes before running. Pinned to 6.0 because TS 7 breaks the linter |
+| **ESLint + Prettier** | Code checker + formatter | Same style everywhere, automatic |
+| **Vitest** | Test runner | Fast tests for the engine and API |
+| **fast-check** | Property testing | Throws random inputs to find edge cases |
+| **Ajv** | JSON Schema checker | Proves every rule file has the right shape |
+| **Fastify** 5 | Web server | Fast, with good TypeScript support |
+| **Zod** 4 | Input checker | Rejects bad or private fields in requests |
+| **Supabase** | Postgres database + login | Free; row-level security; runs locally too |
+| **pgTAP** | Database tests | Tests security rules inside Postgres |
+| **GitHub Actions** | CI robots | Run every check on every push |
+| **gitleaks** | Secret scanner | Stops passwords or keys being committed |
+| **Vercel** | Hosting | Free; runs the API in Mumbai |
+| **Python** 3 | Scripts | Pipeline: seed generator, checklist generator |
+| **Jina Reader / curl** | Page fetchers | Save official pages as text |
+
+---
+
+## Step 0: Planning and docs (2026-10-18)
+
+**Goal:** decide *what* to build and *how*, before any code.
+
+**How we did it:**
+1. You gave the brief: a voice-first scheme finder, free tiers, a 6-week plan alongside placement prep.
+2. I proposed a doc set; you approved it.
+3. Wrote each doc as its own commit.
+4. Re-planned to 6 weeks, with buffer days and commit-sized tasks.
+
+**What we built:**
+- [PRD](PRD.md): the problem, personas, v1/v2 scope, target metrics.
+- [ARCHITECTURE](ARCHITECTURE.md): diagrams of every part.
+- [7 ADRs](adr/README.md): why monorepo, Supabase, a pure engine, Vercel, Groq, Sarvam voice, offline.
+- [DATA](DATA.md): the rule format.
+- [EVALS](EVALS.md): how to score the AI.
+- [TESTING](TESTING.md), [PRIVACY-SECURITY](PRIVACY-SECURITY.md), [DISCOVERY](DISCOVERY.md), [RUNBOOK](RUNBOOK.md), [BUILD-PLAN](BUILD-PLAN.md), [CONTRIBUTING](../CONTRIBUTING.md).
+
+**Result:** you read and approved them; only then did code start.
+
+---
+
+## Step 0b: Design direction (2026-10-18)
+
+**Goal:** decide how the product looks.
+
+**How we did it:**
+1. Wrote image prompts for 3 styles and generated test images (round 1). Set up a stronger round 1b on a Kaggle T4 GPU (SDXL, 24 images).
+2. Round 1 showed the fast model ignored style words. Then the direction changed: illustrated people don't fit a real-world problem, so round 1b was superseded before review.
+3. Switched to **real licensed photos** from Unsplash, checking each one's licence on its page.
+4. You locked 5 photos (#1, #4, #6, #7, #9) for the landing page.
+
+**What we built:** [DESIGN.md](DESIGN.md), [design-refs/CREDITS.md](design-refs/CREDITS.md) (every photo with licence and status), [PROMPTS.md](design-refs/PROMPTS.md).
+
+**Rule we set:** a photo is never captioned as a user or beneficiary. AI images only for objects (papers, stamps), never people.
+
+---
+
+## Step 0c: Tools set up (2026-10-18)
+
+**Goal:** get the helper tools ready.
+
+**How:** installed the reverse-engineering tool (REA) and Agent-Reach as MCP tools in Claude Code, with your approval. Moved the repo to `~/code/SchemeMatch` and installed pnpm and the Supabase CLI.
+
+**Rules:**
+- REA is used only on software you own or may examine.
+- Agent-Reach is used only with a secondary account, never your main ones.
+- Security testing is a separate session, run later against staging.
+
+---
+
+## Step 1: Foundation: monorepo, CI, database (PR #1, 13 commits, 2026-10-18 → 19)
+
+**Goal:** a solid base that every later step builds on.
+
+**How we did it:**
+1. **Monorepo:** `pnpm-workspace.yaml` + `turbo.json`, shared TypeScript/ESLint/Prettier config.
+2. **Engine package:** `packages/engine` with the rule-format types (empty logic for now).
+3. **CI:** `.github/workflows/ci.yml` with 3 jobs:
+   - *js* job: format check → lint → typecheck → tests;
+   - *db* job: start Supabase → database tests;
+   - *secrets* job: gitleaks scan.
+4. **Database:**
+   - `supabase init`; local ports moved to 553xx so your FollowUp project can run at the same time;
+   - first migration: tables `schemes`, `scheme_rule_versions`, `scheme_documents`, `scheme_texts`, `worker_profiles`, `organisations`.
+5. **Security (RLS):**
+   - every table starts *closed*;
+   - the public may read only `live` schemes and their current rule version;
+   - only admins may write, through an `is_admin()` check.
+6. **Tests for security:** `supabase/tests/rls_schemes.test.sql` (pgTAP) proves each rule, for example "a stranger can't see a draft scheme".
+7. Pinned every third-party GitHub Action to an exact commit, for supply-chain safety.
+
+```mermaid
+flowchart TB
+    subgraph Repo [One GitHub repo]
+        A[apps/api]
+        E[packages/engine]
+        PL[pipeline/]
+        SB[supabase/]
+        D[docs/]
+    end
+    Repo -->|every push| CI[GitHub Actions:<br/>js · db · secrets]
+```
+
+**Problems and fixes:**
+- `supabase migration new` waited for keyboard input → we write migration files directly.
+- An RLS policy checked the wrong table's `id` → name every column with its table.
+- A blocked UPDATE returns "0 rows", not an error → the test checks the row count.
+- TypeScript 7 broke the linter → pinned 6.0.3.
+- The secret scan needed permission to read PR commits → added `pull-requests: read`.
+
+**Result:** CI green with all 3 jobs; you merged PR #1.
+
+---
+
+## Step 2: Golden set, first 10 schemes (PR #2, 27 commits, 2026-10-19)
+
+**Goal:** a hand-checked answer key of scheme rules.
+
+**How we did it:**
+1. Wrote the labelling guide [pipeline/golden/GUIDE.md](../pipeline/golden/GUIDE.md): one condition per criterion, exact quotes, numbers exactly as written.
+2. Made the scheme list [pipeline/catalog.csv](../pipeline/catalog.csv) (30 planned).
+3. Fetched each official page and saved it to `pipeline/sources/<slug>.txt` with URL, date and a sha256 fingerprint. Swapped out sources that wouldn't load.
+4. Wrote one JSON file per scheme in `pipeline/golden/schemes/`, with the exact quote for every condition.
+5. Added a JSON Schema (`rule.schema.json`) and a test that every file matches it.
+6. Added a test that every quote exists word for word in the saved page.
+7. Wrote hand-made test cases per scheme in `packages/engine/test/profiles/`, plus 6 personas (Sunita and others).
+8. Wrote `make_verify.py`, which generates [VERIFY.md](../pipeline/golden/VERIFY.md), a checklist for your human review.
+
+**Problems and fixes:**
+- **You caught missed criteria** (Sanjay Gandhi's categories). The cause: I had searched keywords instead of reading whole pages.
+  - Fix: a full re-read of all 10 → 5 files fixed (Sanjay Gandhi, PM-KISAN exclusions, APY age, PMMVY categories, old-age pension note).
+  - Then added a **bullet-coverage test**: it fails if any line of a page's eligibility list has no matching rule. It immediately caught more PMMVY gaps.
+- APY: "joining closes at the 40th birthday" means age 18–39 in whole years.
+- The CSV writer used Windows line endings and broke a test → fixed with `lineterminator`.
+
+**Result:** 10 schemes, every quote verified, every bullet covered; labelled "AI-drafted, AI-checked" until your review.
+
+---
+
+## Step 2b: Five West Bengal schemes (PR #3, 10 commits, 2026-10-19)
+
+**Goal:** add West Bengal.
+
+**How:**
+1. Saved the full text of 5 wb.gov.in pages: Annapurna, Taposili Bandhu, Jai Johar, Shikshasree, Medhashree.
+2. Labelled them with the same rules and tests.
+3. Defined `education_level` values (`class_1`…`class_12`, `diploma`, `undergraduate`, `postgraduate`).
+4. Added a West Bengal persona (SC widow, 62).
+5. Marked **Lakshmir Bhandar discontinued** (per you: ended after the change of government); wb.gov.in no longer lists it.
+
+**Result:** 15 schemes.
+
+---
+
+## Step 3: The engine (PR #4, 10 commits, 2026-10-19)
+
+**Goal:** code that applies rules to a person's answers.
+
+**How we did it (tests first):**
+1. `types.ts`: the shapes of Profile, Condition, Group and Result.
+2. `condition.ts`: checks one condition (`eq`, `in`, `lt`, `between`…). Returns UNKNOWN if the field wasn't answered.
+3. Property tests (`condition.property.test.ts`): random inputs prove that `lt`/`gte` and `lte`/`gt` are exact opposites, that `between` equals `gte` AND `lte`, and that answering an unrelated question never changes a result.
+4. `logic.ts`: AND (`all`) and OR (`any`) with three values, tested with full truth tables.
+5. `scheme.ts`: one scheme → result + reasons (from quotes) + closest miss + missing fields; checks the state first.
+6. `questions.ts`: picks the next question that matters most, and screens all schemes at once.
+7. `engine-profiles.test.ts`: runs every hand-written case and persona through the engine.
+8. Removed code that could never run (found by the coverage report) and **required 100% coverage in CI**.
+
+```mermaid
+flowchart LR
+    Pr[Profile<br/>answers so far] --> Sc[evaluateScheme<br/>for each scheme]
+    Sc --> R{result}
+    R -->|PASS| El[eligible + reasons]
+    R -->|FAIL| Ne[not eligible + closest miss]
+    R -->|UNKNOWN| Q[nextQuestion picks<br/>what to ask]
+```
+
+**Result:** all hand-written cases pass; 100% coverage.
+
+---
+
+## Step 4: The API (PR #5, 8 commits, 2026-10-19)
+
+**Goal:** let apps ask the engine over the internet.
+
+**How we did it:**
+1. Created `apps/api`.
+2. `repository.ts`: a `SchemeRepository` interface. The first version reads the golden files.
+3. `profile-schema.ts`: a strict Zod schema built from the engine's field list. Unknown keys (`name`, `phone`, `aadhaar`) → 400.
+4. `build-app.ts`: routes `/health`, `/schemes`, `/eligibility`, plus:
+   - a standard error format;
+   - a disclaimer on every result;
+   - log redaction;
+   - rate limit 60/min.
+5. Local dev server on port 3001.
+6. Tests for routes, validation, rate limiting, errors and log redaction.
+
+**Problems and fixes:**
+- Too many requests returned 500, not 429 → the error builder now sets 429.
+- The rate limiter could be fooled by a fake IP header → it now reads one configured header (`CLIENT_IP_HEADER`) that the host sets.
+
+**Result:** API tests green; you merged.
+
+---
+
+## Step 5: Schemes in the database (PR #6, 10 commits, 2026-10-19)
+
+**Goal:** serve schemes from Postgres, as the real system will.
+
+**How we did it:**
+1. Migration 2: added `unmodelled` and `ambiguous` columns to rule versions.
+2. `make_seed.py`: generates `supabase/seed.sql` from the golden files. IDs are UUID v5 from the slug, so they never change between runs.
+3. pgTAP test: the seed loads every scheme as live with a current rule version.
+4. `supabase-repository.ts`: reads with the public (anon) key only, so RLS guarantees it never serves drafts. Results are cached for 60 seconds.
+5. **Parity test:** the database must serve *exactly* what the golden files contain.
+6. CI's db job now also runs the API integration tests against local Supabase.
+7. The API picks the database when `SUPABASE_URL` and `SUPABASE_ANON_KEY` are set, and the files otherwise.
+
+**Problems and fixes:**
+- Old RLS tests assumed an empty database → scoped them to their own test data.
+- Turborepo hid the env vars from tests → declared them in `turbo.json`.
+
+**Result:** the same answers from files or the database, proven by a test.
+
+---
+
+## Step 6: Going live on Vercel (PRs #7, #8, #9, 2026-10-19 → 20)
+
+**Goal:** a real public URL (staging).
+
+**How we did it:**
+1. Planned a Supabase staging project. But the free plan allows 2 projects, both used by your live demos (Cortexa, FollowUp), and we didn't pause them.
+   - Decision: **no online database yet**.
+   - `bundle-schemes.mjs` packs the golden schemes into the API at build time.
+2. Created a Vercel project `schemematch-api`, connected to GitHub, region **bom1 (Mumbai)**.
+3. Made `src/index.ts` the single server entry.
+4. Fixed 3 deploy bugs, one at a time, each tested on a *preview* URL before merging:
+
+| Bug | Fix |
+|---|---|
+| "No entrypoint found" | `import fastify` directly in `src/index.ts` |
+| Crash: module not found | `.js` import paths; the engine is compiled to `dist/`. Proved it by building locally and running with plain Node |
+| Hang with no logs | Removed `await` on `app.listen()` |
+
+5. Region was Washington at first → set the project to `bom1`; checked the `x-vercel-id` header.
+6. Turned off Vercel's login wall. This is safe because the API is public data, strict input and rate-limited.
+7. Wrote the lessons into [RUNBOOK.md](RUNBOOK.md).
+
+**How we checked it works (on production):**
+- `/health` → `{"ok":true}`;
+- `/schemes` → all schemes;
+- West Bengal widow → the right 3 schemes;
+- sending `aadhaar` → 400;
+- served from `bom1::bom1`, about 0.2–0.4 s.
+
+**Live URL:** https://schemematch-api-zakuroooos-projects.vercel.app (⚠️ *not* `schemematch-api.vercel.app`; that one is someone else's).
+
+---
+
+## Step 7: Schemes 16 to 30 (PR #10, 3 commits, 2026-10-20)
+
+**Goal:** finish the 30-scheme answer key.
+
+**How we did it:**
+1. Listed every scheme page on wb.gov.in and Maharashtra's SJSA site.
+2. **Found:** 5 West Bengal schemes (Kanyashree, Krishak Bandhu, Rupashree, Swasthya Sathi, Taruner Swapna) are no longer listed → marked `unlisted`.
+3. Fetched 22 candidate pages:
+   - Maharashtra via Jina Reader;
+   - West Bengal by direct fetch, converted with a script I first proved gives a **byte-identical** copy of an existing page.
+4. Read each page in full and picked 15 with at least one rule the app can check. For skipped ones (PMAY-G, PM SVANidhi, Namo Shetkari, MJPJAY), the catalog says why.
+5. Wrote the 15 golden files and their test cases with a script, then formatted them.
+6. **Checked each persona's new matches by hand** before updating expectations (e.g. 72-year-old BPL widow → Shravanbal). One persona was missing an answer → added `is_student: false`.
+7. Regenerated the seed, the API bundle and VERIFY.md; moved counts from 15 to 30.
+8. Ran everything: engine 503 ✓, API 35 ✓, database 23 ✓, parity 4 ✓.
+
+**Tricky cases handled honestly:**
+- OBC income limit not on the page → not invented; noted as ambiguous.
+- "Class IX (Madhyamik)" contradicts itself (Madhyamik is the Class 10 exam) → not modelled.
+- Neo-Buddhist students → answer SC (noted).
+- Shravanbal amounts are from 2019 → the newer Nagpur figure is noted.
+
+**Result:** 30 schemes: 15 central, 6 Maharashtra, 9 West Bengal.
+
+---
+
+## Step 8: Story doc (PR #11, 2026-10-20)
+
+**Goal:** one simple place to understand the project.
+
+**How:**
+1. Wrote [STORY.md](STORY.md).
+2. Drew 3 pictures as SVG (`docs/story/`), and checked each by rendering it. This caught a wrong example: Sunita does *not* get the widow pension at 38, so the picture was fixed.
+3. Added 9 Mermaid diagrams, and checked that all 9 render in a browser.
+4. Marked unmeasured claims as goals.
+
+---
+
+## Step 9: This build log (2026-10-20)
+
+**Goal:** a detailed diary of *how* each step was built.
+
+**How:** rebuilt the history from the git log (every PR and commit), the files in the repo and our session notes; wrote this file and linked it from STORY.md and the docs index.
+
+---
+
+## Running totals
+
+| Thing | Count | How to check |
+|---|---|---|
+| PRs merged | 11 | GitHub |
+| Golden schemes | 30 (15 central · 6 MH · 9 WB) | `pipeline/catalog.csv` |
+| Hand-written test cases | 174 | `packages/engine/test/profiles/` |
+| Engine tests | 503 | `pnpm turbo run test` |
+| API tests | 35 | same |
+| Database tests | 23 | `supabase test db` |
+| Engine code coverage | 100% | CI enforces it |
+| Human-reviewed schemes | 0 of 30 | `reviewed_by` in each file |
+| Real user conversations | 0 of 5 | [DISCOVERY.md](DISCOVERY.md) |
+
+---
+
+## Next step
+
+**Week 3: AI rule-extraction pipeline.**
+- An LLM (Groq) reads the same saved pages and drafts rules in our format.
+- Validators reject wrong shapes and invented quotes.
+- A scoring script compares the drafts with the 30 golden schemes (precision, recall, F1), and the first report goes to `reports/`.
+
+Your part this week: book the 5 discovery conversations.
