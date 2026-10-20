@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 340" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <rect width="960" height="340" rx="18" fill="#ffffff"/>
+  <text x="480" y="38" text-anchor="middle" font-size="22" font-weight="700" fill="#263238">From an official sentence to a rule the computer can check</text>
+
+  <!-- page -->
+  <rect x="30" y="60" width="380" height="220" rx="10" fill="#fafafa" stroke="#bdbdbd" stroke-width="2"/>
+  <text x="50" y="90" font-size="14" font-weight="700" fill="#333">wb.gov.in — Taposili Bandhu</text>
+  <text x="50" y="118" font-size="13" fill="#777">Eligibility</text>
+  <text x="50" y="142" font-size="13" fill="#555">Applicant must be a permanent resident…</text>
+  <rect x="44" y="152" width="352" height="26" rx="4" fill="#fff59d"/>
+  <text x="50" y="170" font-size="13" fill="#000">Must be 60 years of age or above</text>
+  <text x="50" y="200" font-size="13" fill="#555">Must belongto the Scheduled Caste (SC)…</text>
+  <text x="50" y="224" font-size="13" fill="#555">Should not be abeneficiary of any other…</text>
+  <text x="50" y="262" font-size="12" fill="#777">saved copy + sha256 fingerprint in pipeline/sources/</text>
+
+  <!-- arrow -->
+  <path d="M420 170 h60" stroke="#333" stroke-width="5"/>
+  <path d="M480 156 l18 14 l-18 14 z" fill="#333"/>
+
+  <!-- rule -->
+  <rect x="510" y="60" width="420" height="220" rx="10" fill="#263238"/>
+  <g font-family="Menlo, Consolas, monospace" font-size="15">
+    <text x="530" y="98" fill="#90caf9">{</text>
+    <text x="550" y="126" fill="#ffcc80">"field"<tspan fill="#eceff1">: </tspan><tspan fill="#a5d6a7">"age"</tspan><tspan fill="#eceff1">,</tspan></text>
+    <text x="550" y="154" fill="#ffcc80">"op"<tspan fill="#eceff1">: </tspan><tspan fill="#a5d6a7">"gte"</tspan><tspan fill="#eceff1">,     ← "or above"</tspan></text>
+    <text x="550" y="182" fill="#ffcc80">"value"<tspan fill="#eceff1">: </tspan><tspan fill="#f48fb1">60</tspan><tspan fill="#eceff1">,</tspan></text>
+    <text x="550" y="210" fill="#ffcc80">"source_quote"<tspan fill="#eceff1">:</tspan></text>
+    <text x="570" y="236" fill="#fff59d">"Must be 60 years of age or above"</text>
+    <text x="530" y="262" fill="#90caf9">}</text>
+  </g>
+
+  <text x="480" y="318" text-anchor="middle" font-size="15" fill="#333">A test fails if the yellow quote is not found word for word in the saved page — so a rule can't be invented.</text>
+</svg>

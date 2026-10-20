@@ -2,6 +2,8 @@
 
 **One line:** SchemeMatch turns India's government schemes into a 2-minute voice conversation, so a citizen learns what they are likely entitled to, which documents they need, and where to apply.
 
+**New here, or lost? Start with [STORY.md](STORY.md):** the whole project as one simple story with pictures, from the problem to what's built and what's next. It's updated after every step.
+
 ## Reading order
 
 | # | File | What it answers | Time |
