@@ -3,12 +3,12 @@
 
 > Want the detailed *how* of each step (commands, files, bugs, checks)? See **[PROGRESS.md](PROGRESS.md)**, the build log.
 
-> **Where we are (2026-10-20):** Week 2 of 6 is finished early. **30 schemes** are labelled, the **engine** and **API** work, and the API is **live on the internet** in Mumbai. Next up: Week 3, the AI pipeline.
+> **Where we are (2026-10-20):** Week 3 has started. **30 schemes** are labelled, the engine and API are **live** in Mumbai, and the **AI pipeline** is built and tested. Its first real run waits for your Groq key.
 
 | Week | 1 | 2 | 3 | 4 | 5 | 6 |
 |---|---|---|---|---|---|---|
 | Focus | Data + engine | Engine + API | AI pipeline + interviews | Web dashboard | Mobile + voice | Polish + demo |
-| Status | ✅ done | ✅ done (+ API live) | ⏳ next | ⬜ | ⬜ | ⬜ |
+| Status | ✅ done | ✅ done (+ API live) | ⏳ in progress | ⬜ | ⬜ | ⬜ |
 
 ---
 
@@ -291,6 +291,32 @@ It took **3 bug fixes** to get live. They're in [section 7](#7-mistakes-we-made-
 - Five West Bengal schemes (Kanyashree, Krishak Bandhu, Rupashree, Swasthya Sathi, Taruner Swapna) are **no longer listed on wb.gov.in**. They're marked "unlisted", because no page says they ended.
 - A neat pair: Maharashtra's scholarship needs income **₹2.5 lakh or less**, while fee reimbursement needs **more than ₹2.5 lakh**. A family at exactly ₹2,50,000 gets the first, not the second, and tests check both edges.
 
+### Chapter 10: Teaching an AI to read the rules (Week 3, in progress)
+**The idea:** labelling 30 schemes by hand took two days. India has 4,000+. So an AI drafts the rules, and **we measure how good its drafts are** before trusting it.
+
+```mermaid
+flowchart LR
+    Page[Saved official page] --> AI[AI model on Groq<br/>must answer in our JSON shape]
+    AI --> V{Validators}
+    V -->|quote not in page,<br/>impossible value| X[Dropped,<br/>counted as wrong]
+    V -->|ok| S[Scorer compares with<br/>the 30-scheme answer key]
+    S --> R[Report:<br/>precision, recall, F1,<br/>mistakes by type]
+```
+
+**Like an exam, with these rules:**
+- **The answer key is hidden.** The AI's practice examples come from 3 schemes *outside* the 30, and a test fails if one ever leaks in. Otherwise we'd be grading a student on questions they had already seen.
+- **Show your working.** Every rule must quote the page. A quote that isn't there means the rule is dropped.
+- **Two students:** a big model (120B) and a small one (20B) from the same family. Is big worth the cost?
+- **Marks by mistake type:** wrong operator ("above" read as "or above"), wrong number, missed rule, invented rule…
+
+**Precision vs recall in one line:** precision = "of the rules the AI wrote, how many were right"; recall = "of the real rules, how many did it find". F1 combines both.
+
+> Hinglish: Precision = jo likha usme kitna sahi; recall = jo hona chahiye tha usme se kitna mila.
+
+**Honest limits, decided before the first run:**
+- 3 long PDF pages are too big for the free tier's per-minute limit, so they count as misses for now.
+- These scores are on our AI-checked answer key, not on final human-reviewed data.
+
 ---
 
 ## 6. Five ideas you must be able to explain
@@ -368,10 +394,12 @@ flowchart LR
 | Hand-written test cases | [packages/engine/test/profiles/](../packages/engine/test/profiles/) |
 | API | [apps/api/src/](../apps/api/src/) |
 | Database setup | [supabase/migrations/](../supabase/migrations/) |
+| AI pipeline | [pipeline/schemematch_pipeline/](../pipeline/schemematch_pipeline/) |
+| Eval reports | `reports/` (first one coming) |
 | The plan | [BUILD-PLAN.md](BUILD-PLAN.md) |
 | How to deploy and run | [RUNBOOK.md](RUNBOOK.md) |
 
-**Numbers today (all measured in the repo):** 30 schemes · 174 hand-written test cases · 503 engine tests · 35 API tests · 23 database tests · 100% engine code coverage.
+**Numbers today (all measured in the repo):** 30 schemes · 174 hand-written test cases · 503 engine tests · 35 API tests · 23 database tests · 49 pipeline tests · 100% engine code coverage.
 
 ---
 
@@ -406,6 +434,7 @@ flowchart LR
 
 | Date | Step | What changed |
 |---|---|---|
+| 2026-10-20 | Week 3 step 1 | AI pipeline built and tested: fetch, validators, scorer, Groq extraction, report (first run pending) |
 | 2026-10-20 | Build log | [PROGRESS.md](PROGRESS.md) added: the detailed how of every step |
 | 2026-10-20 | Story doc | This file created |
 | 2026-10-20 | Step 2c | Schemes 16–30 labelled; 5 WB schemes marked unlisted (PR #10) |

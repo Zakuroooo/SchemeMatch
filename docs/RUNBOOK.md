@@ -61,6 +61,19 @@ flowchart LR
 ## 4. Scheme data refresh
 Weekly Vercel Cron re-fetches each `official_url`, compares `source_hash`; changed → `needs_review` (stops matching) + a GitHub issue with the diff. You review within 7 days; `last_checked` shows on every scheme card.
 
+### Run the rule-extraction pipeline (batch, on your laptop)
+1. One time: create a free key at console.groq.com and put `GROQ_API_KEY=...` in `pipeline/.env` (git-ignored; never commit it or paste it in chat).
+2. `cd pipeline && uv sync`
+3. Check the saved pages are unchanged: `uv run python -m schemematch_pipeline.fetch --check`
+4. Extract with both models: `uv run python -m schemematch_pipeline.extract --models A B`
+   - This takes about 30–60 min, because of the 8K tokens-per-minute limit.
+   - Stopping is safe: run the same command again and it resumes.
+5. Score and write the report: `uv run python -m schemematch_pipeline.report runs/<run-id>` → `reports/eval-<date>.md`
+6. Spot-check 3 raw answers in `runs/<run-id>/<model>/` against their pages before trusting the numbers.
+7. Commit `pipeline/runs/<run-id>/` and the report together, so the numbers can be re-scored without calling the model.
+
+Settings (models, temperature, reasoning effort, prices) are pinned in `pipeline/config.yaml`. Change one thing at a time, and keep every report.
+
 ## 5. Monitoring ⏳
 Signals: API error rate, warm p95, voice fallback rate, eligibility requests/day, sync failures. Tooling decided at staging (Vercel logs + a free Grafana Cloud or Axiom tier).
 
