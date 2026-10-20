@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 300" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <rect width="960" height="300" rx="18" fill="#ffffff"/>
+  <text x="480" y="40" text-anchor="middle" font-size="22" font-weight="700" fill="#263238">Every rule answers with one of three lights</text>
+
+  <g>
+    <rect x="30" y="65" width="285" height="210" rx="14" fill="#e8f5e9"/>
+    <circle cx="90" cy="125" r="36" fill="#2e7d32"/>
+    <text x="90" y="132" text-anchor="middle" font-size="18" font-weight="700" fill="#fff">✓</text>
+    <text x="145" y="120" font-size="22" font-weight="700" fill="#1b5e20">PASS</text>
+    <text x="145" y="145" font-size="14" fill="#333">the person meets it</text>
+    <text x="50" y="200" font-size="14" fill="#333">Rule: age ≥ 60</text>
+    <text x="50" y="224" font-size="14" fill="#333">Person: age 65</text>
+    <text x="50" y="252" font-size="14" font-weight="700" fill="#1b5e20">→ PASS</text>
+  </g>
+
+  <g>
+    <rect x="337" y="65" width="285" height="210" rx="14" fill="#fdecea"/>
+    <circle cx="397" cy="125" r="36" fill="#c62828"/>
+    <text x="397" y="132" text-anchor="middle" font-size="18" font-weight="700" fill="#fff">✗</text>
+    <text x="452" y="120" font-size="22" font-weight="700" fill="#b71c1c">FAIL</text>
+    <text x="452" y="145" font-size="14" fill="#333">the person does not</text>
+    <text x="357" y="200" font-size="14" fill="#333">Rule: age ≥ 60</text>
+    <text x="357" y="224" font-size="14" fill="#333">Person: age 59</text>
+    <text x="357" y="252" font-size="14" font-weight="700" fill="#b71c1c">→ FAIL</text>
+  </g>
+
+  <g>
+    <rect x="644" y="65" width="285" height="210" rx="14" fill="#fff8e1"/>
+    <circle cx="704" cy="125" r="36" fill="#f9a825"/>
+    <text x="704" y="132" text-anchor="middle" font-size="18" font-weight="700" fill="#fff">?</text>
+    <text x="759" y="120" font-size="22" font-weight="700" fill="#e65100">UNKNOWN</text>
+    <text x="759" y="145" font-size="14" fill="#333">not answered yet</text>
+    <text x="664" y="200" font-size="14" fill="#333">Rule: age ≥ 60</text>
+    <text x="664" y="224" font-size="14" fill="#333">Person: age not asked</text>
+    <text x="664" y="252" font-size="14" font-weight="700" fill="#e65100">→ ask "What is your age?"</text>
+  </g>
+</svg>
