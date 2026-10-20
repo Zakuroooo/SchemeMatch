@@ -1,0 +1,29 @@
+# Source copy for wb-bmssy
+# official_url: https://wb.gov.in/government-schemes-details-bina-mulya-samajik-suraksha-yojana.aspx
+# retrieved: 2026-10-20 (direct fetch, HTML converted to text)
+# sha256 of the text below: 09265ae7826a2dbdfa677e327a3d54b21cd40f60c7caec4acf2f35ad77b7131f
+# This is a copy of public government text, kept so quotes can be checked offline.
+
+Bina Mulya Samajik Suraksha Yojana provides free social security benefits such as insurance and financial support to economically weaker sections of society. It aims to reduce vulnerability by offering protection against risks like accidents, disability, or death, ensuring basic financial stability for beneficiaries and their families.
+Benefits Offer Under the Scheme
+Financial Assistance in case of death: Rs 50,000 (natural death), up to Rs 2,00,000 (accidental death)
+Disability compensation: Rs 50,000 up to Rs 2,00,000
+Provident fund: Full contribution paid by government (no worker payment)
+Free coverage: Entire scheme is cost-free (premium paid by state)
+Eligibility:
+Age: 18 to 60 years
+Residency: Must be a resident of West Bengal
+Occupation: Must be an unorganized sector worker (including self-employed)
+Category coverage: Worker should fall under list
+Family income within Rs 6500 per month (except construction and transport workers)
+Application Details:
+Apply online/offline:
+Online via the official BM-SSY portal
+Offline through Regional Labour Offices and Labour Welfare Facilitation Centers at Blocks and Municipalities
+Fill application form: Enter personal, occupational, and nominee details
+Submit application: Upload/submit documents and complete registration
+Verification: Authorities verify details and approve enrollment
+Receive registration ID/card & SSIN: Use itto access scheme benefits
+Link
+Last updated on: Friday, 26th June, 2026
+Information Source: Department of Information & Cultural Affairs(I&CA), Government of West Bengal

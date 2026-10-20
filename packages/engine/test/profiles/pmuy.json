@@ -1,0 +1,50 @@
+{
+  "scheme": "pmuy",
+  "cases": [
+    {
+      "id": "eligible",
+      "why": "Woman aged 30",
+      "profile": {
+        "gender": "female",
+        "age": 30
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-18",
+      "why": "'attained 18 years'",
+      "profile": {
+        "gender": "female",
+        "age": 18
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-17",
+      "why": "Below 18",
+      "profile": {
+        "gender": "female",
+        "age": 17
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "male",
+      "why": "Connection is in a woman's name",
+      "profile": {
+        "gender": "male",
+        "age": 30
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "gender-unknown",
+      "why": "Gender not asked",
+      "profile": {
+        "age": 30
+      },
+      "expected": "UNKNOWN",
+      "ask_next": "gender"
+    }
+  ]
+}

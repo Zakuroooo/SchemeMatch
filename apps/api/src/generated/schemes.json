@@ -48,6 +48,55 @@
     }
   },
   {
+    "slug": "e-shram",
+    "level": "central",
+    "state": null,
+    "category": "livelihood",
+    "official_url": "https://wb.gov.in/government-schemes-details-e-shram-card.aspx",
+    "eligibility": {
+      "all": [
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            16,
+            59
+          ],
+          "source_quote": "Age should be between 16 and 59 years."
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must be an Indian citizen",
+        "source_quote": "Must be an Indian citizen."
+      },
+      {
+        "text": "Must work in the unorganised sector (construction, street vending, domestic work, migrant work, etc.)",
+        "source_quote": "Must be a worker in the unorganized sector (e.g., construction workers, street vendors, domestic workers, migrant workers, etc.)."
+      },
+      {
+        "text": "Must not be a member of EPFO, ESIC or government-funded NPS",
+        "source_quote": "Should not be a member of EPFO, ESIC, or NPS (government-funded)."
+      },
+      {
+        "text": "Must be self-employed, home-based or a wage worker in informal work",
+        "source_quote": "Should be a self-employed worker, home-based worker, or wage worker in informal employment."
+      },
+      {
+        "text": "Meant mainly for low-income workers (no strict limit is stated)",
+        "source_quote": "Generally intended for workers with lower or unstable income (typically below Rs 15,000/month for certain linked schemes)."
+      }
+    ],
+    "text": {
+      "en": {
+        "title": "e-Shram Card",
+        "benefit": "A 12-digit UAN card for unorganised workers that links to accident cover (PMSBY), pension (PM-SYM) and other schemes.",
+        "how_to_apply": "Register free on the e-Shram portal or at a Common Service Centre with Aadhaar, its linked mobile number and bank details."
+      }
+    }
+  },
+  {
     "slug": "igndps",
     "level": "central",
     "state": null,
@@ -193,6 +242,110 @@
     }
   },
   {
+    "slug": "mh-post-matric-sc",
+    "level": "state",
+    "state": "MH",
+    "category": "education",
+    "official_url": "https://sjsa.maharashtra.gov.in/en/scheme/post-matric-scholarship-by-the-government-of-india/",
+    "eligibility": {
+      "all": [
+        {
+          "field": "caste_category",
+          "op": "eq",
+          "value": "SC",
+          "source_quote": "The student must belong to Scheduled Castes (SC) or Neo-Buddhist categories."
+        },
+        {
+          "field": "annual_family_income",
+          "op": "lte",
+          "value": 250000,
+          "source_quote": "The annual income of the student’s parents should be ₹2.5 lakh or less."
+        },
+        {
+          "field": "is_student",
+          "op": "eq",
+          "value": true,
+          "source_quote": "The student should be pursuing education after the matriculation examination."
+        },
+        {
+          "field": "education_level",
+          "op": "in",
+          "value": [
+            "class_11",
+            "class_12",
+            "diploma",
+            "undergraduate",
+            "postgraduate"
+          ],
+          "source_quote": "The student should be pursuing education after the matriculation examination."
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must be a resident of Maharashtra (the app checks the state; proof is still needed)",
+        "source_quote": "The student should be a resident of Maharashtra."
+      }
+    ],
+    "text": {
+      "en": {
+        "title": "Post-Matric Scholarship for SC Students (Maharashtra)",
+        "benefit": "Maintenance allowance (Rs 250 to Rs 700 a month; Rs 400 to Rs 1,350 for hostel students) plus tuition, exam and other approved fees.",
+        "how_to_apply": "Fill the online form on mahadbtmahait.gov.in; contact your college or the district Assistant Commissioner of Social Welfare."
+      }
+    }
+  },
+  {
+    "slug": "mh-ramai-awas",
+    "level": "state",
+    "state": "MH",
+    "category": "housing",
+    "official_url": "https://sjsa.maharashtra.gov.in/en/scheme/ramai-housing-scheme-rural-and-urban/",
+    "eligibility": {
+      "all": [
+        {
+          "field": "caste_category",
+          "op": "eq",
+          "value": "SC",
+          "source_quote": "The applicant must belong to the Scheduled Castes/Neo-Buddhist category."
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must have lived in Maharashtra for at least 15 years",
+        "source_quote": "The applicant must have resided in Maharashtra for at least 15 years."
+      },
+      {
+        "text": "Must own land or a temporary house",
+        "source_quote": "The beneficiary must own land/a temporary house."
+      },
+      {
+        "text": "Must not have received a house under any other housing scheme",
+        "source_quote": "The beneficiary should not have availed of any other housing scheme previously."
+      },
+      {
+        "text": "Must not be on the SECC-2011 priority list (those families are covered by other housing schemes)",
+        "source_quote": "The beneficiary should be outside the priority list criteria of the Social, Economic, and Caste Census-2011 (SECC-2011)."
+      },
+      {
+        "text": "Protected hutment dwellers on government land (as of 1.01.1995) need not submit the 7/12 land extract",
+        "source_quote": "the requirement to submit 7/12 extract has been relaxed"
+      },
+      {
+        "text": "Family income limit depends on the area: Rs 1.20 lakh in rural and hill/Naxal-affected areas, Rs 3.00 lakh in municipal councils and corporations",
+        "source_quote": "Income Limit (in lakhs)"
+      }
+    ],
+    "text": {
+      "en": {
+        "title": "Ramai Awas Yojana (Rural and Urban)",
+        "benefit": "Help to build a house: Rs 1.32 lakh rural, Rs 1.42 lakh hill/Naxal areas, Rs 2.50 lakh urban (beneficiary pays 7.5% to 10% in urban areas).",
+        "how_to_apply": "Contact the Assistant Commissioner of Social Welfare of your district."
+      }
+    }
+  },
+  {
     "slug": "mh-sanjay-gandhi-niradhar",
     "level": "state",
     "state": "MH",
@@ -328,6 +481,150 @@
     }
   },
   {
+    "slug": "mh-sc-fee-reimbursement",
+    "level": "state",
+    "state": "MH",
+    "category": "education",
+    "official_url": "https://sjsa.maharashtra.gov.in/en/scheme/reimbursement-of-education-fees-and-examination-fees-for-backward-class-students/",
+    "eligibility": {
+      "all": [
+        {
+          "field": "caste_category",
+          "op": "eq",
+          "value": "SC",
+          "source_quote": "The student must belong to Scheduled Castes (SC) or Neo-Buddhist categories."
+        },
+        {
+          "field": "annual_family_income",
+          "op": "gt",
+          "value": 250000,
+          "source_quote": "The annual income of the student’s parents should be more than ₹2.50 lakh."
+        },
+        {
+          "field": "is_student",
+          "op": "eq",
+          "value": true,
+          "source_quote": "The student should be pursuing education after the matriculation examination."
+        },
+        {
+          "field": "education_level",
+          "op": "in",
+          "value": [
+            "class_11",
+            "class_12",
+            "diploma",
+            "undergraduate",
+            "postgraduate"
+          ],
+          "source_quote": "The student should be pursuing education after the matriculation examination."
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must be a resident of Maharashtra (the app checks the state; proof is still needed)",
+        "source_quote": "The student should be a resident of Maharashtra."
+      }
+    ],
+    "text": {
+      "en": {
+        "title": "Education and Exam Fee Reimbursement for SC Students (Maharashtra)",
+        "benefit": "Education fees, exam fees and other prescribed fees for recognised post-matric courses, paid to the college.",
+        "how_to_apply": "Apply online on mahadbtmahait.gov.in through your college; the district Assistant Commissioner of Social Welfare approves it."
+      }
+    }
+  },
+  {
+    "slug": "mh-shravanbal",
+    "level": "state",
+    "state": "MH",
+    "category": "pension",
+    "official_url": "https://nashik.gov.in/scheme/shravan-bal-seva-rajya-nivruttivetan-yojana/",
+    "eligibility": {
+      "all": [
+        {
+          "field": "age",
+          "op": "gte",
+          "value": 65,
+          "source_quote": "every destitute person of age 65 years & above"
+        },
+        {
+          "any": [
+            {
+              "all": [
+                {
+                  "field": "annual_family_income",
+                  "op": "lt",
+                  "value": 21000,
+                  "source_quote": "whose annual family income is below Rs. 21000/-"
+                },
+                {
+                  "field": "has_bpl_card",
+                  "op": "eq",
+                  "value": false,
+                  "source_quote": "whose name is not included in the BPL List"
+                }
+              ]
+            },
+            {
+              "field": "has_bpl_card",
+              "op": "eq",
+              "value": true,
+              "source_quote": "belonging to BPL family"
+            }
+          ]
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must be destitute (niradhar)",
+        "source_quote": "every destitute person"
+      }
+    ],
+    "text": {
+      "en": {
+        "title": "Shravanbal Seva Rajya Nivruttivetan Yojana",
+        "benefit": "Monthly state pension. This 2019 page says Rs 600 (category A) or Rs 400 plus Rs 200 under IGNOAPS (category B); the 2025 Nagpur district page says Rs 1,500.",
+        "how_to_apply": "Apply at the Collector's office, Tahsildar or Talathi."
+      }
+    }
+  },
+  {
+    "slug": "nfbs",
+    "level": "central",
+    "state": null,
+    "category": "family",
+    "official_url": "https://sjsa.maharashtra.gov.in/en/scheme/national-family-benefit-scheme/",
+    "eligibility": {
+      "all": [
+        {
+          "field": "has_bpl_card",
+          "op": "eq",
+          "value": true,
+          "source_quote": "death of a primary bread winner in the BPL Family"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "The family's primary breadwinner has died (accident or natural causes)",
+        "source_quote": "in case of accidental or natural death of a primary bread winner"
+      },
+      {
+        "text": "The breadwinner was aged 18 to 59 at the time of death",
+        "source_quote": "in the age group of 18 to 59 years"
+      }
+    ],
+    "text": {
+      "en": {
+        "title": "National Family Benefit Scheme",
+        "benefit": "One-time lump sum of Rs 20,000 to the family.",
+        "how_to_apply": "Apply at the Collector's office, Tehsildar's office (Sanjay Gandhi Niradhar Anudan Yojana branch) or Talathi office."
+      }
+    }
+  },
+  {
     "slug": "pm-kisan",
     "level": "central",
     "state": null,
@@ -382,6 +679,163 @@
         "title": "PM Kisan Samman Nidhi",
         "benefit": "Rs 6,000 per year paid directly into the bank account of eligible farmer families.",
         "how_to_apply": "Apply through the official channel described on the source page."
+      }
+    }
+  },
+  {
+    "slug": "pm-sym",
+    "level": "central",
+    "state": null,
+    "category": "pension",
+    "official_url": "https://wb.gov.in/government-schemes-details-pradhan-mantri-shram-yogi-mandhan.aspx",
+    "eligibility": {
+      "all": [
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            18,
+            40
+          ],
+          "source_quote": "Age should be between18 and 40 years at the time of enrollment."
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must be an unorganised-sector worker (street vendor, construction worker, domestic worker, etc.)",
+        "source_quote": "Must be an unorganized sector worker (e.g., street vendors, construction workers, domestic workers, etc.)."
+      },
+      {
+        "text": "Own monthly income must be Rs 15,000 or less (the app asks family income per year, so this is not checked)",
+        "source_quote": "Monthly income should be Rs 15,000 or less."
+      },
+      {
+        "text": "Must have an Aadhaar number linked to a mobile number",
+        "source_quote": "Must possess a valid Aadhaar number linked with a mobile number."
+      },
+      {
+        "text": "Must have a savings bank or Jan Dhan account",
+        "source_quote": "Should have anactive savings bank account or Jan Ohan account."
+      },
+      {
+        "text": "Must not be covered by EPFO, ESIC or NPS",
+        "source_quote": "Must not be covered under any other statutory social security scheme (such as EPF0, ESIC,orNPS)."
+      },
+      {
+        "text": "Must not pay income tax",
+        "source_quote": "Must not be an income taxpayer."
+      }
+    ],
+    "text": {
+      "en": {
+        "title": "Pradhan Mantri Shram Yogi Maandhan",
+        "benefit": "Pension of Rs 3,000 a month from age 60; the government matches your monthly contribution (Rs 55 to Rs 200).",
+        "how_to_apply": "Enrol at a Common Service Centre or online with Aadhaar and bank details; set up the monthly auto-debit."
+      }
+    }
+  },
+  {
+    "slug": "pm-vishwakarma",
+    "level": "central",
+    "state": null,
+    "category": "livelihood",
+    "official_url": "https://wb.gov.in/government-schemes-details-pradhan-mantri-vishwakarma-yojana.aspx",
+    "eligibility": {
+      "all": [
+        {
+          "field": "age",
+          "op": "gte",
+          "value": 18,
+          "source_quote": "Must be 18 years or above at the time of registration"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must be an artisan or craftsperson working with hands and tools in a notified trade",
+        "source_quote": "Applicant must be an artisan or craftsperson working with hands and tools in one of the notified traditional trades"
+      },
+      {
+        "text": "Must be self-employed in the unorganised sector",
+        "source_quote": "Should be self-employed in the unorganised sector"
+      },
+      {
+        "text": "Must work in one of the 18 family-based trades: carpenter, boat maker, armourer, blacksmith, hammer and toolkit maker, locksmith, sculptor, goldsmith, potter, cobbler, mason, basket/mat/broom/coir maker, doll and toy maker, barber, garland maker, washerman, tailor, fishing net maker",
+        "source_quote": "Must be actively engaged in one of the 18 specified family-based traditional trades"
+      },
+      {
+        "text": "Must be practising the trade when registering",
+        "source_quote": "Applicant should be practicing the trade at the time of registration"
+      },
+      {
+        "text": "No similar government self-employment loan (PMEGP, Mudra, SVANidhi) in the last 5 years",
+        "source_quote": "Should not have availed similar government self-employment loans (e.g., PMEGP, Mudra, SVANidhi) in the last 5 years"
+      },
+      {
+        "text": "Only one member per family",
+        "source_quote": "Only one member per family is eligible to avail benefits under the scheme"
+      },
+      {
+        "text": "Government employees and their families are not eligible",
+        "source_quote": "Government employees and their family members are not eligible"
+      },
+      {
+        "text": "The 18 trades as listed on the page",
+        "source_quote": "Carpenter, Boat maker, Armourer, Black smith, Hammer and Toolkit maker, Lock smith, Sculpture, Gold smith, potter, cobbler, Masions, Basket/Mat/Broom maker/Coir waiver, Doll and Toy maker, Barber, Garland maker, Washerman, Toiler, Fishing Net maker"
+      }
+    ],
+    "text": {
+      "en": {
+        "title": "PM Vishwakarma",
+        "benefit": "Certificate and ID card, free training with Rs 500 a day, Rs 15,000 toolkit help, and collateral-free loans up to Rs 3 lakh at about 5%.",
+        "how_to_apply": "Register through the official PM Vishwakarma channel described on the source page."
+      }
+    }
+  },
+  {
+    "slug": "pmjdy",
+    "level": "central",
+    "state": null,
+    "category": "banking",
+    "official_url": "https://wb.gov.in/government-schemes-details-pradhan-mantri-jan-dhan-yojana.aspx",
+    "eligibility": {
+      "all": [
+        {
+          "field": "age",
+          "op": "gte",
+          "value": 10,
+          "source_quote": "Minimum age:10 years (minors can open accounts with a guardian)"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must be an Indian citizen",
+        "source_quote": "Indian Citizen"
+      },
+      {
+        "text": "Must not already have a basic savings bank account (an existing one can be converted)",
+        "source_quote": "Must not already have a basic savings bank account (or can convert an existing account into a PMJDVaccount)"
+      },
+      {
+        "text": "Needs basic KYC documents (Aadhaar, voter ID, PAN, etc.)",
+        "source_quote": "Requires basic KYC documents (Aadhaar card, voter ID, PAN, etc.)"
+      },
+      {
+        "text": "Without KYC documents, a Small Account with limits can be opened",
+        "source_quote": "If KYC documents are not available, a Small Account can be opened with simplified documentation (subject to certain limits)"
+      },
+      {
+        "text": "Priority to unbanked people, especially in rural areas",
+        "source_quote": "Priority given to unbanked and financially excluded individuals, especially in rural areas"
+      }
+    ],
+    "text": {
+      "en": {
+        "title": "Pradhan Mantri Jan Dhan Yojana",
+        "benefit": "Zero-balance savings account with a RuPay card, accident cover of about Rs 2 lakh and an overdraft of up to Rs 10,000 for eligible holders.",
+        "how_to_apply": "Visit a bank branch or Bank Mitra outlet, fill the PMJDY form and submit KYC documents (or open a Small Account)."
       }
     }
   },
@@ -566,6 +1020,106 @@
     }
   },
   {
+    "slug": "pmuy",
+    "level": "central",
+    "state": null,
+    "category": "household",
+    "official_url": "https://wb.gov.in/government-schemes-details-pradhan-mantri-ujjwala-yojana.aspx",
+    "eligibility": {
+      "all": [
+        {
+          "field": "gender",
+          "op": "eq",
+          "value": "female",
+          "source_quote": "The applicant must be a woman who has attained18 years of age."
+        },
+        {
+          "field": "age",
+          "op": "gte",
+          "value": 18,
+          "source_quote": "The applicant must be a woman who has attained18 years of age."
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "No other LPG connection from any oil company in the same household",
+        "source_quote": "There should be no other LPG connection from any Oil Marketing Company (OMC) within the same household."
+      },
+      {
+        "text": "Must be from a poor household, shown by a deprivation declaration in the set format",
+        "source_quote": "The adult woman must belong to a poor household based on submission of a deprivation declaration (as per prescribed format)."
+      },
+      {
+        "text": "Must have a valid Aadhaar number",
+        "source_quote": "Applicant must have a valid Aadhaar number (for identificationand subsidy transfer)."
+      },
+      {
+        "text": "Must have a bank account for DBT",
+        "source_quote": "Must have abank account to receive subsidy through Direct Benefit Transfer (DBT)."
+      }
+    ],
+    "text": {
+      "en": {
+        "title": "Pradhan Mantri Ujjwala Yojana",
+        "benefit": "Deposit-free LPG connection in the woman's name, with a free first refill and stove, and refill subsidy by DBT.",
+        "how_to_apply": "Apply at an LPG distributor or online on the PMUY or oil company (IOCL, BPCL, HPCL) websites, with the deprivation declaration."
+      }
+    }
+  },
+  {
+    "slug": "sukanya-samriddhi",
+    "level": "central",
+    "state": null,
+    "category": "savings",
+    "official_url": "https://wb.gov.in/government-schemes-details-sukanya-samriddhi-yojana.aspx",
+    "eligibility": {
+      "all": [
+        {
+          "field": "gender",
+          "op": "eq",
+          "value": "female",
+          "source_quote": "The account can be opened in the name of a girl child."
+        },
+        {
+          "field": "age",
+          "op": "lt",
+          "value": 10,
+          "source_quote": "The girl child should be below 10 years of age at the time of account opening."
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "A parent or legal guardian opens and runs the account until the girl can",
+        "source_quote": "The account is opened and operated by the parent or legal guardian until the girl child becomes eligible to operate it herself."
+      },
+      {
+        "text": "Only one account per girl",
+        "source_quote": "Only one account can be opened in the name of one girl child."
+      },
+      {
+        "text": "At most two girls per family",
+        "source_quote": "A family can generally open accounts for a maximum of two girl children."
+      },
+      {
+        "text": "More than two only in special cases such as twins or triplets",
+        "source_quote": "Accounts for more than two girl children may be allowed in special cases such as twins or triplets, subject to required documentation."
+      },
+      {
+        "text": "Needs the girl's birth certificate and the guardian's ID and address proof",
+        "source_quote": "The applicant must submit the birth certificate of the girl child and identity/address proof of the guardian."
+      }
+    ],
+    "text": {
+      "en": {
+        "title": "Sukanya Samriddhi Yojana",
+        "benefit": "Government-backed savings account for a girl: 8.2% a year now, Rs 250 to Rs 1.5 lakh a year, tax-free, matures after 21 years.",
+        "how_to_apply": "A parent or guardian opens it at a post office or authorised bank with the girl's birth certificate and their own KYC documents."
+      }
+    }
+  },
+  {
     "slug": "wb-annapurna",
     "level": "state",
     "state": "WB",
@@ -609,6 +1163,51 @@
         "title": "Annapurna Yojana",
         "benefit": "Rs 3,000 per month.",
         "how_to_apply": "Submit the Family Level Data Collection form at the BDO, SDO or KMC ward office, or online at socialregistry.wb.gov.in."
+      }
+    }
+  },
+  {
+    "slug": "wb-bmssy",
+    "level": "state",
+    "state": "WB",
+    "category": "livelihood",
+    "official_url": "https://wb.gov.in/government-schemes-details-bina-mulya-samajik-suraksha-yojana.aspx",
+    "eligibility": {
+      "all": [
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            18,
+            60
+          ],
+          "source_quote": "Age: 18 to 60 years"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must be a resident of West Bengal",
+        "source_quote": "Residency: Must be a resident of West Bengal"
+      },
+      {
+        "text": "Must be an unorganised-sector worker, including self-employed",
+        "source_quote": "Occupation: Must be an unorganized sector worker (including self-employed)"
+      },
+      {
+        "text": "The worker's occupation must be on the scheme's list (the list is not on the page)",
+        "source_quote": "Category coverage: Worker should fall under list"
+      },
+      {
+        "text": "Family income up to Rs 6,500 a month, except for construction and transport workers",
+        "source_quote": "Family income within Rs 6500 per month (except construction and transport workers)"
+      }
+    ],
+    "text": {
+      "en": {
+        "title": "Bina Mulya Samajik Suraksha Yojana",
+        "benefit": "Free cover paid by the state: Rs 50,000 on natural death, up to Rs 2 lakh on accidental death or disability, and provident fund contribution.",
+        "how_to_apply": "Apply on the BM-SSY portal or at a Regional Labour Office or Labour Welfare Facilitation Centre in your block or municipality."
       }
     }
   },
@@ -726,6 +1325,115 @@
     }
   },
   {
+    "slug": "wb-migrant-worker",
+    "level": "state",
+    "state": "WB",
+    "category": "livelihood",
+    "official_url": "https://wb.gov.in/government-schemes-details-west-bengal-migrant-worker-welfare-scheme.aspx",
+    "eligibility": {
+      "all": [
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            14,
+            60
+          ],
+          "source_quote": "Between 14 and 60 years of age"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must be a resident of West Bengal",
+        "source_quote": "Must be a resident of West Bengal"
+      },
+      {
+        "text": "Must work, or be likely to work, outside West Bengal (other states or abroad)",
+        "source_quote": "Must be employed or likely to be employed outside West Bengal (in other states/UTs or abroad)."
+      }
+    ],
+    "text": {
+      "en": {
+        "title": "West Bengal Migrant Worker Welfare Scheme",
+        "benefit": "Rs 50,000 on natural death, Rs 2 lakh on accidental death, Rs 25,000 to bring the body home, and Rs 50,000 to Rs 1 lakh for disability.",
+        "how_to_apply": "Register on the Karmasathi Parijayee Shramik Portal with your mobile number to get an MWIN, then file claims there."
+      }
+    }
+  },
+  {
+    "slug": "wb-pre-matric",
+    "level": "state",
+    "state": "WB",
+    "category": "education",
+    "official_url": "https://wb.gov.in/government-schemes-details-pre-matric-scholarship-for-sc-st-obc-students.aspx",
+    "eligibility": {
+      "all": [
+        {
+          "field": "caste_category",
+          "op": "in",
+          "value": [
+            "SC",
+            "ST",
+            "OBC"
+          ],
+          "source_quote": "Must belong to SC/ST/OBC community and possess a valid caste certificate."
+        },
+        {
+          "any": [
+            {
+              "field": "caste_category",
+              "op": "eq",
+              "value": "OBC",
+              "source_quote": "varies slightly for OBC depending on scheme/state"
+            },
+            {
+              "field": "annual_family_income",
+              "op": "lte",
+              "value": 250000,
+              "source_quote": "Rs 2.5 lakh for SC/ST students"
+            }
+          ]
+        },
+        {
+          "field": "is_student",
+          "op": "eq",
+          "value": true,
+          "source_quote": "Must be a regular/full-time student enrolled in school."
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must study in a recognised school; the class range is generally 9 to 10, and 1 to 10 in some variants",
+        "source_quote": "Studying in a recognized school (generally Class 9 - 10 for SC/ST/OBC schemes;"
+      },
+      {
+        "text": "OBC students have their own income limit, which the page does not give",
+        "source_quote": "Annual family income limit should not exceed: Rs 2.5 lakh for SC/ST students (varies slightly for OBC depending on scheme/state)."
+      },
+      {
+        "text": "Renewals need a pass in the previous exam",
+        "source_quote": "Progression requirement: Students should have passed the previous examination (for renewal cases)."
+      },
+      {
+        "text": "Must not get another scholarship for the same purpose",
+        "source_quote": "Only one scholarship at a time: Student should not be availing another scholarship for the same purpose."
+      },
+      {
+        "text": "Must be domiciled in West Bengal",
+        "source_quote": "Domicile requirement: Must belong to the state/UT from where applying."
+      }
+    ],
+    "text": {
+      "en": {
+        "title": "Pre-Matric Scholarship for SC, ST and OBC Students (West Bengal)",
+        "benefit": "Monthly maintenance allowance, tuition and compulsory fees, and extra help for hostel students and students with disabilities.",
+        "how_to_apply": "Register on oasis.wb.gov.in (OTR ID), apply online with caste and income certificates, and the school forwards it for verification."
+      }
+    }
+  },
+  {
     "slug": "wb-shikshasree",
     "level": "state",
     "state": "WB",
@@ -790,6 +1498,66 @@
         "title": "Shikshasree",
         "benefit": "Rs 800 per year for students in Classes V to VIII.",
         "how_to_apply": "Apply through the student's school."
+      }
+    }
+  },
+  {
+    "slug": "wb-student-credit-card",
+    "level": "state",
+    "state": "WB",
+    "category": "education",
+    "official_url": "https://wb.gov.in/government-schemes-details-west-bengal-student-credit-card-scheme.aspx",
+    "eligibility": {
+      "all": [
+        {
+          "field": "age",
+          "op": "lte",
+          "value": 40,
+          "source_quote": "Must be 40 years or below at the time of application"
+        },
+        {
+          "field": "is_student",
+          "op": "eq",
+          "value": true,
+          "source_quote": "Must be enrolled in a recognized educational institution (India or abroad)"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must have lived in West Bengal for ten years or more",
+        "source_quote": "Must be a resident of West Bengal for ten years or more"
+      },
+      {
+        "text": "Must have completed at least Class IX (Madhyamik or equivalent)",
+        "source_quote": "Should have completed at least Class IX (Madhyamik or equivalent)"
+      },
+      {
+        "text": "Must have admission in an eligible course (school, UG, PG or professional)",
+        "source_quote": "Must have secured admission in an eligible course (school, UG, PG, or professional)"
+      },
+      {
+        "text": "Needs a co-borrower, usually a parent or guardian",
+        "source_quote": "Co-borrower required (usually a parent/guardian)"
+      },
+      {
+        "text": "Neither the student nor the co-borrower may be in default on a bank loan",
+        "source_quote": "Applicant or Co-borrower must not be in default of any bank loan"
+      },
+      {
+        "text": "Only one card per student",
+        "source_quote": "Only one student credit card per student is allowed"
+      },
+      {
+        "text": "Must apply on the official portal with valid documents",
+        "source_quote": "Must apply through the official online portal with valid documents"
+      }
+    ],
+    "text": {
+      "en": {
+        "title": "West Bengal Student Credit Card",
+        "benefit": "Collateral-free education loan up to Rs 10 lakh at about 4% simple interest, repayable over up to 15 years.",
+        "how_to_apply": "Register on the WBSCC portal, apply with admission and ID documents; the institution and Higher Education Department verify it before the bank sanctions."
       }
     }
   },

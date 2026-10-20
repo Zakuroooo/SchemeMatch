@@ -1,0 +1,54 @@
+# Source copy for mh-post-matric-sc
+# official_url: https://sjsa.maharashtra.gov.in/en/scheme/post-matric-scholarship-by-the-government-of-india/
+# retrieved: 2026-10-20 (via Jina Reader text extraction)
+# sha256 of the text below: 6a5156d06a2106722aa51f74a1d870f6ed4b3580a9a5170f430f560f90f8c620
+# This is a copy of public government text, kept so quotes can be checked offline.
+
+Title: Post-Matric Scholarship by the Government of India | Social Justice & Special Assistance Department | India
+
+URL Source: https://sjsa.maharashtra.gov.in/en/scheme/post-matric-scholarship-by-the-government-of-india/
+
+Markdown Content:
+**Date :** 11/01/2003 -
+
+**Funding Source: Central Government (60%) and State Government (40%)**
+
+**Objective of the Scheme:**
+
+*   To enable students from backward classes to pursue college/higher education and to reduce the dropout rate among students.
+
+**Eligibility Criteria:**
+
+*   The student must belong to Scheduled Castes (SC) or Neo-Buddhist categories.
+*   The annual income of the student’s parents should be ₹2.5 lakh or less.
+*   The student should be pursuing education after the matriculation examination.
+*   The student should be a resident of Maharashtra.
+
+**Nature of Benefits Provided:**
+
+*   Students are provided with maintenance allowance, tuition fees, examination fees, and other approved fees.
+*   Maintenance allowance ranges from ₹250/- to ₹700/- per month (revised rates).
+*   For students residing in hostels, the maintenance allowance ranges from ₹400/- to ₹1350/- per month (revised rates).
+
+**Government Resolutions (GR):**
+
+*   Social Justice and Special Assistance Department, GR No. EBC-2003/Pr. No. 301/Mavak-2, dated 01/11/2003
+*   Social Justice and Special Assistance Department, GR No. Ajashi-2019/Pr. No. 345/Education-1, dated 15/01/2020
+*   Social Justice and Special Assistance Department, GR No. EBC-2017/Pr. No. 403/Education-1, dated 07/08/2017
+*   Social Justice and Special Assistance Department, GR No. Sapravi-Matans-2018/Pr. No. 138/Se-1/39, dated 12/10/2018
+*   Social Justice and Special Assistance Department, GR No. EBC-2018/Pr. No. 484/Education-1, dated 08/01/2019
+*   Social Justice and Special Assistance Department, GR No. Bhasshi-2021/Pr. No. 156/Education-1, dated 07/07/2023
+
+## Beneficiary:
+
+-
+
+## Benefits:
+
+-
+
+## How To Apply
+
+Contact Office: Respective colleges and the Assistant Commissioner of Social Welfare of the respective district.
+
+Application Form: It is necessary to fill the online application form on the website http://mahadbtmahait.gov.in.

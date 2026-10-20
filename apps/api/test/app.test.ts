@@ -35,9 +35,9 @@ describe("GET /health", () => {
 });
 
 describe("GET /schemes", () => {
-  it("lists all 15 schemes without their rules", async () => {
+  it("lists all 30 schemes without their rules", async () => {
     const body = (await (await start()).inject("/schemes")).json();
-    expect(body.schemes).toHaveLength(15);
+    expect(body.schemes).toHaveLength(30);
     expect(body.schemes[0]).not.toHaveProperty("eligibility");
   });
 
@@ -57,12 +57,24 @@ describe("POST /eligibility", () => {
   const post = async (payload: unknown) =>
     (await start()).inject({ method: "POST", url: "/eligibility", payload: payload as object });
 
-  it("gives Sunita her five schemes with reasons and the disclaimer", async () => {
+  it("gives Sunita her eleven schemes with reasons and the disclaimer", async () => {
     const res = await post({ profile: sunita });
     expect(res.statusCode).toBe(200);
     const body = res.json();
     expect(body.eligible.map((e: { slug: string }) => e.slug).sort()).toEqual(
-      ["apy", "mh-ladki-bahin", "mh-sanjay-gandhi-niradhar", "pmjjby", "pmsby"].sort(),
+      [
+        "apy",
+        "e-shram",
+        "mh-ladki-bahin",
+        "mh-sanjay-gandhi-niradhar",
+        "nfbs",
+        "pm-sym",
+        "pm-vishwakarma",
+        "pmjdy",
+        "pmjjby",
+        "pmsby",
+        "pmuy",
+      ].sort(),
     );
     const ladki = body.eligible.find((e: { slug: string }) => e.slug === "mh-ladki-bahin");
     expect(ladki.reasons).toContain("with an annual family income of less than ₹2.5 lakh");

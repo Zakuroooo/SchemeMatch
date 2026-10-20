@@ -1,0 +1,26 @@
+# Source copy for wb-migrant-worker
+# official_url: https://wb.gov.in/government-schemes-details-west-bengal-migrant-worker-welfare-scheme.aspx
+# retrieved: 2026-10-20 (direct fetch, HTML converted to text)
+# sha256 of the text below: d4b07e6ec8a2da38a78549a4c139b5d5a8c0514b5c584c512e2c04635369719d
+# This is a copy of public government text, kept so quotes can be checked offline.
+
+The West Bengal Migrant Worker Welfare Scheme provides financial assistance in case of death and disability to migrant workers from the state working in other regions.
+Benefits Offer Under the Scheme
+Financial Assistance in case of death
+50,000 to nominee for natural death
+2,00,000 to nominee for accidental death
+25,000 for Repatriation of dead body
+If death occurs out side the states, General benefit Rs 3000
+Disability Benefit: Rs 50,000 to Rs 1 lakh
+Eligibility
+Must be a resident of West Bengal
+Between 14 and 60 years of age
+Must be employed or likely to be employed outside West Bengal (in other states/UTs or abroad).
+Application Details:
+Login to "Karmasathi Parijayee Shramik Portal"
+Register using mobile number (OTP) and fill personal, address, and employment details
+Upload required documents and submit to generate MWIN (ID number)
+Log into the "Karmasathi Parijayee Shramik Portal"
+Fill claim details, upload supporting documents, and submit application online
+Last updated on: Friday, 26th June, 2026
+Information Source: Department of Information & Cultural Affairs(I&CA), Government of West Bengal

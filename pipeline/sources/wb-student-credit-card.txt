@@ -1,0 +1,39 @@
+# Source copy for wb-student-credit-card
+# official_url: https://wb.gov.in/government-schemes-details-west-bengal-student-credit-card-scheme.aspx
+# retrieved: 2026-10-20 (direct fetch, HTML converted to text)
+# sha256 of the text below: 4630880363e44425dc7b7b90ec87edcd8fcea8f55355b567f8f8a8d84ce110ee
+# This is a copy of public government text, kept so quotes can be checked offline.
+
+The West Bengal Student Credit Card Scheme provides students with collateral-free loans of up to 10 lakh to support education from class X to post Doctorate in India or abroad. The scheme offers low interest rates and flexible repayment options, enabling financially disadvantaged students to pursue academic and professional courses.
+Benefits Offer Under the Scheme
+Collateral-free loan up to Rs 10 lakh for education from class X to Post Doctorate
+Low interest rate (~4% simple interest per annum)
+1% interest concession on timely full repayment inclusive of moratorium period
+Repayment tenure of up to 15 years
+Moratorium period: course duration+ 1year
+No margin money required for loans up to Rs 4 lakh
+Covers fees, hostel, books, laptop, and study materials expenses
+Online application process for easy access and transparency
+State government guarantee/support for wider accessibility
+Eligibility
+Must be a resident of West Bengal for ten years or more
+Must be 40 years or below at the time of application
+Must be enrolled in a recognized educational institution (India or abroad)
+Should have completed at least Class IX (Madhyamik or equivalent)
+Must have secured admission in an eligible course (school, UG, PG, or professional)
+Co-borrower required (usually a parent/guardian)
+Applicant or Co-borrower must not be in default of any bank loan
+Only one student credit card per student is allowed
+Must apply through the official online portal with valid documents
+Application Details
+Register on the official WBSCC online portal and receive an Application ID
+Fill in the application form with personal,academic,and course details
+Upload required documents (ID, admission proof, address, etc.)
+Submit the application
+Application is verified by institution and Higher Education Department
+Upon approval, the application is forwarded to the bank
+Bank conducts final verification and sanction of the loan
+Loan is disbursed to the student's account/institution
+Link
+Last updated on: Friday, 26th June, 2026
+Information Source: Department of Information & Cultural Affairs(I&CA), Government of West Bengal

@@ -1,0 +1,46 @@
+{
+  "scheme": "pm-sym",
+  "cases": [
+    {
+      "id": "eligible",
+      "why": "Aged 30",
+      "profile": {
+        "age": 30
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-18",
+      "why": "Lower edge",
+      "profile": {
+        "age": 18
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-40",
+      "why": "Upper edge, 'between 18 and 40' is inclusive",
+      "profile": {
+        "age": 40
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-41",
+      "why": "Above 40",
+      "profile": {
+        "age": 41
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "age-unknown",
+      "why": "Age not asked",
+      "profile": {
+        "gender": "female"
+      },
+      "expected": "UNKNOWN",
+      "ask_next": "age"
+    }
+  ]
+}

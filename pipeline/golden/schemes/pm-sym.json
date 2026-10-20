@@ -1,0 +1,65 @@
+{
+  "slug": "pm-sym",
+  "level": "central",
+  "state": null,
+  "category": "pension",
+  "official_url": "https://wb.gov.in/government-schemes-details-pradhan-mantri-shram-yogi-mandhan.aspx",
+  "source_file": "sources/pm-sym.txt",
+  "eligibility": {
+    "all": [
+      {
+        "field": "age",
+        "op": "between",
+        "value": [18, 40],
+        "source_quote": "Age should be between18 and 40 years at the time of enrollment."
+      }
+    ]
+  },
+  "unmodelled": [
+    {
+      "text": "Must be an unorganised-sector worker (street vendor, construction worker, domestic worker, etc.)",
+      "source_quote": "Must be an unorganized sector worker (e.g., street vendors, construction workers, domestic workers, etc.)."
+    },
+    {
+      "text": "Own monthly income must be Rs 15,000 or less (the app asks family income per year, so this is not checked)",
+      "source_quote": "Monthly income should be Rs 15,000 or less."
+    },
+    {
+      "text": "Must have an Aadhaar number linked to a mobile number",
+      "source_quote": "Must possess a valid Aadhaar number linked with a mobile number."
+    },
+    {
+      "text": "Must have a savings bank or Jan Dhan account",
+      "source_quote": "Should have anactive savings bank account or Jan Ohan account."
+    },
+    {
+      "text": "Must not be covered by EPFO, ESIC or NPS",
+      "source_quote": "Must not be covered under any other statutory social security scheme (such as EPF0, ESIC,orNPS)."
+    },
+    {
+      "text": "Must not pay income tax",
+      "source_quote": "Must not be an income taxpayer."
+    }
+  ],
+  "ambiguous": [
+    "Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines"
+  ],
+  "documents": [],
+  "text": {
+    "en": {
+      "title": "Pradhan Mantri Shram Yogi Maandhan",
+      "benefit": "Pension of Rs 3,000 a month from age 60; the government matches your monthly contribution (Rs 55 to Rs 200).",
+      "how_to_apply": "Enrol at a Common Service Centre or online with Aadhaar and bank details; set up the monthly auto-debit."
+    }
+  },
+  "coverage": {
+    "start": "\nEligibility:\n",
+    "end": "Application Details:",
+    "bullet": ""
+  },
+  "drafted_by": "claude",
+  "meaning_checked_by": "claude",
+  "meaning_checked_at": "2026-10-20",
+  "reviewed_by": null,
+  "reviewed_at": null
+}

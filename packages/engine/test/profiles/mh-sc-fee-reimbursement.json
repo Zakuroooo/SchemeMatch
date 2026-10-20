@@ -1,0 +1,60 @@
+{
+  "scheme": "mh-sc-fee-reimbursement",
+  "cases": [
+    {
+      "id": "eligible",
+      "why": "SC undergraduate, income 4 lakh",
+      "profile": {
+        "caste_category": "SC",
+        "is_student": true,
+        "education_level": "undergraduate",
+        "annual_family_income": 400000
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "income-2.5-lakh",
+      "why": "'more than ₹2.50 lakh' excludes exactly 2.5 lakh",
+      "profile": {
+        "caste_category": "SC",
+        "is_student": true,
+        "education_level": "undergraduate",
+        "annual_family_income": 250000
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "income-just-above",
+      "why": "Just above 2.5 lakh",
+      "profile": {
+        "caste_category": "SC",
+        "is_student": true,
+        "education_level": "undergraduate",
+        "annual_family_income": 250001
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "not-student",
+      "why": "Not studying",
+      "profile": {
+        "caste_category": "SC",
+        "is_student": false,
+        "education_level": "undergraduate",
+        "annual_family_income": 400000
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "income-unknown",
+      "why": "Income not asked yet",
+      "profile": {
+        "caste_category": "SC",
+        "is_student": true,
+        "education_level": "undergraduate"
+      },
+      "expected": "UNKNOWN",
+      "ask_next": "annual_family_income"
+    }
+  ]
+}

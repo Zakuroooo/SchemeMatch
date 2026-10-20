@@ -1,0 +1,50 @@
+{
+  "scheme": "sukanya-samriddhi",
+  "cases": [
+    {
+      "id": "eligible",
+      "why": "Girl aged 4",
+      "profile": {
+        "gender": "female",
+        "age": 4
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-9",
+      "why": "Still below 10",
+      "profile": {
+        "gender": "female",
+        "age": 9
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-10",
+      "why": "'below 10' excludes 10",
+      "profile": {
+        "gender": "female",
+        "age": 10
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "boy",
+      "why": "Only for girls",
+      "profile": {
+        "gender": "male",
+        "age": 4
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "age-unknown",
+      "why": "Age not asked",
+      "profile": {
+        "gender": "female"
+      },
+      "expected": "UNKNOWN",
+      "ask_next": "age"
+    }
+  ]
+}

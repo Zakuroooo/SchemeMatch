@@ -1,0 +1,58 @@
+{
+  "slug": "wb-bmssy",
+  "level": "state",
+  "state": "WB",
+  "category": "livelihood",
+  "official_url": "https://wb.gov.in/government-schemes-details-bina-mulya-samajik-suraksha-yojana.aspx",
+  "source_file": "sources/wb-bmssy.txt",
+  "eligibility": {
+    "all": [
+      {
+        "field": "age",
+        "op": "between",
+        "value": [18, 60],
+        "source_quote": "Age: 18 to 60 years"
+      }
+    ]
+  },
+  "unmodelled": [
+    {
+      "text": "Must be a resident of West Bengal",
+      "source_quote": "Residency: Must be a resident of West Bengal"
+    },
+    {
+      "text": "Must be an unorganised-sector worker, including self-employed",
+      "source_quote": "Occupation: Must be an unorganized sector worker (including self-employed)"
+    },
+    {
+      "text": "The worker's occupation must be on the scheme's list (the list is not on the page)",
+      "source_quote": "Category coverage: Worker should fall under list"
+    },
+    {
+      "text": "Family income up to Rs 6,500 a month, except for construction and transport workers",
+      "source_quote": "Family income within Rs 6500 per month (except construction and transport workers)"
+    }
+  ],
+  "ambiguous": [
+    "Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines",
+    "The income limit has an exception by occupation, so it is not modelled"
+  ],
+  "documents": [],
+  "text": {
+    "en": {
+      "title": "Bina Mulya Samajik Suraksha Yojana",
+      "benefit": "Free cover paid by the state: Rs 50,000 on natural death, up to Rs 2 lakh on accidental death or disability, and provident fund contribution.",
+      "how_to_apply": "Apply on the BM-SSY portal or at a Regional Labour Office or Labour Welfare Facilitation Centre in your block or municipality."
+    }
+  },
+  "coverage": {
+    "start": "\nEligibility:\n",
+    "end": "Application Details:",
+    "bullet": ""
+  },
+  "drafted_by": "claude",
+  "meaning_checked_by": "claude",
+  "meaning_checked_at": "2026-10-20",
+  "reviewed_by": null,
+  "reviewed_at": null
+}

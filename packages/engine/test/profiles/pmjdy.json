@@ -1,0 +1,38 @@
+{
+  "scheme": "pmjdy",
+  "cases": [
+    {
+      "id": "eligible",
+      "why": "Aged 25",
+      "profile": {
+        "age": 25
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-10",
+      "why": "'Minimum age 10'",
+      "profile": {
+        "age": 10
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-9",
+      "why": "Below 10",
+      "profile": {
+        "age": 9
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "age-unknown",
+      "why": "Age not asked",
+      "profile": {
+        "gender": "male"
+      },
+      "expected": "UNKNOWN",
+      "ask_next": "age"
+    }
+  ]
+}

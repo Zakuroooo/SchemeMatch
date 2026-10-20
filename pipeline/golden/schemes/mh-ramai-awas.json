@@ -1,0 +1,67 @@
+{
+  "slug": "mh-ramai-awas",
+  "level": "state",
+  "state": "MH",
+  "category": "housing",
+  "official_url": "https://sjsa.maharashtra.gov.in/en/scheme/ramai-housing-scheme-rural-and-urban/",
+  "source_file": "sources/mh-ramai-awas.txt",
+  "eligibility": {
+    "all": [
+      {
+        "field": "caste_category",
+        "op": "eq",
+        "value": "SC",
+        "source_quote": "The applicant must belong to the Scheduled Castes/Neo-Buddhist category."
+      }
+    ]
+  },
+  "unmodelled": [
+    {
+      "text": "Must have lived in Maharashtra for at least 15 years",
+      "source_quote": "The applicant must have resided in Maharashtra for at least 15 years."
+    },
+    {
+      "text": "Must own land or a temporary house",
+      "source_quote": "The beneficiary must own land/a temporary house."
+    },
+    {
+      "text": "Must not have received a house under any other housing scheme",
+      "source_quote": "The beneficiary should not have availed of any other housing scheme previously."
+    },
+    {
+      "text": "Must not be on the SECC-2011 priority list (those families are covered by other housing schemes)",
+      "source_quote": "The beneficiary should be outside the priority list criteria of the Social, Economic, and Caste Census-2011 (SECC-2011)."
+    },
+    {
+      "text": "Protected hutment dwellers on government land (as of 1.01.1995) need not submit the 7/12 land extract",
+      "source_quote": "the requirement to submit 7/12 extract has been relaxed"
+    },
+    {
+      "text": "Family income limit depends on the area: Rs 1.20 lakh in rural and hill/Naxal-affected areas, Rs 3.00 lakh in municipal councils and corporations",
+      "source_quote": "Income Limit (in lakhs)"
+    }
+  ],
+  "ambiguous": [
+    "Neo-Buddhist applicants are eligible too, but the app has no Neo-Buddhist category, so they must answer SC (Buddhists are in the SC order since 1990; this page does not say so)",
+    "The income limit depends on rural or urban area, and the app has no such field, so it is not modelled",
+    "The table does not say whether the income limit is per year; read as annual family income"
+  ],
+  "documents": [],
+  "text": {
+    "en": {
+      "title": "Ramai Awas Yojana (Rural and Urban)",
+      "benefit": "Help to build a house: Rs 1.32 lakh rural, Rs 1.42 lakh hill/Naxal areas, Rs 2.50 lakh urban (beneficiary pays 7.5% to 10% in urban areas).",
+      "how_to_apply": "Contact the Assistant Commissioner of Social Welfare of your district."
+    }
+  },
+  "coverage": {
+    "start": "**Key Conditions of the Scheme:**",
+    "end": "**Benefits of the Scheme:**",
+    "bullet": "*   "
+  },
+  "drafted_by": "claude",
+  "meaning_checked_by": "claude",
+  "meaning_checked_at": "2026-10-20",
+  "reviewed_by": null,
+  "reviewed_at": null
+}

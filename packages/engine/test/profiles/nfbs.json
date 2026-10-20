@@ -1,0 +1,30 @@
+{
+  "scheme": "nfbs",
+  "cases": [
+    {
+      "id": "eligible",
+      "why": "BPL family",
+      "profile": {
+        "has_bpl_card": true
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "not-bpl",
+      "why": "Not on the BPL list",
+      "profile": {
+        "has_bpl_card": false
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "bpl-unknown",
+      "why": "BPL not asked yet",
+      "profile": {
+        "age": 40
+      },
+      "expected": "UNKNOWN",
+      "ask_next": "has_bpl_card"
+    }
+  ]
+}

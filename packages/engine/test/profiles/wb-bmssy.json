@@ -1,0 +1,46 @@
+{
+  "scheme": "wb-bmssy",
+  "cases": [
+    {
+      "id": "eligible",
+      "why": "Aged 35",
+      "profile": {
+        "age": 35
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-60",
+      "why": "Upper edge",
+      "profile": {
+        "age": 60
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-61",
+      "why": "Above 60",
+      "profile": {
+        "age": 61
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "age-17",
+      "why": "Below 18",
+      "profile": {
+        "age": 17
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "age-unknown",
+      "why": "Age not asked",
+      "profile": {
+        "gender": "male"
+      },
+      "expected": "UNKNOWN",
+      "ask_next": "age"
+    }
+  ]
+}

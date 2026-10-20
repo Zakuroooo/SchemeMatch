@@ -1,0 +1,62 @@
+{
+  "slug": "pmjdy",
+  "level": "central",
+  "state": null,
+  "category": "banking",
+  "official_url": "https://wb.gov.in/government-schemes-details-pradhan-mantri-jan-dhan-yojana.aspx",
+  "source_file": "sources/pmjdy.txt",
+  "eligibility": {
+    "all": [
+      {
+        "field": "age",
+        "op": "gte",
+        "value": 10,
+        "source_quote": "Minimum age:10 years (minors can open accounts with a guardian)"
+      }
+    ]
+  },
+  "unmodelled": [
+    {
+      "text": "Must be an Indian citizen",
+      "source_quote": "Indian Citizen"
+    },
+    {
+      "text": "Must not already have a basic savings bank account (an existing one can be converted)",
+      "source_quote": "Must not already have a basic savings bank account (or can convert an existing account into a PMJDVaccount)"
+    },
+    {
+      "text": "Needs basic KYC documents (Aadhaar, voter ID, PAN, etc.)",
+      "source_quote": "Requires basic KYC documents (Aadhaar card, voter ID, PAN, etc.)"
+    },
+    {
+      "text": "Without KYC documents, a Small Account with limits can be opened",
+      "source_quote": "If KYC documents are not available, a Small Account can be opened with simplified documentation (subject to certain limits)"
+    },
+    {
+      "text": "Priority to unbanked people, especially in rural areas",
+      "source_quote": "Priority given to unbanked and financially excluded individuals, especially in rural areas"
+    }
+  ],
+  "ambiguous": [
+    "Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines",
+    "Minors aged 10 and above open the account with a guardian"
+  ],
+  "documents": [],
+  "text": {
+    "en": {
+      "title": "Pradhan Mantri Jan Dhan Yojana",
+      "benefit": "Zero-balance savings account with a RuPay card, accident cover of about Rs 2 lakh and an overdraft of up to Rs 10,000 for eligible holders.",
+      "how_to_apply": "Visit a bank branch or Bank Mitra outlet, fill the PMJDY form and submit KYC documents (or open a Small Account)."
+    }
+  },
+  "coverage": {
+    "start": "\nEligibility\n",
+    "end": "Application Details",
+    "bullet": ""
+  },
+  "drafted_by": "claude",
+  "meaning_checked_by": "claude",
+  "meaning_checked_at": "2026-10-20",
+  "reviewed_by": null,
+  "reviewed_at": null
+}

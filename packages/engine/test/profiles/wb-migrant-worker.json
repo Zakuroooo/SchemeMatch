@@ -1,0 +1,46 @@
+{
+  "scheme": "wb-migrant-worker",
+  "cases": [
+    {
+      "id": "eligible",
+      "why": "Aged 25",
+      "profile": {
+        "age": 25
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-14",
+      "why": "Lower edge",
+      "profile": {
+        "age": 14
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-13",
+      "why": "Below 14",
+      "profile": {
+        "age": 13
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "age-61",
+      "why": "Above 60",
+      "profile": {
+        "age": 61
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "age-unknown",
+      "why": "Age not asked",
+      "profile": {
+        "gender": "male"
+      },
+      "expected": "UNKNOWN",
+      "ask_next": "age"
+    }
+  ]
+}

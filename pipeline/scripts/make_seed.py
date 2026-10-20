@@ -56,7 +56,7 @@ def main():
                 f"update public.schemes set current_rule_version_id = {lit(str(rid))} where id = {lit(str(sid))};", ""]
     out.append("commit;")
     OUT.write_text("\n".join(out) + "\n")
-    assert len(files) == 15, f"expected 15 golden schemes, found {len(files)}"
+    assert len(files) == 30, f"expected 30 golden schemes, found {len(files)}"
     print(f"wrote {OUT.relative_to(ROOT)} with {len(files)} schemes")
 
 

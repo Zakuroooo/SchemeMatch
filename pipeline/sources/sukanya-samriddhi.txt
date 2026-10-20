@@ -1,0 +1,53 @@
+# Source copy for sukanya-samriddhi
+# official_url: https://wb.gov.in/government-schemes-details-sukanya-samriddhi-yojana.aspx
+# retrieved: 2026-10-20 (direct fetch, HTML converted to text)
+# sha256 of the text below: b77f7e9bd7f774f86cfd8be2d49831e42533c2eccaff5ee159752f1334949547
+# This is a copy of public government text, kept so quotes can be checked offline.
+
+Sukanya Samriddhi Yojana is a Government of India small savings scheme launched under the Beti Bachao, Beti Padhao initiative to encourage long- term savings for the education and marriage expenses of a girl child. The account can be opened in the name of a girl child by her parent or legal guardian. It offers a government-backed interest rate, tax benefits and long- term savings discipline. The scheme is available through post offices and authorised banks across India.
+Benefits Offered Under the Scheme
+The key benefits offered under the scheme include:
+Government-backed savings: The scheme is backed by the Government of India and is considered a secure long-term savings option.
+Attractive interest rate: The account earns interest at the rate notified by the Government from time to time. The current rate is 8.2% per annum, compounded annually.
+Low minimum deposit: The account can be opened with a minimum deposit of Rs 250.
+Annual deposit flexibility: Deposits can be made any number of times in a financial year, subject to the minimum and maximum limits.
+Maximum deposit limit: Up to 1.5 lakh can be deposited in one financial year.
+Taxbenefit: Deposits qualify for deduction under Section 80C of the Income Tax Act. Tax-free interest and maturity amount: Interest earned and maturity proceeds are exempt from income tax as per applicable provisions.
+Long-term corpus creation: The account matures after 21 years from the date of opening or at the time of marriage of the girl child after she attains 18 years of age, subject to conditions.
+Partial withdrawall for education: Partial withdrawal is allowed for higher education expenses of the account holder as per scheme rules.
+Transfer facility: The account can be transferred from one post office or bank to another anywhere in India.
+Eligibility
+The scheme is meant for girl children and their parents or legal guardians. General eligibility includes:
+The account can be opened in the name of a girl child.
+The girl child should be below 10 years of age at the time of account opening.
+The account is opened and operated by the parent or legal guardian until the girl child becomes eligible to operate it herself.
+Only one account can be opened in the name of one girl child.
+A family can generally open accounts for a maximum of two girl children.
+Accounts for more than two girl children may be allowed in special cases such as twins or triplets, subject to required documentation.
+The applicant must submit the birth certificate of the girl child and identity/address proof of the guardian.
+Application Details: Where and How to Apply, Process and Link
+Where to apply:
+Parents or legal guardians can open a Sukanya Samriddhi account at:
+Any post office offering small savings schemes
+Authorised public sector banks
+Authorised private sector banks
+Bank branches or post office counters providing Sukanya Samriddhi Account services
+How to apply/process:
+The parent or legal guardian should visit the nearest post office or authorised bank branch.
+The applicant should ask for the Sukanya Samriddhi Account opening form.
+The form should be filled with details of the girl child, parent or guardian, address, nominee details and initial deposit amount.
+Required documents should be submitted, including the girl child's birth certificate, guardian's identity proof, address proof, photograph and other KYC documents.
+The account can be opened with a minimum initial deposit of Rs 250.
+After verification of documents and acceptance of the deposit, the account is opened in the name of the girl child.
+A passbook or account details are issued by the post office or bank.
+Deposits can be made periodically through cash, cheque, demand draft, online banking or other permitted modes, depending on the bank or post office facility.
+Deposits are required for up to 15 years from the date of account opening.
+The account continues to earn interest until maturity as per scheme rules.
+Important Links:
+National Savings Institute: https://www.nsiindia.gov.in/
+India Post Small Savings Schemes: https://www.indiapost.gov.in/
+Ministry of Finance: https://finmin.gov.in/
+Department of Economic Affairs: https://dea.gov.in/
+myScheme portal: https://www.myscheme.gov.in/
+Last updated on: Friday, 26th June, 2026
+Information Source: Department of Information & Cultural Affairs(I&CA), Government of West Bengal

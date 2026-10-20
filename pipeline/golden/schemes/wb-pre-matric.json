@@ -1,0 +1,85 @@
+{
+  "slug": "wb-pre-matric",
+  "level": "state",
+  "state": "WB",
+  "category": "education",
+  "official_url": "https://wb.gov.in/government-schemes-details-pre-matric-scholarship-for-sc-st-obc-students.aspx",
+  "source_file": "sources/wb-pre-matric.txt",
+  "eligibility": {
+    "all": [
+      {
+        "field": "caste_category",
+        "op": "in",
+        "value": ["SC", "ST", "OBC"],
+        "source_quote": "Must belong to SC/ST/OBC community and possess a valid caste certificate."
+      },
+      {
+        "any": [
+          {
+            "field": "caste_category",
+            "op": "eq",
+            "value": "OBC",
+            "source_quote": "varies slightly for OBC depending on scheme/state"
+          },
+          {
+            "field": "annual_family_income",
+            "op": "lte",
+            "value": 250000,
+            "source_quote": "Rs 2.5 lakh for SC/ST students"
+          }
+        ]
+      },
+      {
+        "field": "is_student",
+        "op": "eq",
+        "value": true,
+        "source_quote": "Must be a regular/full-time student enrolled in school."
+      }
+    ]
+  },
+  "unmodelled": [
+    {
+      "text": "Must study in a recognised school; the class range is generally 9 to 10, and 1 to 10 in some variants",
+      "source_quote": "Studying in a recognized school (generally Class 9 - 10 for SC/ST/OBC schemes;"
+    },
+    {
+      "text": "OBC students have their own income limit, which the page does not give",
+      "source_quote": "Annual family income limit should not exceed: Rs 2.5 lakh for SC/ST students (varies slightly for OBC depending on scheme/state)."
+    },
+    {
+      "text": "Renewals need a pass in the previous exam",
+      "source_quote": "Progression requirement: Students should have passed the previous examination (for renewal cases)."
+    },
+    {
+      "text": "Must not get another scholarship for the same purpose",
+      "source_quote": "Only one scholarship at a time: Student should not be availing another scholarship for the same purpose."
+    },
+    {
+      "text": "Must be domiciled in West Bengal",
+      "source_quote": "Domicile requirement: Must belong to the state/UT from where applying."
+    }
+  ],
+  "ambiguous": [
+    "Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines",
+    "The class range is not fixed on the page (Class 9-10 generally, Class 1-10 in some variants), so it is not modelled",
+    "The OBC income limit is not stated, so OBC students are not income-checked here"
+  ],
+  "documents": [],
+  "text": {
+    "en": {
+      "title": "Pre-Matric Scholarship for SC, ST and OBC Students (West Bengal)",
+      "benefit": "Monthly maintenance allowance, tuition and compulsory fees, and extra help for hostel students and students with disabilities.",
+      "how_to_apply": "Register on oasis.wb.gov.in (OTR ID), apply online with caste and income certificates, and the school forwards it for verification."
+    }
+  },
+  "coverage": {
+    "start": "\nEligibility\n",
+    "end": "Application Details",
+    "bullet": ""
+  },
+  "drafted_by": "claude",
+  "meaning_checked_by": "claude",
+  "meaning_checked_at": "2026-10-20",
+  "reviewed_by": null,
+  "reviewed_at": null
+}

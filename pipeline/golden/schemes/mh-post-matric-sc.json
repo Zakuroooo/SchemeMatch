@@ -1,0 +1,65 @@
+{
+  "slug": "mh-post-matric-sc",
+  "level": "state",
+  "state": "MH",
+  "category": "education",
+  "official_url": "https://sjsa.maharashtra.gov.in/en/scheme/post-matric-scholarship-by-the-government-of-india/",
+  "source_file": "sources/mh-post-matric-sc.txt",
+  "eligibility": {
+    "all": [
+      {
+        "field": "caste_category",
+        "op": "eq",
+        "value": "SC",
+        "source_quote": "The student must belong to Scheduled Castes (SC) or Neo-Buddhist categories."
+      },
+      {
+        "field": "annual_family_income",
+        "op": "lte",
+        "value": 250000,
+        "source_quote": "The annual income of the student’s parents should be ₹2.5 lakh or less."
+      },
+      {
+        "field": "is_student",
+        "op": "eq",
+        "value": true,
+        "source_quote": "The student should be pursuing education after the matriculation examination."
+      },
+      {
+        "field": "education_level",
+        "op": "in",
+        "value": ["class_11", "class_12", "diploma", "undergraduate", "postgraduate"],
+        "source_quote": "The student should be pursuing education after the matriculation examination."
+      }
+    ]
+  },
+  "unmodelled": [
+    {
+      "text": "Must be a resident of Maharashtra (the app checks the state; proof is still needed)",
+      "source_quote": "The student should be a resident of Maharashtra."
+    }
+  ],
+  "ambiguous": [
+    "Neo-Buddhist applicants are eligible too, but the app has no Neo-Buddhist category, so they must answer SC (Buddhists are in the SC order since 1990; this page does not say so)",
+    "'After the matriculation examination' is mapped to class 11, class 12, diploma, undergraduate and postgraduate",
+    "The income limit is for the student's parents; the app asks annual family income"
+  ],
+  "documents": [],
+  "text": {
+    "en": {
+      "title": "Post-Matric Scholarship for SC Students (Maharashtra)",
+      "benefit": "Maintenance allowance (Rs 250 to Rs 700 a month; Rs 400 to Rs 1,350 for hostel students) plus tuition, exam and other approved fees.",
+      "how_to_apply": "Fill the online form on mahadbtmahait.gov.in; contact your college or the district Assistant Commissioner of Social Welfare."
+    }
+  },
+  "coverage": {
+    "start": "**Eligibility Criteria:**",
+    "end": "**Nature of Benefits",
+    "bullet": "*   "
+  },
+  "drafted_by": "claude",
+  "meaning_checked_by": "claude",
+  "meaning_checked_at": "2026-10-20",
+  "reviewed_by": null,
+  "reviewed_at": null
+}

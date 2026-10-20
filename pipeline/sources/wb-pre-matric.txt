@@ -1,0 +1,34 @@
+# Source copy for wb-pre-matric
+# official_url: https://wb.gov.in/government-schemes-details-pre-matric-scholarship-for-sc-st-obc-students.aspx
+# retrieved: 2026-10-20 (direct fetch, HTML converted to text)
+# sha256 of the text below: 84a96e570cd544bea06c72b35e02e45a12b0c91ba0461737ba98794ff969ebb4
+# This is a copy of public government text, kept so quotes can be checked offline.
+
+The Pre-Matric Scholarship for SC, ST, and OBC students provides financial assistance to students from disadvantaged communities studying at the school level, aiming to reduce dropouts and promote education. It covers expenses such as tuition fees, maintenance allowances, and other educational costs to support students in continuing their studies before matriculation.
+Benefits Offer Under the Scheme
+Maintenance allowance to cover daily expenses (monthly stipend for students).
+Reimbursement of tuition fees and other academic charges (as applicable).
+Book allowance or study material support in some cases.
+Additional support for hostellers, including higher maintenance allowance.
+Financial aid for compulsory non-refundable fees (e.g., exam fees, admission fees).
+Support for students with disabilities (extra allowances where applicable).
+The exact amount differs by state, category (SC/ST/OBC), and component of the scheme, as it is implemented by state governments.
+Eligibility
+Must belong to SC/ST/OBC community and possess a valid caste certificate.
+Studying in a recognized school (generally Class 9 - 10 for SC/ST/OBC schemes; Class 1â€“10 in some variants).
+Annual family income limit should not exceed: Rs 2.5 lakh for SC/ST students (varies slightly for OBC depending on scheme/state).
+Must be a regular/full-time student enrolled in school.
+Progression requirement: Students should have passed the previous examination (for renewal cases).
+Only one scholarship at a time: Student should not be availing another scholarship for the same purpose.
+Domicile requirement: Must belong to the state/UT from where applying.
+Application Details
+Register on oasis.wb.gov.in by creating a One-Time Registration (OTR) ID.
+Fill out the online application form with personal, academic, and bank details.
+Upload required documents, such as caste certificate, income certificate, Aadhaar, and previous marksheet.
+Submit the application and forward it for verification by the school/institution.
+Application verification is carried out by the school and then by state authorities.
+Track application status on the portal.
+Scholarship is disbursed directly to the studentâ€™s bank account through Direct Benefit Transfer (DBT).
+Link
+Last updated on: Friday, 26th June, 2026
+Information Source: Department of Information & Cultural Affairs(I&CA), Government of West Bengal

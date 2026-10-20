@@ -29,6 +29,25 @@ Saved copy: [sources/apy.txt](../sources/apy.txt) · Official page: <https://pfr
 
 Meaning checked by: claude (2026-10-19) · Human reviewer: not yet
 
+## e-Shram Card (`e-shram`)
+
+Saved copy: [sources/e-shram.txt](../sources/e-shram.txt) · Official page: <https://wb.gov.in/government-schemes-details-e-shram-card.aspx>
+
+- [ ] Age is between 16 and 59 (both included) — quote: "Age should be between 16 and 59 years."
+
+*Not modelled as rules (shown to users as "you must also confirm"):*
+- [ ] Must be an Indian citizen — quote: "Must be an Indian citizen."
+- [ ] Must work in the unorganised sector (construction, street vending, domestic work, migrant work, etc.) — quote: "Must be a worker in the unorganized sector (e.g., construction workers, street vendors, domestic workers, migrant workers, etc.)."
+- [ ] Must not be a member of EPFO, ESIC or government-funded NPS — quote: "Should not be a member of EPFO, ESIC, or NPS (government-funded)."
+- [ ] Must be self-employed, home-based or a wage worker in informal work — quote: "Should be a self-employed worker, home-based worker, or wage worker in informal employment."
+- [ ] Meant mainly for low-income workers (no strict limit is stated) — quote: "Generally intended for workers with lower or unstable income (typically below Rs 15,000/month for certain linked schemes)."
+
+*Flagged as unclear (excluded from accuracy):*
+- Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines
+- The income line is guidance ('generally intended'), not a firm limit
+
+Meaning checked by: claude (2026-10-20) · Human reviewer: not yet
+
 ## Indira Gandhi National Disability Pension Scheme (`igndps`)
 
 Saved copy: [sources/igndps.txt](../sources/igndps.txt) · Official page: <https://sjsa.maharashtra.gov.in/en/scheme/indira-gandhi-national-disability-pension-scheme/>
@@ -85,6 +104,47 @@ Saved copy: [sources/mh-ladki-bahin.txt](../sources/mh-ladki-bahin.txt) · Offic
 
 Meaning checked by: claude (2026-10-19) · Human reviewer: not yet
 
+## Post-Matric Scholarship for SC Students (Maharashtra) (`mh-post-matric-sc`)
+
+Saved copy: [sources/mh-post-matric-sc.txt](../sources/mh-post-matric-sc.txt) · Official page: <https://sjsa.maharashtra.gov.in/en/scheme/post-matric-scholarship-by-the-government-of-india/>
+
+- **ALL of these must be true:**
+- [ ] Caste category is SC — quote: "The student must belong to Scheduled Castes (SC) or Neo-Buddhist categories."
+- [ ] Annual family income (₹) is at most ₹250,000 — quote: "The annual income of the student’s parents should be ₹2.5 lakh or less."
+- [ ] Is a student: yes — quote: "The student should be pursuing education after the matriculation examination."
+- [ ] Education is one of class_11, class_12, diploma, undergraduate, postgraduate — quote: "The student should be pursuing education after the matriculation examination."
+
+*Not modelled as rules (shown to users as "you must also confirm"):*
+- [ ] Must be a resident of Maharashtra (the app checks the state; proof is still needed) — quote: "The student should be a resident of Maharashtra."
+
+*Flagged as unclear (excluded from accuracy):*
+- Neo-Buddhist applicants are eligible too, but the app has no Neo-Buddhist category, so they must answer SC (Buddhists are in the SC order since 1990; this page does not say so)
+- 'After the matriculation examination' is mapped to class 11, class 12, diploma, undergraduate and postgraduate
+- The income limit is for the student's parents; the app asks annual family income
+
+Meaning checked by: claude (2026-10-20) · Human reviewer: not yet
+
+## Ramai Awas Yojana (Rural and Urban) (`mh-ramai-awas`)
+
+Saved copy: [sources/mh-ramai-awas.txt](../sources/mh-ramai-awas.txt) · Official page: <https://sjsa.maharashtra.gov.in/en/scheme/ramai-housing-scheme-rural-and-urban/>
+
+- [ ] Caste category is SC — quote: "The applicant must belong to the Scheduled Castes/Neo-Buddhist category."
+
+*Not modelled as rules (shown to users as "you must also confirm"):*
+- [ ] Must have lived in Maharashtra for at least 15 years — quote: "The applicant must have resided in Maharashtra for at least 15 years."
+- [ ] Must own land or a temporary house — quote: "The beneficiary must own land/a temporary house."
+- [ ] Must not have received a house under any other housing scheme — quote: "The beneficiary should not have availed of any other housing scheme previously."
+- [ ] Must not be on the SECC-2011 priority list (those families are covered by other housing schemes) — quote: "The beneficiary should be outside the priority list criteria of the Social, Economic, and Caste Census-2011 (SECC-2011)."
+- [ ] Protected hutment dwellers on government land (as of 1.01.1995) need not submit the 7/12 land extract — quote: "the requirement to submit 7/12 extract has been relaxed"
+- [ ] Family income limit depends on the area: Rs 1.20 lakh in rural and hill/Naxal-affected areas, Rs 3.00 lakh in municipal councils and corporations — quote: "Income Limit (in lakhs)"
+
+*Flagged as unclear (excluded from accuracy):*
+- Neo-Buddhist applicants are eligible too, but the app has no Neo-Buddhist category, so they must answer SC (Buddhists are in the SC order since 1990; this page does not say so)
+- The income limit depends on rural or urban area, and the app has no such field, so it is not modelled
+- The table does not say whether the income limit is per year; read as annual family income
+
+Meaning checked by: claude (2026-10-20) · Human reviewer: not yet
+
 ## Sanjay Gandhi Niradhar Anudan Yojana (`mh-sanjay-gandhi-niradhar`)
 
 Saved copy: [sources/mh-sanjay-gandhi-niradhar.txt](../sources/mh-sanjay-gandhi-niradhar.txt) · Official page: <https://sjsa.maharashtra.gov.in/en/scheme/sanjay-gandhi-niradhar-anudan-yojana/>
@@ -123,6 +183,59 @@ Saved copy: [sources/mh-sanjay-gandhi-niradhar.txt](../sources/mh-sanjay-gandhi-
 
 Meaning checked by: claude (2026-10-19) · Human reviewer: not yet
 
+## Education and Exam Fee Reimbursement for SC Students (Maharashtra) (`mh-sc-fee-reimbursement`)
+
+Saved copy: [sources/mh-sc-fee-reimbursement.txt](../sources/mh-sc-fee-reimbursement.txt) · Official page: <https://sjsa.maharashtra.gov.in/en/scheme/reimbursement-of-education-fees-and-examination-fees-for-backward-class-students/>
+
+- **ALL of these must be true:**
+- [ ] Caste category is SC — quote: "The student must belong to Scheduled Castes (SC) or Neo-Buddhist categories."
+- [ ] Annual family income (₹) is more than ₹250,000 — quote: "The annual income of the student’s parents should be more than ₹2.50 lakh."
+- [ ] Is a student: yes — quote: "The student should be pursuing education after the matriculation examination."
+- [ ] Education is one of class_11, class_12, diploma, undergraduate, postgraduate — quote: "The student should be pursuing education after the matriculation examination."
+
+*Not modelled as rules (shown to users as "you must also confirm"):*
+- [ ] Must be a resident of Maharashtra (the app checks the state; proof is still needed) — quote: "The student should be a resident of Maharashtra."
+
+*Flagged as unclear (excluded from accuracy):*
+- Neo-Buddhist applicants are eligible too, but the app has no Neo-Buddhist category, so they must answer SC (Buddhists are in the SC order since 1990; this page does not say so)
+- 'After the matriculation examination' is mapped to class 11, class 12, diploma, undergraduate and postgraduate
+- The income limit is for the student's parents; the app asks annual family income
+
+Meaning checked by: claude (2026-10-20) · Human reviewer: not yet
+
+## Shravanbal Seva Rajya Nivruttivetan Yojana (`mh-shravanbal`)
+
+Saved copy: [sources/mh-shravanbal.txt](../sources/mh-shravanbal.txt) · Official page: <https://nashik.gov.in/scheme/shravan-bal-seva-rajya-nivruttivetan-yojana/>
+
+- **ALL of these must be true:**
+- [ ] Age is at least 65 — quote: "every destitute person of age 65 years & above"
+- **AT LEAST ONE of these must be true:**
+- &nbsp;&nbsp;&nbsp;&nbsp;**ALL of these must be true:**
+- [ ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Annual family income (₹) is less than ₹21,000 — quote: "whose annual family income is below Rs. 21000/-"
+- [ ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On the BPL list: no — quote: "whose name is not included in the BPL List"
+- [ ] &nbsp;&nbsp;&nbsp;&nbsp;On the BPL list: yes — quote: "belonging to BPL family"
+
+*Not modelled as rules (shown to users as "you must also confirm"):*
+- [ ] Must be destitute (niradhar) — quote: "every destitute person"
+
+*Flagged as unclear (excluded from accuracy):*
+- Source is the Nashik district page, last updated 15.01.2019; the Nagpur district page (updated 11.09.2025) says Rs 1,500 a month, so the amounts here may be out of date
+- 'Name not included in the BPL List' is modelled as not having a BPL card
+
+Meaning checked by: claude (2026-10-20) · Human reviewer: not yet
+
+## National Family Benefit Scheme (`nfbs`)
+
+Saved copy: [sources/nfbs.txt](../sources/nfbs.txt) · Official page: <https://sjsa.maharashtra.gov.in/en/scheme/national-family-benefit-scheme/>
+
+- [ ] On the BPL list: yes — quote: "death of a primary bread winner in the BPL Family"
+
+*Not modelled as rules (shown to users as "you must also confirm"):*
+- [ ] The family's primary breadwinner has died (accident or natural causes) — quote: "in case of accidental or natural death of a primary bread winner"
+- [ ] The breadwinner was aged 18 to 59 at the time of death — quote: "in the age group of 18 to 59 years"
+
+Meaning checked by: claude (2026-10-20) · Human reviewer: not yet
+
 ## PM Kisan Samman Nidhi (`pm-kisan`)
 
 Saved copy: [sources/pm-kisan.txt](../sources/pm-kisan.txt) · Official page: <https://pmkisan.gov.in/Documents/Revised%20Operational%20Guidelines%20-%20PM-Kisan%20Scheme.pdf>
@@ -140,6 +253,66 @@ Saved copy: [sources/pm-kisan.txt](../sources/pm-kisan.txt) · Official page: <h
 - [ ] Land must be owned as per state land records — quote: "who own cultivable land as per land records of the concerned State/UT"
 
 Meaning checked by: claude (2026-10-19) · Human reviewer: not yet
+
+## Pradhan Mantri Shram Yogi Maandhan (`pm-sym`)
+
+Saved copy: [sources/pm-sym.txt](../sources/pm-sym.txt) · Official page: <https://wb.gov.in/government-schemes-details-pradhan-mantri-shram-yogi-mandhan.aspx>
+
+- [ ] Age is between 18 and 40 (both included) — quote: "Age should be between18 and 40 years at the time of enrollment."
+
+*Not modelled as rules (shown to users as "you must also confirm"):*
+- [ ] Must be an unorganised-sector worker (street vendor, construction worker, domestic worker, etc.) — quote: "Must be an unorganized sector worker (e.g., street vendors, construction workers, domestic workers, etc.)."
+- [ ] Own monthly income must be Rs 15,000 or less (the app asks family income per year, so this is not checked) — quote: "Monthly income should be Rs 15,000 or less."
+- [ ] Must have an Aadhaar number linked to a mobile number — quote: "Must possess a valid Aadhaar number linked with a mobile number."
+- [ ] Must have a savings bank or Jan Dhan account — quote: "Should have anactive savings bank account or Jan Ohan account."
+- [ ] Must not be covered by EPFO, ESIC or NPS — quote: "Must not be covered under any other statutory social security scheme (such as EPF0, ESIC,orNPS)."
+- [ ] Must not pay income tax — quote: "Must not be an income taxpayer."
+
+*Flagged as unclear (excluded from accuracy):*
+- Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines
+
+Meaning checked by: claude (2026-10-20) · Human reviewer: not yet
+
+## PM Vishwakarma (`pm-vishwakarma`)
+
+Saved copy: [sources/pm-vishwakarma.txt](../sources/pm-vishwakarma.txt) · Official page: <https://wb.gov.in/government-schemes-details-pradhan-mantri-vishwakarma-yojana.aspx>
+
+- [ ] Age is at least 18 — quote: "Must be 18 years or above at the time of registration"
+
+*Not modelled as rules (shown to users as "you must also confirm"):*
+- [ ] Must be an artisan or craftsperson working with hands and tools in a notified trade — quote: "Applicant must be an artisan or craftsperson working with hands and tools in one of the notified traditional trades"
+- [ ] Must be self-employed in the unorganised sector — quote: "Should be self-employed in the unorganised sector"
+- [ ] Must work in one of the 18 family-based trades: carpenter, boat maker, armourer, blacksmith, hammer and toolkit maker, locksmith, sculptor, goldsmith, potter, cobbler, mason, basket/mat/broom/coir maker, doll and toy maker, barber, garland maker, washerman, tailor, fishing net maker — quote: "Must be actively engaged in one of the 18 specified family-based traditional trades"
+- [ ] Must be practising the trade when registering — quote: "Applicant should be practicing the trade at the time of registration"
+- [ ] No similar government self-employment loan (PMEGP, Mudra, SVANidhi) in the last 5 years — quote: "Should not have availed similar government self-employment loans (e.g., PMEGP, Mudra, SVANidhi) in the last 5 years"
+- [ ] Only one member per family — quote: "Only one member per family is eligible to avail benefits under the scheme"
+- [ ] Government employees and their families are not eligible — quote: "Government employees and their family members are not eligible"
+- [ ] The 18 trades as listed on the page — quote: "Carpenter, Boat maker, Armourer, Black smith, Hammer and Toolkit maker, Lock smith, Sculpture, Gold smith, potter, cobbler, Masions, Basket/Mat/Broom maker/Coir waiver, Doll and Toy maker, Barber, Garland maker, Washerman, Toiler, Fishing Net maker"
+
+*Flagged as unclear (excluded from accuracy):*
+- Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines
+- Trades are not modelled because the occupation field is free text
+
+Meaning checked by: claude (2026-10-20) · Human reviewer: not yet
+
+## Pradhan Mantri Jan Dhan Yojana (`pmjdy`)
+
+Saved copy: [sources/pmjdy.txt](../sources/pmjdy.txt) · Official page: <https://wb.gov.in/government-schemes-details-pradhan-mantri-jan-dhan-yojana.aspx>
+
+- [ ] Age is at least 10 — quote: "Minimum age:10 years (minors can open accounts with a guardian)"
+
+*Not modelled as rules (shown to users as "you must also confirm"):*
+- [ ] Must be an Indian citizen — quote: "Indian Citizen"
+- [ ] Must not already have a basic savings bank account (an existing one can be converted) — quote: "Must not already have a basic savings bank account (or can convert an existing account into a PMJDVaccount)"
+- [ ] Needs basic KYC documents (Aadhaar, voter ID, PAN, etc.) — quote: "Requires basic KYC documents (Aadhaar card, voter ID, PAN, etc.)"
+- [ ] Without KYC documents, a Small Account with limits can be opened — quote: "If KYC documents are not available, a Small Account can be opened with simplified documentation (subject to certain limits)"
+- [ ] Priority to unbanked people, especially in rural areas — quote: "Priority given to unbanked and financially excluded individuals, especially in rural areas"
+
+*Flagged as unclear (excluded from accuracy):*
+- Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines
+- Minors aged 10 and above open the account with a guardian
+
+Meaning checked by: claude (2026-10-20) · Human reviewer: not yet
 
 ## Pradhan Mantri Jeevan Jyoti Bima Yojana (`pmjjby`)
 
@@ -202,6 +375,45 @@ Saved copy: [sources/pmsby.txt](../sources/pmsby.txt) · Official page: <https:/
 
 Meaning checked by: claude (2026-10-19) · Human reviewer: not yet
 
+## Pradhan Mantri Ujjwala Yojana (`pmuy`)
+
+Saved copy: [sources/pmuy.txt](../sources/pmuy.txt) · Official page: <https://wb.gov.in/government-schemes-details-pradhan-mantri-ujjwala-yojana.aspx>
+
+- **ALL of these must be true:**
+- [ ] Gender is female — quote: "The applicant must be a woman who has attained18 years of age."
+- [ ] Age is at least 18 — quote: "The applicant must be a woman who has attained18 years of age."
+
+*Not modelled as rules (shown to users as "you must also confirm"):*
+- [ ] No other LPG connection from any oil company in the same household — quote: "There should be no other LPG connection from any Oil Marketing Company (OMC) within the same household."
+- [ ] Must be from a poor household, shown by a deprivation declaration in the set format — quote: "The adult woman must belong to a poor household based on submission of a deprivation declaration (as per prescribed format)."
+- [ ] Must have a valid Aadhaar number — quote: "Applicant must have a valid Aadhaar number (for identificationand subsidy transfer)."
+- [ ] Must have a bank account for DBT — quote: "Must have abank account to receive subsidy through Direct Benefit Transfer (DBT)."
+
+*Flagged as unclear (excluded from accuracy):*
+- Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines
+
+Meaning checked by: claude (2026-10-20) · Human reviewer: not yet
+
+## Sukanya Samriddhi Yojana (`sukanya-samriddhi`)
+
+Saved copy: [sources/sukanya-samriddhi.txt](../sources/sukanya-samriddhi.txt) · Official page: <https://wb.gov.in/government-schemes-details-sukanya-samriddhi-yojana.aspx>
+
+- **ALL of these must be true:**
+- [ ] Gender is female — quote: "The account can be opened in the name of a girl child."
+- [ ] Age is less than 10 — quote: "The girl child should be below 10 years of age at the time of account opening."
+
+*Not modelled as rules (shown to users as "you must also confirm"):*
+- [ ] A parent or legal guardian opens and runs the account until the girl can — quote: "The account is opened and operated by the parent or legal guardian until the girl child becomes eligible to operate it herself."
+- [ ] Only one account per girl — quote: "Only one account can be opened in the name of one girl child."
+- [ ] At most two girls per family — quote: "A family can generally open accounts for a maximum of two girl children."
+- [ ] More than two only in special cases such as twins or triplets — quote: "Accounts for more than two girl children may be allowed in special cases such as twins or triplets, subject to required documentation."
+- [ ] Needs the girl's birth certificate and the guardian's ID and address proof — quote: "The applicant must submit the birth certificate of the girl child and identity/address proof of the guardian."
+
+*Flagged as unclear (excluded from accuracy):*
+- Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines
+
+Meaning checked by: claude (2026-10-20) · Human reviewer: not yet
+
 ## Annapurna Yojana (`wb-annapurna`)
 
 Saved copy: [sources/wb-annapurna.txt](../sources/wb-annapurna.txt) · Official page: <https://wb.gov.in/government-schemes-details-annaapurna-yojana.aspx>
@@ -221,6 +433,24 @@ Saved copy: [sources/wb-annapurna.txt](../sources/wb-annapurna.txt) · Official 
 - Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines
 
 Meaning checked by: claude (2026-10-19) · Human reviewer: not yet
+
+## Bina Mulya Samajik Suraksha Yojana (`wb-bmssy`)
+
+Saved copy: [sources/wb-bmssy.txt](../sources/wb-bmssy.txt) · Official page: <https://wb.gov.in/government-schemes-details-bina-mulya-samajik-suraksha-yojana.aspx>
+
+- [ ] Age is between 18 and 60 (both included) — quote: "Age: 18 to 60 years"
+
+*Not modelled as rules (shown to users as "you must also confirm"):*
+- [ ] Must be a resident of West Bengal — quote: "Residency: Must be a resident of West Bengal"
+- [ ] Must be an unorganised-sector worker, including self-employed — quote: "Occupation: Must be an unorganized sector worker (including self-employed)"
+- [ ] The worker's occupation must be on the scheme's list (the list is not on the page) — quote: "Category coverage: Worker should fall under list"
+- [ ] Family income up to Rs 6,500 a month, except for construction and transport workers — quote: "Family income within Rs 6500 per month (except construction and transport workers)"
+
+*Flagged as unclear (excluded from accuracy):*
+- Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines
+- The income limit has an exception by occupation, so it is not modelled
+
+Meaning checked by: claude (2026-10-20) · Human reviewer: not yet
 
 ## Jai Johar (old-age pension for ST communities) (`wb-jai-johar`)
 
@@ -267,6 +497,46 @@ Saved copy: [sources/wb-medhashree.txt](../sources/wb-medhashree.txt) · Officia
 
 Meaning checked by: claude (2026-10-19) · Human reviewer: not yet
 
+## West Bengal Migrant Worker Welfare Scheme (`wb-migrant-worker`)
+
+Saved copy: [sources/wb-migrant-worker.txt](../sources/wb-migrant-worker.txt) · Official page: <https://wb.gov.in/government-schemes-details-west-bengal-migrant-worker-welfare-scheme.aspx>
+
+- [ ] Age is between 14 and 60 (both included) — quote: "Between 14 and 60 years of age"
+
+*Not modelled as rules (shown to users as "you must also confirm"):*
+- [ ] Must be a resident of West Bengal — quote: "Must be a resident of West Bengal"
+- [ ] Must work, or be likely to work, outside West Bengal (other states or abroad) — quote: "Must be employed or likely to be employed outside West Bengal (in other states/UTs or abroad)."
+
+*Flagged as unclear (excluded from accuracy):*
+- Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines
+
+Meaning checked by: claude (2026-10-20) · Human reviewer: not yet
+
+## Pre-Matric Scholarship for SC, ST and OBC Students (West Bengal) (`wb-pre-matric`)
+
+Saved copy: [sources/wb-pre-matric.txt](../sources/wb-pre-matric.txt) · Official page: <https://wb.gov.in/government-schemes-details-pre-matric-scholarship-for-sc-st-obc-students.aspx>
+
+- **ALL of these must be true:**
+- [ ] Caste category is one of SC, ST, OBC — quote: "Must belong to SC/ST/OBC community and possess a valid caste certificate."
+- **AT LEAST ONE of these must be true:**
+- [ ] &nbsp;&nbsp;&nbsp;&nbsp;Caste category is OBC — quote: "varies slightly for OBC depending on scheme/state"
+- [ ] &nbsp;&nbsp;&nbsp;&nbsp;Annual family income (₹) is at most ₹250,000 — quote: "Rs 2.5 lakh for SC/ST students"
+- [ ] Is a student: yes — quote: "Must be a regular/full-time student enrolled in school."
+
+*Not modelled as rules (shown to users as "you must also confirm"):*
+- [ ] Must study in a recognised school; the class range is generally 9 to 10, and 1 to 10 in some variants — quote: "Studying in a recognized school (generally Class 9 - 10 for SC/ST/OBC schemes;"
+- [ ] OBC students have their own income limit, which the page does not give — quote: "Annual family income limit should not exceed: Rs 2.5 lakh for SC/ST students (varies slightly for OBC depending on scheme/state)."
+- [ ] Renewals need a pass in the previous exam — quote: "Progression requirement: Students should have passed the previous examination (for renewal cases)."
+- [ ] Must not get another scholarship for the same purpose — quote: "Only one scholarship at a time: Student should not be availing another scholarship for the same purpose."
+- [ ] Must be domiciled in West Bengal — quote: "Domicile requirement: Must belong to the state/UT from where applying."
+
+*Flagged as unclear (excluded from accuracy):*
+- Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines
+- The class range is not fixed on the page (Class 9-10 generally, Class 1-10 in some variants), so it is not modelled
+- The OBC income limit is not stated, so OBC students are not income-checked here
+
+Meaning checked by: claude (2026-10-20) · Human reviewer: not yet
+
 ## Shikshasree (`wb-shikshasree`)
 
 Saved copy: [sources/wb-shikshasree.txt](../sources/wb-shikshasree.txt) · Official page: <https://wb.gov.in/government-schemes-details-west-bengal-shikshasree-scheme.aspx>
@@ -288,6 +558,29 @@ Saved copy: [sources/wb-shikshasree.txt](../sources/wb-shikshasree.txt) · Offic
 - Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines
 
 Meaning checked by: claude (2026-10-19) · Human reviewer: not yet
+
+## West Bengal Student Credit Card (`wb-student-credit-card`)
+
+Saved copy: [sources/wb-student-credit-card.txt](../sources/wb-student-credit-card.txt) · Official page: <https://wb.gov.in/government-schemes-details-west-bengal-student-credit-card-scheme.aspx>
+
+- **ALL of these must be true:**
+- [ ] Age is at most 40 — quote: "Must be 40 years or below at the time of application"
+- [ ] Is a student: yes — quote: "Must be enrolled in a recognized educational institution (India or abroad)"
+
+*Not modelled as rules (shown to users as "you must also confirm"):*
+- [ ] Must have lived in West Bengal for ten years or more — quote: "Must be a resident of West Bengal for ten years or more"
+- [ ] Must have completed at least Class IX (Madhyamik or equivalent) — quote: "Should have completed at least Class IX (Madhyamik or equivalent)"
+- [ ] Must have admission in an eligible course (school, UG, PG or professional) — quote: "Must have secured admission in an eligible course (school, UG, PG, or professional)"
+- [ ] Needs a co-borrower, usually a parent or guardian — quote: "Co-borrower required (usually a parent/guardian)"
+- [ ] Neither the student nor the co-borrower may be in default on a bank loan — quote: "Applicant or Co-borrower must not be in default of any bank loan"
+- [ ] Only one card per student — quote: "Only one student credit card per student is allowed"
+- [ ] Must apply on the official portal with valid documents — quote: "Must apply through the official online portal with valid documents"
+
+*Flagged as unclear (excluded from accuracy):*
+- Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines
+- 'Class IX (Madhyamik or equivalent)' is unclear, because Madhyamik is the Class 10 exam, so the class is not modelled
+
+Meaning checked by: claude (2026-10-20) · Human reviewer: not yet
 
 ## Taposili Bandhu (`wb-taposili-bandhu`)
 

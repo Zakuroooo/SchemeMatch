@@ -1,0 +1,34 @@
+# Source copy for pm-sym
+# official_url: https://wb.gov.in/government-schemes-details-pradhan-mantri-shram-yogi-mandhan.aspx
+# retrieved: 2026-10-20 (direct fetch, HTML converted to text)
+# sha256 of the text below: 850c642197c46200e6f127eb517fcd8b1b64aaed0afa2da2b3331db19be0e17a
+# This is a copy of public government text, kept so quotes can be checked offline.
+
+Pradhan Mantri Shram Yogi Maandhan (PM-SYM) provides social security to unorganized sector workers in India, offering a minimum assured monthly pension of Rs 3,000 after the age of 60. Beneficiaries contribute a small monthly amount based on their age, with an equal matching contribution by the government.
+Benefits Offer Under the Scheme
+Assured minimum monthly pension of Rs 3,000 after attaining 60 years of age.
+Government co-contributionequal to the subscriber's monthly contribution.
+Family pension benefit: In case of the subscriber's death, the spouse receives 50% of the pension (Rs 1,500 per month).
+Voluntary exit option: Subscriber can exit the scheme and receive their contribution with applicable interest/returns.
+Spouse continuation: If the subscriber dies before 60, the spouse can continue the scheme by contributing regularly.
+Life-long pension: Pension continues for the lifetime of the beneficiary after 60 years.
+Affordable contributions: Low, age-based monthly contributions starting from as little as Rs 55 per month to Rs 200 per month
+Eligibility:
+Must be an unorganized sector worker (e.g., street vendors, construction workers, domestic workers, etc.).
+Age should be between18 and 40 years at the time of enrollment.
+Monthly income should be Rs 15,000 or less.
+Must possess a valid Aadhaar number linked with a mobile number.
+Should have anactive savings bank account or Jan Ohan account.
+Must not be covered under any other statutory social security scheme (such as EPF0, ESIC,orNPS).
+Must not be an income taxpayer.
+Application Details:
+Visit the nearest Common Service Centre (CSC) or enrol online through authorized portals.
+Provide Aadhaar number and savings bank/Jan Ohan account details.
+Submit basic personal details such as name, age, address, and occupation.
+Initial contribution amount is calculated automatically based onthe applicant's age.
+Make the first contribution payment at the time of enrolment.
+Set up auto-debit (monthly contribution) from the bank account.
+Receive a PM-SYM card and account details after successful registration.
+Link
+Last updated on: Friday, 26th June, 2026
+Information Source: Department of Information & Cultural Affairs(I&CA), Government of West Bengal

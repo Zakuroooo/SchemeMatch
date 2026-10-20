@@ -1,0 +1,28 @@
+# Source copy for pm-vishwakarma
+# official_url: https://wb.gov.in/government-schemes-details-pradhan-mantri-vishwakarma-yojana.aspx
+# retrieved: 2026-10-20 (direct fetch, HTML converted to text)
+# sha256 of the text below: 58c2f37b534a91eb3ff486ccf85dacae471e9a2876b24ae808983f5ad6eff0ce
+# This is a copy of public government text, kept so quotes can be checked offline.
+
+Pradhan Mantri Vishwakarma Yojana is a Government of India scheme aimed at supporting traditional artisans and craftspeople by enhancing their skills, providing financial assistance, and promoting modern tools. It seeks to preserve traditional crafts while improving livelihoods through skill development, market access, and entrepreneurship support.
+Benefits Offer Under the Scheme
+Recognition: Vishwakarma Certificate and ID Card for formal recognition of artisans
+Ski training: Free basic and advanced training with a 500 per day stipend
+Toolkit incentive: Financial assistance of 15,000 (e-voucher/DBT) to purchase modern tools
+Collateral-free loans: Up to 3 lakh in two tranches (1 lakh + 2 lakh) at concessional ~5% interest
+Digital transaction incentive: *1 per transaction (up to 100 transactions per month) to promote digital payments
+Marketing support: Assistance for branding, quality certification, advertising, and market linkage
+Overall support: End-to-end assistance including skill upgradation, modern technology access, and improved market access
+Eligibility:
+Artisan/Craftsperson requirement: Applicant must be an artisan or craftsperson working with hands and tools in one of the notified traditional trades
+Age criteria: Must be 18 years or above at the time of registration
+Type of work: Should be self-employed in the unorganised sector
+Trade condition: Must be actively engaged in one of the 18 specified family-based traditional trades
+Active practice: Applicant should be practicing the trade at the time of registration
+Loan condition: Should not have availed similar government self-employment loans (e.g., PMEGP, Mudra, SVANidhi) in the last 5 years
+Family restriction: Only one member per family is eligible to avail benefits under the scheme
+Exclusion: Government employees and their family members are not eligible
+List of Traditional Trades: Carpenter, Boat maker, Armourer, Black smith, Hammer and Toolkit maker, Lock smith, Sculpture, Gold smith, potter, cobbler, Masions, Basket/Mat/Broom maker/Coir waiver, Doll and Toy maker, Barber, Garland maker, Washerman, Toiler, Fishing Net maker
+Link
+Last updated on: Friday, 26th June, 2026
+Information Source: Department of Information & Cultural Affairs(I&CA), Government of West Bengal

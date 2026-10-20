@@ -1,0 +1,30 @@
+# Source copy for pmuy
+# official_url: https://wb.gov.in/government-schemes-details-pradhan-mantri-ujjwala-yojana.aspx
+# retrieved: 2026-10-20 (direct fetch, HTML converted to text)
+# sha256 of the text below: 80ddd6bda6857209a4181997a9554ae2b4923c004ece56f3249dffb019785b30
+# This is a copy of public government text, kept so quotes can be checked offline.
+
+Pradhan Mantri Ujjwala Yojana (PMUY) is a government initiative that provides clean, smoke-free cooking fuel (LPG) to adult women from economically weaker households to safeguard their health and environment. In this scheme the eligible PMUY beneficiary will be provided with security deposit free LPG Connection with no installation charges to reduce the financial hardship to the economically vulnerable household.
+Benefits Offer Under the Scheme
+Free LPG connection: Eligible households receive a deposit-free LPG connection in the name of an adult woman.
+Financial assistance: Government provides financial support (up to Rs. 2,050 /- per connection) to cover the cost of the connection.
+Free gas stove and first refill support: All PMUY beneficiaries will be provided with first LPG refill and Stove (hotplate) both free of cost along with their deposit free connection by the Oil Marketing Companies (OMCs)
+Subsidized LPG refills: Ongoing subsidies on LPG refills are provided directly to beneficiaries' bank accounts (DBT).
+Safety hose and regulator included: The connection package includes essential equipment such as a regulator and safety hose.
+Health and environmental benefits: Encourages the use of clean cooking fuel, reducing indoor air pollution and health risks from traditional fuels.
+Eligibility
+The applicant must be a woman who has attained18 years of age.
+There should be no other LPG connection from any Oil Marketing Company (OMC) within the same household.
+The adult woman must belong to a poor household based on submission of a deprivation declaration (as per prescribed format).
+Applicant must have a valid Aadhaar number (for identificationand subsidy transfer).
+Must have abank account to receive subsidy through Direct Benefit Transfer (DBT).
+Application Details
+Visit nearest LPG distributor or official portal: Approach an authorized LPG distributor or apply online through the official PMUY or oil marketing company websites (IOCL, BPCL, HPCL).
+Fill out the application form: Provide required details such as name, address, Aadhaar number, and bank account information.
+Submit required documents: Attach documents like Aadhaar card, Deprivation Declaration as per prescribed format, identity proof, and bank account details etc.
+Verification of application: The submitted application and documents are verified by the concerned authorities.
+Approval and connection release: Once approved, the LPG connection is issued in the applicant's name.
+Delivery of connection and equipment: Beneficiary receives the LPG cylinder, regulator, and related equipment.
+Link
+Last updated on: Friday, 26th June, 2026
+Information Source: Department of Information & Cultural Affairs(I&CA), Government of West Bengal
