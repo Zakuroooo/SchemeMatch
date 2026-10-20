@@ -1,0 +1,46 @@
+{
+  "scheme": "e-shram",
+  "cases": [
+    {
+      "id": "eligible",
+      "why": "Aged 30",
+      "profile": {
+        "age": 30
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-16",
+      "why": "Lower edge",
+      "profile": {
+        "age": 16
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-59",
+      "why": "Upper edge",
+      "profile": {
+        "age": 59
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-60",
+      "why": "Above 59",
+      "profile": {
+        "age": 60
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "age-unknown",
+      "why": "Age not asked",
+      "profile": {
+        "gender": "female"
+      },
+      "expected": "UNKNOWN",
+      "ask_next": "age"
+    }
+  ]
+}

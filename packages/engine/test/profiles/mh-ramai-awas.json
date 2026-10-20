@@ -1,0 +1,30 @@
+{
+  "scheme": "mh-ramai-awas",
+  "cases": [
+    {
+      "id": "eligible",
+      "why": "SC applicant",
+      "profile": {
+        "caste_category": "SC"
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "st",
+      "why": "ST is not covered",
+      "profile": {
+        "caste_category": "ST"
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "caste-unknown",
+      "why": "Caste not asked yet",
+      "profile": {
+        "age": 35
+      },
+      "expected": "UNKNOWN",
+      "ask_next": "caste_category"
+    }
+  ]
+}

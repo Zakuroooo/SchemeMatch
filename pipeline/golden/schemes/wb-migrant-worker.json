@@ -1,0 +1,49 @@
+{
+  "slug": "wb-migrant-worker",
+  "level": "state",
+  "state": "WB",
+  "category": "livelihood",
+  "official_url": "https://wb.gov.in/government-schemes-details-west-bengal-migrant-worker-welfare-scheme.aspx",
+  "source_file": "sources/wb-migrant-worker.txt",
+  "eligibility": {
+    "all": [
+      {
+        "field": "age",
+        "op": "between",
+        "value": [14, 60],
+        "source_quote": "Between 14 and 60 years of age"
+      }
+    ]
+  },
+  "unmodelled": [
+    {
+      "text": "Must be a resident of West Bengal",
+      "source_quote": "Must be a resident of West Bengal"
+    },
+    {
+      "text": "Must work, or be likely to work, outside West Bengal (other states or abroad)",
+      "source_quote": "Must be employed or likely to be employed outside West Bengal (in other states/UTs or abroad)."
+    }
+  ],
+  "ambiguous": [
+    "Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines"
+  ],
+  "documents": [],
+  "text": {
+    "en": {
+      "title": "West Bengal Migrant Worker Welfare Scheme",
+      "benefit": "Rs 50,000 on natural death, Rs 2 lakh on accidental death, Rs 25,000 to bring the body home, and Rs 50,000 to Rs 1 lakh for disability.",
+      "how_to_apply": "Register on the Karmasathi Parijayee Shramik Portal with your mobile number to get an MWIN, then file claims there."
+    }
+  },
+  "coverage": {
+    "start": "\nEligibility\n",
+    "end": "Application Details:",
+    "bullet": ""
+  },
+  "drafted_by": "claude",
+  "meaning_checked_by": "claude",
+  "meaning_checked_at": "2026-10-20",
+  "reviewed_by": null,
+  "reviewed_at": null
+}

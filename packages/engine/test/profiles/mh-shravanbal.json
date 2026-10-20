@@ -1,0 +1,53 @@
+{
+  "scheme": "mh-shravanbal",
+  "cases": [
+    {
+      "id": "bpl-65",
+      "why": "Category B: 65 and BPL",
+      "profile": {
+        "age": 65,
+        "has_bpl_card": true
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "non-bpl-low-income",
+      "why": "Category A: 70, not BPL, income 15,000",
+      "profile": {
+        "age": 70,
+        "has_bpl_card": false,
+        "annual_family_income": 15000
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "non-bpl-21000",
+      "why": "'below Rs. 21000' excludes 21,000",
+      "profile": {
+        "age": 70,
+        "has_bpl_card": false,
+        "annual_family_income": 21000
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "age-64",
+      "why": "Just below 65",
+      "profile": {
+        "age": 64,
+        "has_bpl_card": true
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "bpl-unknown",
+      "why": "Income too high for A; BPL decides B",
+      "profile": {
+        "age": 70,
+        "annual_family_income": 50000
+      },
+      "expected": "UNKNOWN",
+      "ask_next": "has_bpl_card"
+    }
+  ]
+}

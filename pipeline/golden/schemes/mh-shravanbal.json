@@ -1,0 +1,67 @@
+{
+  "slug": "mh-shravanbal",
+  "level": "state",
+  "state": "MH",
+  "category": "pension",
+  "official_url": "https://nashik.gov.in/scheme/shravan-bal-seva-rajya-nivruttivetan-yojana/",
+  "source_file": "sources/mh-shravanbal.txt",
+  "eligibility": {
+    "all": [
+      {
+        "field": "age",
+        "op": "gte",
+        "value": 65,
+        "source_quote": "every destitute person of age 65 years & above"
+      },
+      {
+        "any": [
+          {
+            "all": [
+              {
+                "field": "annual_family_income",
+                "op": "lt",
+                "value": 21000,
+                "source_quote": "whose annual family income is below Rs. 21000/-"
+              },
+              {
+                "field": "has_bpl_card",
+                "op": "eq",
+                "value": false,
+                "source_quote": "whose name is not included in the BPL List"
+              }
+            ]
+          },
+          {
+            "field": "has_bpl_card",
+            "op": "eq",
+            "value": true,
+            "source_quote": "belonging to BPL family"
+          }
+        ]
+      }
+    ]
+  },
+  "unmodelled": [
+    {
+      "text": "Must be destitute (niradhar)",
+      "source_quote": "every destitute person"
+    }
+  ],
+  "ambiguous": [
+    "Source is the Nashik district page, last updated 15.01.2019; the Nagpur district page (updated 11.09.2025) says Rs 1,500 a month, so the amounts here may be out of date",
+    "'Name not included in the BPL List' is modelled as not having a BPL card"
+  ],
+  "documents": [],
+  "text": {
+    "en": {
+      "title": "Shravanbal Seva Rajya Nivruttivetan Yojana",
+      "benefit": "Monthly state pension. This 2019 page says Rs 600 (category A) or Rs 400 plus Rs 200 under IGNOAPS (category B); the 2025 Nagpur district page says Rs 1,500.",
+      "how_to_apply": "Apply at the Collector's office, Tahsildar or Talathi."
+    }
+  },
+  "drafted_by": "claude",
+  "meaning_checked_by": "claude",
+  "meaning_checked_at": "2026-10-20",
+  "reviewed_by": null,
+  "reviewed_at": null
+}

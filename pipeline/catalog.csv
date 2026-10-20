@@ -4,31 +4,39 @@ ignoaps,Indira Gandhi National Old Age Pension,central,,pension,Elderly BPL pers
 ignwps,Indira Gandhi National Widow Pension,central,,pension,Sunita persona (widow); age band,https://sjsa.maharashtra.gov.in/en/scheme/indira-gandhi-national-widow-pension-scheme/,drafting
 apy,Atal Pension Yojana,central,,pension,Age band 18-40 gives clean boundary tests,https://pfrda.org.in/w/faqs/atal-pension-yojana,drafting
 pmmvy,Pradhan Mantri Matru Vandana Yojana,central,,maternity,Pregnant/lactating field coverage,https://www.spniwcd.wcd.gov.in/uploads/pdf/1710098119_HDEXdpWMb1.pdf,drafting
-post-matric-sc,Post-Matric Scholarship for SC Students,central,,education,Student persona; caste + income rule; moved to step 2b: official source text lost the income clause,,planned
+mh-post-matric-sc,Post-Matric Scholarship for SC Students (Maharashtra),state,MH,education,Student persona; caste + income cap; Maharashtra page has the income clause,https://sjsa.maharashtra.gov.in/en/scheme/post-matric-scholarship-by-the-government-of-india/,drafting
 mh-ladki-bahin,Mukhyamantri Majhi Ladki Bahin Yojana,state,MH,women,Large Maharashtra scheme; age and income limits,https://www.womenchild.maharashtra.gov.in/en/schemes/mukhyamantri-mazi-ladki-bahin-yojana,drafting
 mh-sanjay-gandhi-niradhar,Sanjay Gandhi Niradhar Anudan Yojana,state,MH,pension,Destitute widows/disabled; OR-group rule,https://sjsa.maharashtra.gov.in/en/scheme/sanjay-gandhi-niradhar-anudan-yojana/,drafting
 wb-lakshmir-bhandar,Lakshmir Bhandar,state,WB,women,Discontinued after the 2026 change of government in West Bengal (per Pranay; no fetched page states it). Not listed on wb.gov.in as of 2026-10-19; Annapurna Yojana is listed instead.,,discontinued
-wb-kanyashree,Kanyashree Prakalpa,state,WB,education,Girl students; age and marital status; moved to step 2b: West Bengal sites unreachable from this network on 2026-10-19,,planned
-pmay-g,Pradhan Mantri Awas Yojana Gramin,central,,housing,Housing need coverage,,planned
-pmuy,Pradhan Mantri Ujjwala Yojana,central,,household,LPG for BPL women,,planned
+wb-kanyashree,Kanyashree Prakalpa,state,WB,education,"Girl students; age and marital status; moved to step 2b: West Bengal sites unreachable from this network on 2026-10-19. Not listed on wb.gov.in as of 2026-10-20 (status unknown; may have ended with the 2026 change of government, as Lakshmir Bhandar did)",,unlisted
+pmay-g,Pradhan Mantri Awas Yojana Gramin,central,,housing,"Housing need coverage. pmayg.nic.in unreachable on 2026-10-20; wb.gov.in lists only PMAY-U 2.0, whose page gives no income numbers",,planned
+pmuy,Pradhan Mantri Ujjwala Yojana,central,,household,LPG for BPL women,https://wb.gov.in/government-schemes-details-pradhan-mantri-ujjwala-yojana.aspx,drafting
 igndps,Indira Gandhi National Disability Pension,central,,pension,Disability percent field,https://sjsa.maharashtra.gov.in/en/scheme/indira-gandhi-national-disability-pension-scheme/,drafting
-nfbs,National Family Benefit Scheme,central,,family,Death of breadwinner,,planned
+nfbs,National Family Benefit Scheme,central,,family,Death of breadwinner,https://sjsa.maharashtra.gov.in/en/scheme/national-family-benefit-scheme/,drafting
 pmjjby,Pradhan Mantri Jeevan Jyoti Bima Yojana,central,,insurance,Age band 18-50,https://jansuraksha.gov.in/Files/PMJJBY/English/Rules.pdf,drafting
 pmsby,Pradhan Mantri Suraksha Bima Yojana,central,,insurance,Age band 18-70,https://jansuraksha.gov.in/Files/PMSBY/English/Rules.pdf,drafting
-pre-matric-sc,Pre-Matric Scholarship for SC Students,central,,education,Younger students,,planned
-pm-svanidhi,PM SVANidhi,central,,livelihood,Street vendors occupation field,,planned
-sukanya-samriddhi,Sukanya Samriddhi Yojana,central,,savings,Girl child age limit,,planned
-mh-shravanbal,Shravanbal Seva Rajya Nivruttivetan Yojana,state,MH,pension,Maharashtra elderly pension,,planned
-mh-namo-shetkari,Namo Shetkari Mahasanman Nidhi,state,MH,farming,Maharashtra top-up to PM-KISAN,,planned
-mh-mahatma-phule-jay,Mahatma Jyotiba Phule Jan Arogya Yojana,state,MH,health,Maharashtra health cover,,planned
+wb-pre-matric,"Pre-Matric Scholarship for SC, ST and OBC Students (West Bengal)",state,WB,education,Younger students; SC/ST/OBC with an income cap that differs by caste (OR group),https://wb.gov.in/government-schemes-details-pre-matric-scholarship-for-sc-st-obc-students.aspx,drafting
+pm-svanidhi,PM SVANidhi,central,,livelihood,Street vendors occupation field. wb.gov.in page has no criterion the app can check (all about vending status); revisit with the scheme guidelines,,planned
+sukanya-samriddhi,Sukanya Samriddhi Yojana,central,,savings,Girl child age limit,https://wb.gov.in/government-schemes-details-sukanya-samriddhi-yojana.aspx,drafting
+mh-shravanbal,Shravanbal Seva Rajya Nivruttivetan Yojana,state,MH,pension,Maharashtra elderly pension,https://nashik.gov.in/scheme/shravan-bal-seva-rajya-nivruttivetan-yojana/,drafting
+mh-namo-shetkari,Namo Shetkari Mahasanman Nidhi,state,MH,farming,Maharashtra top-up to PM-KISAN. No official page found on 2026-10-20 (only secondary sites),,planned
+mh-mahatma-phule-jay,Mahatma Jyotiba Phule Jan Arogya Yojana,state,MH,health,"Maharashtra health cover. jeevandayee.gov.in unreachable on 2026-10-20; eligibility is by ration-card type, which the app does not ask",,planned
 mh-rajarshi-shahu-scholarship,Rajarshi Chhatrapati Shahu Maharaj Shikshan Shulkh Shishyavrutti,state,MH,education,Maharashtra fee reimbursement,,planned
-mh-ramai-awas,Ramai Awas Yojana,state,MH,housing,SC/Neo-Buddhist housing,,planned
-wb-krishak-bandhu,Krishak Bandhu,state,WB,farming,West Bengal farmer support,,planned
-wb-rupashree,Rupashree Prakalpa,state,WB,women,Marriage grant; income limit,,planned
-wb-swasthya-sathi,Swasthya Sathi,state,WB,health,West Bengal health cover,,planned
-wb-taruner-swapna,Taruner Swapna,state,WB,education,Tablet grant for class 11-12,,planned
+mh-ramai-awas,Ramai Awas Yojana,state,MH,housing,SC/Neo-Buddhist housing,https://sjsa.maharashtra.gov.in/en/scheme/ramai-housing-scheme-rural-and-urban/,drafting
+wb-krishak-bandhu,Krishak Bandhu,state,WB,farming,"West Bengal farmer support. Not listed on wb.gov.in as of 2026-10-20 (status unknown; may have ended with the 2026 change of government, as Lakshmir Bhandar did)",,unlisted
+wb-rupashree,Rupashree Prakalpa,state,WB,women,"Marriage grant; income limit. Not listed on wb.gov.in as of 2026-10-20 (status unknown; may have ended with the 2026 change of government, as Lakshmir Bhandar did)",,unlisted
+wb-swasthya-sathi,Swasthya Sathi,state,WB,health,"West Bengal health cover. Not listed on wb.gov.in as of 2026-10-20 (status unknown; may have ended with the 2026 change of government, as Lakshmir Bhandar did)",,unlisted
+wb-taruner-swapna,Taruner Swapna,state,WB,education,"Tablet grant for class 11-12. Not listed on wb.gov.in as of 2026-10-20 (status unknown; may have ended with the 2026 change of government, as Lakshmir Bhandar did)",,unlisted
 wb-annapurna,Annapurna Yojana,state,WB,women,New WB women's cash transfer listed on wb.gov.in,https://wb.gov.in/government-schemes-details-annaapurna-yojana.aspx,drafting
 wb-taposili-bandhu,Taposili Bandhu,state,WB,pension,SC old-age pension,https://wb.gov.in/government-schemes-details-taposili-bandhu-scheme.aspx,drafting
 wb-jai-johar,Jai Johar,state,WB,pension,ST old-age pension,https://wb.gov.in/government-schemes-details-jai-johar-old-age-pensionfor-st-communities.aspx,drafting
 wb-shikshasree,Shikshasree,state,WB,education,"SC/ST students, Classes V-VIII",https://wb.gov.in/government-schemes-details-west-bengal-shikshasree-scheme.aspx,drafting
 wb-medhashree,Medhashree,state,WB,education,"OBC students, Classes V-VIII",https://wb.gov.in/government-schemes-details-west-bengal-medhashree-scheme.aspx,drafting
+mh-sc-fee-reimbursement,Reimbursement of Education and Examination Fees for SC Students (Maharashtra),state,MH,education,Mirror of post-matric: income MORE than 2.5 lakh (gt boundary),https://sjsa.maharashtra.gov.in/en/scheme/reimbursement-of-education-fees-and-examination-fees-for-backward-class-students/,drafting
+pm-sym,Pradhan Mantri Shram Yogi Maandhan,central,,pension,Unorganised workers' pension; age band 18-40,https://wb.gov.in/government-schemes-details-pradhan-mantri-shram-yogi-mandhan.aspx,drafting
+pm-vishwakarma,PM Vishwakarma,central,,livelihood,Artisans; most criteria unmodelled (tests also_confirm),https://wb.gov.in/government-schemes-details-pradhan-mantri-vishwakarma-yojana.aspx,drafting
+e-shram,e-Shram Card,central,,livelihood,Gateway ID for unorganised workers; age band 16-59,https://wb.gov.in/government-schemes-details-e-shram-card.aspx,drafting
+pmjdy,Pradhan Mantri Jan Dhan Yojana,central,,banking,Bank account needed for every DBT scheme; minimum age 10,https://wb.gov.in/government-schemes-details-pradhan-mantri-jan-dhan-yojana.aspx,drafting
+wb-bmssy,Bina Mulya Samajik Suraksha Yojana,state,WB,livelihood,West Bengal unorganised-worker cover; age band 18-60,https://wb.gov.in/government-schemes-details-bina-mulya-samajik-suraksha-yojana.aspx,drafting
+wb-migrant-worker,West Bengal Migrant Worker Welfare Scheme,state,WB,livelihood,West Bengal migrant workers; age band 14-60,https://wb.gov.in/government-schemes-details-west-bengal-migrant-worker-welfare-scheme.aspx,drafting
+wb-student-credit-card,West Bengal Student Credit Card,state,WB,education,West Bengal education loan; age cap 40,https://wb.gov.in/government-schemes-details-west-bengal-student-credit-card-scheme.aspx,drafting

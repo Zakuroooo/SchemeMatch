@@ -1,0 +1,38 @@
+{
+  "scheme": "pm-vishwakarma",
+  "cases": [
+    {
+      "id": "eligible",
+      "why": "Aged 35",
+      "profile": {
+        "age": 35
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-18",
+      "why": "'18 years or above'",
+      "profile": {
+        "age": 18
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-17",
+      "why": "Below 18",
+      "profile": {
+        "age": 17
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "age-unknown",
+      "why": "Age not asked",
+      "profile": {
+        "gender": "male"
+      },
+      "expected": "UNKNOWN",
+      "ask_next": "age"
+    }
+  ]
+}

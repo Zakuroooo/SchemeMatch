@@ -1,0 +1,47 @@
+{
+  "slug": "nfbs",
+  "level": "central",
+  "state": null,
+  "category": "family",
+  "official_url": "https://sjsa.maharashtra.gov.in/en/scheme/national-family-benefit-scheme/",
+  "source_file": "sources/nfbs.txt",
+  "eligibility": {
+    "all": [
+      {
+        "field": "has_bpl_card",
+        "op": "eq",
+        "value": true,
+        "source_quote": "death of a primary bread winner in the BPL Family"
+      }
+    ]
+  },
+  "unmodelled": [
+    {
+      "text": "The family's primary breadwinner has died (accident or natural causes)",
+      "source_quote": "in case of accidental or natural death of a primary bread winner"
+    },
+    {
+      "text": "The breadwinner was aged 18 to 59 at the time of death",
+      "source_quote": "in the age group of 18 to 59 years"
+    }
+  ],
+  "ambiguous": [],
+  "documents": [],
+  "text": {
+    "en": {
+      "title": "National Family Benefit Scheme",
+      "benefit": "One-time lump sum of Rs 20,000 to the family.",
+      "how_to_apply": "Apply at the Collector's office, Tehsildar's office (Sanjay Gandhi Niradhar Anudan Yojana branch) or Talathi office."
+    }
+  },
+  "coverage": {
+    "start": "**Eligibility Criteria**",
+    "end": "## Beneficiary:",
+    "bullet": "*   "
+  },
+  "drafted_by": "claude",
+  "meaning_checked_by": "claude",
+  "meaning_checked_at": "2026-10-20",
+  "reviewed_by": null,
+  "reviewed_at": null
+}

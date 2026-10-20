@@ -1,0 +1,63 @@
+{
+  "slug": "pmuy",
+  "level": "central",
+  "state": null,
+  "category": "household",
+  "official_url": "https://wb.gov.in/government-schemes-details-pradhan-mantri-ujjwala-yojana.aspx",
+  "source_file": "sources/pmuy.txt",
+  "eligibility": {
+    "all": [
+      {
+        "field": "gender",
+        "op": "eq",
+        "value": "female",
+        "source_quote": "The applicant must be a woman who has attained18 years of age."
+      },
+      {
+        "field": "age",
+        "op": "gte",
+        "value": 18,
+        "source_quote": "The applicant must be a woman who has attained18 years of age."
+      }
+    ]
+  },
+  "unmodelled": [
+    {
+      "text": "No other LPG connection from any oil company in the same household",
+      "source_quote": "There should be no other LPG connection from any Oil Marketing Company (OMC) within the same household."
+    },
+    {
+      "text": "Must be from a poor household, shown by a deprivation declaration in the set format",
+      "source_quote": "The adult woman must belong to a poor household based on submission of a deprivation declaration (as per prescribed format)."
+    },
+    {
+      "text": "Must have a valid Aadhaar number",
+      "source_quote": "Applicant must have a valid Aadhaar number (for identificationand subsidy transfer)."
+    },
+    {
+      "text": "Must have a bank account for DBT",
+      "source_quote": "Must have abank account to receive subsidy through Direct Benefit Transfer (DBT)."
+    }
+  ],
+  "ambiguous": [
+    "Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines"
+  ],
+  "documents": [],
+  "text": {
+    "en": {
+      "title": "Pradhan Mantri Ujjwala Yojana",
+      "benefit": "Deposit-free LPG connection in the woman's name, with a free first refill and stove, and refill subsidy by DBT.",
+      "how_to_apply": "Apply at an LPG distributor or online on the PMUY or oil company (IOCL, BPCL, HPCL) websites, with the deprivation declaration."
+    }
+  },
+  "coverage": {
+    "start": "\nEligibility\n",
+    "end": "Application Details",
+    "bullet": ""
+  },
+  "drafted_by": "claude",
+  "meaning_checked_by": "claude",
+  "meaning_checked_at": "2026-10-20",
+  "reviewed_by": null,
+  "reviewed_at": null
+}

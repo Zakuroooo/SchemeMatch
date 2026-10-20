@@ -1,0 +1,65 @@
+{
+  "scheme": "wb-pre-matric",
+  "cases": [
+    {
+      "id": "eligible",
+      "why": "SC student, income 1 lakh",
+      "profile": {
+        "caste_category": "SC",
+        "is_student": true,
+        "annual_family_income": 100000
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "income-2.5-lakh",
+      "why": "'should not exceed Rs 2.5 lakh'",
+      "profile": {
+        "caste_category": "SC",
+        "is_student": true,
+        "annual_family_income": 250000
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "income-above",
+      "why": "Above 2.5 lakh for SC",
+      "profile": {
+        "caste_category": "SC",
+        "is_student": true,
+        "annual_family_income": 300000
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "obc-no-limit-given",
+      "why": "OBC limit not on the page",
+      "profile": {
+        "caste_category": "OBC",
+        "is_student": true,
+        "annual_family_income": 300000
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "general",
+      "why": "General category",
+      "profile": {
+        "caste_category": "General",
+        "is_student": true,
+        "annual_family_income": 100000
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "income-unknown",
+      "why": "SC student, income not asked",
+      "profile": {
+        "caste_category": "SC",
+        "is_student": true
+      },
+      "expected": "UNKNOWN",
+      "ask_next": "annual_family_income"
+    }
+  ]
+}

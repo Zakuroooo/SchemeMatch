@@ -1,0 +1,67 @@
+{
+  "slug": "sukanya-samriddhi",
+  "level": "central",
+  "state": null,
+  "category": "savings",
+  "official_url": "https://wb.gov.in/government-schemes-details-sukanya-samriddhi-yojana.aspx",
+  "source_file": "sources/sukanya-samriddhi.txt",
+  "eligibility": {
+    "all": [
+      {
+        "field": "gender",
+        "op": "eq",
+        "value": "female",
+        "source_quote": "The account can be opened in the name of a girl child."
+      },
+      {
+        "field": "age",
+        "op": "lt",
+        "value": 10,
+        "source_quote": "The girl child should be below 10 years of age at the time of account opening."
+      }
+    ]
+  },
+  "unmodelled": [
+    {
+      "text": "A parent or legal guardian opens and runs the account until the girl can",
+      "source_quote": "The account is opened and operated by the parent or legal guardian until the girl child becomes eligible to operate it herself."
+    },
+    {
+      "text": "Only one account per girl",
+      "source_quote": "Only one account can be opened in the name of one girl child."
+    },
+    {
+      "text": "At most two girls per family",
+      "source_quote": "A family can generally open accounts for a maximum of two girl children."
+    },
+    {
+      "text": "More than two only in special cases such as twins or triplets",
+      "source_quote": "Accounts for more than two girl children may be allowed in special cases such as twins or triplets, subject to required documentation."
+    },
+    {
+      "text": "Needs the girl's birth certificate and the guardian's ID and address proof",
+      "source_quote": "The applicant must submit the birth certificate of the girl child and identity/address proof of the guardian."
+    }
+  ],
+  "ambiguous": [
+    "Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines"
+  ],
+  "documents": [],
+  "text": {
+    "en": {
+      "title": "Sukanya Samriddhi Yojana",
+      "benefit": "Government-backed savings account for a girl: 8.2% a year now, Rs 250 to Rs 1.5 lakh a year, tax-free, matures after 21 years.",
+      "how_to_apply": "A parent or guardian opens it at a post office or authorised bank with the girl's birth certificate and their own KYC documents."
+    }
+  },
+  "coverage": {
+    "start": "\nEligibility\n",
+    "end": "Application Details",
+    "bullet": ""
+  },
+  "drafted_by": "claude",
+  "meaning_checked_by": "claude",
+  "meaning_checked_at": "2026-10-20",
+  "reviewed_by": null,
+  "reviewed_at": null
+}

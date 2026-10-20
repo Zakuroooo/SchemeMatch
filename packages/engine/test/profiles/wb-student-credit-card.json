@@ -1,0 +1,50 @@
+{
+  "scheme": "wb-student-credit-card",
+  "cases": [
+    {
+      "id": "eligible",
+      "why": "Student aged 20",
+      "profile": {
+        "age": 20,
+        "is_student": true
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-40",
+      "why": "'40 years or below'",
+      "profile": {
+        "age": 40,
+        "is_student": true
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "age-41",
+      "why": "Above 40",
+      "profile": {
+        "age": 41,
+        "is_student": true
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "not-student",
+      "why": "Not enrolled",
+      "profile": {
+        "age": 20,
+        "is_student": false
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "student-unknown",
+      "why": "Age fits; studying not asked",
+      "profile": {
+        "age": 20
+      },
+      "expected": "UNKNOWN",
+      "ask_next": "is_student"
+    }
+  ]
+}

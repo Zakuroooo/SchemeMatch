@@ -1,0 +1,76 @@
+{
+  "slug": "wb-student-credit-card",
+  "level": "state",
+  "state": "WB",
+  "category": "education",
+  "official_url": "https://wb.gov.in/government-schemes-details-west-bengal-student-credit-card-scheme.aspx",
+  "source_file": "sources/wb-student-credit-card.txt",
+  "eligibility": {
+    "all": [
+      {
+        "field": "age",
+        "op": "lte",
+        "value": 40,
+        "source_quote": "Must be 40 years or below at the time of application"
+      },
+      {
+        "field": "is_student",
+        "op": "eq",
+        "value": true,
+        "source_quote": "Must be enrolled in a recognized educational institution (India or abroad)"
+      }
+    ]
+  },
+  "unmodelled": [
+    {
+      "text": "Must have lived in West Bengal for ten years or more",
+      "source_quote": "Must be a resident of West Bengal for ten years or more"
+    },
+    {
+      "text": "Must have completed at least Class IX (Madhyamik or equivalent)",
+      "source_quote": "Should have completed at least Class IX (Madhyamik or equivalent)"
+    },
+    {
+      "text": "Must have admission in an eligible course (school, UG, PG or professional)",
+      "source_quote": "Must have secured admission in an eligible course (school, UG, PG, or professional)"
+    },
+    {
+      "text": "Needs a co-borrower, usually a parent or guardian",
+      "source_quote": "Co-borrower required (usually a parent/guardian)"
+    },
+    {
+      "text": "Neither the student nor the co-borrower may be in default on a bank loan",
+      "source_quote": "Applicant or Co-borrower must not be in default of any bank loan"
+    },
+    {
+      "text": "Only one card per student",
+      "source_quote": "Only one student credit card per student is allowed"
+    },
+    {
+      "text": "Must apply on the official portal with valid documents",
+      "source_quote": "Must apply through the official online portal with valid documents"
+    }
+  ],
+  "ambiguous": [
+    "Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines",
+    "'Class IX (Madhyamik or equivalent)' is unclear, because Madhyamik is the Class 10 exam, so the class is not modelled"
+  ],
+  "documents": [],
+  "text": {
+    "en": {
+      "title": "West Bengal Student Credit Card",
+      "benefit": "Collateral-free education loan up to Rs 10 lakh at about 4% simple interest, repayable over up to 15 years.",
+      "how_to_apply": "Register on the WBSCC portal, apply with admission and ID documents; the institution and Higher Education Department verify it before the bank sanctions."
+    }
+  },
+  "coverage": {
+    "start": "\nEligibility\n",
+    "end": "Application Details",
+    "bullet": ""
+  },
+  "drafted_by": "claude",
+  "meaning_checked_by": "claude",
+  "meaning_checked_at": "2026-10-20",
+  "reviewed_by": null,
+  "reviewed_at": null
+}

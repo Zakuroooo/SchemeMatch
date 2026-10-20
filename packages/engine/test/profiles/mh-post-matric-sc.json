@@ -1,0 +1,82 @@
+{
+  "scheme": "mh-post-matric-sc",
+  "cases": [
+    {
+      "id": "eligible",
+      "why": "SC undergraduate, income 2 lakh",
+      "profile": {
+        "caste_category": "SC",
+        "is_student": true,
+        "education_level": "undergraduate",
+        "annual_family_income": 200000
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "income-2.5-lakh",
+      "why": "'₹2.5 lakh or less' includes 2.5 lakh",
+      "profile": {
+        "caste_category": "SC",
+        "is_student": true,
+        "education_level": "undergraduate",
+        "annual_family_income": 250000
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "income-above",
+      "why": "Just above 2.5 lakh",
+      "profile": {
+        "caste_category": "SC",
+        "is_student": true,
+        "education_level": "undergraduate",
+        "annual_family_income": 250001
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "class-10",
+      "why": "Still before matriculation",
+      "profile": {
+        "caste_category": "SC",
+        "is_student": true,
+        "education_level": "class_10",
+        "annual_family_income": 100000
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "class-11",
+      "why": "First year after matriculation",
+      "profile": {
+        "caste_category": "SC",
+        "is_student": true,
+        "education_level": "class_11",
+        "annual_family_income": 100000
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "obc",
+      "why": "OBC is not covered",
+      "profile": {
+        "caste_category": "OBC",
+        "is_student": true,
+        "education_level": "undergraduate",
+        "annual_family_income": 100000
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "income-unknown",
+      "why": "Everything but income answered",
+      "profile": {
+        "caste_category": "SC",
+        "is_student": true,
+        "education_level": "undergraduate"
+      },
+      "expected": "UNKNOWN",
+      "ask_next": "annual_family_income"
+    }
+  ]
+}

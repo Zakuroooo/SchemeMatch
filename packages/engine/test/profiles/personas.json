@@ -16,7 +16,19 @@
         "land_acres": 0,
         "caste_category": "OBC"
       },
-      "eligible": ["apy", "pmjjby", "pmsby", "mh-ladki-bahin", "mh-sanjay-gandhi-niradhar"],
+      "eligible": [
+        "apy",
+        "pmjjby",
+        "pmsby",
+        "mh-ladki-bahin",
+        "mh-sanjay-gandhi-niradhar",
+        "e-shram",
+        "nfbs",
+        "pm-sym",
+        "pm-vishwakarma",
+        "pmjdy",
+        "pmuy"
+      ],
       "note": "Not the widow pension: 38 is below its 40 to 79 band"
     },
     {
@@ -34,7 +46,7 @@
         "is_pregnant_or_lactating": false,
         "caste_category": "General"
       },
-      "eligible": ["pm-kisan", "pmsby"]
+      "eligible": ["pm-kisan", "pmsby", "e-shram", "pm-vishwakarma", "pmjdy"]
     },
     {
       "id": "elderly-widow",
@@ -51,7 +63,16 @@
         "is_pregnant_or_lactating": false,
         "caste_category": "General"
       },
-      "eligible": ["ignoaps", "ignwps", "mh-sanjay-gandhi-niradhar"]
+      "eligible": [
+        "ignoaps",
+        "ignwps",
+        "mh-sanjay-gandhi-niradhar",
+        "mh-shravanbal",
+        "nfbs",
+        "pm-vishwakarma",
+        "pmjdy",
+        "pmuy"
+      ]
     },
     {
       "id": "pregnant-sc-woman",
@@ -66,9 +87,21 @@
         "has_bpl_card": false,
         "disability_percent": 0,
         "land_acres": 0,
-        "is_pregnant_or_lactating": true
+        "is_pregnant_or_lactating": true,
+        "is_student": false
       },
-      "eligible": ["apy", "pmmvy", "pmjjby", "pmsby"],
+      "eligible": [
+        "apy",
+        "pmmvy",
+        "pmjjby",
+        "pmsby",
+        "e-shram",
+        "mh-ramai-awas",
+        "pm-sym",
+        "pm-vishwakarma",
+        "pmjdy",
+        "pmuy"
+      ],
       "note": "Not Ladki Bahin: 3 lakh is above its 2.5 lakh limit"
     },
     {
@@ -86,7 +119,18 @@
         "is_pregnant_or_lactating": false,
         "caste_category": "ST"
       },
-      "eligible": ["igndps", "apy", "pmjjby", "pmsby", "mh-sanjay-gandhi-niradhar"]
+      "eligible": [
+        "igndps",
+        "apy",
+        "pmjjby",
+        "pmsby",
+        "mh-sanjay-gandhi-niradhar",
+        "e-shram",
+        "nfbs",
+        "pm-sym",
+        "pm-vishwakarma",
+        "pmjdy"
+      ]
     },
     {
       "id": "bihar-woman",
@@ -103,7 +147,17 @@
         "is_pregnant_or_lactating": false,
         "caste_category": "OBC"
       },
-      "eligible": ["apy", "pmjjby", "pmsby"]
+      "eligible": [
+        "apy",
+        "pmjjby",
+        "pmsby",
+        "e-shram",
+        "nfbs",
+        "pm-sym",
+        "pm-vishwakarma",
+        "pmjdy",
+        "pmuy"
+      ]
     },
     {
       "id": "wb-sc-elderly-widow",
@@ -121,7 +175,15 @@
         "is_pregnant_or_lactating": false,
         "is_student": false
       },
-      "eligible": ["ignwps", "pmsby", "wb-taposili-bandhu"],
+      "eligible": [
+        "ignwps",
+        "pmsby",
+        "wb-taposili-bandhu",
+        "nfbs",
+        "pm-vishwakarma",
+        "pmjdy",
+        "pmuy"
+      ],
       "note": "Not Annapurna: 62 is above its 25 to 60 band"
     }
   ]

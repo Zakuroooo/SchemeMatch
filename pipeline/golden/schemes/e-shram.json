@@ -1,0 +1,62 @@
+{
+  "slug": "e-shram",
+  "level": "central",
+  "state": null,
+  "category": "livelihood",
+  "official_url": "https://wb.gov.in/government-schemes-details-e-shram-card.aspx",
+  "source_file": "sources/e-shram.txt",
+  "eligibility": {
+    "all": [
+      {
+        "field": "age",
+        "op": "between",
+        "value": [16, 59],
+        "source_quote": "Age should be between 16 and 59 years."
+      }
+    ]
+  },
+  "unmodelled": [
+    {
+      "text": "Must be an Indian citizen",
+      "source_quote": "Must be an Indian citizen."
+    },
+    {
+      "text": "Must work in the unorganised sector (construction, street vending, domestic work, migrant work, etc.)",
+      "source_quote": "Must be a worker in the unorganized sector (e.g., construction workers, street vendors, domestic workers, migrant workers, etc.)."
+    },
+    {
+      "text": "Must not be a member of EPFO, ESIC or government-funded NPS",
+      "source_quote": "Should not be a member of EPFO, ESIC, or NPS (government-funded)."
+    },
+    {
+      "text": "Must be self-employed, home-based or a wage worker in informal work",
+      "source_quote": "Should be a self-employed worker, home-based worker, or wage worker in informal employment."
+    },
+    {
+      "text": "Meant mainly for low-income workers (no strict limit is stated)",
+      "source_quote": "Generally intended for workers with lower or unstable income (typically below Rs 15,000/month for certain linked schemes)."
+    }
+  ],
+  "ambiguous": [
+    "Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines",
+    "The income line is guidance ('generally intended'), not a firm limit"
+  ],
+  "documents": [],
+  "text": {
+    "en": {
+      "title": "e-Shram Card",
+      "benefit": "A 12-digit UAN card for unorganised workers that links to accident cover (PMSBY), pension (PM-SYM) and other schemes.",
+      "how_to_apply": "Register free on the e-Shram portal or at a Common Service Centre with Aadhaar, its linked mobile number and bank details."
+    }
+  },
+  "coverage": {
+    "start": "\nEligibility:\n",
+    "end": "Application Details:",
+    "bullet": ""
+  },
+  "drafted_by": "claude",
+  "meaning_checked_by": "claude",
+  "meaning_checked_at": "2026-10-20",
+  "reviewed_by": null,
+  "reviewed_at": null
+}
