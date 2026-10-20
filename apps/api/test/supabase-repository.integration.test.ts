@@ -35,7 +35,7 @@ describe.runIf(url && anonKey)("Supabase repository (integration)", () => {
     }
   });
 
-  it("gives Sunita the same five schemes through the database", async () => {
+  it("gives Sunita the same eleven schemes through the database", async () => {
     const app = await buildApp({ repo: db });
     const res = await app.inject({
       method: "POST",
