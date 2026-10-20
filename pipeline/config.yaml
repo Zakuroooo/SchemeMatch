@@ -1,0 +1,28 @@
+# Pinned experiment settings (docs/EVALS.md §6). Every eval report prints these.
+# Change one thing at a time, and keep every report.
+
+endpoint: https://api.groq.com/openai/v1/chat/completions
+temperature: 0
+# gpt-oss models reason before answering; "low" keeps a request inside the free per-minute
+# token limit. Set before any run, not tuned on results.
+reasoning_effort: low
+max_completion_tokens: 2000
+# Groq's listed base limit is 8K tokens per minute for both models (docs checked 2026-10-20),
+# counting the prompt plus the answer. A request estimated above it is not sent; it is
+# recorded as too_large and scored as a full miss. Splitting long pages is a later experiment.
+max_request_tokens: 8000
+seconds_between_calls: 2
+
+models:
+  A:
+    id: openai/gpt-oss-120b
+    usd_per_m_input: 0.15 # console.groq.com/docs/model/openai/gpt-oss-120b, 2026-10-20
+    usd_per_m_output: 0.60
+  B:
+    id: openai/gpt-oss-20b
+    usd_per_m_input: 0.075 # console.groq.com/docs/model/openai/gpt-oss-20b, 2026-10-20
+    usd_per_m_output: 0.30
+
+# For the "Rs per scheme at list price" column; runs on the free tier actually cost Rs 0.
+usd_to_inr: 84.0
+usd_to_inr_as_of: "2026-10-20 (fixed planning rate, not a live quote)"
