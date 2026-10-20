@@ -15,7 +15,7 @@
 | Voice audio | Sarvam API in transit | **Never stored** by us | STT | Discarded after transcription |
 | Worker account (email, org, role) | Supabase Auth | Yes | Login, RLS | While account active |
 | Analytics events | Server | Yes, no user ID, district-level | Product metrics | 12 months |
-| IP address | Rate limiter (Upstash) | Short TTL only | Abuse prevention | ≤ 24 h |
+| IP address | Rate limiter (today: in each server's memory; planned: Upstash) | Short TTL only | Abuse prevention | ≤ 1 min today; ≤ 24 h with Upstash |
 
 **Never collected:** name, phone, Aadhaar or any ID number, exact address, photos (v1), free-text notes.
 

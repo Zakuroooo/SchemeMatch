@@ -58,7 +58,6 @@ A scheme's `eligibility` is a tree of **groups** (`all` = AND, `any` = OR) whose
 ```json
 {
   "all": [
-    { "field": "state", "op": "eq", "value": "MH", "source_quote": "resident of Maharashtra" },
     { "field": "age", "op": "gte", "value": 18, "source_quote": "aged 18 years and above" },
     { "field": "annual_family_income", "op": "lte", "value": 21000, "source_quote": "annual family income not exceeding Rs. 21,000" },
     { "any": [
@@ -68,7 +67,7 @@ A scheme's `eligibility` is a tree of **groups** (`all` = AND, `any` = OR) whose
   ]
 }
 ```
-*(Example values are illustrative until checked against the real source.)*
+*(An illustrative example, not a real scheme. A state scheme's residency is not a condition: it comes from the scheme's `state` field, see below.)*
 
 **Fields (v1 profile)** — all optional, all coarse, none identifying:
 `state, district, age, gender, marital_status, annual_family_income, caste_category (SC/ST/OBC/General/EWS), occupation, land_acres, disability_percent, is_student, education_level, household_size, has_bpl_card, children_count, is_pregnant_or_lactating`.

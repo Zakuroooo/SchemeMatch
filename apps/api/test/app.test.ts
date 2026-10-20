@@ -170,4 +170,18 @@ describe("errors and limits", () => {
     expect(logs.length).toBeGreaterThan(0);
     expect(logs).not.toContain("Zzyzxdistrict");
   });
+
+  it("never writes a client address to the logs", async () => {
+    let logs = "";
+    const stream = new Writable({
+      write(chunk, _enc, done) {
+        logs += chunk.toString();
+        done();
+      },
+    });
+    const a = await start({ logger: { level: "trace", stream } });
+    await a.inject({ method: "GET", url: "/health", remoteAddress: "203.0.113.77" });
+    expect(logs).toContain("incoming request");
+    expect(logs).not.toContain("203.0.113.77");
+  });
 });

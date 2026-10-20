@@ -97,3 +97,14 @@ def test_enums_match_engine_types():
     for name, field in [("Gender", "gender"), ("MaritalStatus", "marital_status"), ("CasteCategory", "caste_category")]:
         line = re.search(rf"export type {name} = (.+);", types).group(1)
         assert set(re.findall(r'"([^"]+)"', line)) == ENUMS[field], name
+
+
+def test_conditions_nobody_can_meet_are_dropped():
+    q = "Annual family income should not exceed Rs 2.5 lakh."
+    never = [{"field": "annual_family_income", "op": "lt", "value": 0, "source_quote": q},
+             {"field": "age", "op": "gt", "value": 120, "source_quote": AGE["source_quote"]}]
+    out = validate({"eligibility": {"all": never}}, SOURCE)
+    assert out.eligibility == {"all": []}
+    assert all(r.reason.startswith("nobody can meet") for r in out.rejected) and len(out.rejected) == 2
+    fine = validate({"eligibility": {"all": [{**never[0], "op": "lte", "value": 250000}]}}, SOURCE)
+    assert fine.rejected == []

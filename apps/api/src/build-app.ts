@@ -45,8 +45,19 @@ export async function buildApp({
         ? false
         : {
             ...(typeof logger === "object" ? logger : {}),
-            // Profiles describe vulnerable people: never write them to logs (PRIVACY-SECURITY §5).
-            redact: { paths: ["req.body", "body", "profile", "*.profile"], censor: "[redacted]" },
+            // Profiles describe vulnerable people, and addresses identify them: never log either
+            // (PRIVACY-SECURITY §5).
+            redact: {
+              paths: [
+                "req.body",
+                "body",
+                "profile",
+                "*.profile",
+                "req.remoteAddress",
+                "req.remotePort",
+              ],
+              censor: "[redacted]",
+            },
           },
   }).withTypeProvider<ZodTypeProvider>();
 

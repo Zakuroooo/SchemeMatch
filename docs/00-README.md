@@ -14,7 +14,7 @@
 | 4 | [adr/](adr/README.md) | Why each big technical choice was made (7 one-page decisions) | 15 min |
 | 5 | [DATA.md](DATA.md) | Where scheme data comes from, the rule format, three-valued logic | 20 min |
 | 6 | [EVALS.md](EVALS.md) | How the AI rule extraction is measured honestly | 10 min |
-| 7 | [TESTING.md](TESTING.md) | Test layers, the 120 profiles, merge gates | 10 min |
+| 7 | [TESTING.md](TESTING.md) | Test layers, the hand-written profiles, merge gates | 10 min |
 | 8 | [PRIVACY-SECURITY.md](PRIVACY-SECURITY.md) | Data inventory, DPDP, consent, threat model | 10 min |
 | 9 | [DESIGN.md](DESIGN.md) + [design-refs/PROMPTS.md](design-refs/PROMPTS.md) | Look and feel, tokens, asset pipeline, prompt list | 15 min |
 | 10 | [BUILD-PLAN.md](BUILD-PLAN.md) | 6-week plan, commit-sized tasks, what you learn each week | 10 min |

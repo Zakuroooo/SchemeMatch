@@ -25,14 +25,14 @@ flowchart TB
 
 *Maestro choice is provisional — confirm Expo support via context7 when the app exists.*
 
-## 2. The 120 profiles (engine truth)
-- Written **by hand, before the engine code**, in `packages/engine/test/profiles/*.json`: `{ profile, expected: { eligible: [...], not_eligible: [...], ask_next: "field" } }`.
+## 2. Hand-written profiles (engine truth; target 120, 174 cases today)
+- Written **by hand from the official pages** (the first batch before the engine code existed), in `packages/engine/test/profiles/<scheme>.json`: `{ scheme, cases: [{ id, why, profile, expected: "PASS" | "FAIL" | "UNKNOWN", ask_next? }] }`. Cross-scheme personas live in `personas.json`: `{ id, why, profile, eligible: [...] }`.
 - Built per scheme: for each scheme, at least one clearly eligible, one clearly not, one on each **boundary** (age exactly 18 / 17; income exactly at the limit / ₹1 over), and one with a missing field.
 - Plus persona profiles (Sunita, a Bengal student, a Marathwada farmer…) across all schemes.
 - A failing profile is never "fixed" by editing the expectation unless the source text proves the expectation wrong — note the source line in the commit message.
 
 ## 3. Merge gates (GitHub Actions)
-`lint → typecheck → unit + integration + pytest → build`. Red = no merge. Coverage target for `packages/engine`: 100% of branches (it is small; anything less means an untested rule path). No global coverage target elsewhere — test behaviour, not lines.
+CI jobs on every pull request: **js** (format check, lint, typecheck, unit tests with engine coverage) · **db** (Supabase start, `db lint`, pgTAP, API integration tests against the local DB) · **pipeline** (pytest, source hash check) · **secrets** (gitleaks). The build runs on Vercel at deploy time. Red = no merge. Coverage target for `packages/engine`: 100% of branches (it is small; anything less means an untested rule path). No global coverage target elsewhere — test behaviour, not lines.
 
 ## 4. Checking AI-written tests
 Red flags (see PLAYBOOK §6): tests that assert what the code does rather than what the spec says · expectations changed in the same commit as the code · mocks of the thing under test · snapshot tests nobody read. Ask "which line of DATA.md / the source text does this test prove?"

@@ -17,7 +17,7 @@ flowchart LR
 
 ## 2. Golden set
 - **How it is made:** AI-drafted, human-verified. Claude drafts each rule with an exact source quote; Pranay checks each condition against its quote using `pipeline/golden/VERIFY.md`. A machine test confirms every quote exists in the saved source. The human checks the meaning. A scheme counts as human-verified only once `reviewed_by` is set. Until then it is labelled AI-checked (`meaning_checked_by`), and any accuracy number must say so.
-- **Size:** 30 schemes (the v1 catalog) hand-labelled by you, plus a frozen **held-out 10** you label but never look at while tuning prompts.
+- **Size:** 30 schemes (the v1 catalog), AI-drafted and AI-checked so far with your review pending, plus a frozen **held-out 10** (not labelled yet), labelled before any run and never used to tune prompts.
 - **Labelling guide** (`pipeline/golden/GUIDE.md`, written before labelling):
   - one condition per eligibility criterion stated in the text; nothing inferred that the text does not say;
   - numbers exactly as written (₹ amounts as integers, ages as years);

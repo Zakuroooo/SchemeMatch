@@ -25,13 +25,15 @@ flowchart LR
 3. Run Supabase **security advisors** and fix every finding before step 4.
 4. **Vercel:** new project from the GitHub repo, **Root Directory `apps/api`** (framework auto-detected as Fastify, entry `src/index.ts`, region `bom1` from `apps/api/vercel.json`).
 5. Env vars (Production + Preview): `SUPABASE_URL`, `SUPABASE_ANON_KEY` (publishable key only, never service-role), `CLIENT_IP_HEADER=x-forwarded-for`.
-6. Smoke test: `GET /health`, `GET /schemes?state=WB`, `POST /eligibility` with the Sunita persona; expect her 5 schemes.
+6. Smoke test: `GET /health`, `GET /schemes?state=WB`, `POST /eligibility` with the Sunita persona; expect her 11 schemes (the list in `apps/api/test/app.test.ts`).
 
 ### Staging status (2026-10-20)
 - **Live URL: https://schemematch-api-zakuroooos-projects.vercel.app** (`/health`, `/schemes`, `POST /eligibility`). ⚠️ `schemematch-api.vercel.app` is **someone else's** project; never share it.
 - **API live on Vercel** (project `schemematch-api`, region `bom1`, Fastify preset, root `apps/api`, build `cd ../.. && pnpm turbo run build --filter @schemematch/api`). It serves the **bundled** golden schemes; there is no database yet.
 - **No staging database:** Supabase's free plan allows 2 active projects, and both are in use by live resume demos (Cortexa, FollowUp). Decide on the database in Week 3, when `POST /screenings` needs one.
-- Vercel Authentication is **off** for this project, so the API is public. It only serves public scheme info, validates every input and is rate-limited.
+- Vercel Authentication is **off** for this project, so the API is public. It only serves public scheme info and validates every input.
+- **Rate limit is per instance only:** the limiter keeps its count in memory, so each Vercel instance counts separately. Measured 2026-10-20: 70 sequential requests → 59 allowed, 11 got 429; 70 parallel requests → all 200. Move the count to Upstash Redis before any real traffic.
+- **Rules are AI-checked, not human-reviewed.** The bundled 30 schemes have not had your review (`reviewed_by` is empty), so this staging API is for testing only, not for real users (PRD V1-2).
 
 ### Deploy lessons (each one cost a failed deploy)
 1. Vercel finds the Fastify entry by a **direct `import ... from "fastify"`** in `src/index.ts`.
@@ -54,12 +56,12 @@ flowchart LR
 - DB: migrations in `supabase/migrations/`, applied to staging first; every migration must be backward compatible with the previous app version (expand → migrate → contract).
 - App: EAS build → internal testing track → release. Scheme data updates ship as a **snapshot**, not an app release.
 
-**Pre-promote checklist:** CI green · migrations applied on staging · smoke test (screen one persona end to end in 2 languages) · no new Sentry/log errors in 15 min.
+**Pre-promote checklist:** CI green · migrations applied on staging · smoke test (screen one persona end to end in 2 languages) · no new errors in the Vercel logs in 15 min.
 
 **API deploy setting:** set `CLIENT_IP_HEADER=x-forwarded-for` on Vercel so rate limiting is per user. Without it, everyone shares the proxy's IP. Locally, leave it unset so faked headers are ignored. Vercel's docs confirm the edge overwrites `x-forwarded-for` by default to prevent IP spoofing (checked 2026-10-20).
 
 ## 4. Scheme data refresh
-Weekly Vercel Cron re-fetches each `official_url`, compares `source_hash`; changed → `needs_review` (stops matching) + a GitHub issue with the diff. You review within 7 days; `last_checked` shows on every scheme card.
+*(Planned, not built yet. Today the manual version is `uv run python -m schemematch_pipeline.fetch --check`, which re-hashes the saved copies; re-fetching live pages is a later step.)* Weekly Vercel Cron re-fetches each `official_url`, compares `source_hash`; changed → `needs_review` (stops matching) + a GitHub issue with the diff. You review within 7 days; `last_checked` shows on every scheme card.
 
 ### Run the rule-extraction pipeline (batch, on your laptop)
 1. One time: create a free key at console.groq.com and put `GROQ_API_KEY=...` in `pipeline/.env` (git-ignored; never commit it or paste it in chat).
