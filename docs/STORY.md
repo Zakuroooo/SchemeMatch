@@ -50,7 +50,7 @@ This is a real gap. A funded company, Haqdarshak, exists only to solve it, with 
 
 ## 2. Our solution
 
-**SchemeMatch** asks a few simple questions **by voice, in your language** and tells you which schemes you are **likely** entitled to. For each one it shows:
+**SchemeMatch** asks a few simple questions **by voice, in your language** and tells you which schemes you are **likely** entitled to. For each one it shows (this is the finished product; what exists today is in [section 5](#5-the-journey-so-far-chapter-by-chapter): no voice or app yet, and only 2 of 30 schemes list their papers so far):
 - **why** you qualify, quoting the official rule;
 - **what papers** you need;
 - **where to go** to apply;
@@ -99,7 +99,7 @@ journey
 ## 4. The big map: how the parts fit
 
 Think of SchemeMatch as **a kitchen**:
-- the **golden set** is the recipe book, checked by hand;
+- the **golden set** is the recipe book (checked by AI so far; your human review is still pending);
 - the **engine** is the cook, who follows recipes exactly;
 - the **API** is the waiter, who takes orders and brings food;
 - the **database** is the pantry;
@@ -115,8 +115,8 @@ flowchart LR
         A[API<br/>checks the input]
         E[Engine<br/>applies the rules]
     end
-    DB[(Database<br/>Supabase Postgres)]
-    G[Golden set<br/>30 hand-checked schemes]
+    DB[(Database<br/>Supabase Postgres<br/>local + CI only so far)]
+    G[Golden set<br/>30 AI-checked schemes]
     P[AI pipeline<br/>drafts rules from text]
 
     S -->|answers| A
@@ -126,13 +126,14 @@ flowchart LR
     A -->|results| S
     A -->|results| M
     E -. reads rules .-> DB
+    G -->|bundled copy on the live API| A
     G -->|seed| DB
     P -. scored against .-> G
 
     classDef done fill:#c8e6c9,stroke:#2e7d32;
     classDef todo fill:#fff3e0,stroke:#ef6c00;
-    class A,E,DB,G done;
-    class S,M,P todo;
+    class A,E,DB,G,P done;
+    class S,M todo;
 ```
 
 🟩 green = built · 🟧 orange = coming later
@@ -243,7 +244,7 @@ Then the engine:
 
 Protections:
 - **Strict input:** send `name`, `phone` or `aadhaar` and the API **refuses** (400). It is impossible to store them by mistake.
-- **Rate limit:** 60 requests a minute per person, so nobody can flood it.
+- **Rate limit:** 60 requests a minute per person. Honest limit: the count lives in each server's memory, so on Vercel it works per instance only. Measured: 70 requests one after another → 11 blocked; 70 at the same moment → none blocked. A shared store (Upstash) fixes this later.
 - **Logs hide answers:** private data never lands in logs.
 - **Disclaimer** on every result.
 
@@ -368,6 +369,7 @@ These are the best interview stories, because each one is a real problem you sol
 | 7 | Too many requests returned **500** instead of **429** | Error builder didn't set the status | Return 429 | Test the error paths, not just the happy path |
 | 8 | The validator could leave an **empty AND-group**, which lets everyone pass | Dropping bad rules emptied a group (caught by an automated security review) | Drop the empty group too, and record why | Removing a rule can make eligibility *wider*; check what's left |
 | 9 | The scorer marked correct AI answers as **wrong grouping** | It compared tree shapes, not meaning: a one-rule group equals that rule | Simplify both trees before comparing | Before trusting a score, read some answers by hand; graders have bugs too |
+| 10 | Logs quietly recorded each visitor's **network address** | The logging library does it by default, and the privacy doc assumed it didn't | Redact it; a test proves it (it failed before the fix) | Check what libraries do by default; write the test first |
 
 > Hinglish: Galti hona normal hai. Interview mein bolo: kya toota, kyun toota, kaise pakda, aur dobara na ho isliye kya test likha.
 
@@ -415,7 +417,7 @@ flowchart LR
 | The plan | [BUILD-PLAN.md](BUILD-PLAN.md) |
 | How to deploy and run | [RUNBOOK.md](RUNBOOK.md) |
 
-**Numbers today (all measured in the repo):** 30 schemes · 174 hand-written test cases · 503 engine tests · 35 API tests · 23 database tests · 51 pipeline tests · 100% engine code coverage.
+**Numbers today (all measured in the repo):** 30 schemes · 174 hand-written test cases · 503 engine tests · 36 API tests · 23 database tests · 52 pipeline tests · 100% engine code coverage.
 
 ---
 
@@ -450,6 +452,7 @@ flowchart LR
 
 | Date | Step | What changed |
 |---|---|---|
+| 2026-10-20 | Audit | Checked everything; fixed IP logging, honest rate-limit and staging notes, 9 placeholder texts, stale docs ([PROGRESS step 11](PROGRESS.md)) |
 | 2026-10-20 | Week 3 step 1 | AI pipeline built; first eval: big model F1 0.87, small 0.59 (dev set) |
 | 2026-10-20 | Build log | [PROGRESS.md](PROGRESS.md) added: the detailed how of every step |
 | 2026-10-20 | Story doc | This file created |

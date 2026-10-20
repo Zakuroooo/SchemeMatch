@@ -3,7 +3,7 @@
 
 > **[STORY.md](STORY.md)** explains the project as a story (the *why*). **This file** is the detailed diary (the *how*). Read STORY first if you're new.
 
-**Latest:** Step 10, the AI pipeline and the first eval report (2026-10-20) · **Next:** `POST /screenings` and the staging database decision
+**Latest:** Step 11, full audit and fixes (2026-10-20) · **Next:** `POST /screenings` and the staging database decision
 
 ---
 
@@ -98,7 +98,7 @@ flowchart LR
 
 **Goal:** get the helper tools ready.
 
-**How:** installed the reverse-engineering tool (REA) and Agent-Reach as MCP tools in Claude Code, with your approval. Moved the repo to `~/code/SchemeMatch` and installed pnpm and the Supabase CLI.
+**How:** installed the reverse-engineering tool REA (as an MCP server in Claude Code) and Agent-Reach (a command-line tool with a Claude Code skill), with your approval. Moved the repo to `~/code/SchemeMatch` and installed pnpm and the Supabase CLI.
 
 **Rules:**
 - REA is used only on software you own or may examine.
@@ -282,7 +282,7 @@ flowchart LR
 | Hang with no logs | Removed `await` on `app.listen()` |
 
 5. Region was Washington at first → set the project to `bom1`; checked the `x-vercel-id` header.
-6. Turned off Vercel's login wall. This is safe because the API is public data, strict input and rate-limited.
+6. Turned off Vercel's login wall, because the API serves only public scheme data and rejects anything that isn't a profile field. (The rate limit is weaker than first written: it counts per server instance, so a burst spread over instances isn't blocked. Found in the audit; see Step 11.)
 7. Wrote the lessons into [RUNBOOK.md](RUNBOOK.md).
 
 **How we checked it works (on production):**
@@ -402,6 +402,42 @@ flowchart LR
 
 ---
 
+## Step 11: Full audit of everything so far (2026-10-20)
+
+**Goal:** you asked me to check everything (code, data, AI answers, docs) for anything false, stale or broken, and fix it before moving on.
+
+**How we did it:**
+1. **Live checks:** production `/health`, 30 schemes served, the West Bengal widow's 7 schemes, 140 requests to test the rate limit.
+2. **AI answers:**
+   - read all 15 errors of the big model against the pages;
+   - checked the size estimate against Groq's real token counts (within ±4%, so the 3 "too large" pages really were too large);
+   - re-checked every label.
+3. **Answer key:** every number in the 30 benefit and how-to-apply texts checked against its saved page; all 30 benefit sentences read.
+4. **Docs:** searched every doc for claims the code doesn't back up.
+5. **Security:** scanned the whole git history for keys and tokens (none found); checked what the logs record.
+
+**Problems found, and what was done:**
+
+| # | Problem | Fix |
+|---|---|---|
+| 1 | Logs recorded each visitor's network address, but PRIVACY-SECURITY promises no IPs in logs | Address and port now redacted, with a test that failed before the fix |
+| 2 | Rate limit is per server instance: 70 parallel requests all got through | Docs now say so honestly (measured); a shared store (Upstash) is still planned |
+| 3 | The live staging API serves rules not yet human-reviewed, against PRD V1-2 | Clearly labelled "testing only" in README and RUNBOOK |
+| 4 | 9 schemes said "Apply through the official channel described on the source page" | Replaced with the real steps from each page; one unsourced phrase I wrote myself was removed |
+| 5 | Validator let through conditions nobody can meet (`income lt 0`) | Now dropped, with tests; report regenerated and the small change explained |
+| 6 | The answer key's `is_student` + `education_level` habit wasn't written down, so 2 of the AI's "misses" came from an unwritten rule | Written into GUIDE.md |
+| 7 | Stale or false doc lines: "60 rule sets", "hand-labelled by you", "her 5 schemes", Agent-Reach called an MCP, a planned cron described as working, the TESTING file format and CI steps, a DATA example breaking our own rule, README still on "Week 2" | All corrected |
+| 8 | Only 2 of 30 schemes list their documents | Not hidden any more: STORY says so; filling them is a planned step |
+
+**Still open (needs your decision or your time):**
+- CLAUDE.md is in 2 old commits (no secrets in it). Removing it needs a history rewrite and force-push, so you decide.
+- Your human review of the 30 schemes.
+- 5 discovery conversations.
+
+**How we checked it:** engine 503 · API 36 · pipeline 52 · database 23 · database-vs-files parity 4, all passing.
+
+---
+
 ## Running totals
 
 | Thing | Count | How to check |
@@ -410,12 +446,12 @@ flowchart LR
 | Golden schemes | 30 (15 central · 6 MH · 9 WB) | `pipeline/catalog.csv` |
 | Hand-written test cases | 174 | `packages/engine/test/profiles/` |
 | Engine tests | 503 | `pnpm turbo run test` |
-| API tests | 35 | same |
+| API tests | 36 | same |
 | Database tests | 23 | `supabase test db` |
 | Engine code coverage | 100% | CI enforces it |
 | Human-reviewed schemes | 0 of 30 | `reviewed_by` in each file |
 | Real user conversations | 0 of 5 | [DISCOVERY.md](DISCOVERY.md) |
-| Pipeline (Python) tests | 51 | `cd pipeline && uv run pytest` |
+| Pipeline (Python) tests | 52 | `cd pipeline && uv run pytest` |
 | Eval reports | 1: big model F1 0.87, small 0.59 (dev set) | [reports/](../reports/) |
 
 ---

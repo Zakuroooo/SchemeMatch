@@ -97,7 +97,7 @@ flowchart LR
 - Rules are a tree of `all` (AND) / `any` (OR) groups with three-valued logic (PASS / FAIL / UNKNOWN) — exact semantics in [DATA.md](DATA.md) §3.
 - Unknown field → the app asks only the questions that would change the result ("adaptive questions"). This keeps the conversation to ~4 questions.
 - Output always carries the **reason** and the **official source link**.
-- Tested with **120 profiles** whose expected results were written by hand.
+- Tested with hand-written profiles (target 120; 174 cases today, including 7 cross-scheme personas).
 
 ## 4. Rule-extraction pipeline (the AI part) + evaluation
 
@@ -106,7 +106,7 @@ sequenceDiagram
     participant A as Admin (you)
     participant P as Pipeline (Python)
     participant L as LLM (Groq, structured output)
-    participant G as Golden set (60 hand-made rule sets)
+    participant G as Golden set (30 schemes + 10 held-out, planned)
     participant DB as Postgres
     A->>P: add scheme URL
     P->>P: fetch page / PDF → clean text
@@ -174,11 +174,12 @@ The **idempotency key** (a UUID made on the device) means a retry never creates 
 
 All inputs validated with **Zod**; errors return clear 400s; rate-limited per IP and per install ID with Upstash Redis.
 
-**Built so far (`apps/api`, Week 2):** `GET /health`, `GET /schemes?state=`, `POST /eligibility`.
+**Built so far (`apps/api`, Weeks 2–3; live on Vercel `bom1`):** `GET /health`, `GET /schemes?state=`, `POST /eligibility`.
 - The profile schema is **strict**: any key that isn't a profile field (`name`, `phone`, `aadhaar`, …) is rejected with a 400, and errors never echo values back.
 - Responses carry the reasons (source quotes), the "must also confirm" items, the closest miss, the next question and the disclaimer.
 - Schemes come from a `SchemeRepository` interface. `SupabaseSchemeRepository` reads with the anon key, so RLS limits it to live schemes and their current rule version (60 s cache); `FileSchemeRepository` reads the golden files for offline work. `supabase/seed.sql` is generated from the golden files, and an integration test proves the database serves exactly what the files contain.
-- Rate limiting is in-memory (60/min per IP) until the deploy step moves it to Upstash. Profiles are redacted from logs.
+- Rate limiting is in-memory (60/min per IP). On Vercel this counts **per instance**, so a burst spread over instances isn't blocked (measured; see RUNBOOK). Upstash is still planned. Profiles are redacted from logs.
+- The live API serves a **bundled copy** of the golden schemes (no hosted database yet); Supabase runs locally and in CI.
 
 ## 8. Security & privacy
 - DPDP-style minimisation: no name/phone/Aadhaar; district-level analytics only.

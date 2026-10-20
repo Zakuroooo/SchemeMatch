@@ -35,7 +35,7 @@ Read `docs/` first · never invent features outside the PRD · one feature per s
 | **Plan mode** | Anything touching > 2 files; read the plan, push back, then approve | Now |
 | **CLAUDE.md** | Permanent rules, kept locally (git-ignored) | Done |
 | **Subagents** | Read-only research in parallel ("how does Expo SQLite handle migrations?") so the main context stays clean | When needed |
-| **Skills** | Repeatable workflows: `add-scheme` (source → hash → draft → review checklist), `run-eval` (pipeline + report), `release-check` (APK audit with REA) | W2–W3, once the steps are real |
+| **Skills** | Repeatable workflows: `add-scheme` (source → hash → draft → review checklist), `run-eval` (pipeline + report), `release-check` (APK audit with REA) | Planned, not created yet: W2–W3, once the steps are real |
 | **Hooks** | After every edit: `pnpm typecheck` on changed package; before commit: gitleaks. Configured in `.claude/settings.json` | W1, after scaffold |
 | **/code-review** | Before every merge to `main` | W1 |
 | **Worktrees** | Risky experiments (e.g. trying a second LLM prompt) on a separate copy | When needed |
