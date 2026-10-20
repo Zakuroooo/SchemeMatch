@@ -3,7 +3,7 @@
 
 > Want the detailed *how* of each step (commands, files, bugs, checks)? See **[PROGRESS.md](PROGRESS.md)**, the build log.
 
-> **Where we are (2026-10-20):** Week 3 has started. **30 schemes** are labelled, the engine and API are **live** in Mumbai, and the **AI pipeline** is built and tested. Its first real run waits for your Groq key.
+> **Where we are (2026-10-20):** Week 3 is under way. 30 schemes are labelled, the engine and API are **live** in Mumbai, and the **AI pipeline** has its first score: the big model gets **F1 0.87** on the schemes it could answer (dev set).
 
 | Week | 1 | 2 | 3 | 4 | 5 | 6 |
 |---|---|---|---|---|---|---|
@@ -291,7 +291,7 @@ It took **3 bug fixes** to get live. They're in [section 7](#7-mistakes-we-made-
 - Five West Bengal schemes (Kanyashree, Krishak Bandhu, Rupashree, Swasthya Sathi, Taruner Swapna) are **no longer listed on wb.gov.in**. They're marked "unlisted", because no page says they ended.
 - A neat pair: Maharashtra's scholarship needs income **₹2.5 lakh or less**, while fee reimbursement needs **more than ₹2.5 lakh**. A family at exactly ₹2,50,000 gets the first, not the second, and tests check both edges.
 
-### Chapter 10: Teaching an AI to read the rules (Week 3, in progress)
+### Chapter 10: Teaching an AI to read the rules (Week 3)
 **The idea:** labelling 30 schemes by hand took two days. India has 4,000+. So an AI drafts the rules, and **we measure how good its drafts are** before trusting it.
 
 ```mermaid
@@ -316,6 +316,20 @@ flowchart LR
 **Honest limits, decided before the first run:**
 - 3 long PDF pages are too big for the free tier's per-minute limit, so they count as misses for now.
 - These scores are on our AI-checked answer key, not on final human-reviewed data.
+
+**The first exam results** ([full report](../reports/eval-2026-10-20.md)):
+
+| Student | Score (F1) on pages it answered | Fully correct schemes |
+|---|---|---|
+| Big model (120B) | **0.87** | 50% |
+| Small model (20B) | 0.59 | 13% |
+
+**Reading the answers by hand taught more than the score:**
+- **Our own grader had a bug.** It marked a "group of one rule" as wrong, even though it means the same thing. Fixed before the final report.
+- **The big model made real meaning mistakes.** For NFBS it read "aged 18 to 59" as the *applicant's* age, but it's the age of the family member who *died*.
+- **"Strict" didn't mean guaranteed.** The small model broke the required JSON shape 5 times.
+
+> Hinglish: Score sirf number hai; asli seekh answers khud padhne se aati hai.
 
 ---
 
@@ -352,6 +366,8 @@ These are the best interview stories, because each one is a real problem you sol
 | 5 | Live app **hung with zero logs** | `await app.listen()` waited forever on Vercel's hook | Don't await it | **No logs is a clue:** the app never finished starting |
 | 6 | API ran in Washington, not Mumbai | Region set in the wrong place | Project setting → `bom1`; checked the `x-vercel-id` header | Verify, don't assume |
 | 7 | Too many requests returned **500** instead of **429** | Error builder didn't set the status | Return 429 | Test the error paths, not just the happy path |
+| 8 | The validator could leave an **empty AND-group**, which lets everyone pass | Dropping bad rules emptied a group (caught by an automated security review) | Drop the empty group too, and record why | Removing a rule can make eligibility *wider*; check what's left |
+| 9 | The scorer marked correct AI answers as **wrong grouping** | It compared tree shapes, not meaning: a one-rule group equals that rule | Simplify both trees before comparing | Before trusting a score, read some answers by hand; graders have bugs too |
 
 > Hinglish: Galti hona normal hai. Interview mein bolo: kya toota, kyun toota, kaise pakda, aur dobara na ho isliye kya test likha.
 
@@ -395,11 +411,11 @@ flowchart LR
 | API | [apps/api/src/](../apps/api/src/) |
 | Database setup | [supabase/migrations/](../supabase/migrations/) |
 | AI pipeline | [pipeline/schemematch_pipeline/](../pipeline/schemematch_pipeline/) |
-| Eval reports | `reports/` (first one coming) |
+| Eval reports | [reports/](../reports/) |
 | The plan | [BUILD-PLAN.md](BUILD-PLAN.md) |
 | How to deploy and run | [RUNBOOK.md](RUNBOOK.md) |
 
-**Numbers today (all measured in the repo):** 30 schemes · 174 hand-written test cases · 503 engine tests · 35 API tests · 23 database tests · 49 pipeline tests · 100% engine code coverage.
+**Numbers today (all measured in the repo):** 30 schemes · 174 hand-written test cases · 503 engine tests · 35 API tests · 23 database tests · 51 pipeline tests · 100% engine code coverage.
 
 ---
 
@@ -434,7 +450,7 @@ flowchart LR
 
 | Date | Step | What changed |
 |---|---|---|
-| 2026-10-20 | Week 3 step 1 | AI pipeline built and tested: fetch, validators, scorer, Groq extraction, report (first run pending) |
+| 2026-10-20 | Week 3 step 1 | AI pipeline built; first eval: big model F1 0.87, small 0.59 (dev set) |
 | 2026-10-20 | Build log | [PROGRESS.md](PROGRESS.md) added: the detailed how of every step |
 | 2026-10-20 | Story doc | This file created |
 | 2026-10-20 | Step 2c | Schemes 16–30 labelled; 5 WB schemes marked unlisted (PR #10) |

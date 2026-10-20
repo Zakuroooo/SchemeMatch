@@ -3,7 +3,7 @@
 
 > **[STORY.md](STORY.md)** explains the project as a story (the *why*). **This file** is the detailed diary (the *how*). Read STORY first if you're new.
 
-**Latest:** Step 10, the AI pipeline (built and tested; first model run waiting for your Groq key) · **Next:** first eval report, then `POST /screenings`
+**Latest:** Step 10, the AI pipeline and the first eval report (2026-10-20) · **Next:** `POST /screenings` and the staging database decision
 
 ---
 
@@ -376,11 +376,29 @@ flowchart LR
   - Splitting pages is the next experiment.
 - Swapped one practice example (Rajya Khadya Suraksha → PM Internship). Two examples with no checkable rules could teach the AI to answer "nothing".
 
-**How we checked it:**
-- 49 Python tests pass.
-- Sabotage test: changing PMUY's `gte` to `gt` shows up as exactly one `wrong_operator`.
+9. **Your key:** you pasted it into a hidden prompt in the terminal, which saved it to `pipeline/.env` (git-ignored, readable only by you). I never saw it, and no file in the repo contains it (checked).
+10. **The run:** 30 schemes × 2 models, about 30 minutes, then the report: [reports/eval-2026-10-20.md](../reports/eval-2026-10-20.md).
+11. **Hand spot-check** of 5 raw answers against their pages, written up in the report's notes.
 
-**Waiting on:** your Groq key in `pipeline/.env` → run both models → first report.
+**First results (dev set, AI-checked answer key):**
+
+| Model | F1, schemes with a usable answer | F1, all 30 | Exact | Answers that failed |
+|---|---|---|---|---|
+| A: gpt-oss-120b (big) | **0.87** (26 schemes) | 0.78 | 50% | 3 too large + 1 bad JSON |
+| B: gpt-oss-20b (small) | 0.59 (22 schemes) | 0.43 | 13% | 3 too large + 5 bad JSON |
+
+**What the spot-check found:**
+- A **scorer bug:** a one-item group was counted as a grouping error. Fixed, with tests, before the final report.
+- Real model mistakes:
+  - NFBS: read the dead breadwinner's age as the applicant's;
+  - IGNWPS: "widow" became `gender`, and BPL became `income < 0`;
+  - pre-matric: the SC/ST income limit was applied to OBC too.
+- Groq "strict" mode **checks** the JSON after it's written; it doesn't force it. The small model broke it 5 times.
+
+**How we checked it:**
+- 51 Python tests pass.
+- Sabotage test: changing PMUY's `gte` to `gt` shows up as exactly one `wrong_operator`.
+- Every raw answer is committed in `pipeline/runs/`, so anyone can re-score without calling the AI.
 
 ---
 
@@ -397,18 +415,18 @@ flowchart LR
 | Engine code coverage | 100% | CI enforces it |
 | Human-reviewed schemes | 0 of 30 | `reviewed_by` in each file |
 | Real user conversations | 0 of 5 | [DISCOVERY.md](DISCOVERY.md) |
-| Pipeline (Python) tests | 49 | `cd pipeline && uv run pytest` |
-| Eval reports | 0 (first one waits for the Groq key) | `reports/` |
+| Pipeline (Python) tests | 51 | `cd pipeline && uv run pytest` |
+| Eval reports | 1: big model F1 0.87, small 0.59 (dev set) | [reports/](../reports/) |
 
 ---
 
 ## Next step
 
-**Finish Week 3, step 1:**
-1. You add the Groq key.
-2. I run both models on the 30 schemes and spot-check 3 answers by hand.
-3. Commit the run and the first report, `reports/eval-<date>.md`.
+**Week 3, step 2: `POST /screenings`.** Save a screening (no name, phone or Aadhaar), safe to retry with an idempotency key, plus the staging database decision.
 
-**Then:** `POST /screenings` (saving a screening, safe to retry) and the staging database decision.
+**Later pipeline experiments** (one change at a time, judged on the held-out 10 once labelled):
+1. split long pages;
+2. reject conditions nobody can meet;
+3. retry once when the JSON shape fails.
 
 Your part this week: book the 5 discovery conversations.
