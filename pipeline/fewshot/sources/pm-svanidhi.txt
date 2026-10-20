@@ -1,0 +1,48 @@
+# Source copy for pm-svanidhi
+# official_url: https://wb.gov.in/government-schemes-details-pm-svanidhi-pradhan-mantri-street-vendors-atmanirbhar-nidhi.aspx
+# retrieved: 2026-10-20 (direct fetch, HTML converted to text)
+# sha256 of the text below: caaab9c059edc278a665435a0b9db6e8293b91378e17e817605c58a3dbc71218
+# This is a copy of public government text, kept so quotes can be checked offline.
+
+PM SVANidhi is a Central Sector Scheme launched in 2020 to support street vendors affected by the COVID-19 pandemic by providing affordable working capital loans to resume their businesses. The scheme aims to promote financial inclusion, digital transactions and economic resilience among urban street vendors by enabling easy access to formal credit and incentives for timely repayment.
+Implementation
+The scheme is implemented through Urban Local Bodies (ULBS), lending institutions (banks, NBFCs, MFIs), State Governments, Town Vending Committees and Common Service Centres.
+Benefits Offer Under the Scheme
+The key benefits offered under the scheme include:
+Collateral-free working capital loan: Initial loan up to 15,000 provided to street vendors to restart businesses.
+Subsequent loan enhancement: Vendors who repay loans on time are eligible for higher loan amounts (25,000 and 50,000 in successive tranches).
+Interest subsidy: Interest subsidy of 7% per annum provided on timely repayment of loans.
+Cashback incentives: Incentives for digital transactions are provided to encourage cashless payments.
+Financial inclusion: Facilitates inclusion of street vendors into the formal banking system.
+Improved credit history: Timely repayment helps vendors build creditworthiness for future loans.
+Livelihood support: Enables continuation and expansion of small businesses.
+Digital empowerment: Encourages adoption of UPI, QR-based payments and digitall tools.
+Reduced dependence on informal lenders: Provides affordable credit, reducing reliance on moneylenders.
+Eligibility
+The scheme is targeted at urban street vendors. Eligible beneficiaries generally include:
+Street vendors operating in urban areas as on or before March 24, 2020.
+Vendors identified in survey conducted by Urban Local Bodies or possessing vending certificate/license.
+Vendors recommended by ULBS or Town Vending Committees.
+Vendors in peri-urban or rural areas vending within urban boundaries.
+Street vendors belonging to economically weaker sections including hawkers, fruit sellers, vegetable vendors, artisans and service providers.
+Application Details: Where and How to Apply, Process and Link
+Where to Apply
+Beneficiaries may approach:
+Urban Local Body offices or Town Vending Committees
+Banks, Microfinance Institutions, NBFCs
+Common Service Centres (CSCs)
+PMSVANidhi official portal
+How to apply / process
+The applicant registers on the PM SVANidhi portal or applies through ULB/CSC.
+Identity verification and vending status verification is carried out by ULB.
+Loan application is submitted to lending institutions
+Thelendinginstitution processes the loan and sanctions amount.
+Loan amount is disbursed directly to beneficiary's bank account.
+Beneficiary repays loan in monthly installments.
+Interest subsidy is credited to beneficiary's account periodically.
+Cashback incentives for digital transactions are provided based on usage.
+Subsequent loans are extended upon successful repayment of earlier loans.
+Link
+Link
+Last updated on: Friday, 26th June, 2026
+Information Source: Department of Information & Cultural Affairs(I&CA), Government of West Bengal

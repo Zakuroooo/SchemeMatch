@@ -1,0 +1,37 @@
+# Source copy for wb-post-matric
+# official_url: https://wb.gov.in/government-schemes-details-post-matric-scholarship-scheme.aspx
+# retrieved: 2026-10-20 (direct fetch, HTML converted to text)
+# sha256 of the text below: a23c0241cc45e5e487574d6a8b2e4b15007dc2dc40b3747a11c955aaf97e21b3
+# This is a copy of public government text, kept so quotes can be checked offline.
+
+The Post Matric Scholarship (PMS) scheme provides financial assistance to students from marginalized communities (such as SC, ST, OBC, and minorities) to support their education beyond Class 10. It covers expenses like tuition fees, maintenance allowance, and other study-related costs, aiming to improve access to higher education and reduce dropout rates.
+Benefits Offer Under the Scheme
+Full or partial reimbursement of tuition fees and other non-refundable compulsory charges.
+Maintenance allowance (monthly/annual) to cover living expenses, varying by course level and whether the student is a hosteller or day scholar.
+Allowance for books, study materials, and stationery.
+Additional allowances for specific needs such as thesis preparation, study tours, or project work (for higher-level courses).
+Extra support for students with disabilities (e.g., higher allowances or special provisions).
+All benefits are disbursed as Direct Benefit Transfer (DBT) to the student's bank account.
+Eligibility
+Must be an Indian citizen and belong to eligible categories such as SC, ST, OBC, or notified minority groups.
+Should have passed Class 10 (matriculation) or equivalent examination from a recognized board.
+Must be pursuing studies in a recognized institution (Class XI onward, including higher secondary, undergraduate, postgraduate, or professional courses).
+Annual family income should be within the prescribed limit (commonly up to Rs 2.5 lakh, though it may vary by category and scheme).
+Should not be receiving another scholarship for the same purpose.
+Application Details
+Register on the oasis.wb.gov.in website.
+Log in to the portal using your OTR ID and password to access the application dashboard.
+Select the relevant scholarship scheme applicable to your category (SC/ST/OBC/Minority).
+Fill out the application form by entering personal, academic, and income details accurately.
+Upload required documents such as caste certificate, income certificate, mark sheets, Aadhaar, and bank details.
+Review all details carefully and submit the application. No edits are allowed after final submission.
+The application is verified by the institution and then by district/state authorities.
+After approval by the concerned ministry, the scholarship amount is transferred directly to the student's bank account through DBT.
+Ministry of Minority Affairs
+Link
+Ministry of Tribal Affairs
+Link
+Ministry of Social Justice & Empowerment
+Link
+Last updated on: Friday, 26th June, 2026
+Information Source: Department of Information & Cultural Affairs(I&CA), Government of West Bengal
