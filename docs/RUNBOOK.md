@@ -83,7 +83,7 @@ Signals: API error rate, warm p95, voice fallback rate, eligibility requests/day
 Severity: **S1** wrong eligibility shown or data exposure → hide affected schemes / rotate keys immediately · **S2** feature down · **S3** degraded. Every S1/S2 gets a short blameless note in `docs/incidents/`.
 
 ## 7. Secrets and rotation
-Where each secret lives (names only, never values): `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_URL`, `SARVAM_API_KEY`, `GROQ_API_KEY`, `UPSTASH_REDIS_REST_TOKEN`, `CRON_SECRET`. Rotate on any suspected leak and every 6 months.
+Where each secret lives (names only, never values): `SUPABASE_SECRET_KEY` (server-only key that saves screenings; set only where a database exists, never in an app), `SUPABASE_URL`, `SARVAM_API_KEY`, `GROQ_API_KEY`, `UPSTASH_REDIS_REST_TOKEN`, `CRON_SECRET`. Rotate on any suspected leak and every 6 months.
 
 ## 8. Security testing
 Once SchemeMatch has a running staging deployment, a separate dedicated session will set up security testing of that staging app (Pranay's own app only).

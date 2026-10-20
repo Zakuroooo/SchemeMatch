@@ -12,10 +12,10 @@ supabase test db          # pgTAP tests in supabase/tests/
 pnpm --filter @schemematch/api dev   # API on http://127.0.0.1:3001 (reads golden files)
 ```
 
-**API against the local database:** set the two env vars from `supabase status -o env` (never commit them):
+**API against the local database:** set the env vars from `supabase status -o env` (never commit them). `SUPABASE_SECRET_KEY` turns on saving screenings:
 ```bash
-eval "$(supabase status -o env | grep -E '^(API_URL|ANON_KEY)=')"
-SUPABASE_URL="$API_URL" SUPABASE_ANON_KEY="$ANON_KEY" pnpm --filter @schemematch/api dev
+eval "$(supabase status -o env | grep -E '^(API_URL|ANON_KEY|SECRET_KEY)=')"
+SUPABASE_URL="$API_URL" SUPABASE_ANON_KEY="$ANON_KEY" SUPABASE_SECRET_KEY="$SECRET_KEY" pnpm --filter @schemematch/api dev
 ```
 The same variables enable the integration tests (`pnpm test`).
 
