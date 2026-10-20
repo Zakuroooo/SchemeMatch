@@ -88,6 +88,10 @@ def value_problem(cond: dict) -> str | None:
         return f"impossible value for {fld}: {bad}"
     if op == "between" and value[0] > value[1]:
         return f"between needs min <= max, got {value}"
+    if fld in RANGES and not isinstance(value, list):
+        lo, hi = RANGES[fld]
+        if (op == "lt" and value <= lo) or (op == "gt" and value >= hi):
+            return f"nobody can meet {fld} {op} {value} (possible values are {lo} to {hi})"
     return None
 
 
