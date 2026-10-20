@@ -61,7 +61,19 @@ describe.runIf(url && anonKey)("Supabase repository (integration)", () => {
         .json()
         .eligible.map((e: { slug: string }) => e.slug)
         .sort(),
-    ).toEqual(["apy", "mh-ladki-bahin", "mh-sanjay-gandhi-niradhar", "pmjjby", "pmsby"]);
+    ).toEqual([
+      "apy",
+      "e-shram",
+      "mh-ladki-bahin",
+      "mh-sanjay-gandhi-niradhar",
+      "nfbs",
+      "pm-sym",
+      "pm-vishwakarma",
+      "pmjdy",
+      "pmjjby",
+      "pmsby",
+      "pmuy",
+    ]);
   });
 });
 
