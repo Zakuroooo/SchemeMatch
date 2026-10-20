@@ -13,6 +13,10 @@ import {
 
 const children = (group: Group): readonly RuleNode[] => ("all" in group ? group.all : group.any);
 
+/** The reason text the state gate adds; callers can tell it apart from the scheme's own rules. */
+export const stateGateQuote = (state: string): string =>
+  `Scheme of the state ${state}: for its residents`;
+
 /** A state scheme behaves as if its rules were AND-ed with "lives in that state". */
 function withStateGate(scheme: Scheme): RuleNode {
   if (scheme.level !== "state" || !scheme.state) return scheme.eligibility;
@@ -20,7 +24,7 @@ function withStateGate(scheme: Scheme): RuleNode {
     field: "state",
     op: "eq",
     value: scheme.state,
-    source_quote: `Scheme of the state ${scheme.state}: for its residents`,
+    source_quote: stateGateQuote(scheme.state),
   };
   return { all: [gate, scheme.eligibility] };
 }

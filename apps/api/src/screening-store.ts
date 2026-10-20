@@ -1,11 +1,11 @@
 import { createHash } from "node:crypto";
-import type { Profile, SchemeResult, Tri } from "@schemematch/engine";
+import { stateGateQuote, type Profile, type SchemeResult, type Tri } from "@schemematch/engine";
 
 /** One scheme's result as it is stored with a screening. */
 export interface MatchResult {
   slug: string;
   result: Tri;
-  /** PASS: the first reason quote. FAIL: the closest-miss quote. UNKNOWN: null. */
+  /** PASS: first quote from the scheme's own rules. FAIL: the closest-miss quote. UNKNOWN: null. */
   reason: string | null;
 }
 
@@ -39,10 +39,16 @@ export interface ScreeningStore {
   deleteInstall(installId: string): Promise<number>;
 }
 
-export function toMatch(r: SchemeResult): MatchResult {
+/**
+ * The stored reason. For a pass, the first quote from the scheme's own rules: a state scheme's
+ * first reason is always the state gate, which says nothing about why the person qualifies.
+ */
+export function toMatch(r: SchemeResult, state: string | null): MatchResult {
+  const gate = state ? stateGateQuote(state) : null;
+  const own = r.reasons.find((q) => q !== gate);
   const reason =
     r.result === "PASS"
-      ? (r.reasons[0] ?? null)
+      ? (own ?? r.reasons[0] ?? null)
       : r.result === "FAIL"
         ? (r.failed?.source_quote ?? null)
         : null;
