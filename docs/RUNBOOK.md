@@ -28,6 +28,7 @@ flowchart LR
 6. Smoke test: `GET /health`, `GET /schemes?state=WB`, `POST /eligibility` with the Sunita persona; expect her 5 schemes.
 
 ### Staging status (2026-10-20)
+- **Live URL: https://schemematch-api-zakuroooos-projects.vercel.app** (`/health`, `/schemes`, `POST /eligibility`). ⚠️ `schemematch-api.vercel.app` is **someone else's** project; never share it.
 - **API live on Vercel** (project `schemematch-api`, region `bom1`, Fastify preset, root `apps/api`, build `cd ../.. && pnpm turbo run build --filter @schemematch/api`). It serves the **bundled** golden schemes; there is no database yet.
 - **No staging database:** Supabase's free plan allows 2 active projects, and both are in use by live resume demos (Cortexa, FollowUp). Decide on the database in Week 3, when `POST /screenings` needs one.
 - Vercel Authentication is **off** for this project, so the API is public. It only serves public scheme info, validates every input and is rate-limited.
