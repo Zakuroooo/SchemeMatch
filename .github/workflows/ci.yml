@@ -49,8 +49,9 @@ jobs:
       - run: supabase test db
       - name: API integration tests against local Supabase
         run: |
-          eval "$(supabase status -o env | grep -E '^(API_URL|ANON_KEY)=')"
-          SUPABASE_URL="$API_URL" SUPABASE_ANON_KEY="$ANON_KEY" pnpm turbo run test --filter @schemematch/api
+          # Local Supabase's own throwaway keys: printed by the CLI, never real secrets.
+          eval "$(supabase status -o env | grep -E '^(API_URL|ANON_KEY|SECRET_KEY)=')"
+          SUPABASE_URL="$API_URL" SUPABASE_ANON_KEY="$ANON_KEY" SUPABASE_SECRET_KEY="$SECRET_KEY" pnpm turbo run test --filter @schemematch/api
 
   pipeline:
     name: Pipeline tests (Python)
