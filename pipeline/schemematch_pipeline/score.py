@@ -52,7 +52,20 @@ class Cond:
         return f"{self.field} {self.op} {self.value!r} (in {self.parent})"
 
 
+def simplify(node: dict) -> dict:
+    """Rewrite a tree into a logically identical, simpler one before comparing:
+    a group with one child is that child, and an all inside an all (or any inside any) is merged."""
+    if "field" in node:
+        return node
+    kind = "all" if "all" in node else "any"
+    kids = []
+    for kid in (simplify(k) for k in node[kind]):
+        kids += kid[kind] if kind in kid and "field" not in kid else [kid]
+    return kids[0] if len(kids) == 1 else {kind: kids}
+
+
 def flatten(node: dict, parent: str = "all") -> list[Cond]:
+    node = simplify(node)
     if "field" in node:
         return [Cond(node["field"], node["op"], _norm_value(node["op"], node["value"]), parent, node["source_quote"])]
     kind = "all" if "all" in node else "any"
@@ -61,6 +74,7 @@ def flatten(node: dict, parent: str = "all") -> list[Cond]:
 
 def canonical(node: dict):
     """Tree with quotes removed and children sorted, for exact-match comparison."""
+    node = simplify(node)
     if "field" in node:
         return ("c", node["field"], node["op"], _norm_value(node["op"], node["value"]))
     kind = "all" if "all" in node else "any"

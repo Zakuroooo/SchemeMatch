@@ -115,4 +115,18 @@ def test_canonical_ignores_child_order_but_not_group_type():
     a = {"all": [AGE, {"any": [SC, INCOME]}]}
     b = {"all": [{"any": [INCOME, SC]}, AGE]}
     assert canonical(a) == canonical(b)
-    assert canonical({"all": [SC]}) != canonical({"any": [SC]})
+    assert canonical({"all": [SC, AGE]}) != canonical({"any": [SC, AGE]})
+    assert canonical({"all": [SC]}) == canonical({"any": [SC]})  # one item: same meaning
+
+
+def test_one_item_groups_and_nested_same_groups_are_not_grouping_errors():
+    g = {"eligibility": {"all": [AGE, {"any": [SC, INCOME]}]}, "unmodelled": [], "ambiguous": []}
+    wrapped = {"all": [{"all": [AGE]}, {"any": [{"all": [SC]}, {"any": [INCOME]}]}]}
+    s = run(wrapped, g)
+    assert s.exact and s.errors == [] and s.tp == 3
+
+
+def test_a_real_grouping_change_still_counts():
+    g = {"eligibility": {"all": [AGE, {"any": [SC, INCOME]}]}, "unmodelled": [], "ambiguous": []}
+    s = run({"all": [AGE, SC, INCOME]}, g)  # OR read as AND: a real mistake
+    assert not s.exact and labels(s).count("wrong_grouping") == 2

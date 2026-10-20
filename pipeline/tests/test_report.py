@@ -24,7 +24,7 @@ def test_report_from_a_tiny_run(tmp_path):
     apy_golden = sum(1 for _ in json.dumps(next(g for g in golden if g["slug"] == "apy")["eligibility"]).split('"field"')) - 1
     recall = 2 / (2 + apy_golden)
     assert f"| A | all schemes (2) | 1.00 | {recall:.2f} |" in text
-    assert "| A | schemes sent to the model (1) | 1.00 | 1.00 | 1.00 | 100 |" in text
+    assert "| A | schemes with a usable answer (1) | 1.00 | 1.00 | 1.00 | 100 |" in text
     assert "`apy`: too_large" in text
     # cost: (4000 * 0.15 + 500 * 0.60) / 1e6 USD * 84 INR
     assert f"{(4000 * 0.15 + 500 * 0.60) / 1e6 * 84:.3f}" in text

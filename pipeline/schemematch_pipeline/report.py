@@ -65,7 +65,7 @@ def _git_commit() -> str:
         return "unknown"
 
 
-def build_report(run_dir: Path, golden: list[dict] | None = None) -> str:
+def build_report(run_dir: Path, golden: list[dict] | None = None, notes: str | None = None) -> str:
     golden = golden or golden_set()
     models = sorted(p.name for p in run_dir.iterdir() if p.is_dir())
     prompt = {json.loads(p.read_text()).get("prompt_version") for p in run_dir.glob("*/*.json")} - {None}
@@ -89,7 +89,7 @@ def build_report(run_dir: Path, golden: list[dict] | None = None) -> str:
         for label, subset, lenient in [
             ("all schemes", scores, False),
             ("all, excl. ambiguous_source", scores, True),
-            ("schemes sent to the model", fit, False),
+            ("schemes with a usable answer", fit, False),
         ]:
             t = totals(subset, exclude_ambiguous=lenient)
             lines.append(
@@ -121,8 +121,7 @@ def build_report(run_dir: Path, golden: list[dict] | None = None) -> str:
         f"Cost is at Groq list prices (USD→INR {CONFIG['usd_to_inr']}, {CONFIG['usd_to_inr_as_of']}); the free tier charged ₹0.",
         *details,
         "",
-        "## What changed since the last run / what to try next",
-        "- First run, prompt v1. Next: split long pages into sections so apy, pm-kisan and pmmvy fit the request limit.",
+        notes.strip() if notes else "## What changed since the last run / what to try next\n- (add a notes file with --notes)",
     ]
     return "\n".join(lines) + "\n"
 
@@ -131,9 +130,11 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("run_dir", type=Path)
     ap.add_argument("--out", type=Path, default=ROOT / f"reports/eval-{datetime.date.today().isoformat()}.md")
+    ap.add_argument("--notes", type=Path, help="hand-written spot-check notes and next steps, appended at the end")
     args = ap.parse_args(argv)
     args.out.parent.mkdir(parents=True, exist_ok=True)
-    args.out.write_text(build_report(args.run_dir), encoding="utf-8")
+    notes = args.notes.read_text(encoding="utf-8") if args.notes else None
+    args.out.write_text(build_report(args.run_dir, notes=notes), encoding="utf-8")
     print(args.out)
     return 0
 
