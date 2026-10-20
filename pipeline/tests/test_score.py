@@ -74,6 +74,17 @@ def test_validator_rejections_count_as_false_positives():
     assert s.predicted == 4 and labels(s) == ["rejected_by_validator"] and not s.exact
 
 
+def test_rejected_conditions_are_counted_once_even_inside_emptied_groups():
+    from schemematch_pipeline.validate import validate
+
+    source = "Must be 60 years of age or above. Scheduled Caste (SC). income 2.5 lakh"
+    fake = c("age", "gte", 61, "nowhere in the page")
+    got = validate({"eligibility": {"all": [c("caste_category", "eq", "SC", "Scheduled Caste (SC)"), {"all": [fake]}]}}, source)
+    s = score_scheme("demo", GOLDEN, got)
+    assert s.predicted == 2  # the SC condition + the one bad age condition, not the emptied group
+    assert labels(s).count("rejected_by_validator") == 1
+
+
 def test_totals_maths():
     perfect = run({"all": [AGE, SC, INCOME]})
     half = run({"all": [AGE, c("gender", "eq", "female")]})  # 1 right of 2 predicted, 1 of 3 found

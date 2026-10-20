@@ -106,17 +106,26 @@ class Validated:
     rejected: list[Rejected] = field(default_factory=list)
 
 
-def _prune(node, source: str, path: str, rejected: list[Rejected]):
-    """Return the node with bad conditions removed, or None if nothing valid is left."""
+def _prune(node, source: str, path: str, rejected: list[Rejected], root: bool = False):
+    """Return the node with bad conditions removed, or None if nothing valid is left.
+
+    Dropping a condition from an all-group makes the rule wider than the model meant, so the
+    output is only ever a draft for human review (docs/EVALS.md), never served as live rules.
+    """
     if isinstance(node, dict) and ("all" in node or "any" in node) and "field" not in node:
+        if set(node) not in ({"all"}, {"any"}):
+            rejected.append(Rejected(path, node, f"group must have exactly one of all/any, got keys {sorted(node)}"))
+            return None
         kind = "all" if "all" in node else "any"
-        kids = node.get(kind)
+        kids = node[kind]
         if not isinstance(kids, list):
             rejected.append(Rejected(path, node, f"'{kind}' must be a list"))
             return None
         pruned = (_prune(kid, source, f"{path}.{kind}[{i}]", rejected) for i, kid in enumerate(kids))
         kept = [k for k in pruned if k is not None]
-        if kind == "any" and not kept:
+        if not kept and (kind == "any" or (kids and not root)):
+            # an empty nested all-group would PASS everyone, so it goes too
+            rejected.append(Rejected(path, node, f"nothing valid left in this {kind}-group"))
             return None
         return {kind: kept}
     errors = sorted(_condition.iter_errors(node), key=str) if isinstance(node, dict) else ["not an object"]
@@ -135,7 +144,7 @@ def _prune(node, source: str, path: str, rejected: list[Rejected]):
 
 def validate(output: dict, source: str) -> Validated:
     rejected: list[Rejected] = []
-    tree = _prune(output.get("eligibility", {"all": []}), source, "eligibility", rejected)
+    tree = _prune(output.get("eligibility", {"all": []}), source, "eligibility", rejected, root=True)
     if tree is None or "field" in tree:
         tree = {"all": [tree] if tree else []}  # the top is always an all-group
     assert not list(_tree.iter_errors(tree)), "pruned tree must match rule.schema.json"

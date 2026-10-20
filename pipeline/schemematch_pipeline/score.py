@@ -125,10 +125,22 @@ def score_scheme(slug: str, golden: dict, got: Validated) -> SchemeScore:
         label = "ambiguous_source" if _overlaps(p.quote, set_aside) else "invented_condition"
         errors.append((label, "", f'{p.show()} quote: "{p.quote}"'))
     dropped = [r for r in got.rejected if r.path.startswith("eligibility")]
+    n_dropped = 0
     for r in dropped:
-        errors.append(("rejected_by_validator", "", f"{json.dumps(r.item, ensure_ascii=False)} - {r.reason}"))
+        n = _conditions_in(r.item)  # an emptied group's children were already counted
+        if n and not r.reason.startswith("nothing valid left"):
+            n_dropped += n
+            errors += [("rejected_by_validator", "", f"{json.dumps(r.item, ensure_ascii=False)} - {r.reason}")] * n
     exact = canonical(golden["eligibility"]) == canonical(got.eligibility) and not dropped
-    return SchemeScore(slug, n_golden, n_kept + len(dropped), tp, exact, errors)
+    return SchemeScore(slug, n_golden, n_kept + n_dropped, tp, exact, errors)
+
+
+def _conditions_in(item) -> int:
+    """How many predicted conditions a rejected item stood for (a bad leaf counts as one)."""
+    if isinstance(item, dict) and ("all" in item or "any" in item) and "field" not in item:
+        kids = [k for key in ("all", "any") if isinstance(item.get(key), list) for k in item[key]]
+        return sum(_conditions_in(k) for k in kids)
+    return 1
 
 
 @dataclass

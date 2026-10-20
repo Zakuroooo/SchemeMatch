@@ -61,6 +61,20 @@ def test_empty_any_group_disappears_and_lone_condition_is_wrapped():
     assert lone.eligibility == {"all": [AGE]}
 
 
+def test_nested_all_group_left_empty_is_removed_not_kept_as_pass():
+    fake = {**AGE, "source_quote": "not in the page at all"}
+    out = validate({"eligibility": {"all": [SC, {"any": [{"all": [fake]}, AGE]}]}}, SOURCE)
+    # the empty inner all would have made the any-group PASS for everyone
+    assert out.eligibility == {"all": [SC, {"any": [AGE]}]}
+    assert "nothing valid left in this all-group" in [r.reason for r in out.rejected]
+
+
+def test_group_with_both_all_and_any_or_extra_keys_is_rejected():
+    out = validate({"eligibility": {"all": [SC, {"all": [AGE], "any": [AGE]}, {"any": [AGE], "x": 1}]}}, SOURCE)
+    assert out.eligibility == {"all": [SC]}
+    assert sum("exactly one of all/any" in r.reason for r in out.rejected) == 2
+
+
 def test_unmodelled_needs_a_real_quote():
     good = {"text": "income limit", "source_quote": "Annual family income should not exceed Rs 2.5 lakh."}
     bad = {"text": "made up", "source_quote": "must own a tractor"}
