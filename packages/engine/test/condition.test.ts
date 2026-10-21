@@ -65,6 +65,24 @@ describe("evaluateCondition", () => {
     expect(() => evaluateCondition(c, { age: Number.NaN })).toThrow(TypeError);
   });
 
+  it("free-text fields (district, occupation) ignore case and extra spaces", () => {
+    const inList = cond({ field: "district", op: "in", value: ["Gadchiroli", "Washim"] });
+    expect(evaluateCondition(inList, { district: "  gadchiroli " })).toBe("PASS");
+    expect(evaluateCondition(inList, { district: "WASHIM" })).toBe("PASS");
+    expect(evaluateCondition(inList, { district: "Nashik" })).toBe("FAIL");
+    const notIn = cond({ field: "district", op: "not_in", value: ["Gadchiroli"] });
+    expect(evaluateCondition(notIn, { district: "GADCHIROLI" })).toBe("FAIL");
+    const eq = cond({ field: "occupation", op: "eq", value: "Street  Vendor" });
+    expect(evaluateCondition(eq, { occupation: "street vendor" })).toBe("PASS");
+    const neq = cond({ field: "occupation", op: "neq", value: "farmer" });
+    expect(evaluateCondition(neq, { occupation: "Farmer" })).toBe("FAIL");
+  });
+
+  it("enum fields stay exact", () => {
+    const c = cond({ field: "caste_category", op: "eq", value: "SC" });
+    expect(evaluateCondition(c, { caste_category: "sc" as never })).toBe("FAIL");
+  });
+
   it("throws on an unknown operator", () => {
     const c = { field: "age", op: "approx", value: 18, source_quote: q } as unknown as Condition;
     expect(() => evaluateCondition(c, { age: 18 })).toThrow(/unknown operator/);
