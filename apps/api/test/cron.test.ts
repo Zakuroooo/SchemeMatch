@@ -1,9 +1,11 @@
+import { randomBytes } from "node:crypto";
 import { afterEach, describe, expect, it } from "vitest";
 import { buildApp } from "../src/build-app.js";
 import { FileSchemeRepository, GOLDEN_DIR, type SchemeRepository } from "../src/repository.js";
 
 const files = new FileSchemeRepository(GOLDEN_DIR);
-const SECRET = "test-cron-secret-0123456789abcdef";
+// Made fresh for each run, so no secret-looking text sits in the code (secret scanners).
+const SECRET = randomBytes(16).toString("hex");
 type App = Awaited<ReturnType<typeof buildApp>>;
 let app: App | undefined;
 afterEach(async () => {

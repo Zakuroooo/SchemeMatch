@@ -2,3 +2,5 @@
 # A made-up UUID used as an example Idempotency-Key in a test, not a credential
 # (renamed in a later commit so it no longer looks like a key).
 375abd61831613a1cb1599263f03009d5bc5211d:apps/api/test/screenings.test.ts:generic-api-key:16
+# A made-up cron secret written into a test (the test now generates it at run time).
+a48b79da1823fc92838f95554325d00c900ab612:apps/api/test/cron.test.ts:generic-api-key:6
