@@ -1,0 +1,39 @@
+# Source copy for pm-mudra
+# official_url: https://wb.gov.in/government-schemes-details-pradhan-mantri-mudra-yojana.aspx
+# retrieved: 2026-10-21 (direct fetch, HTML converted to text)
+# sha256 of the text below: 9c76341bff68d6d3718ff2617f0395a14723f0a18770c8b82bdf5eb3f39dfec8
+# This is a copy of public government text, kept so quotes can be checked offline.
+
+Pradhan Mantri Micro Units Development & Refinance Agency (MUDRA) Yojana provides collateral-free loans of up to 10 lakh to non-corporate, non- farm small and micro enterprises. It aims to promote entrepreneurship and financial inclusion by offering loans under categories like Shishu, Kishore, and Tarun based on the stage of business growth.
+Benefits Offer Under the Scheme
+Collateral-free loans up to 10 lakh for micro and small non-farm businesses.
+Three loan categories based on business stage:
+Shishu (up to 50,000)
+Kishore (50,000-75 lakh)
+Tarun (75 lakh-10 lakh)
+Low or no processing fees (especially for smaller loans under Shishu).
+Flexible repayment terms based on income and business cycles.
+Access to formal credit for first-time entrepreneurs and small businesses.
+MUDRA Card (RuPay debit card) for easy withdrawal and working capital management.
+Support for women entrepreneurs, with many banks offering concessional interest rates.
+Promotes financial inclusion by bringing small businesses into the formal banking system.
+Eligibility:
+The applicant must be an Indian citizen
+Should be a non-corporate, non-farm micro or small enterprise (e.g., shopkeepers, traders, manufacturers, service providers)
+The business must be income-generating and engaged in business activities (not agriculture as primary activity)
+Applicant should be above 18 years of age
+Must not be a defaulter to any bank or financial institution
+Should have a viable business plan or proposal for starting or expanding a business
+Existing small businesses, startups, and first-time entrepreneurs are also eligible
+Application Details:
+Visit a bank, Micro Finance Institution (MFI), or Non-Banking Financial Company (NBFC)
+that offers MUDRA loans, or apply online through their official portal.
+Obtain and fill out the MUDRA loan application form (separate forms for Shishu, Kishore, and Tarun categories).
+Submit required documents, such as identity proof, address proof, business plan, and financial details.
+Provide details of the business (existing or proposed), including investment needs and expected income.
+The lender will verify the application and assess creditworthiness.
+Upon approval, the loan is sanctioned and disbursed to the applicant's bank account.
+A MUDRA Card (RuPay debit card) may be issued for easy access to working capital funds.
+Link
+Last updated on: Friday, 26th June, 2026
+Information Source: Department of Information & Cultural Affairs(I&CA), Government of West Bengal

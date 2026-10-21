@@ -1,0 +1,105 @@
+{
+  "slug": "wb-minority-scholarships",
+  "level": "state",
+  "state": "WB",
+  "category": "education",
+  "official_url": "https://wb.gov.in/government-schemes-details-pre-and-post-matric-scholarships-for-minority-students.aspx",
+  "source_file": "sources/wb-minority-scholarships.txt",
+  "eligibility": {
+    "all": [
+      {
+        "field": "is_student",
+        "op": "eq",
+        "value": true,
+        "source_quote": "Student should be studying in Classes IX to PhD level"
+      },
+      {
+        "field": "education_level",
+        "op": "in",
+        "value": [
+          "class_9",
+          "class_10",
+          "class_11",
+          "class_12",
+          "diploma",
+          "undergraduate",
+          "postgraduate"
+        ],
+        "source_quote": "Student should be studying in Classes IX to PhD level"
+      },
+      {
+        "any": [
+          {
+            "all": [
+              {
+                "field": "education_level",
+                "op": "in",
+                "value": ["class_9", "class_10"],
+                "source_quote": "Pre-Matric Scholarship (Classes IX-X)"
+              },
+              {
+                "field": "annual_family_income",
+                "op": "lte",
+                "value": 100000,
+                "source_quote": "should not exceed 1 lakhs for pre matric"
+              }
+            ]
+          },
+          {
+            "all": [
+              {
+                "field": "education_level",
+                "op": "in",
+                "value": ["class_11", "class_12", "diploma", "undergraduate", "postgraduate"],
+                "source_quote": "Post-Matric Scholarship (Class XI to higher education)"
+              },
+              {
+                "field": "annual_family_income",
+                "op": "lte",
+                "value": 200000,
+                "source_quote": "2 lakhs for post matric"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "unmodelled": [
+    {
+      "text": "Must belong to a recognised minority community (Muslim, Christian, Sikh, Buddhist, Jain or Parsi)",
+      "source_quote": "Applicant must belong to a recognized minority community (Muslim, Christian, Sikh, Buddhist, Jain, or Parsi)"
+    },
+    {
+      "text": "Must have scored at least 50% in the previous final exam",
+      "source_quote": "Must have secured at least 50% marks in the previous final examination"
+    },
+    {
+      "text": "Must not get any other scholarship",
+      "source_quote": "The student should not be receiving any other scholarship"
+    }
+  ],
+  "ambiguous": [
+    "Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines",
+    "PhD is mapped to postgraduate, the highest education value the app has",
+    "Pre-matric is read as Classes IX-X and post-matric as Class XI onward, as the page's benefit section says"
+  ],
+  "documents": [],
+  "text": {
+    "en": {
+      "title": "Pre and Post Matric Scholarships for Minority Students (West Bengal)",
+      "benefit": "Admission and tuition fees plus a monthly maintenance allowance, for Classes IX to PhD.",
+      "how_to_apply": "Apply online on the NSP-WB portal; the institute verifies the application and the money is paid by DBT."
+    }
+  },
+  "coverage": {
+    "start": "\nEligibility:\n",
+    "end": "Application Details:",
+    "bullet": ""
+  },
+  "drafted_by": "claude",
+  "meaning_checked_by": "claude",
+  "meaning_checked_at": "2026-10-21",
+  "reviewed_by": null,
+  "reviewed_at": null
+}

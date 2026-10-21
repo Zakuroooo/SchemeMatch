@@ -1,0 +1,59 @@
+# Source copy for pmegp
+# official_url: https://wb.gov.in/government-schemes-details-prime-minster-employment-generation-programme.aspx
+# retrieved: 2026-10-21 (direct fetch, HTML converted to text)
+# sha256 of the text below: d9bc7187faf3a4d62413a196335d6dc26dcbf0a081c2c8a266599d079084ba55
+# This is a copy of public government text, kept so quotes can be checked offline.
+
+The Prime Minister Employment Generation Programme (PMEGP) is aimed at generating self-employment opportunities by supporting the establishment of micro-enterprises in rural and urban areas. It provides financial assistance in the form of subsidies and bank credit to entrepreneurs, particularly targeting unemployed youth, artisans, and traditional workers to promote inclusive economic growth.
+Benefits Offer Under the Scheme
+Subsidy (Margin Money Assistance):
+15%-25% subsidy for general category beneficiaries
+25% -35% subsidy for special categories (SC/ST/OBC/minorities/women/ex- servicemen/physically handicapped/NER, hi & border areas)
+Collateral-free loans:
+Loans up to 10 lakh (manufacturing) and 5 lakh (service sector) are generally collateral-free under CGTMSE coverage
+Bank credit support:
+Beneficiaries receive bank loans covering 90-95% of project cost (depending on category)
+Own contribution (low margin requirement):
+5% of project cost for special category beneficiaries
+10% for general category beneficiaries
+Maximum project cost limits:
+Up to 50 lakh for manufacturing units
+Up to 20 lakh for service/trading units
+Entrepreneurship development training:
+Mandatory training (EDP) provided to improve business and management skills
+Eligibility:
+Age requirement: Applicant must be at least 18 years old
+Educational qualification: Minimum 8th pass required for projects costing above
+Rs 10 lakh in manufacturing sector
+Rs 5 lakh in service/business sector
+Who can apply:
+Individuals (including rural and urban unemployed youth)
+Self-help groups (SHGs)
+Institutions registered under Societies Registration Act
+Production co-operative societies
+Charitable trusts
+New enterprises only: Scheme is applicable only for new projects; existing units are not eligible
+Income criteria: No income ceiling for assistance
+Eligible sectors: Only manufacturing and service sector projects are covered
+Exclusion criteria:
+Units already availing subsidy under other government schemes are not eligible
+Institutions like private limited companies, partnership firms (in some cases), and large enterprises are generally not eligible
+Priority categories: Special preference is given to SC/ST/OBC, minorities, women, ex- servicemen, differently-abled persons, and candidates from rural/hilly areas
+Application Details:
+Online registration:
+Visit the official PMEGP e-portal
+Fill out the online application form with personal, educational, and project details
+Project proposal submission:
+Upload a detailed project report (business plan) including cost, type of activity, and expected employment
+Document upload:
+Submit required documents such as Aadhaar, age proof, educational qualification, caste certificate (if applicable), and project report
+Forwarding to implementing agency:
+Application is forwarded to relevant agencies:
+KVIC (Khadi and Village Industries Commission)
+KVIB (State Khadi and Village Industries Board)
+DIC (District Industries Centre)
+Scrutiny and interview:
+Authorities review the application and may conduct an interview or screening process
+Link
+Last updated on: Friday, 26th June, 2026
+Information Source: Department of Information & Cultural Affairs(I&CA), Government of West Bengal

@@ -1,0 +1,59 @@
+{
+  "slug": "naps",
+  "level": "central",
+  "state": null,
+  "category": "livelihood",
+  "official_url": "https://wb.gov.in/government-schemes-details-national-apprenticeship-promotion-scheme.aspx",
+  "source_file": "sources/naps.txt",
+  "eligibility": {
+    "all": [
+      {
+        "field": "age",
+        "op": "between",
+        "value": [14, 35],
+        "source_quote": "Indian citizens between 14-35 years (depending on trade)"
+      }
+    ]
+  },
+  "unmodelled": [
+    {
+      "text": "Must be an Indian citizen",
+      "source_quote": "Indian citizens"
+    },
+    {
+      "text": "Must have studied at least up to Class V",
+      "source_quote": "Must have minimum educational qualification (Class V)"
+    },
+    {
+      "text": "Must not have done an apprenticeship in the same trade before",
+      "source_quote": "Not previously undergone apprenticeship in the same trade"
+    },
+    {
+      "text": "The employer must be registered under the Apprenticeship Act",
+      "source_quote": "Industries/employers must be registered under Apprenticeship Act"
+    }
+  ],
+  "ambiguous": [
+    "Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines",
+    "The age range depends on the trade; 14 to 35 is the widest range the page states",
+    "Class V is a past qualification, while education_level is the class being studied now, so it is not modelled"
+  ],
+  "documents": [],
+  "text": {
+    "en": {
+      "title": "National Apprenticeship Promotion Scheme (NAPS)",
+      "benefit": "Paid apprenticeship with on-the-job training and a certificate; the government shares the stipend with the employer.",
+      "how_to_apply": "Register on the Apprenticeship Portal, choose a trade and employer, and apply."
+    }
+  },
+  "coverage": {
+    "start": "\nEligibility\n",
+    "end": "Application Details",
+    "bullet": ""
+  },
+  "drafted_by": "claude",
+  "meaning_checked_by": "claude",
+  "meaning_checked_at": "2026-10-21",
+  "reviewed_by": null,
+  "reviewed_at": null
+}

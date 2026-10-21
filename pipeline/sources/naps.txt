@@ -1,0 +1,30 @@
+# Source copy for naps
+# official_url: https://wb.gov.in/government-schemes-details-national-apprenticeship-promotion-scheme.aspx
+# retrieved: 2026-10-21 (direct fetch, HTML converted to text)
+# sha256 of the text below: 6cfde48eb8115bf5ec395d7334aa0c6556497dd5c2f731da96d461e072ac79ad
+# This is a copy of public government text, kept so quotes can be checked offline.
+
+National Apprenticeship Promotion Scheme (NAPS) is a Government of India initiative launched in 2016 to promote apprenticeship training and skill development among youth. It aims to encourage industries to engage apprentices by providing financial incentives and support for training.
+Benefits Offered Under the Scheme
+Financial support to employers for engaging apprentices
+Reimbursement of stipend (up to a prescribed limit)
+Assistance for basic training costs
+On-the-job training and practical skill development
+Enhances employability and job readiness
+Encourages industry participation in skill development
+Certification after completion of apprenticeship
+Reduces skill gap between education and industry requirements
+Eligibility
+Indian citizens between 14-35 years (depending on trade)
+Must have minimum educational qualification (Class V)
+Not previously undergone apprenticeship in the same trade
+Industries/employers must be registered under Apprenticeship Act
+Application Details
+Register on the Apprenticeship Portal
+Choose desired trade and employer
+Apply for apprenticeship opportunity
+Selection by employer
+Training begins with stipend support
+Link
+Last updated on: Friday, 26th June, 2026
+Information Source: Department of Information & Cultural Affairs(I&CA), Government of West Bengal

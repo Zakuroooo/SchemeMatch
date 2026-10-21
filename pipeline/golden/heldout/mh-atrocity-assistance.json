@@ -1,0 +1,57 @@
+{
+  "slug": "mh-atrocity-assistance",
+  "level": "state",
+  "state": "MH",
+  "category": "justice",
+  "official_url": "https://sjsa.maharashtra.gov.in/en/scheme/scheme-for-providing-financial-assistance-to-family-members-of-scheduled-castes-and-scheduled-tribes-victims-of-atrocities/",
+  "source_file": "sources/mh-atrocity-assistance.txt",
+  "eligibility": {
+    "all": [
+      {
+        "field": "caste_category",
+        "op": "in",
+        "value": ["SC", "ST"],
+        "source_quote": "members of Scheduled Castes and Scheduled Tribes who are victims of caste-based atrocities"
+      }
+    ]
+  },
+  "unmodelled": [
+    {
+      "text": "The crime must be registered under the Civil Rights Protection Act 1955 and the SC/ST (Prevention of Atrocities) Act 1989",
+      "source_quote": "The crime must be registered under the Civil Rights Protection Act-1955 and the Scheduled Castes and Scheduled Tribes (Prevention of Atrocities) Act-1989."
+    },
+    {
+      "text": "A medical certificate is needed for the relevant crimes",
+      "source_quote": "Medical certificate (required for relevant crimes)"
+    },
+    {
+      "text": "A caste certificate is needed for all crimes",
+      "source_quote": "Caste certificate (for all crimes)"
+    },
+    {
+      "text": "Must be a victim of a caste-based atrocity (or a family member of one)",
+      "source_quote": "victims of caste-based atrocities"
+    }
+  ],
+  "ambiguous": [
+    "The title says the help is for victims' family members; the objective says it is for the victims themselves"
+  ],
+  "documents": [],
+  "text": {
+    "en": {
+      "title": "Financial Assistance to SC and ST Victims of Atrocities",
+      "benefit": "Financial help of Rs 0.85 lakh to Rs 8.25 lakh, depending on the case, plus rehabilitation.",
+      "how_to_apply": "Contact the Assistant Commissioner of Social Welfare of your district."
+    }
+  },
+  "coverage": {
+    "start": "**Key Conditions of the Scheme:**",
+    "end": "**Benefits of the Scheme:**",
+    "bullet": "*   "
+  },
+  "drafted_by": "claude",
+  "meaning_checked_by": "claude",
+  "meaning_checked_at": "2026-10-21",
+  "reviewed_by": null,
+  "reviewed_at": null
+}

@@ -1,0 +1,56 @@
+{
+  "slug": "mh-amrut-ahar",
+  "level": "state",
+  "state": "MH",
+  "category": "health",
+  "official_url": "https://www.womenchild.maharashtra.gov.in/en/schemes/bharat-ratna-dr-p-j-abdul-kalam-amrut-ahar-yojna",
+  "source_file": "sources/mh-amrut-ahar.txt",
+  "eligibility": {
+    "all": [
+      {
+        "any": [
+          {
+            "field": "is_pregnant_or_lactating",
+            "op": "eq",
+            "value": true,
+            "source_quote": "All pregnant and lactating mothers"
+          },
+          {
+            "field": "age",
+            "op": "lte",
+            "value": 6,
+            "source_quote": "children aged 7 months to 6 years"
+          }
+        ]
+      }
+    ]
+  },
+  "unmodelled": [
+    {
+      "text": "Must live in an Anganwadi or Mini Anganwadi area of the scheduled (tribal) area",
+      "source_quote": "residing in Anganwadi/Mini Anganwadi areas of scheduled area"
+    }
+  ],
+  "ambiguous": [
+    "Children qualify from 7 months; the app counts age in whole years, so babies under 7 months (age 0) are not excluded",
+    "'7 months to 6 years' is read as up to and including age 6"
+  ],
+  "documents": [],
+  "text": {
+    "en": {
+      "title": "Bharat Ratna Dr. A. P. J. Abdul Kalam Amrut Aahar Yojana",
+      "benefit": "One hot meal a day for pregnant and lactating mothers, and eggs or bananas for children aged 7 months to 6 years.",
+      "how_to_apply": "Provided through Anganwadi centres in the scheduled areas."
+    }
+  },
+  "coverage": {
+    "start": "### Beneficiaries",
+    "end": "### About the scheme",
+    "bullet": ""
+  },
+  "drafted_by": "claude",
+  "meaning_checked_by": "claude",
+  "meaning_checked_at": "2026-10-21",
+  "reviewed_by": null,
+  "reviewed_at": null
+}
