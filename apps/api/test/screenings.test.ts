@@ -13,7 +13,7 @@ afterEach(async () => {
   app = undefined;
 });
 
-const KEY = "3f6c2b1e-8d4a-4c7e-9b2f-1a5d6e7f8a9b";
+const RETRY_ID = "3f6c2b1e-8d4a-4c7e-9b2f-1a5d6e7f8a9b";
 const INSTALL = "9a8b7c6d-5e4f-4a3b-8c2d-1e0f9a8b7c6d";
 const profile = { state: "WB", gender: "female", age: 62, marital_status: "widow" };
 
@@ -21,7 +21,7 @@ const profile = { state: "WB", gender: "female", age: 62, marital_status: "widow
 async function setup(given?: MemoryScreeningStore | null) {
   const store = given === null ? undefined : (given ?? new MemoryScreeningStore());
   app = await buildApp({ repo, ...(store ? { screenings: store } : {}) });
-  const post = (body: object, key: string | null = KEY) =>
+  const post = (body: object, key: string | null = RETRY_ID) =>
     app!.inject({
       method: "POST",
       url: "/screenings",
@@ -88,13 +88,13 @@ describe("POST /screenings", () => {
   it.each([
     ["no Idempotency-Key", { install_id: INSTALL, profile }, null],
     ["a key that is not a UUID", { install_id: INSTALL, profile }, "retry-1"],
-    ["no install_id", { profile }, KEY],
+    ["no install_id", { profile }, RETRY_ID],
     [
       "an identifying field",
       { install_id: INSTALL, profile: { ...profile, aadhaar: "1234" } },
-      KEY,
+      RETRY_ID,
     ],
-    ["an extra top-level field", { install_id: INSTALL, profile, name: "Sunita" }, KEY],
+    ["an extra top-level field", { install_id: INSTALL, profile, name: "Sunita" }, RETRY_ID],
   ])("rejects %s with 400 and saves nothing", async (_why, body, key) => {
     const { post, store } = await setup();
     const res = await post(body, key);
@@ -125,7 +125,7 @@ describe("POST /screenings", () => {
     await app.inject({
       method: "POST",
       url: "/screenings",
-      headers: { "idempotency-key": KEY },
+      headers: { "idempotency-key": RETRY_ID },
       payload: { install_id: INSTALL, profile: { district: "Zzyzxdistrict" } },
     });
     expect(logs).toContain("incoming request");
