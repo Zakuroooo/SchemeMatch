@@ -25,9 +25,34 @@ export const FIELDS = [
 
 export type Field = (typeof FIELDS)[number];
 
-export type Gender = "female" | "male" | "other";
-export type MaritalStatus = "single" | "married" | "widow" | "divorced" | "abandoned";
-export type CasteCategory = "SC" | "ST" | "OBC" | "General" | "EWS";
+// Allowed answers, as runtime lists so the API's validation and the web form use exactly
+// these values (one source of truth). The types are derived from them.
+export const GENDERS = ["female", "male", "other"] as const;
+export const MARITAL_STATUSES = ["single", "married", "widow", "divorced", "abandoned"] as const;
+export const CASTE_CATEGORIES = ["SC", "ST", "OBC", "General", "EWS"] as const;
+/** The class or course the person is in now (pipeline/golden/GUIDE.md rule 8). */
+export const EDUCATION_LEVELS = [
+  "class_1",
+  "class_2",
+  "class_3",
+  "class_4",
+  "class_5",
+  "class_6",
+  "class_7",
+  "class_8",
+  "class_9",
+  "class_10",
+  "class_11",
+  "class_12",
+  "diploma",
+  "undergraduate",
+  "postgraduate",
+] as const;
+
+export type Gender = (typeof GENDERS)[number];
+export type MaritalStatus = (typeof MARITAL_STATUSES)[number];
+export type CasteCategory = (typeof CASTE_CATEGORIES)[number];
+export type EducationLevel = (typeof EDUCATION_LEVELS)[number];
 
 /** What we know about a person. Every field is optional: unanswered means UNKNOWN. */
 export interface Profile {

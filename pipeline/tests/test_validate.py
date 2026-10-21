@@ -1,7 +1,7 @@
 import json
 import re
 
-from schemematch_pipeline.validate import ENUMS, ROOT, quote_found, validate
+from schemematch_pipeline.validate import ENUMS, PATTERNS, ROOT, quote_found, validate
 
 SOURCE = """Eligibility
 Must be 60 years of age or above
@@ -96,9 +96,11 @@ def test_golden_and_held_out_files_pass_their_own_validator():
 
 def test_enums_match_engine_types():
     types = (ROOT / "packages/engine/src/types.ts").read_text()
-    for name, field in [("Gender", "gender"), ("MaritalStatus", "marital_status"), ("CasteCategory", "caste_category")]:
-        line = re.search(rf"export type {name} = (.+);", types).group(1)
-        assert set(re.findall(r'"([^"]+)"', line)) == ENUMS[field], name
+    for const, field in [("GENDERS", "gender"), ("MARITAL_STATUSES", "marital_status"), ("CASTE_CATEGORIES", "caste_category")]:
+        body = re.search(rf"export const {const} = \[(.*?)\] as const;", types, re.S).group(1)
+        assert set(re.findall(r'"([^"]+)"', body)) == ENUMS[field], const
+    levels = re.search(r"export const EDUCATION_LEVELS = \[(.*?)\] as const;", types, re.S).group(1)
+    assert all(PATTERNS["education_level"].match(v) for v in re.findall(r'"([^"]+)"', levels))
 
 
 def test_conditions_nobody_can_meet_are_dropped():
