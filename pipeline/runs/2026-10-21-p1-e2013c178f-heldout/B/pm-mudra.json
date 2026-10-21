@@ -1,0 +1,64 @@
+{
+  "model": "B",
+  "model_id": "openai/gpt-oss-20b",
+  "slug": "pm-mudra",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "age",
+          "op": "gte",
+          "value": 18,
+          "source_quote": "Applicant should be above 18 years of age"
+        },
+        {
+          "field": "annual_family_income",
+          "op": "lt",
+          "value": 1000000,
+          "source_quote": "up to 10 lakh"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must be an Indian citizen",
+        "source_quote": "The applicant must be an Indian citizen"
+      },
+      {
+        "text": "Must be a non‑corporate, non‑farm micro or small enterprise (e.g., shopkeepers, traders, manufacturers, service providers)",
+        "source_quote": "Should be a non-corporate, non-farm micro or small enterprise (e.g., shopkeepers, traders, manufacturers, service providers)"
+      },
+      {
+        "text": "Business must be income‑generating and not agriculture as primary activity",
+        "source_quote": "The business must be income-generating and engaged in business activities (not agriculture as primary activity)"
+      },
+      {
+        "text": "Must not be a defaulter to any bank or financial institution",
+        "source_quote": "Must not be a defaulter to any bank or financial institution"
+      },
+      {
+        "text": "Must have a viable business plan or proposal for starting or expanding a business",
+        "source_quote": "Should have a viable business plan or proposal for starting or expanding a business"
+      },
+      {
+        "text": "Existing small businesses, startups, and first‑time entrepreneurs are also eligible",
+        "source_quote": "Existing small businesses, startups, and first‑time entrepreneurs are also eligible"
+      }
+    ],
+    "ambiguous": []
+  },
+  "usage": {
+    "queue_time": 0.216577675,
+    "prompt_tokens": 3787,
+    "prompt_time": 0.194724191,
+    "completion_tokens": 348,
+    "completion_time": 0.477020869,
+    "total_tokens": 4135,
+    "total_time": 0.67174506,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4
+    }
+  },
+  "latency_s": 0.96
+}

@@ -1,0 +1,49 @@
+{
+  "model": "B",
+  "model_id": "openai/gpt-oss-20b",
+  "slug": "ddu-gky",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            15,
+            35
+          ],
+          "source_quote": "Rural youth aged 15-35 years"
+        },
+        {
+          "field": "annual_family_income",
+          "op": "lt",
+          "value": 0,
+          "source_quote": "Belonging to poor households (BPL categories)"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Priority to SC/ST, minorities, women, disabled",
+        "source_quote": "Priority to SC/ST, minorities, women, disabled"
+      }
+    ],
+    "ambiguous": [
+      "The phrase 'Belonging to poor households (BPL categories)' cannot be expressed with the available income field; it is listed as unmodelled."
+    ]
+  },
+  "usage": {
+    "queue_time": 0.352279688,
+    "prompt_tokens": 3459,
+    "prompt_time": 0.220401277,
+    "completion_tokens": 169,
+    "completion_time": 0.19350083,
+    "total_tokens": 3628,
+    "total_time": 0.413902107,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4
+    }
+  },
+  "latency_s": 0.91
+}

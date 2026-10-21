@@ -1,0 +1,55 @@
+{
+  "model": "A",
+  "model_id": "openai/gpt-oss-120b",
+  "slug": "naps",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            14,
+            35
+          ],
+          "source_quote": "Indian citizens between 14-35 years (depending on trade)"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must be an Indian citizen",
+        "source_quote": "Indian citizens between 14-35 years (depending on trade)"
+      },
+      {
+        "text": "Must have minimum educational qualification (Class V)",
+        "source_quote": "Must have minimum educational qualification (Class V)"
+      },
+      {
+        "text": "Must not have previously undergone apprenticeship in the same trade",
+        "source_quote": "Not previously undergone apprenticeship in the same trade"
+      },
+      {
+        "text": "Employer must be registered under the Apprenticeship Act",
+        "source_quote": "Industries/employers must be registered under Apprenticeship Act"
+      }
+    ],
+    "ambiguous": [
+      "The age range mentions \"depending on trade\" but no further detail is given."
+    ]
+  },
+  "usage": {
+    "queue_time": 0.219099359,
+    "prompt_tokens": 3506,
+    "prompt_time": 0.199034808,
+    "completion_tokens": 424,
+    "completion_time": 0.879521966,
+    "total_tokens": 3930,
+    "total_time": 1.078556774,
+    "completion_tokens_details": {
+      "reasoning_tokens": 174
+    }
+  },
+  "latency_s": 1.47
+}

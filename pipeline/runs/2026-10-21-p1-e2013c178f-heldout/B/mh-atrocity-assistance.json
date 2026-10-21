@@ -1,0 +1,43 @@
+{
+  "model": "B",
+  "model_id": "openai/gpt-oss-20b",
+  "slug": "mh-atrocity-assistance",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": []
+    },
+    "unmodelled": [
+      {
+        "text": "Must be a family member of a Scheduled Caste or Scheduled Tribe victim of caste‑based atrocities",
+        "source_quote": "Family Members of Scheduled Castes and Scheduled Tribes Victims of Atrocities"
+      },
+      {
+        "text": "The crime must be registered under the Civil Rights Protection Act‑1955 and the Scheduled Castes and Scheduled Tribes (Prevention of Atrocities) Act‑1989",
+        "source_quote": "The crime must be registered under the Civil Rights Protection Act-1955 and the Scheduled Castes and Scheduled Tribes (Prevention of Atrocities) Act-1989."
+      },
+      {
+        "text": "A medical certificate is required for relevant crimes",
+        "source_quote": "Medical certificate (required for relevant crimes)"
+      },
+      {
+        "text": "A caste certificate is required for all crimes",
+        "source_quote": "Caste certificate (for all crimes)"
+      }
+    ],
+    "ambiguous": []
+  },
+  "usage": {
+    "queue_time": 0.352575021,
+    "prompt_tokens": 4047,
+    "prompt_time": 0.333864403,
+    "completion_tokens": 298,
+    "completion_time": 0.32514867,
+    "total_tokens": 4345,
+    "total_time": 0.659013073,
+    "completion_tokens_details": {
+      "reasoning_tokens": 86
+    }
+  },
+  "latency_s": 1.07
+}

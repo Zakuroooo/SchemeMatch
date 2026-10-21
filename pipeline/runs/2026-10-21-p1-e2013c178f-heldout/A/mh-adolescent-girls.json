@@ -1,0 +1,51 @@
+{
+  "model": "A",
+  "model_id": "openai/gpt-oss-120b",
+  "slug": "mh-adolescent-girls",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "gender",
+          "op": "eq",
+          "value": "female",
+          "source_quote": "Girls aged 14 to 18 years"
+        },
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            14,
+            18
+          ],
+          "source_quote": "Girls aged 14 to 18 years"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must be from the aspiration districts: Gadchiroli, Nandurbar, Osmanabad (Dharashiv), Washim",
+        "source_quote": "Girls aged 14 to 18 years from aspiration districts in the state (Gadchiroli, Nandurbar, Osmanabad (Dharashiv), Washim)."
+      },
+      {
+        "text": "Must be an out‑of‑school adolescent girl (does not attend school)",
+        "source_quote": "adolescent girls who do not attend school between the ages of 14 and 18"
+      }
+    ],
+    "ambiguous": []
+  },
+  "usage": {
+    "queue_time": 0.35060165,
+    "prompt_tokens": 3856,
+    "prompt_time": 0.176404525,
+    "completion_tokens": 355,
+    "completion_time": 0.743497461,
+    "total_tokens": 4211,
+    "total_time": 0.919901986,
+    "completion_tokens_details": {
+      "reasoning_tokens": 101
+    }
+  },
+  "latency_s": 1.37
+}

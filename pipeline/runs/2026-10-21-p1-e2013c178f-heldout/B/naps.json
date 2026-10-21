@@ -1,0 +1,70 @@
+{
+  "model": "B",
+  "model_id": "openai/gpt-oss-20b",
+  "slug": "naps",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            14,
+            35
+          ],
+          "source_quote": "Indian citizens between 14-35 years (depending on trade)"
+        },
+        {
+          "field": "education_level",
+          "op": "in",
+          "value": [
+            "class_5",
+            "class_6",
+            "class_7",
+            "class_8",
+            "class_9",
+            "class_10",
+            "class_11",
+            "class_12"
+          ],
+          "source_quote": "Must have minimum educational qualification (Class V)"
+        },
+        {
+          "field": "is_student",
+          "op": "eq",
+          "value": false,
+          "source_quote": "Not previously undergone apprenticeship in the same trade"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must be an Indian citizen",
+        "source_quote": "Indian citizens between 14-35 years (depending on trade)"
+      },
+      {
+        "text": "Must not have previously undergone apprenticeship in the same trade",
+        "source_quote": "Not previously undergone apprenticeship in the same trade"
+      },
+      {
+        "text": "Industry/employer must be registered under the Apprenticeship Act",
+        "source_quote": "Industries/employers must be registered under Apprenticeship Act"
+      }
+    ],
+    "ambiguous": []
+  },
+  "usage": {
+    "queue_time": 0.394844307,
+    "prompt_tokens": 3506,
+    "prompt_time": 0.227256866,
+    "completion_tokens": 270,
+    "completion_time": 0.28890728,
+    "total_tokens": 3776,
+    "total_time": 0.516164146,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4
+    }
+  },
+  "latency_s": 1.03
+}

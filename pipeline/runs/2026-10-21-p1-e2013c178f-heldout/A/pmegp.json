@@ -1,0 +1,68 @@
+{
+  "model": "A",
+  "model_id": "openai/gpt-oss-120b",
+  "slug": "pmegp",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "age",
+          "op": "gte",
+          "value": 18,
+          "source_quote": "Age requirement: Applicant must be at least 18 years old"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Minimum 8th pass required for projects costing above Rs 10 lakh in manufacturing sector and Rs 5 lakh in service sector",
+        "source_quote": "Educational qualification: Minimum 8th pass required for projects costing above\nRs 10 lakh in manufacturing sector\nRs 5 lakh in service/business sector"
+      },
+      {
+        "text": "No income ceiling for assistance",
+        "source_quote": "Income criteria: No income ceiling for assistance"
+      },
+      {
+        "text": "Only new projects are eligible; existing units are not eligible",
+        "source_quote": "New enterprises only: Scheme is applicable only for new projects; existing units are not eligible"
+      },
+      {
+        "text": "Eligible sectors are only manufacturing and service/trading units",
+        "source_quote": "Eligible sectors: Only manufacturing and service sector projects are covered"
+      },
+      {
+        "text": "Excludes units already receiving subsidy under other government schemes",
+        "source_quote": "Units already availing subsidy under other government schemes are not eligible"
+      },
+      {
+        "text": "Excludes institutions such as private limited companies, partnership firms (in some cases), and large enterprises",
+        "source_quote": "Institutions like private limited companies, partnership firms (in some cases), and large enterprises are generally not eligible"
+      },
+      {
+        "text": "Priority given to SC/ST/OBC, minorities, women, ex-servicemen, differently-abled persons, and candidates from rural/hilly areas",
+        "source_quote": "Priority categories: Special preference is given to SC/ST/OBC, minorities, women, ex- servicemen, differently-abled persons, and candidates from rural/hilly areas"
+      },
+      {
+        "text": "Applicants can be individuals (including rural and urban unemployed youth), SHGs, societies, co-operative societies, or charitable trusts",
+        "source_quote": "Who can apply:\nIndividuals (including rural and urban unemployed youth)\nSelf-help groups (SHGs)\nInstitutions registered under Societies Registration Act\nProduction co-operative societies\nCharitable trusts"
+      }
+    ],
+    "ambiguous": [
+      "Education requirement is tied to project cost thresholds, which cannot be expressed with the available fields"
+    ]
+  },
+  "usage": {
+    "queue_time": 0.401225461,
+    "prompt_tokens": 3892,
+    "prompt_time": 0.170251874,
+    "completion_tokens": 723,
+    "completion_time": 1.546646656,
+    "total_tokens": 4615,
+    "total_time": 1.71689853,
+    "completion_tokens_details": {
+      "reasoning_tokens": 174
+    }
+  },
+  "latency_s": 2.18
+}
