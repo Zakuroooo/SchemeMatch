@@ -7,7 +7,8 @@ import { SupabaseSchemeRepository } from "./supabase-repository.js";
 import { SupabaseScreeningStore } from "./supabase-screening-store.js";
 
 const port = Number(process.env.PORT ?? 3001);
-const { SUPABASE_URL, SUPABASE_ANON_KEY, SUPABASE_SECRET_KEY, CLIENT_IP_HEADER } = process.env;
+const { SUPABASE_URL, SUPABASE_ANON_KEY, SUPABASE_SECRET_KEY, CLIENT_IP_HEADER, CRON_SECRET } =
+  process.env;
 
 // Database when configured; otherwise the golden schemes bundled at build time.
 const repo: SchemeRepository =
@@ -25,6 +26,7 @@ const screenings =
 const app = await buildApp({
   repo,
   ...(screenings ? { screenings } : {}),
+  ...(CRON_SECRET ? { cronSecret: CRON_SECRET } : {}),
   logger: { level: "info" },
   ...(CLIENT_IP_HEADER ? { clientIpHeader: CLIENT_IP_HEADER } : {}),
 });

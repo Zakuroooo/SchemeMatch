@@ -1,3 +1,4 @@
+import { timingSafeEqual } from "node:crypto";
 import Fastify, { type FastifyError, type FastifyServerOptions } from "fastify";
 import rateLimit from "@fastify/rate-limit";
 import {
@@ -24,6 +25,11 @@ export interface AppOptions {
   repo: SchemeRepository;
   /** Where screenings are saved. Without one, the save and delete routes answer 503. */
   screenings?: ScreeningStore;
+  /**
+   * Shared secret for the daily keep-alive cron (Vercel sends `Authorization: Bearer <it>`).
+   * Without one, the cron route refuses everyone.
+   */
+  cronSecret?: string;
   logger?: FastifyServerOptions["logger"];
   /** Requests per minute per client IP. */
   rateLimitPerMinute?: number;
@@ -45,9 +51,17 @@ const errorBody = (code: string, message: string, details?: unknown) => ({
 const cleanProfile = (profile: Record<string, unknown>) =>
   Object.fromEntries(Object.entries(profile).filter(([, v]) => v !== undefined)) as Profile;
 
+/** Constant-time comparison, so response timing can't reveal how much of a secret matched. */
+function sameSecret(given: string | undefined, expected: string): boolean {
+  const a = Buffer.from(given ?? "");
+  const b = Buffer.from(expected);
+  return a.length === b.length && timingSafeEqual(a, b);
+}
+
 export async function buildApp({
   repo,
   screenings,
+  cronSecret,
   logger = false,
   rateLimitPerMinute = 60,
   clientIpHeader,
@@ -116,6 +130,16 @@ export async function buildApp({
   );
 
   app.get("/health", async () => ({ ok: true }));
+
+  // Daily keep-alive (ADR 0002): a free Supabase project pauses after 7 quiet days, so the
+  // cron makes one real read. Only Vercel's cron, which sends the secret, may call it.
+  app.get("/cron/keepalive", async (req, reply) => {
+    if (!cronSecret || !sameSecret(req.headers.authorization, `Bearer ${cronSecret}`)) {
+      return reply.code(401).send(errorBody("UNAUTHORIZED", "Not allowed."));
+    }
+    const schemes = await repo.listLive({ fresh: true });
+    return { ok: true, schemes: schemes.length };
+  });
 
   app.get(
     "/schemes",
