@@ -3,7 +3,7 @@
 
 > Want the detailed *how* of each step (commands, files, bugs, checks)? See **[PROGRESS.md](PROGRESS.md)**, the build log.
 
-> **Where we are (2026-10-20):** Week 3 is nearly done. 30 schemes are labelled, the engine and API are **live** in Mumbai, the **AI pipeline** has its first score (big model **F1 0.87** on the schemes it could answer, dev set), and screenings can be **saved exactly once** (local database for now).
+> **Where we are (2026-10-21):** Week 3's building work is done. 30 schemes are labelled, the engine and API are **live** in Mumbai, screenings save **exactly once** (local database for now), and the AI pipeline has its honest final score: **F1 0.53** on 10 held-out schemes it never saw (below our 0.90 target). The 5 discovery conversations are next, and they're yours.
 
 | Week | 1 | 2 | 3 | 4 | 5 | 6 |
 |---|---|---|---|---|---|---|
@@ -332,6 +332,23 @@ flowchart LR
 
 > Hinglish: Score sirf number hai; asli seekh answers khud padhne se aati hai.
 
+**The final exam (held-out 10, 2026-10-21)** ([report](../reports/eval-2026-10-21-heldout.md)):
+
+| Student | Practice exam (dev 30) | **Final exam (held-out 10)** |
+|---|---|---|
+| Big model | 0.78 | **0.53** |
+| Small model | 0.43 | 0.33 |
+
+**Why the final is lower, honestly:**
+- I picked harder questions on purpose (OR rules, district lists, two income limits).
+- It's a small exam: only 22 conditions.
+- The models struggle with **structure**: they get "age 15–35" right but miss "SC/ST **or** disabled **or** BPL".
+- One failure was **our** answer-sheet's fault: it allowed no OR at the very top.
+
+**Why we didn't fix and re-run:** once you've seen the final exam's answers, changing your method and re-taking the same exam is cheating. The fixes wait for a **new** held-out set.
+
+> Hinglish: Final paper dekh ke tareeka badalna aur wahi paper dobara dena = cheating. Naya paper chahiye.
+
 ### Chapter 11: Saving without duplicates (Week 3)
 **The problem:** Sunita taps **Save** on a weak network. The phone doesn't hear back, so it tries again. Did the first one arrive? If both arrive, we'd have two copies, and our demand numbers would be wrong.
 
@@ -420,8 +437,8 @@ flowchart LR
 **Week 3 status:**
 - ✅ AI pipeline + first fair comparison of 2 models (Chapter 10)
 - ✅ Saving screenings exactly once, plus delete-my-data (Chapter 11)
-- ⏳ Label the held-out 10 schemes, so the final AI score is honest
-- ⏳ **Your part:** talk to 5 real people (NGO workers, ASHA workers, CSC operators) and log what you learn in [DISCOVERY.md](DISCOVERY.md)
+- ✅ Held-out 10 labelled and run once: final AI score F1 0.53 (Chapter 10)
+- ⏳ **Your part:** talk to 5 real people (NGO workers, ASHA workers, CSC operators). Everything else is ready in [DISCOVERY.md](DISCOVERY.md) §0
 
 **Week 4:** web dashboard, worker login, and where the database lives on staging.
 
@@ -450,7 +467,7 @@ flowchart LR
 | The plan | [BUILD-PLAN.md](BUILD-PLAN.md) |
 | How to deploy and run | [RUNBOOK.md](RUNBOOK.md) |
 
-**Numbers today (all measured in the repo):** 30 schemes · 174 hand-written test cases · 503 engine tests · 51 API tests (+7 with a database) · 38 database tests · 52 pipeline tests · 100% engine code coverage.
+**Numbers today (all measured in the repo):** 30 schemes · 174 hand-written test cases · 566 engine tests · 51 API tests (+7 with a database) · 38 database tests · 52 pipeline tests · 100% engine code coverage.
 
 ---
 
@@ -485,6 +502,7 @@ flowchart LR
 
 | Date | Step | What changed |
 |---|---|---|
+| 2026-10-21 | Held-out exam | Final AI score F1 0.53 (big model) on 10 unseen schemes; discovery kit ready; district names now match any case |
 | 2026-10-20 | Week 3 step 2 | `POST /screenings`: exactly-once saving, delete-my-data, tested against the real database |
 | 2026-10-20 | Audit | Checked everything; fixed IP logging, honest rate-limit and staging notes, 9 placeholder texts, stale docs ([PROGRESS step 11](PROGRESS.md)) |
 | 2026-10-20 | Week 3 step 1 | AI pipeline built; first eval: big model F1 0.87, small 0.59 (dev set) |

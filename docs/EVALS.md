@@ -68,5 +68,21 @@ Code in `pipeline/schemematch_pipeline/`: `fetch`, `validate`, `score`, `prompt`
 - **`ambiguous_source`** is given when the model turns a line the golden set left as unmodelled or ambiguous into a condition. Reports show P/R with and without these.
 - **Validator rejects** count as false positives. A condition dropped from an all-group widens the rule, so validated output is always a draft for human review, never live.
 
+## 7c. Results so far
+| Set | Model A (gpt-oss-120b) F1 | Model B (gpt-oss-20b) F1 | Report |
+|---|---|---|---|
+| Dev: 30 golden schemes | 0.78 (0.87 on the 26 it answered) | 0.43 (0.59 on 22) | [eval-2026-10-20](../reports/eval-2026-10-20.md) |
+| **Held-out: 10 schemes, labelled before the run** | **0.53** (0.56 on 9) | 0.33 (0.35 on 9) | [eval-2026-10-21-heldout](../reports/eval-2026-10-21-heldout.md) |
+
+**Quote the held-out row, always with its caveats:**
+- only 22 conditions;
+- a deliberately harder, non-random set;
+- AI-checked labels;
+- below the 0.90 target.
+
+**Not done yet:** labelling each scheme twice a week apart to measure self-agreement (§2), and your human review.
+
+**Known fixes for prompt v2:** allow `any` at the top of the output schema, and state that only the listed `education_level` values exist. These were found by reading held-out answers, so v2 must be judged on a **new** held-out set, never on these 10.
+
 ## 8. What we will *not* claim
 No accuracy number without its report file and the command that produced it. "≥ 90%" in the PRD is a **target**.
