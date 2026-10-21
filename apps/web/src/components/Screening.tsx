@@ -158,6 +158,9 @@ function Results({ status, fieldLabel }: { status: Status; fieldLabel: (f: Field
       </p>
     );
   const { data } = status;
+  // Another state's schemes can't apply to this family, so they are counted, not listed.
+  const own = data.not_eligible.filter((s) => !s.other_state);
+  const otherStates = data.not_eligible.length - own.length;
   return (
     <div className="space-y-5">
       <p className="rounded bg-amber-50 p-3 text-sm text-amber-950">{t("disclaimer")}</p>
@@ -220,15 +223,12 @@ function Results({ status, fieldLabel }: { status: Status; fieldLabel: (f: Field
               {s.title}
             </span>{" "}
             · {t("missing", { fields: s.missing.map(fieldLabel).join(", ") })}
+            <OtherWays items={s.other_ways} label={t("otherWays")} />
           </li>
         ))}
       </Group>
-      <Group
-        title={t("notEligible", { count: data.not_eligible.length })}
-        count={data.not_eligible.length}
-        empty={t("none")}
-      >
-        {data.not_eligible.map((s) => (
+      <Group title={t("notEligible", { count: own.length })} count={own.length} empty={t("none")}>
+        {own.map((s) => (
           <li key={s.slug} className="rounded border border-slate-200 bg-white p-3 text-sm">
             <span className="font-medium" lang="en">
               {s.title}
@@ -239,9 +239,27 @@ function Results({ status, fieldLabel }: { status: Status; fieldLabel: (f: Field
                 · {t("closestMiss")} <span lang="en">{s.closest_miss}</span>
               </>
             )}
+            <OtherWays items={s.other_ways} label={t("otherWays")} />
           </li>
         ))}
       </Group>
+      {otherStates > 0 && (
+        <p className="text-sm text-slate-600">{t("otherStates", { count: otherStates })}</p>
+      )}
+    </div>
+  );
+}
+
+function OtherWays({ items, label }: { items: string[]; label: string }) {
+  if (items.length === 0) return null;
+  return (
+    <div className="mt-2">
+      <p className="text-xs font-semibold text-slate-700">{label}</p>
+      <ul className="list-disc pl-5" lang="en">
+        {items.map((w) => (
+          <li key={w}>{w}</li>
+        ))}
+      </ul>
     </div>
   );
 }

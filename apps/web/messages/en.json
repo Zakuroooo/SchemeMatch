@@ -5,7 +5,10 @@
     "testing": "Testing version: the scheme rules were checked by AI, not yet by people.",
     "language": "Language"
   },
-  "languages": { "en": "English", "bn": "বাংলা" },
+  "languages": {
+    "en": "English",
+    "bn": "বাংলা"
+  },
   "form": {
     "title": "Screen a family",
     "intro": "Fill in what you know. Leave a question blank if you don't know: blank means \"not answered\", not \"no\".",
@@ -39,9 +42,20 @@
       "is_pregnant_or_lactating": "Pregnant or breastfeeding?"
     },
     "options": {
-      "yesno": { "yes": "Yes", "no": "No" },
-      "state": { "MH": "Maharashtra", "WB": "West Bengal", "XX": "Another state" },
-      "gender": { "female": "Woman", "male": "Man", "other": "Other" },
+      "yesno": {
+        "yes": "Yes",
+        "no": "No"
+      },
+      "state": {
+        "MH": "Maharashtra",
+        "WB": "West Bengal",
+        "XX": "Another state"
+      },
+      "gender": {
+        "female": "Woman",
+        "male": "Man",
+        "other": "Other"
+      },
       "marital_status": {
         "single": "Never married",
         "married": "Married",
@@ -89,7 +103,9 @@
     "closestMiss": "Missed:",
     "none": "None.",
     "englishOnly": "Scheme names and details are in English for now.",
-    "disclaimer": "You are likely eligible — please confirm at the office. SchemeMatch is not an official government app."
+    "disclaimer": "You are likely eligible — please confirm at the office. SchemeMatch is not an official government app.",
+    "otherWays": "May still qualify if any of these is true:",
+    "otherStates": "{count, plural, one {# scheme is} other {# schemes are}} only for other states."
   },
   "errors": {
     "network": "Could not reach the server. Check the internet and try again.",

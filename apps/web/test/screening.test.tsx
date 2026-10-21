@@ -24,6 +24,7 @@ const answer = {
       slug: "ignoaps",
       title: "Indira Gandhi National Old Age Pension Scheme",
       missing: ["has_bpl_card"],
+      other_ways: [],
     },
   ],
   not_eligible: [
@@ -31,6 +32,29 @@ const answer = {
       slug: "pm-sym",
       title: "Pradhan Mantri Shram Yogi Maandhan",
       closest_miss: "Age should be between18 and 40 years at the time of enrollment.",
+      other_state: false,
+      other_ways: [],
+    },
+    {
+      slug: "pmmvy",
+      title: "Pradhan Mantri Matru Vandana Yojana",
+      closest_miss: "Pregnant Women & Lactating Mothers (PW&LM)",
+      other_state: false,
+      other_ways: ["Holds an e-Shram card"],
+    },
+    {
+      slug: "wb-annapurna",
+      title: "Annapurna Yojana",
+      closest_miss: "Scheme of the state WB: for its residents",
+      other_state: true,
+      other_ways: [],
+    },
+    {
+      slug: "wb-jai-johar",
+      title: "Jai Johar",
+      closest_miss: "Scheme of the state WB: for its residents",
+      other_state: true,
+      other_ways: [],
     },
   ],
   next_question: "has_bpl_card",
@@ -66,7 +90,13 @@ describe("Screening form", () => {
     expect(screen.getByText("Must have a bank account linked to Aadhaar")).toBeTruthy();
     expect(screen.getByText("Ask next: Has a BPL card?")).toBeTruthy();
     expect(screen.getByText(/Missing: Has a BPL card\?/)).toBeTruthy();
-    expect(screen.getByText("Not eligible (1)")).toBeTruthy();
+    expect(screen.getByText("Not eligible (2)")).toBeTruthy();
+    // other states' schemes are counted, not listed
+    expect(screen.queryByText("Annapurna Yojana")).toBeNull();
+    expect(screen.getByText("2 schemes are only for other states.")).toBeTruthy();
+    // another way to qualify is shown for a scheme that was missed
+    expect(screen.getByText("May still qualify if any of these is true:")).toBeTruthy();
+    expect(screen.getByText("Holds an e-Shram card")).toBeTruthy();
     expect(screen.getByRole("link", { name: "Official page" }).getAttribute("href")).toBe(
       "https://example.gov.in/ladki",
     );

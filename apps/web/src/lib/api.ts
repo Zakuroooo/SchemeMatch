@@ -10,8 +10,15 @@ export interface EligibilityResponse {
     reasons: string[];
     also_confirm: string[];
   }[];
-  need_info: { slug: string; title: string; missing: Field[] }[];
-  not_eligible: { slug: string; title: string; closest_miss: string | null }[];
+  need_info: { slug: string; title: string; missing: Field[]; other_ways: string[] }[];
+  not_eligible: {
+    slug: string;
+    title: string;
+    closest_miss: string | null;
+    /** another state's scheme, and the person lives elsewhere */
+    other_state: boolean;
+    other_ways: string[];
+  }[];
   next_question: Field | null;
   disclaimer: string;
 }
