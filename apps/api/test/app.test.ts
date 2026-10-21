@@ -86,6 +86,7 @@ describe("POST /eligibility", () => {
     const body = (await post({ profile: sunita })).json();
     const widow = body.not_eligible.find((e: { slug: string }) => e.slug === "ignwps");
     expect(widow.closest_miss).toBe("A widow in age group of 40 to 79 years");
+    expect(widow.title).toBe("Indira Gandhi National Widow Pension Scheme");
   });
 
   it("asks a next question when the profile is empty", async () => {

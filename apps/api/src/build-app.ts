@@ -194,10 +194,18 @@ export async function buildApp({
           .map((r) => ({ ...info(r.slug), reasons: r.reasons, also_confirm: r.also_confirm })),
         need_info: screening.results
           .filter((r) => r.result === "UNKNOWN")
-          .map((r) => ({ slug: r.slug, missing: r.missing })),
+          .map((r) => ({
+            slug: r.slug,
+            title: bySlug.get(r.slug)!.text.en.title,
+            missing: r.missing,
+          })),
         not_eligible: screening.results
           .filter((r) => r.result === "FAIL")
-          .map((r) => ({ slug: r.slug, closest_miss: r.failed?.source_quote ?? null })),
+          .map((r) => ({
+            slug: r.slug,
+            title: bySlug.get(r.slug)!.text.en.title,
+            closest_miss: r.failed?.source_quote ?? null,
+          })),
         next_question: screening.next_question,
         disclaimer: DISCLAIMER,
       };
