@@ -180,7 +180,11 @@ describe("reasons, alternatives and other states", () => {
   it("flags another state's scheme only when the person's state is known and different", () => {
     expect(evaluateScheme(categories, { ...widow, state: "WB" }).other_state).toBe(true);
     expect(evaluateScheme(categories, widow).other_state).toBe(false);
-    const noState = { gender: "female", marital_status: "widow", annual_family_income: 12000 } as const;
+    const noState = {
+      gender: "female",
+      marital_status: "widow",
+      annual_family_income: 12000,
+    } as const;
     expect(evaluateScheme(categories, noState).other_state).toBe(false);
     expect(
       evaluateScheme({ ...categories, level: "central", state: null }, { ...widow, state: "WB" })
