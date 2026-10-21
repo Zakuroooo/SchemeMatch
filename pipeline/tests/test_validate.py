@@ -83,8 +83,10 @@ def test_unmodelled_needs_a_real_quote():
     assert len(out.rejected) == 1
 
 
-def test_golden_files_pass_their_own_validator():
-    for path in sorted((ROOT / "pipeline/golden/schemes").glob("*.json")):
+def test_golden_and_held_out_files_pass_their_own_validator():
+    paths = sorted((ROOT / "pipeline/golden/schemes").glob("*.json")) + sorted((ROOT / "pipeline/golden/heldout").glob("*.json"))
+    assert len(paths) == 40
+    for path in paths:
         g = json.loads(path.read_text())
         source = (ROOT / "pipeline" / g["source_file"]).read_text()
         out = validate(g, source)

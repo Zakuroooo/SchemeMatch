@@ -1,0 +1,61 @@
+{
+  "model": "B",
+  "model_id": "openai/gpt-oss-20b",
+  "slug": "wb-minority-scholarships",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "education_level",
+          "op": "in",
+          "value": [
+            "class_9",
+            "class_10",
+            "class_11",
+            "class_12",
+            "diploma",
+            "undergraduate",
+            "postgraduate",
+            "phd"
+          ],
+          "source_quote": "Classes IX to Ph.D"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must belong to a recognised minority community (Muslim, Christian, Sikh, Buddhist, Jain, or Parsi)",
+        "source_quote": "Applicant must belong to a recognized minority community (Muslim, Christian, Sikh, Buddhist, Jain, or Parsi)"
+      },
+      {
+        "text": "Must have secured at least 50% marks in the previous final examination",
+        "source_quote": "Must have secured at least 50% marks in the previous final examination"
+      },
+      {
+        "text": "Family income not exceeding 1 lakh for pre‑matric and 2 lakh for post‑matric",
+        "source_quote": "Annual family income should not exceed 1 lakhs for pre matric and 2 lakhs for post matric"
+      },
+      {
+        "text": "Must not be receiving any other scholarship",
+        "source_quote": "The student should not be receiving any other scholarship"
+      }
+    ],
+    "ambiguous": [
+      "The income limit differs for pre‑matric and post‑matric but the app cannot model two separate limits in one condition"
+    ]
+  },
+  "usage": {
+    "queue_time": 0.210835749,
+    "prompt_tokens": 3616,
+    "prompt_time": 0.217143457,
+    "completion_tokens": 299,
+    "completion_time": 0.318587261,
+    "total_tokens": 3915,
+    "total_time": 0.535730718,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4
+    }
+  },
+  "latency_s": 0.88
+}

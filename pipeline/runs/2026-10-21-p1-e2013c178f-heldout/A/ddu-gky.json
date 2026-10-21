@@ -1,0 +1,57 @@
+{
+  "model": "A",
+  "model_id": "openai/gpt-oss-120b",
+  "slug": "ddu-gky",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            15,
+            35
+          ],
+          "source_quote": "Rural youth aged 15-35 years"
+        },
+        {
+          "field": "has_bpl_card",
+          "op": "eq",
+          "value": true,
+          "source_quote": "Belonging to poor households (BPL categories)"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Priority is given to SC/ST, minorities, women, and disabled persons",
+        "source_quote": "Priority to SC/ST, minorities, women, disabled"
+      },
+      {
+        "text": "Must meet training eligibility criteria (unspecified)",
+        "source_quote": "Must meet training eligibility criteria"
+      },
+      {
+        "text": "Rural youth implies residence in a rural area, which is not captured by available fields",
+        "source_quote": "Rural youth aged 15-35 years"
+      }
+    ],
+    "ambiguous": [
+      "The term \"Priority\" suggests these groups are preferred but not necessarily mandatory eligibility"
+    ]
+  },
+  "usage": {
+    "queue_time": 0.217903575,
+    "prompt_tokens": 3459,
+    "prompt_time": 0.163312501,
+    "completion_tokens": 382,
+    "completion_time": 0.798643618,
+    "total_tokens": 3841,
+    "total_time": 0.961956119,
+    "completion_tokens_details": {
+      "reasoning_tokens": 119
+    }
+  },
+  "latency_s": 1.37
+}

@@ -12,9 +12,11 @@ def test_there_are_three_examples_each_with_a_saved_source():
         assert (FEWSHOT / "sources" / f"{p.stem}.txt").exists()
 
 
-def test_leakage_rule_no_golden_scheme_is_a_few_shot_example():
-    golden = {p.stem for p in (ROOT / "pipeline/golden/schemes").glob("*.json")}
-    assert golden.isdisjoint(p.stem for p in EXAMPLES)
+def test_leakage_rule_no_golden_or_held_out_scheme_is_a_few_shot_example():
+    for folder in ("schemes", "heldout"):
+        labelled = {p.stem for p in (ROOT / "pipeline/golden" / folder).glob("*.json")}
+        assert labelled, folder
+        assert labelled.isdisjoint(p.stem for p in EXAMPLES), folder
 
 
 def test_examples_pass_the_same_validators_as_model_output():

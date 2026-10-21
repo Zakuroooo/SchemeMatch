@@ -1,0 +1,59 @@
+{
+  "slug": "ddu-gky",
+  "level": "central",
+  "state": null,
+  "category": "livelihood",
+  "official_url": "https://wb.gov.in/government-schemes-details-deen-dayal-upadhyaya-grameen-kaushalya-yojana.aspx",
+  "source_file": "sources/ddu-gky.txt",
+  "eligibility": {
+    "all": [
+      {
+        "field": "age",
+        "op": "between",
+        "value": [15, 35],
+        "source_quote": "Rural youth aged 15-35 years"
+      },
+      {
+        "field": "has_bpl_card",
+        "op": "eq",
+        "value": true,
+        "source_quote": "Belonging to poor households (BPL categories)"
+      }
+    ]
+  },
+  "unmodelled": [
+    {
+      "text": "Must be rural youth",
+      "source_quote": "Rural youth aged 15-35 years"
+    },
+    {
+      "text": "Must meet the training programme's own criteria",
+      "source_quote": "Must meet training eligibility criteria"
+    },
+    {
+      "text": "Priority to SC/ST, minorities, women and persons with disabilities",
+      "source_quote": "Priority to SC/ST, minorities, women, disabled"
+    }
+  ],
+  "ambiguous": [
+    "Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines"
+  ],
+  "documents": [],
+  "text": {
+    "en": {
+      "title": "Deen Dayal Upadhyaya Grameen Kaushalya Yojana (DDU-GKY)",
+      "benefit": "Free skill training for rural youth from poor families, with placement support after training.",
+      "how_to_apply": "Register through the state skill mission or a training partner and pick a training programme."
+    }
+  },
+  "coverage": {
+    "start": "\nEligibility\n",
+    "end": "Application Details",
+    "bullet": ""
+  },
+  "drafted_by": "claude",
+  "meaning_checked_by": "claude",
+  "meaning_checked_at": "2026-10-21",
+  "reviewed_by": null,
+  "reviewed_at": null
+}

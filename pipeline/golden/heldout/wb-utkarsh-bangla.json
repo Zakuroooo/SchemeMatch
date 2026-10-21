@@ -1,0 +1,67 @@
+{
+  "slug": "wb-utkarsh-bangla",
+  "level": "state",
+  "state": "WB",
+  "category": "livelihood",
+  "official_url": "https://wb.gov.in/government-schemes-details-utkarsh-bangla.aspx",
+  "source_file": "sources/wb-utkarsh-bangla.txt",
+  "eligibility": {
+    "all": [
+      {
+        "field": "age",
+        "op": "between",
+        "value": [15, 45],
+        "source_quote": "(15 to 45 years)"
+      }
+    ]
+  },
+  "unmodelled": [
+    {
+      "text": "Must be a resident of West Bengal",
+      "source_quote": "Applicant should be a resident of West Bengal."
+    },
+    {
+      "text": "Generally for the unemployed, underemployed, dropouts, job seekers or people upgrading skills",
+      "source_quote": "Applicant should generally be unemployed, underemployed, a school/college dropout, job seeker or person seeking ski upgradation."
+    },
+    {
+      "text": "Must meet the selected course's own minimum age",
+      "source_quote": "Applicant should meet the minimum age requirement prescribed for the selected course"
+    },
+    {
+      "text": "Must meet the trade's minimum education",
+      "source_quote": "Applicant should meet the minimum educational qualification required for the selected trade or training programme."
+    },
+    {
+      "text": "Women, weaker sections, minorities, SC, ST and persons with disabilities may get priority",
+      "source_quote": "Women, economically weaker sections, minorities, Scheduled Castes, Scheduled Tribes and persons with disabilities may receive priority under inclusive skill development objectives."
+    },
+    {
+      "text": "Needs ID, address proof, education certificate, bank details and a photo",
+      "source_quote": "Applicant should possess basic documents such as identity proof, address proof, educational certificate, bank details and photograph."
+    }
+  ],
+  "ambiguous": [
+    "Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines",
+    "15 to 45 is the range across courses; each course sets its own minimum age",
+    "Several eligibility lines are repeated on the page"
+  ],
+  "documents": [],
+  "text": {
+    "en": {
+      "title": "Utkarsh Bangla",
+      "benefit": "Free short-term skill training in many trades, with certification and placement support.",
+      "how_to_apply": "Register on the Utkarsh Bangla portal or at an approved training centre, District Skill Development Office, BDO or municipal office."
+    }
+  },
+  "coverage": {
+    "start": "\nEligibility\n",
+    "end": "Application Details",
+    "bullet": ""
+  },
+  "drafted_by": "claude",
+  "meaning_checked_by": "claude",
+  "meaning_checked_at": "2026-10-21",
+  "reviewed_by": null,
+  "reviewed_at": null
+}

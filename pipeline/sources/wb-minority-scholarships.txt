@@ -1,0 +1,32 @@
+# Source copy for wb-minority-scholarships
+# official_url: https://wb.gov.in/government-schemes-details-pre-and-post-matric-scholarships-for-minority-students.aspx
+# retrieved: 2026-10-21 (direct fetch, HTML converted to text)
+# sha256 of the text below: 6cfe8bdd9a4acbc3a1aec690dbfbf5fbd5b89907b6c0abfe604feb6e79442b38
+# This is a copy of public government text, kept so quotes can be checked offline.
+
+West Bengal government provides scholarships under NSP WB for Minority Students to financially assist students from Classes IX to Ph.D belonging to minority communities
+Benefits Offer Under the Service
+Pre-Matric Scholarship (Classes IX-X):
+Coverage of admission and tuition fees (primarily for Classes IX-X, as per scheme norms).
+Monthly maintenance allowance for both day scholars and hostellers to support study-related expenses.
+Post-Matric Scholarship (Class XI to higher education):
+Reimbursement of admission and tuition fees (subject to course category and scheme limits).
+Monthly maintenance allowance for day scholars and hostellers, with higher rates than pre-matric level.
+Coverage for technical and professional courses, including additional approved fees (within prescribed ceilings).
+Eligibility:
+Applicant must belong to a recognized minority community (Muslim, Christian, Sikh, Buddhist, Jain, or Parsi)
+Student should be studying in Classes IX to PhD level in a recognized school or institution
+Must have secured at least 50% marks in the previous final examination
+Annual family income should not exceed 1 lakhs for pre matric and 2 lakhs for post matric
+The student should not be receiving any other scholarship
+Application Details:
+Apply online via NSP-WB portal
+Register with basic details (name, mobile, email), EPIC, Aadhaar
+Fill application form (personal, academic, bank details)
+Upload documents (income, minority certificate, marksheet, bank proof, etc.)
+Submit application before deadline
+Institute verifies and forwards for further verification
+Approved amount is credited via DBT to student's bank account
+Link
+Last updated on: Monday, Friday, 26th June, 2026
+Information Source: Department of Information & Cultural Affairs(I&CA), Government of West Bengal

@@ -1,0 +1,68 @@
+{
+  "slug": "mh-adolescent-girls",
+  "level": "state",
+  "state": "MH",
+  "category": "women",
+  "official_url": "https://www.womenchild.maharashtra.gov.in/en/schemes/scheme-adolescent-girls-sag",
+  "source_file": "sources/mh-adolescent-girls.txt",
+  "eligibility": {
+    "all": [
+      {
+        "field": "gender",
+        "op": "eq",
+        "value": "female",
+        "source_quote": "Girls aged 14 to 18 years"
+      },
+      {
+        "field": "age",
+        "op": "between",
+        "value": [14, 18],
+        "source_quote": "Girls aged 14 to 18 years"
+      },
+      {
+        "field": "district",
+        "op": "in",
+        "value": ["Gadchiroli", "Nandurbar", "Osmanabad", "Dharashiv", "Washim"],
+        "source_quote": "(Gadchiroli, Nandurbar, Osmanabad (Dharashiv), Washim)"
+      },
+      {
+        "field": "is_student",
+        "op": "eq",
+        "value": false,
+        "source_quote": "adolescent girls who do not attend school"
+      }
+    ]
+  },
+  "unmodelled": [
+    {
+      "text": "Must live in an Anganwadi area",
+      "source_quote": "in the Anganwadi area"
+    },
+    {
+      "text": "The Anganwadi worker selects the girls in each village",
+      "source_quote": "Anganwadi workers will select eligible adolescent girls in their respective villages"
+    }
+  ],
+  "ambiguous": [
+    "The Beneficiaries line does not say 'out of school'; the description says the scheme serves girls who do not attend school",
+    "Osmanabad was renamed Dharashiv; both names are accepted"
+  ],
+  "documents": [],
+  "text": {
+    "en": {
+      "title": "Scheme for Adolescent Girls (SAG)",
+      "benefit": "Take-home nutritious rations, life-skill and vocational training, and health awareness for out-of-school girls.",
+      "how_to_apply": "Anganwadi workers select eligible girls in their villages; training is at the nearby Anganwadi centre."
+    }
+  },
+  "coverage": {
+    "start": "### Beneficiaries",
+    "end": "### Short description",
+    "bullet": "*   "
+  },
+  "drafted_by": "claude",
+  "meaning_checked_by": "claude",
+  "meaning_checked_at": "2026-10-21",
+  "reviewed_by": null,
+  "reviewed_at": null
+}

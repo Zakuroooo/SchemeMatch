@@ -1,0 +1,65 @@
+{
+  "slug": "pmegp",
+  "level": "central",
+  "state": null,
+  "category": "livelihood",
+  "official_url": "https://wb.gov.in/government-schemes-details-prime-minster-employment-generation-programme.aspx",
+  "source_file": "sources/pmegp.txt",
+  "eligibility": {
+    "all": [
+      {
+        "field": "age",
+        "op": "gte",
+        "value": 18,
+        "source_quote": "Applicant must be at least 18 years old"
+      }
+    ]
+  },
+  "unmodelled": [
+    {
+      "text": "Minimum 8th pass for projects above Rs 10 lakh (manufacturing) or Rs 5 lakh (service/business)",
+      "source_quote": "Minimum 8th pass required for projects costing above"
+    },
+    {
+      "text": "Individuals, self-help groups, registered societies, production co-operatives and charitable trusts can apply",
+      "source_quote": "Individuals (including rural and urban unemployed youth)"
+    },
+    {
+      "text": "Only new projects; existing units are not eligible",
+      "source_quote": "Scheme is applicable only for new projects; existing units are not eligible"
+    },
+    {
+      "text": "Only manufacturing and service sector projects",
+      "source_quote": "Only manufacturing and service sector projects are covered"
+    },
+    {
+      "text": "Units already getting a subsidy under another government scheme are not eligible",
+      "source_quote": "Units already availing subsidy under other government schemes are not eligible"
+    },
+    {
+      "text": "Private limited companies, some partnership firms and large enterprises are generally not eligible",
+      "source_quote": "Institutions like private limited companies, partnership firms (in some cases), and large enterprises are generally not eligible"
+    },
+    {
+      "text": "Preference for SC/ST/OBC, minorities, women, ex-servicemen, persons with disabilities and rural/hilly areas",
+      "source_quote": "Special preference is given to SC/ST/OBC, minorities, women, ex- servicemen, differently-abled persons, and candidates from rural/hilly areas"
+    }
+  ],
+  "ambiguous": [
+    "Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines",
+    "The page says there is no income ceiling, so there is no income condition"
+  ],
+  "documents": [],
+  "text": {
+    "en": {
+      "title": "Prime Minister's Employment Generation Programme (PMEGP)",
+      "benefit": "15% to 35% subsidy on a new micro-enterprise (higher for special categories), with bank loans for most of the project cost.",
+      "how_to_apply": "Apply on the PMEGP e-portal with a project report; KVIC, KVIB or the District Industries Centre reviews it."
+    }
+  },
+  "drafted_by": "claude",
+  "meaning_checked_by": "claude",
+  "meaning_checked_at": "2026-10-21",
+  "reviewed_by": null,
+  "reviewed_at": null
+}

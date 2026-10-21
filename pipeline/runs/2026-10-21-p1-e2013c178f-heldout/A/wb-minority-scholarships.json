@@ -1,0 +1,66 @@
+{
+  "model": "A",
+  "model_id": "openai/gpt-oss-120b",
+  "slug": "wb-minority-scholarships",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": [
+        {
+          "field": "is_student",
+          "op": "eq",
+          "value": true,
+          "source_quote": "Student should be studying in Classes IX to PhD level in a recognized school or institution"
+        },
+        {
+          "field": "education_level",
+          "op": "in",
+          "value": [
+            "class_9",
+            "class_10",
+            "class_11",
+            "class_12",
+            "undergraduate",
+            "postgraduate",
+            "doctorate"
+          ],
+          "source_quote": "Student should be studying in Classes IX to PhD level in a recognized school or institution"
+        }
+      ]
+    },
+    "unmodelled": [
+      {
+        "text": "Must belong to a recognized minority community (Muslim, Christian, Sikh, Buddhist, Jain, or Parsi)",
+        "source_quote": "Applicant must belong to a recognized minority community (Muslim, Christian, Sikh, Buddhist, Jain, or Parsi)"
+      },
+      {
+        "text": "Must have secured at least 50% marks in the previous final examination",
+        "source_quote": "Must have secured at least 50% marks in the previous final examination"
+      },
+      {
+        "text": "Annual family income should not exceed 1 lakh for pre‑matric and 2 lakhs for post‑matric students",
+        "source_quote": "Annual family income should not exceed 1 lakhs for pre matric and 2 lakhs for post matric"
+      },
+      {
+        "text": "Should not be receiving any other scholarship",
+        "source_quote": "The student should not be receiving any other scholarship"
+      }
+    ],
+    "ambiguous": [
+      "Income limit varies by education level (pre‑matric vs post‑matric); cannot be expressed with a single numeric condition"
+    ]
+  },
+  "usage": {
+    "queue_time": 0.231702763,
+    "prompt_tokens": 3616,
+    "prompt_time": 0.203310663,
+    "completion_tokens": 659,
+    "completion_time": 1.362740115,
+    "total_tokens": 4275,
+    "total_time": 1.5660507780000001,
+    "completion_tokens_details": {
+      "reasoning_tokens": 247
+    }
+  },
+  "latency_s": 1.87
+}

@@ -1,0 +1,71 @@
+{
+  "slug": "sbm-g-ihhl",
+  "level": "central",
+  "state": null,
+  "category": "household",
+  "official_url": "https://wb.gov.in/government-schemes-details-swachh-bharat-mission-grameen-individual-household-latrine.aspx",
+  "source_file": "sources/sbm-g-ihhl.txt",
+  "eligibility": {
+    "all": [
+      {
+        "any": [
+          {
+            "field": "has_bpl_card",
+            "op": "eq",
+            "value": true,
+            "source_quote": "Priority to Below Poverty Line (BPL) households"
+          },
+          {
+            "field": "caste_category",
+            "op": "in",
+            "value": ["SC", "ST"],
+            "source_quote": "vulnerable categories such as SC/ST"
+          },
+          {
+            "field": "disability_percent",
+            "op": "gt",
+            "value": 0,
+            "source_quote": "physically challenged persons"
+          }
+        ]
+      }
+    ]
+  },
+  "unmodelled": [
+    {
+      "text": "The household must not already have its own toilet",
+      "source_quote": "Rural household without an Individual Household Latrine"
+    },
+    {
+      "text": "Above-poverty-line small and marginal farmers and landless labourers also qualify",
+      "source_quote": "small and marginal farmers, landless laborers"
+    },
+    {
+      "text": "Must live in a rural area covered by Swachh Bharat Mission (Grameen)",
+      "source_quote": "Must be a resident of a rural area covered under Swachh Bharat Mission (Grameen)"
+    }
+  ],
+  "ambiguous": [
+    "Source is a short summary by the Department of Information & Cultural Affairs on wb.gov.in, not the scheme's own guidelines",
+    "'Priority to BPL households' is read as BPL households being eligible",
+    "The above-poverty-line list says 'such as', and small/marginal farmers and landless labourers are not modelled, so a FAIL on the group can be a false negative"
+  ],
+  "documents": [],
+  "text": {
+    "en": {
+      "title": "Swachh Bharat Mission (Grameen): Individual Household Latrine",
+      "benefit": "Rs 12,000 to build a household toilet, paid to the bank account after inspection.",
+      "how_to_apply": "Apply through the Gram Panchayat or the local rural development office."
+    }
+  },
+  "coverage": {
+    "start": "\nEligibility\n",
+    "end": "Application Details",
+    "bullet": ""
+  },
+  "drafted_by": "claude",
+  "meaning_checked_by": "claude",
+  "meaning_checked_at": "2026-10-21",
+  "reviewed_by": null,
+  "reviewed_at": null
+}

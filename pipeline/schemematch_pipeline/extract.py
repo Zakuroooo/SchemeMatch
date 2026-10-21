@@ -100,9 +100,12 @@ def extract_one(client, key: str, model: str, slug: str, page: str, sleep=time.s
     return {**record, "answer": answer, "usage": data.get("usage", {}), "latency_s": round(took, 2)}
 
 
-def golden_pages(slugs: list[str] | None) -> dict[str, str]:
+SETS = {"dev": "golden/schemes", "heldout": "golden/heldout"}
+
+
+def golden_pages(slugs: list[str] | None, which: str = "dev") -> dict[str, str]:
     pages = {}
-    for path in sorted((PIPELINE / "golden/schemes").glob("*.json")):
+    for path in sorted((PIPELINE / SETS[which]).glob("*.json")):
         g = json.loads(path.read_text())
         if slugs and g["slug"] not in slugs:
             continue
@@ -110,13 +113,13 @@ def golden_pages(slugs: list[str] | None) -> dict[str, str]:
     return pages
 
 
-def run(models: list[str], slugs: list[str] | None, run_id: str, client=None, key: str | None = None, sleep=time.sleep) -> Path:
+def run(models: list[str], slugs: list[str] | None, run_id: str, client=None, key: str | None = None, sleep=time.sleep, which: str = "dev") -> Path:
     import httpx
 
     out_dir = RUNS / run_id
     client = client or httpx.Client()
     key = key or api_key()
-    pages = golden_pages(slugs)
+    pages = golden_pages(slugs, which)
     for slug, page in pages.items():
         for model in models:  # alternate models so each one's per-minute limit recovers
             path = out_dir / model / f"{slug}.json"
@@ -134,9 +137,12 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--models", nargs="+", choices=sorted(CONFIG["models"]), required=True)
     ap.add_argument("--slugs", nargs="*")
-    ap.add_argument("--run-id", default=f"{datetime.date.today().isoformat()}-{prompt_version()}")
+    ap.add_argument("--set", choices=sorted(SETS), default="dev", help="dev = the 30 golden schemes; heldout = the final 10")
+    ap.add_argument("--run-id")
     args = ap.parse_args(argv)
-    print(run(args.models, args.slugs, args.run_id))
+    suffix = "" if args.set == "dev" else f"-{args.set}"
+    run_id = args.run_id or f"{datetime.date.today().isoformat()}-{prompt_version()}{suffix}"
+    print(run(args.models, args.slugs, run_id, which=args.set))
     return 0
 
 

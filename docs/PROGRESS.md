@@ -3,7 +3,7 @@
 
 > **[STORY.md](STORY.md)** explains the project as a story (the *why*). **This file** is the detailed diary (the *how*). Read STORY first if you're new.
 
-**Latest:** Step 12, saving screenings exactly once (2026-10-20) · **Next:** `POST /screenings` and the staging database decision
+**Latest:** Step 13, held-out exam + discovery kit (2026-10-21) · **Next:** `POST /screenings` and the staging database decision
 
 ---
 
@@ -474,28 +474,66 @@ flowchart LR
 
 ---
 
+## Step 13: CI fix, the held-out exam, and your discovery kit (2026-10-21)
+
+**Goal:** you asked me to do your Week 3 jobs carefully, and fix anything else I find along the way.
+
+**What I did, and what I could not do for you:**
+1. **PR #15 secret-scan failure.** Ran the same scanner (gitleaks 8.30.1) locally. It was a false positive: a made-up test UUID named `KEY`. I renamed it and listed that one exact finding in `.gitleaksignore`, without a broad allowlist. The whole history scans clean.
+   - *My own mistake on the way:* the first rename didn't happen (macOS `sed` has no `\b`), so the commit message was briefly false. I caught it and fixed it before pushing.
+2. **Labelled the held-out 10** before any model saw them: same guide, exact quotes, bullet-coverage tests; kept out of the API, the seed and every prompt. Leakage tests now cover them.
+3. **Ran the frozen prompt v1 once** on them, then read **every** error of the big model against its page.
+4. **Your discovery kit** is in [DISCOVERY.md](DISCOVERY.md) §0: who to contact, a first message in English, Hindi and Bengali, a consent line, and a note routine.
+   - **The conversations themselves must be yours.** An invented interview would be a false claim.
+
+**The result, honestly:**
+
+| | Big model F1 | Small model F1 |
+|---|---|---|
+| Dev set (30) | 0.78 | 0.43 |
+| **Held-out (10, final)** | **0.53** | 0.33 |
+
+Why lower:
+- I chose harder schemes on purpose (OR rules, districts, two income limits);
+- there are only 22 conditions;
+- the models are weak at **structure**.
+
+One failure was **our** schema's fault: it allows no OR at the top. One label (MUDRA "above 18") is debatable, and was flagged before the run. **Not fixed yet on purpose:** changing the prompt after seeing held-out answers would be tuning on the test, so prompt v2 needs a fresh held-out set.
+
+**Bugs found and fixed along the way:**
+- **Engine:** district and occupation now match without case or extra spaces ("gadchiroli " = "Gadchiroli"). Found while labelling the first scheme that names districts.
+- **Interview guide:** question 8 asked to show a demo that doesn't exist yet.
+- **My own slips, caught before pushing:**
+  - a formatter run from the wrong folder touched a generated file;
+  - one commit held the wrong file;
+  - a report stamp pointed at a commit that no longer existed.
+
+**How we checked it:** engine 566 · API 51 (+7 with a database) · database 38 · pipeline 52; secret scan clean on the full history.
+
+---
+
 ## Running totals
 
 | Thing | Count | How to check |
 |---|---|---|
 | PRs merged | 12 | GitHub |
-| Golden schemes | 30 (15 central · 6 MH · 9 WB) | `pipeline/catalog.csv` |
+| Golden schemes | 30 (15 central · 6 MH · 9 WB) + 10 held-out (5 central · 3 MH · 2 WB) | `pipeline/catalog.csv` |
 | Hand-written test cases | 174 | `packages/engine/test/profiles/` |
-| Engine tests | 503 | `pnpm turbo run test` |
+| Engine tests | 566 | `pnpm turbo run test` |
 | API tests | 51 (+7 that need a database) | same; the 7 run in CI's db job |
 | Database tests | 38 | `supabase test db` |
 | Engine code coverage | 100% | CI enforces it |
 | Human-reviewed schemes | 0 of 30 | `reviewed_by` in each file |
 | Real user conversations | 0 of 5 | [DISCOVERY.md](DISCOVERY.md) |
 | Pipeline (Python) tests | 52 | `cd pipeline && uv run pytest` |
-| Eval reports | 1: big model F1 0.87, small 0.59 (dev set) | [reports/](../reports/) |
+| Eval reports | 2. Final held-out: big model F1 **0.53**, small 0.33 (dev set: 0.78 / 0.43) | [reports/](../reports/) |
 
 ---
 
 ## Next step
 
-**Week 3, last items:**
-- discovery conversations (your part: 5 people, logged in DISCOVERY.md);
-- labelling the held-out 10 schemes for the honest final eval.
+**Yours:** the 5 discovery conversations (kit ready in DISCOVERY.md §0). Paste your notes in chat after each one.
 
-**Then Week 4:** web dashboard, worker login, and the hosting decision for the database.
+**Mine, next:**
+- Week 4: web dashboard, worker login, and where the database lives;
+- later, prompt v2 on a fresh held-out set.

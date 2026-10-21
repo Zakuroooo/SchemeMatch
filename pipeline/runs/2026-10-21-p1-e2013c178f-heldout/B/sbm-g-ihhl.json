@@ -1,0 +1,43 @@
+{
+  "model": "B",
+  "model_id": "openai/gpt-oss-20b",
+  "slug": "sbm-g-ihhl",
+  "prompt_version": "p1-e2013c178f",
+  "answer": {
+    "eligibility": {
+      "all": []
+    },
+    "unmodelled": [
+      {
+        "text": "Must be a rural household without an existing Individual Household Latrine",
+        "source_quote": "Rural household without an Individual Household Latrine"
+      },
+      {
+        "text": "Priority to Below Poverty Line (BPL) households identified through official socio‑economic surveys",
+        "source_quote": "Priority to Below Poverty Line (BPL) households as identified through official socio‑economic surveys"
+      },
+      {
+        "text": "Identified Above Poverty Line (APL) households belonging to vulnerable categories such as SC/ST, small and marginal farmers, landless labourers, and physically challenged persons",
+        "source_quote": "Identified Above Poverty Line (APL) households belonging to vulnerable categories such as SC/ST, small and marginal farmers, landless labourers, and physically challenged persons"
+      },
+      {
+        "text": "Must be a resident of a rural area covered under Swachh Bharat Mission (Grameen)",
+        "source_quote": "Must be a resident of a rural area covered under Swachh Bharat Mission (Grameen)"
+      }
+    ],
+    "ambiguous": []
+  },
+  "usage": {
+    "queue_time": 0.051526634,
+    "prompt_tokens": 3663,
+    "prompt_time": 0.205359434,
+    "completion_tokens": 237,
+    "completion_time": 0.239365502,
+    "total_tokens": 3900,
+    "total_time": 0.444724936,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4
+    }
+  },
+  "latency_s": 0.62
+}
