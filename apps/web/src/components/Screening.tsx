@@ -2,9 +2,11 @@
 
 import type { Field } from "@schemematch/engine";
 import { useTranslations } from "next-intl";
-import { useState, type FormEvent, type ReactNode } from "react";
+import { useState, useSyncExternalStore, type FormEvent, type ReactNode } from "react";
 import { checkEligibility, type CheckError, type EligibilityResponse } from "@/lib/api";
 import { GROUPS, INPUTS, toProfile, type FormValues } from "@/lib/profile";
+
+const noSubscribe = () => () => {};
 
 type Status =
   | { kind: "idle" }
@@ -17,6 +19,13 @@ export function Screening({ fetcher }: { fetcher?: typeof fetch }) {
   const [values, setValues] = useState<FormValues>({});
   const [invalid, setInvalid] = useState<Field[]>([]);
   const [status, setStatus] = useState<Status>({ kind: "idle" });
+  // Until React has taken over the page, a click would make the browser submit the form
+  // itself. The button stays disabled until then (see the privacy note on the form).
+  const ready = useSyncExternalStore(
+    noSubscribe,
+    () => true, // in the browser, once hydrated
+    () => false, // in the server-rendered HTML
+  );
   const label = (f: Field) => t(`form.fields.${f}`);
 
   async function onSubmit(e: FormEvent) {
@@ -39,7 +48,18 @@ export function Screening({ fetcher }: { fetcher?: typeof fetch }) {
 
   return (
     <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-      <form onSubmit={onSubmit} noValidate className="space-y-4" aria-describedby="form-intro">
+      {/*
+        Privacy: answers must never end up in a URL (history, logs, analytics). So the inputs
+        have no `name` (a native submit has nothing to send), the method is POST (never a
+        query string), and the button is disabled until React handles the submit itself.
+      */}
+      <form
+        method="post"
+        onSubmit={onSubmit}
+        noValidate
+        className="space-y-4"
+        aria-describedby="form-intro"
+      >
         <h2 className="text-lg font-semibold">{t("form.title")}</h2>
         <p id="form-intro" className="text-sm text-slate-700">
           {t("form.intro")}
@@ -69,15 +89,15 @@ export function Screening({ fetcher }: { fetcher?: typeof fetch }) {
         <div className="flex gap-3">
           <button
             type="submit"
-            disabled={status.kind === "loading"}
-            className="rounded bg-slate-900 px-4 py-2 font-medium text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-600 disabled:opacity-60"
+            disabled={!ready || status.kind === "loading"}
+            className="min-h-11 rounded bg-slate-900 px-4 py-2 font-medium text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-600 disabled:opacity-60"
           >
             {status.kind === "loading" ? t("form.checking") : t("form.submit")}
           </button>
           <button
             type="button"
             onClick={clear}
-            className="rounded border border-slate-400 px-4 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-600"
+            className="min-h-11 rounded border border-slate-400 px-4 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-600"
           >
             {t("form.clear")}
           </button>
@@ -111,10 +131,9 @@ function FieldControl({
   const id = `f-${field}`;
   const common = {
     id,
-    name: field,
     value,
     "aria-invalid": bad || undefined,
-    className: `w-full rounded border px-2 py-1.5 ${bad ? "border-red-700" : "border-slate-400"} focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-600`,
+    className: `min-h-11 w-full rounded border px-2 ${bad ? "border-red-700" : "border-slate-400"} focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-600`,
   };
   return (
     <label htmlFor={id} className="flex flex-col gap-1 text-sm">

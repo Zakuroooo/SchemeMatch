@@ -102,6 +102,16 @@ describe("Screening form", () => {
     );
   });
 
+  it("can never put answers in a URL, even if the browser submits the form itself", () => {
+    setup();
+    const form = document.querySelector("form")!;
+    expect(form.getAttribute("method")).toBe("post");
+    const named = [...form.querySelectorAll("input, select")].filter((el) =>
+      el.hasAttribute("name"),
+    );
+    expect(named).toEqual([]); // no name = nothing to send in a native submit
+  });
+
   it("keeps typing in the same box (inputs aren't recreated on every key)", async () => {
     const { user } = setup();
     const age = screen.getByLabelText("Age (years)");

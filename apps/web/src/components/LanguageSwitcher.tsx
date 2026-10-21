@@ -17,7 +17,7 @@ export function LanguageSwitcher() {
           locale={locale}
           lang={locale}
           aria-current={locale === current ? "true" : undefined}
-          className={`rounded px-2 py-1 ${
+          className={`inline-flex min-h-11 items-center rounded px-3 ${
             locale === current
               ? "bg-slate-900 text-white"
               : "text-slate-700 underline-offset-2 hover:underline"
