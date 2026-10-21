@@ -3,7 +3,7 @@
 
 > **[STORY.md](STORY.md)** explains the project as a story (the *why*). **This file** is the detailed diary (the *how*). Read STORY first if you're new.
 
-**Latest:** Step 11, full audit and fixes (2026-10-20) · **Next:** `POST /screenings` and the staging database decision
+**Latest:** Step 12, saving screenings exactly once (2026-10-20) · **Next:** `POST /screenings` and the staging database decision
 
 ---
 
@@ -438,6 +438,42 @@ flowchart LR
 
 ---
 
+## Step 12: Saving screenings safely (Week 3 step 2, branch `feat/screenings`, 2026-10-20)
+
+**Goal:** let the app save a screening. A weak network can send the same request twice, so a retry must **never** create a duplicate. Users must also be able to delete their data.
+
+**Your decision:** no hosted database yet (both free Supabase slots run your demos). So we built and tested everything on local Supabase + CI, and staging answers "503: saving is not set up yet". Hosting gets decided in Week 4, together with worker login.
+
+**How we did it:**
+1. **Migration 3:**
+   - two tables, `screenings` (the answers, with no name, phone or ID) and `matches` (one row per scheme: PASS/FAIL/UNKNOWN, the reason, the rule version that decided it);
+   - RLS on with no policies, and table rights taken away from the public keys;
+   - a database function `save_screening` that saves **exactly once** per `idempotency_key`, using a unique index.
+2. **Database tests (pgTAP, 15 new):**
+   - the public key can't read, write or call anything;
+   - a retry returns the same stored screening; a reused key with different answers is refused; delete removes the matches too.
+   - **Sabotage:** granting the public key access made these tests fail.
+3. **API:**
+   - `POST /screenings` with an `Idempotency-Key` header: **201** first time, **200** with the stored result on a retry, **409** if the key comes back with different answers, **503** with no database;
+   - `DELETE /screenings` with an `X-Install-Id` header (delete my data).
+4. **Server-only key:** saving uses `SUPABASE_SECRET_KEY`. It lives only on the server, never in an app, never in a log.
+5. **Tests:** 15 route tests with an in-memory store, plus 5 tests against the real database.
+
+**The key test, and the sabotage that proves it:**
+- 5 identical requests sent **at the same moment** → exactly **1** screening.
+- Then I swapped the database's unique key for the "obvious" app approach: check whether it exists, then insert. The same 5 requests created **5 screenings**, because all of them checked before any had inserted. Only the database can make this exactly-once.
+
+**Problems and fixes:**
+- **Tests caught a bad stored reason.** For state schemes the first "reason" was always the state check ("Scheme of the state WB…"), which says nothing about why someone qualifies. The engine now exports that text, so the API skips it.
+- **Security review:** the delete route first put the install ID in the URL. It works like a password, and URLs end up in access logs, so it moved to a header. A test proves it never appears in logs.
+- One stale test title ("same five schemes" → eleven).
+
+**How we checked it:**
+- Engine 503 · API 51 (+7 that need a database) · database 38 · pipeline 52, all passing.
+- Manual curl on a local server: 201 → 200 → 409 → delete 1 → public key refused; the install ID appears 0 times in the server log.
+
+---
+
 ## Running totals
 
 | Thing | Count | How to check |
@@ -446,8 +482,8 @@ flowchart LR
 | Golden schemes | 30 (15 central · 6 MH · 9 WB) | `pipeline/catalog.csv` |
 | Hand-written test cases | 174 | `packages/engine/test/profiles/` |
 | Engine tests | 503 | `pnpm turbo run test` |
-| API tests | 36 | same |
-| Database tests | 23 | `supabase test db` |
+| API tests | 51 (+7 that need a database) | same; the 7 run in CI's db job |
+| Database tests | 38 | `supabase test db` |
 | Engine code coverage | 100% | CI enforces it |
 | Human-reviewed schemes | 0 of 30 | `reviewed_by` in each file |
 | Real user conversations | 0 of 5 | [DISCOVERY.md](DISCOVERY.md) |
@@ -458,11 +494,8 @@ flowchart LR
 
 ## Next step
 
-**Week 3, step 2: `POST /screenings`.** Save a screening (no name, phone or Aadhaar), safe to retry with an idempotency key, plus the staging database decision.
+**Week 3, last items:**
+- discovery conversations (your part: 5 people, logged in DISCOVERY.md);
+- labelling the held-out 10 schemes for the honest final eval.
 
-**Later pipeline experiments** (one change at a time, judged on the held-out 10 once labelled):
-1. split long pages;
-2. reject conditions nobody can meet;
-3. retry once when the JSON shape fails.
-
-Your part this week: book the 5 discovery conversations.
+**Then Week 4:** web dashboard, worker login, and the hosting decision for the database.

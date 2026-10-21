@@ -74,12 +74,12 @@ erDiagram
     SCHEME_TEXT { uuid scheme_id  text lang "hi | mr | bn | en"  text title  text benefit  text how_to_apply }
     ORGANISATION { uuid id  text name }
     WORKER_PROFILE { uuid user_id  uuid org_id  text role "worker | admin" }
-    SCREENING ||--o{ MATCH : "produces (Week 3)"
-    SCREENING { uuid id  text idempotency_key  text channel  text district  jsonb profile "no name, phone or ID" }
+    SCREENING ||--o{ MATCH : "produces"
+    SCREENING { uuid id  uuid idempotency_key "unique"  text request_hash  uuid install_id  text channel  jsonb profile "no name, phone or ID" }
     MATCH { uuid screening_id  uuid scheme_id  uuid rule_version_id  text result  text reason  bool applied }
 ```
 
-**Why rules are one `jsonb` tree per version, not one row per condition:** eligibility nests (`all` containing `any`), and a flat table can't hold "A AND (B OR C)" without parent pointers. Storing the whole tree per version keeps old versions, so any past screening can still be explained. `SCREENING`/`MATCH` arrive in Week 3 with `POST /screenings`. The live migration is in `supabase/migrations/`.
+**Why rules are one `jsonb` tree per version, not one row per condition:** eligibility nests (`all` containing `any`), and a flat table can't hold "A AND (B OR C)" without parent pointers. Storing the whole tree per version keeps old versions, so any past screening can still be explained. `SCREENING`/`MATCH` came in Week 3 with `POST /screenings` (migration `20261020180233_screenings.sql`): RLS on with no policies and table rights revoked from the public keys, so only the server can reach them. The live migration is in `supabase/migrations/`.
 
 Privacy rule baked into the schema: **no name, phone or Aadhaar is ever stored** in `SCREENING`.
 
@@ -166,7 +166,8 @@ The **idempotency key** (a UUID made on the device) means a retry never creates 
 |---|---|---|
 | GET | `/schemes?state=&lang=` | Catalog (cached) |
 | POST | `/eligibility` | Profile → matches + next question |
-| POST | `/screenings` | Save a screening (idempotent) |
+| POST | `/screenings` | Save a screening. Header `Idempotency-Key` (UUID): 201 first time, 200 + stored result on a retry, 409 if the key comes back with a different body ✅ built |
+| DELETE | `/screenings` | Delete my data: every screening of the install in header `X-Install-Id` ✅ built |
 | PATCH | `/matches/:id` | Mark applied |
 | GET | `/analytics/demand?district=` | Funnel + top schemes |
 | POST | `/voice/stt`, `/voice/tts` | Voice gateway |
@@ -174,7 +175,8 @@ The **idempotency key** (a UUID made on the device) means a retry never creates 
 
 All inputs validated with **Zod**; errors return clear 400s; rate-limited per IP and per install ID with Upstash Redis.
 
-**Built so far (`apps/api`, Weeks 2–3; live on Vercel `bom1`):** `GET /health`, `GET /schemes?state=`, `POST /eligibility`.
+**Built so far (`apps/api`, Weeks 2–3; live on Vercel `bom1`):** `GET /health`, `GET /schemes?state=`, `POST /eligibility`, `POST /screenings`, `DELETE /screenings`.
+- **Screenings** are saved through a `ScreeningStore`. `SupabaseScreeningStore` uses the server-only `SUPABASE_SECRET_KEY` and the database function `save_screening`. Its unique `idempotency_key` makes saving exactly once even for parallel retries (tested: 5 at once → 1 row; a check-then-insert version made 5). On staging there is no database yet, so these routes answer **503 `STORAGE_UNAVAILABLE`**. Hosting is decided in Week 4.
 - The profile schema is **strict**: any key that isn't a profile field (`name`, `phone`, `aadhaar`, …) is rejected with a 400, and errors never echo values back.
 - Responses carry the reasons (source quotes), the "must also confirm" items, the closest miss, the next question and the disclaimer.
 - Schemes come from a `SchemeRepository` interface. `SupabaseSchemeRepository` reads with the anon key, so RLS limits it to live schemes and their current rule version (60 s cache); `FileSchemeRepository` reads the golden files for offline work. `supabase/seed.sql` is generated from the golden files, and an integration test proves the database serves exactly what the files contain.

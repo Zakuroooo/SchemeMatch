@@ -13,7 +13,7 @@
     },
     "test": {
       "dependsOn": ["^build"],
-      "env": ["SUPABASE_URL", "SUPABASE_ANON_KEY"]
+      "env": ["SUPABASE_URL", "SUPABASE_ANON_KEY", "SUPABASE_SECRET_KEY"]
     }
   }
 }

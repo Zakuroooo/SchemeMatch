@@ -10,12 +10,20 @@ import { z } from "zod";
 import { evaluateAll, type Profile } from "@schemematch/engine";
 import { ProfileSchema } from "./profile-schema.js";
 import type { SchemeRepository } from "./repository.js";
+import {
+  IdempotencyKeyReusedError,
+  requestHash,
+  toMatch,
+  type ScreeningStore,
+} from "./screening-store.js";
 
 export const DISCLAIMER =
   "You are likely eligible — please confirm at the office. SchemeMatch is not an official government app.";
 
 export interface AppOptions {
   repo: SchemeRepository;
+  /** Where screenings are saved. Without one, the save and delete routes answer 503. */
+  screenings?: ScreeningStore;
   logger?: FastifyServerOptions["logger"];
   /** Requests per minute per client IP. */
   rateLimitPerMinute?: number;
@@ -33,8 +41,13 @@ const errorBody = (code: string, message: string, details?: unknown) => ({
   error: { code, message, ...(details === undefined ? {} : { details }) },
 });
 
+// Drop explicit `undefined` values: to the engine, "absent" means "not answered".
+const cleanProfile = (profile: Record<string, unknown>) =>
+  Object.fromEntries(Object.entries(profile).filter(([, v]) => v !== undefined)) as Profile;
+
 export async function buildApp({
   repo,
+  screenings,
   logger = false,
   rateLimitPerMinute = 60,
   clientIpHeader,
@@ -141,11 +154,7 @@ export async function buildApp({
     async (req) => {
       const schemes = await repo.listLive();
       const bySlug = new Map(schemes.map((s) => [s.slug, s]));
-      // Drop explicit `undefined` values: to the engine, "absent" means "not answered".
-      const profile = Object.fromEntries(
-        Object.entries(req.body.profile).filter(([, v]) => v !== undefined),
-      ) as Profile;
-      const screening = evaluateAll(schemes, profile);
+      const screening = evaluateAll(schemes, cleanProfile(req.body.profile));
       const info = (slug: string) => {
         const s = bySlug.get(slug)!;
         return {
@@ -168,6 +177,58 @@ export async function buildApp({
         next_question: screening.next_question,
         disclaimer: DISCLAIMER,
       };
+    },
+  );
+
+  const storageMissing = errorBody(
+    "STORAGE_UNAVAILABLE",
+    "Saving screenings is not set up on this server yet.",
+  );
+
+  // Save a screening exactly once. The client makes one Idempotency-Key per screening and
+  // sends the same key on every retry, so a flaky network can never create duplicates.
+  app.post(
+    "/screenings",
+    {
+      schema: {
+        headers: z.object({ "idempotency-key": z.uuid() }),
+        body: z.strictObject({ install_id: z.uuid(), profile: ProfileSchema }),
+      },
+    },
+    async (req, reply) => {
+      if (!screenings) return reply.code(503).send(storageMissing);
+      const profile = cleanProfile(req.body.profile);
+      const schemes = await repo.listLive();
+      const stateOf = new Map(schemes.map((s) => [s.slug, s.state]));
+      const result = evaluateAll(schemes, profile);
+      try {
+        const saved = await screenings.save({
+          idempotencyKey: req.headers["idempotency-key"],
+          requestHash: requestHash({ install_id: req.body.install_id, profile }),
+          installId: req.body.install_id,
+          channel: "app",
+          profile,
+          matches: result.results.map((r) => toMatch(r, stateOf.get(r.slug) ?? null)),
+        });
+        return reply.code(saved.created ? 201 : 200).send({ ...saved, disclaimer: DISCLAIMER });
+      } catch (err) {
+        if (err instanceof IdempotencyKeyReusedError) {
+          return reply.code(409).send(errorBody("IDEMPOTENCY_KEY_REUSED", err.message));
+        }
+        throw err;
+      }
+    },
+  );
+
+  // "Delete my data" (PRIVACY-SECURITY §3). The install ID is a random UUID known only to
+  // the device, so holding it is what proves the screenings are yours. It works like a
+  // password, so it travels in a header, never in the URL (URLs end up in access logs).
+  app.delete(
+    "/screenings",
+    { schema: { headers: z.object({ "x-install-id": z.uuid() }) } },
+    async (req, reply) => {
+      if (!screenings) return reply.code(503).send(storageMissing);
+      return { deleted: await screenings.deleteInstall(req.headers["x-install-id"]) };
     },
   );
 

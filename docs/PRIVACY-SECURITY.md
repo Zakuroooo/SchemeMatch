@@ -11,7 +11,8 @@
 | Data | Where | Stored? | Why | Retention |
 |---|---|---|---|---|
 | Profile answers (age, income, district, category…) | App device | Only if user taps **Save** | Show results again | Until user deletes |
-| Profile answers | Server `screenings` | Only on Save (app) or by a field worker (dashboard), **no name/phone/ID** | Results, demand analytics | 12 months, then aggregated and deleted |
+| Profile answers | Server `screenings` | Only on Save (app) or by a field worker (dashboard), **no name/phone/ID**. Built: local and CI only; staging has no database yet | Results, demand analytics | 12 months, then aggregated and deleted (the clean-up job is planned, not built) |
+| Install ID (random UUID made on the device) | Server `screenings` | Yes, with each app screening | Delete my data | Deleted with the screenings. Sent in a header, never a URL, and never logged |
 | Voice audio | Sarvam API in transit | **Never stored** by us | STT | Discarded after transcription |
 | Worker account (email, org, role) | Supabase Auth | Yes | Login, RLS | While account active |
 | Analytics events | Server | Yes, no user ID, district-level | Product metrics | 12 months |

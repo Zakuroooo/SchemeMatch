@@ -3,7 +3,7 @@
 
 > Want the detailed *how* of each step (commands, files, bugs, checks)? See **[PROGRESS.md](PROGRESS.md)**, the build log.
 
-> **Where we are (2026-10-20):** Week 3 is under way. 30 schemes are labelled, the engine and API are **live** in Mumbai, and the **AI pipeline** has its first score: the big model gets **F1 0.87** on the schemes it could answer (dev set).
+> **Where we are (2026-10-20):** Week 3 is nearly done. 30 schemes are labelled, the engine and API are **live** in Mumbai, the **AI pipeline** has its first score (big model **F1 0.87** on the schemes it could answer, dev set), and screenings can be **saved exactly once** (local database for now).
 
 | Week | 1 | 2 | 3 | 4 | 5 | 6 |
 |---|---|---|---|---|---|---|
@@ -332,6 +332,39 @@ flowchart LR
 
 > Hinglish: Score sirf number hai; asli seekh answers khud padhne se aati hai.
 
+### Chapter 11: Saving without duplicates (Week 3)
+**The problem:** Sunita taps **Save** on a weak network. The phone doesn't hear back, so it tries again. Did the first one arrive? If both arrive, we'd have two copies, and our demand numbers would be wrong.
+
+**The fix, an idempotency key:** the phone makes one random ID per screening and sends it with **every** try. The database keeps at most one screening per ID.
+
+```mermaid
+sequenceDiagram
+    participant Phone
+    participant API
+    participant DB as Database
+    Phone->>API: Save (key 3f6c…)
+    API->>DB: save once per key
+    DB-->>API: saved (new)
+    API--xPhone: answer lost on a weak network
+    Phone->>API: Save again (same key 3f6c…)
+    API->>DB: save once per key
+    DB-->>API: already saved: here it is
+    API-->>Phone: 200, same screening
+```
+
+**Why the database must do it, not the code:** we tested it. 5 identical requests at the same moment:
+- with a **unique key in the database** → **1** screening;
+- with "check if it exists, then insert" in code → **5** screenings, because all 5 checked before any had inserted.
+
+> Hinglish: Ek hi request 5 baar aaye toh bhi ek hi entry bane; ye guarantee database ka unique key deta hai, code ka "pehle check karo" nahi.
+
+**Privacy built in:**
+- the public key can't read screenings at all;
+- **Delete my data** removes everything for one phone;
+- the phone's ID travels in a header (never the URL), so it never lands in logs.
+
+**Honest limit:** staging has no database yet, so saving answers "not set up yet" there. That gets decided in Week 4.
+
 ---
 
 ## 6. Five ideas you must be able to explain
@@ -384,13 +417,13 @@ flowchart LR
     W5 --> W6["Week 6<br/>Landing page, load tests,<br/>demo video, pilot"]
 ```
 
-**Week 3 in simple words:**
-1. Give an AI model the **same official pages** we saved.
-2. It drafts rules in our exact format, with a quote for each rule.
-3. Auto-reject any rule whose quote isn't in the page (so it can't invent rules).
-4. Compare its rules with our 30-scheme answer key → **precision, recall, F1**.
-5. Try 2 models and publish a fair comparison: accuracy, cost, speed.
-6. **Your part:** talk to 5 real people (NGO workers, ASHA workers, CSC operators) and log what you learn in [DISCOVERY.md](DISCOVERY.md).
+**Week 3 status:**
+- ✅ AI pipeline + first fair comparison of 2 models (Chapter 10)
+- ✅ Saving screenings exactly once, plus delete-my-data (Chapter 11)
+- ⏳ Label the held-out 10 schemes, so the final AI score is honest
+- ⏳ **Your part:** talk to 5 real people (NGO workers, ASHA workers, CSC operators) and log what you learn in [DISCOVERY.md](DISCOVERY.md)
+
+**Week 4:** web dashboard, worker login, and where the database lives on staging.
 
 **Waiting on you:**
 - Book the 5 discovery conversations.
@@ -417,7 +450,7 @@ flowchart LR
 | The plan | [BUILD-PLAN.md](BUILD-PLAN.md) |
 | How to deploy and run | [RUNBOOK.md](RUNBOOK.md) |
 
-**Numbers today (all measured in the repo):** 30 schemes · 174 hand-written test cases · 503 engine tests · 36 API tests · 23 database tests · 52 pipeline tests · 100% engine code coverage.
+**Numbers today (all measured in the repo):** 30 schemes · 174 hand-written test cases · 503 engine tests · 51 API tests (+7 with a database) · 38 database tests · 52 pipeline tests · 100% engine code coverage.
 
 ---
 
@@ -452,6 +485,7 @@ flowchart LR
 
 | Date | Step | What changed |
 |---|---|---|
+| 2026-10-20 | Week 3 step 2 | `POST /screenings`: exactly-once saving, delete-my-data, tested against the real database |
 | 2026-10-20 | Audit | Checked everything; fixed IP logging, honest rate-limit and staging notes, 9 placeholder texts, stale docs ([PROGRESS step 11](PROGRESS.md)) |
 | 2026-10-20 | Week 3 step 1 | AI pipeline built; first eval: big model F1 0.87, small 0.59 (dev set) |
 | 2026-10-20 | Build log | [PROGRESS.md](PROGRESS.md) added: the detailed how of every step |

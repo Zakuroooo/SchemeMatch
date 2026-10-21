@@ -4,9 +4,10 @@ import "fastify";
 import { buildApp } from "./build-app.js";
 import { BundledSchemeRepository, type SchemeRepository } from "./repository.js";
 import { SupabaseSchemeRepository } from "./supabase-repository.js";
+import { SupabaseScreeningStore } from "./supabase-screening-store.js";
 
 const port = Number(process.env.PORT ?? 3001);
-const { SUPABASE_URL, SUPABASE_ANON_KEY, CLIENT_IP_HEADER } = process.env;
+const { SUPABASE_URL, SUPABASE_ANON_KEY, SUPABASE_SECRET_KEY, CLIENT_IP_HEADER } = process.env;
 
 // Database when configured; otherwise the golden schemes bundled at build time.
 const repo: SchemeRepository =
@@ -14,14 +15,24 @@ const repo: SchemeRepository =
     ? new SupabaseSchemeRepository({ url: SUPABASE_URL, anonKey: SUPABASE_ANON_KEY })
     : new BundledSchemeRepository();
 
+// Saving needs the server-only secret key; without it the save routes answer 503.
+const screenings =
+  SUPABASE_URL && SUPABASE_SECRET_KEY
+    ? new SupabaseScreeningStore({ url: SUPABASE_URL, secretKey: SUPABASE_SECRET_KEY })
+    : undefined;
+
 // CLIENT_IP_HEADER=x-forwarded-for when deployed behind Vercel; unset for local runs.
 const app = await buildApp({
   repo,
+  ...(screenings ? { screenings } : {}),
   logger: { level: "info" },
   ...(CLIENT_IP_HEADER ? { clientIpHeader: CLIENT_IP_HEADER } : {}),
 });
 app.log.info(
-  { source: repo instanceof SupabaseSchemeRepository ? "supabase" : "files" },
+  {
+    source: repo instanceof SupabaseSchemeRepository ? "supabase" : "files",
+    screenings: screenings ? "supabase" : "not set up",
+  },
   "scheme source",
 );
 // Match Vercel's documented pattern exactly: call listen() WITHOUT awaiting it.

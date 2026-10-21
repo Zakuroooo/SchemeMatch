@@ -1,0 +1,4 @@
+# Reviewed false positives only. Each line is one exact finding (commit:file:rule:line).
+# A made-up UUID used as an example Idempotency-Key in a test, not a credential
+# (renamed in a later commit so it no longer looks like a key).
+375abd61831613a1cb1599263f03009d5bc5211d:apps/api/test/screenings.test.ts:generic-api-key:16
