@@ -105,6 +105,8 @@ describe("Supabase repository cache", () => {
     t = 1500;
     await repo.listLive();
     expect(calls).toBe(2);
+    await repo.listLive({ fresh: true }); // inside the cache window, but fresh: must query
+    expect(calls).toBe(3);
   });
 
   it("raises a clear error when the query fails", async () => {

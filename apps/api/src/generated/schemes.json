@@ -441,35 +441,43 @@
       },
       {
         "text": "People unable to support themselves due to severe illness (TB, cancer, AIDS, leprosy)",
-        "source_quote": "unable to sustain themselves due to severe illnesses such as tuberculosis, cancer, AIDS, leprosy"
+        "source_quote": "unable to sustain themselves due to severe illnesses such as tuberculosis, cancer, AIDS, leprosy",
+        "kind": "alternative"
       },
       {
         "text": "Women who were victims of abuse or rescued from prostitution",
-        "source_quote": "Women who have been victims of abuse or rescued from prostitution"
+        "source_quote": "Women who have been victims of abuse or rescued from prostitution",
+        "kind": "alternative"
       },
       {
         "text": "Wives of prisoners serving sentences",
-        "source_quote": "Wives of prisoners serving sentences"
+        "source_quote": "Wives of prisoners serving sentences",
+        "kind": "alternative"
       },
       {
         "text": "Women undergoing divorce proceedings",
-        "source_quote": "Women undergoing divorce proceedings"
+        "source_quote": "Women undergoing divorce proceedings",
+        "kind": "alternative"
       },
       {
         "text": "Orphaned children",
-        "source_quote": "Orphaned children"
+        "source_quote": "Orphaned children",
+        "kind": "alternative"
       },
       {
         "text": "Transgender individuals",
-        "source_quote": "Transgender individuals"
+        "source_quote": "Transgender individuals",
+        "kind": "alternative"
       },
       {
         "text": "Devadasis",
-        "source_quote": "Devadasis"
+        "source_quote": "Devadasis",
+        "kind": "alternative"
       },
       {
         "text": "People suffering from sickle cell disease",
-        "source_quote": "Individuals suffering from sickle cell disease"
+        "source_quote": "Individuals suffering from sickle cell disease",
+        "kind": "alternative"
       }
     ],
     "text": {
@@ -939,27 +947,33 @@
       },
       {
         "text": "Holds an MGNREGA job card",
-        "source_quote": "Women holding MGNREGA Job Card"
+        "source_quote": "Women holding MGNREGA Job Card",
+        "kind": "alternative"
       },
       {
         "text": "Is a woman farmer receiving PM-KISAN",
-        "source_quote": "Women farmers who are beneficiaries under Kisan Samman Nidhi"
+        "source_quote": "Women farmers who are beneficiaries under Kisan Samman Nidhi",
+        "kind": "alternative"
       },
       {
         "text": "Holds an e-Shram card",
-        "source_quote": "Women holding e-Shram card"
+        "source_quote": "Women holding e-Shram card",
+        "kind": "alternative"
       },
       {
         "text": "Is a PMJAY (Ayushman Bharat) beneficiary",
-        "source_quote": "Women Beneficiaries under Pradhan Mantri Jan Aarogya Yojana (PMJAY) under Ayushman Bharat"
+        "source_quote": "Women Beneficiaries under Pradhan Mantri Jan Aarogya Yojana (PMJAY) under Ayushman Bharat",
+        "kind": "alternative"
       },
       {
         "text": "Is a pregnant or lactating Anganwadi worker, helper or ASHA",
-        "source_quote": "Pregnant and Lactating AWWS/ AWHS/ASHAS"
+        "source_quote": "Pregnant and Lactating AWWS/ AWHS/ASHAS",
+        "kind": "alternative"
       },
       {
         "text": "Holds a ration card under the National Food Security Act (NFSA), 2013",
-        "source_quote": "Women Beneficiaries holding Ration card under National Food Security Act (NFSA), 2013"
+        "source_quote": "Women Beneficiaries holding Ration card under National Food Security Act (NFSA), 2013",
+        "kind": "alternative"
       },
       {
         "text": "Must register within 270 days of childbirth",

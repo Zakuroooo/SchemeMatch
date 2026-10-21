@@ -10,9 +10,10 @@ export interface CatalogScheme extends Scheme {
   text: { en: { title: string; benefit: string; how_to_apply: string } };
 }
 
-/** Where schemes come from. Files today; Supabase next step, with no route changes. */
+/** Where schemes come from: files, the bundle, or Supabase, with no route changes. */
 export interface SchemeRepository {
-  listLive(): Promise<CatalogScheme[]>;
+  /** `fresh` skips any cache, so the call really reaches the data source (keep-alive). */
+  listLive(opts?: { fresh?: boolean }): Promise<CatalogScheme[]>;
 }
 
 /** Reads the golden scheme files once and serves them from memory. */

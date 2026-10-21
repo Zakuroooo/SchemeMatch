@@ -1,0 +1,6 @@
+# Raw model answers, kept exactly as received.
+runs/
+.venv/
+.pytest_cache/
+# Same as the root .prettierignore
+*.md

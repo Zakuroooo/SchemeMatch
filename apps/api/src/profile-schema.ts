@@ -1,20 +1,26 @@
 import { z } from "zod";
-import type { Field } from "@schemematch/engine";
+import {
+  CASTE_CATEGORIES,
+  EDUCATION_LEVELS,
+  GENDERS,
+  MARITAL_STATUSES,
+  type Field,
+} from "@schemematch/engine";
 
 // One validator per profile field. Ranges are generous but stop impossible values.
 const shape = {
   state: z.string().regex(/^[A-Z]{2}$/, "two-letter state code, e.g. MH"),
   district: z.string().min(2).max(60),
   age: z.int().min(0).max(120),
-  gender: z.enum(["female", "male", "other"]),
-  marital_status: z.enum(["single", "married", "widow", "divorced", "abandoned"]),
+  gender: z.enum(GENDERS),
+  marital_status: z.enum(MARITAL_STATUSES),
   annual_family_income: z.number().min(0).max(1_000_000_000),
-  caste_category: z.enum(["SC", "ST", "OBC", "General", "EWS"]),
+  caste_category: z.enum(CASTE_CATEGORIES),
   occupation: z.string().min(2).max(60),
   land_acres: z.number().min(0).max(100_000),
   disability_percent: z.number().min(0).max(100),
   is_student: z.boolean(),
-  education_level: z.string().regex(/^(class_([1-9]|1[0-2])|diploma|undergraduate|postgraduate)$/),
+  education_level: z.enum(EDUCATION_LEVELS),
   household_size: z.int().min(1).max(50),
   has_bpl_card: z.boolean(),
   children_count: z.int().min(0).max(30),

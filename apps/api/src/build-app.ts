@@ -1,4 +1,6 @@
+import { timingSafeEqual } from "node:crypto";
 import Fastify, { type FastifyError, type FastifyServerOptions } from "fastify";
+import cors from "@fastify/cors";
 import rateLimit from "@fastify/rate-limit";
 import {
   hasZodFastifySchemaValidationErrors,
@@ -24,6 +26,16 @@ export interface AppOptions {
   repo: SchemeRepository;
   /** Where screenings are saved. Without one, the save and delete routes answer 503. */
   screenings?: ScreeningStore;
+  /**
+   * Shared secret for the daily keep-alive cron (Vercel sends `Authorization: Bearer <it>`).
+   * Without one, the cron route refuses everyone.
+   */
+  cronSecret?: string;
+  /**
+   * Web pages allowed to call the API from a browser (CORS). Exact origins, or patterns for
+   * preview deploys. Empty = no browser page may call it, which is the safe default.
+   */
+  webOrigins?: (string | RegExp)[];
   logger?: FastifyServerOptions["logger"];
   /** Requests per minute per client IP. */
   rateLimitPerMinute?: number;
@@ -45,9 +57,18 @@ const errorBody = (code: string, message: string, details?: unknown) => ({
 const cleanProfile = (profile: Record<string, unknown>) =>
   Object.fromEntries(Object.entries(profile).filter(([, v]) => v !== undefined)) as Profile;
 
+/** Constant-time comparison, so response timing can't reveal how much of a secret matched. */
+function sameSecret(given: string | undefined, expected: string): boolean {
+  const a = Buffer.from(given ?? "");
+  const b = Buffer.from(expected);
+  return a.length === b.length && timingSafeEqual(a, b);
+}
+
 export async function buildApp({
   repo,
   screenings,
+  cronSecret,
+  webOrigins = [],
   logger = false,
   rateLimitPerMinute = 60,
   clientIpHeader,
@@ -76,6 +97,20 @@ export async function buildApp({
 
   app.setValidatorCompiler(validatorCompiler);
   app.setSerializerCompiler(serializerCompiler);
+
+  // Browsers only let a page read our answers if we name its origin here. Other callers
+  // (curl, the mobile app) don't use CORS and are unaffected: this is not access control.
+  await app.register(cors, {
+    origin: (origin, done) => {
+      const allowed =
+        origin !== undefined &&
+        webOrigins.some((o) => (typeof o === "string" ? o === origin : o.test(origin)));
+      done(null, allowed);
+    },
+    methods: ["GET", "POST", "DELETE"],
+    allowedHeaders: ["content-type", "idempotency-key", "x-install-id"],
+    maxAge: 600,
+  });
 
   await app.register(rateLimit, {
     max: rateLimitPerMinute,
@@ -116,6 +151,16 @@ export async function buildApp({
   );
 
   app.get("/health", async () => ({ ok: true }));
+
+  // Daily keep-alive (ADR 0002): a free Supabase project pauses after 7 quiet days, so the
+  // cron makes one real read. Only Vercel's cron, which sends the secret, may call it.
+  app.get("/cron/keepalive", async (req, reply) => {
+    if (!cronSecret || !sameSecret(req.headers.authorization, `Bearer ${cronSecret}`)) {
+      return reply.code(401).send(errorBody("UNAUTHORIZED", "Not allowed."));
+    }
+    const schemes = await repo.listLive({ fresh: true });
+    return { ok: true, schemes: schemes.length };
+  });
 
   app.get(
     "/schemes",
@@ -170,10 +215,22 @@ export async function buildApp({
           .map((r) => ({ ...info(r.slug), reasons: r.reasons, also_confirm: r.also_confirm })),
         need_info: screening.results
           .filter((r) => r.result === "UNKNOWN")
-          .map((r) => ({ slug: r.slug, missing: r.missing })),
+          .map((r) => ({
+            slug: r.slug,
+            title: bySlug.get(r.slug)!.text.en.title,
+            missing: r.missing,
+            other_ways: r.other_ways,
+          })),
         not_eligible: screening.results
           .filter((r) => r.result === "FAIL")
-          .map((r) => ({ slug: r.slug, closest_miss: r.failed?.source_quote ?? null })),
+          .map((r) => ({
+            slug: r.slug,
+            title: bySlug.get(r.slug)!.text.en.title,
+            closest_miss: r.failed?.source_quote ?? null,
+            // another state's scheme: the person lives elsewhere, so nothing else matters
+            other_state: r.other_state,
+            other_ways: r.other_ways,
+          })),
         next_question: screening.next_question,
         disclaimer: DISCLAIMER,
       };
@@ -199,7 +256,6 @@ export async function buildApp({
       if (!screenings) return reply.code(503).send(storageMissing);
       const profile = cleanProfile(req.body.profile);
       const schemes = await repo.listLive();
-      const stateOf = new Map(schemes.map((s) => [s.slug, s.state]));
       const result = evaluateAll(schemes, profile);
       try {
         const saved = await screenings.save({
@@ -208,7 +264,7 @@ export async function buildApp({
           installId: req.body.install_id,
           channel: "app",
           profile,
-          matches: result.results.map((r) => toMatch(r, stateOf.get(r.slug) ?? null)),
+          matches: result.results.map(toMatch),
         });
         return reply.code(saved.created ? 201 : 200).send({ ...saved, disclaimer: DISCLAIMER });
       } catch (err) {

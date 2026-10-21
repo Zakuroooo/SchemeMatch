@@ -42,8 +42,10 @@ export class SupabaseSchemeRepository implements SchemeRepository {
     this.now = now;
   }
 
-  async listLive(): Promise<CatalogScheme[]> {
-    if (this.cache && this.now() - this.cache.at < this.cacheMs) return this.cache.schemes;
+  async listLive({ fresh = false }: { fresh?: boolean } = {}): Promise<CatalogScheme[]> {
+    if (!fresh && this.cache && this.now() - this.cache.at < this.cacheMs) {
+      return this.cache.schemes;
+    }
     const { data, error } = await this.db.from("schemes").select(SELECT).order("slug");
     if (error) throw new Error(`could not load schemes: ${error.message}`);
     const schemes = (data as unknown as Row[])

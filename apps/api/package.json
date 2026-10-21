@@ -13,6 +13,7 @@
     "build": "node scripts/bundle-schemes.mjs"
   },
   "dependencies": {
+    "@fastify/cors": "11.3.0",
     "@fastify/rate-limit": "^11.2.1",
     "@schemematch/engine": "workspace:*",
     "@supabase/supabase-js": "^2.118.0",

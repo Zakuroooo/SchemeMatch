@@ -1,4 +1,3 @@
-import { evaluateCondition } from "./condition.ts";
 import { evaluateNode } from "./logic.ts";
 import {
   RULE_FORMAT_VERSION,
@@ -29,12 +28,14 @@ function withStateGate(scheme: Scheme): RuleNode {
   return { all: [gate, scheme.eligibility] };
 }
 
+/**
+ * Quotes of the conditions that make this node PASS. A part that doesn't pass gives none, so
+ * an OR only contributes the branches that passed (a widow is not told "divorced women…").
+ */
 function passingQuotes(node: RuleNode, profile: Profile, out: string[] = []): string[] {
-  if ("field" in node) {
-    if (evaluateCondition(node, profile) === "PASS") out.push(node.source_quote);
-  } else {
-    for (const child of children(node)) passingQuotes(child, profile, out);
-  }
+  if (evaluateNode(node, profile) !== "PASS") return out;
+  if ("field" in node) out.push(node.source_quote);
+  else for (const child of children(node)) passingQuotes(child, profile, out);
   return out;
 }
 
@@ -63,12 +64,17 @@ export function evaluateScheme(scheme: Scheme, profile: Profile): SchemeResult {
   }
   const tree = withStateGate(scheme);
   const result = evaluateNode(tree, profile);
+  const unmodelled = scheme.unmodelled ?? [];
   return {
     slug: scheme.slug,
     result,
-    reasons: passingQuotes(tree, profile),
+    // Reasons come from the scheme's own rules (not the gate), only when it passes, once each.
+    reasons: result === "PASS" ? [...new Set(passingQuotes(scheme.eligibility, profile))] : [],
     failed: firstFailure(tree, profile),
     missing: [...missingFields(tree, profile)],
-    also_confirm: (scheme.unmodelled ?? []).map((u) => u.text),
+    also_confirm: unmodelled.filter((u) => u.kind !== "alternative").map((u) => u.text),
+    other_ways: unmodelled.filter((u) => u.kind === "alternative").map((u) => u.text),
+    other_state:
+      scheme.level === "state" && profile.state !== undefined && profile.state !== scheme.state,
   };
 }

@@ -82,10 +82,30 @@ describe("POST /eligibility", () => {
     expect(body.need_info).toEqual([]);
   });
 
+  it("shows a qualifying widow only real reasons and real requirements", async () => {
+    const body = (await post({ profile: sunita })).json();
+    const sg = body.eligible.find((e: { slug: string }) => e.slug === "mh-sanjay-gandhi-niradhar");
+    expect(sg.reasons).toContain("Destitute widows");
+    expect(sg.reasons).not.toContain("divorced women not receiving alimony"); // she isn't divorced
+    expect(sg.reasons).not.toContain("Scheme of the state MH: for its residents");
+    expect(new Set(sg.reasons).size).toBe(sg.reasons.length);
+    expect(sg.also_confirm).not.toContain("Orphaned children"); // another way to qualify, not a requirement
+  });
+
+  it("marks other states' schemes and lists other ways to qualify", async () => {
+    const body = (await post({ profile: sunita })).json();
+    const wb = body.not_eligible.find((e: { slug: string }) => e.slug === "wb-annapurna");
+    expect(wb.other_state).toBe(true);
+    const pmmvy = body.not_eligible.find((e: { slug: string }) => e.slug === "pmmvy");
+    expect(pmmvy.other_state).toBe(false);
+    expect(pmmvy.other_ways).toContain("Holds an e-Shram card");
+  });
+
   it("explains the closest miss", async () => {
     const body = (await post({ profile: sunita })).json();
     const widow = body.not_eligible.find((e: { slug: string }) => e.slug === "ignwps");
     expect(widow.closest_miss).toBe("A widow in age group of 40 to 79 years");
+    expect(widow.title).toBe("Indira Gandhi National Widow Pension Scheme");
   });
 
   it("asks a next question when the profile is empty", async () => {

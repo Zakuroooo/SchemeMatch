@@ -3,7 +3,7 @@
 
 > **[STORY.md](STORY.md)** explains the project as a story (the *why*). **This file** is the detailed diary (the *how*). Read STORY first if you're new.
 
-**Latest:** Step 13, held-out exam + discovery kit (2026-10-21) · **Next:** `POST /screenings` and the staging database decision
+**Latest:** Step 15, the web app in English + Bengali (2026-10-21) · Step 14 (staging database) waits on your Supabase account · **Next:** `POST /screenings` and the staging database decision
 
 ---
 
@@ -512,6 +512,62 @@ One failure was **our** schema's fault: it allows no OR at the top. One label (M
 
 ---
 
+## Step 14: Staging database, part 1 (Week 4 step 1, branch `feat/staging-db`, 2026-10-21; waiting on you)
+
+**Goal:** a hosted database for staging, so worker login and saved families can work there.
+
+**Your decision:** your own second Supabase account, holding only SchemeMatch staging. The risk is written down: Supabase's rules ban "an excessive number of accounts"; two is a grey area.
+
+**Done so far:**
+- A daily **keep-alive** route (`GET /cron/keepalive`): one real database read, because free projects pause after 7 quiet days.
+  - Only Vercel's cron may call it: it carries `CRON_SECRET`, checked in constant time, and with no secret set, everyone is refused.
+- A daily Vercel cron at 05:00 UTC (10:30 IST).
+
+**Waiting on you:**
+1. Create the account and the `schemematch-staging` project (Mumbai).
+2. `supabase login` + `link`, where you type the password.
+3. Add the 3 keys in Vercel.
+
+Then I push the schema and run every test against staging.
+
+---
+
+## Step 15: The web app, English + Bengali (Week 4 step 2, branch `feat/web-shell`, 2026-10-21)
+
+**Goal:** a screen a field worker can use: fill a family's answers, see likely schemes with reasons, in English or Bengali.
+
+**How we did it:**
+1. **Next.js app** in `apps/web`: Next 16, React 19, next-intl, Tailwind 4, each version out at least two weeks. `/en` and `/bn` are prebuilt pages.
+2. **One source of truth:** the engine now exports the allowed answers (genders, castes, classes…) as lists. Both the API's validation and the form use them.
+3. **The form** asks all 16 fields; a blank stays blank ("not answered" ≠ "no").
+4. **The browser calls the API directly**, not our server. Otherwise every user would share one rate limit.
+   - The API got a **CORS allowlist**, with tests against look-alike addresses.
+5. **Bengali:** every interface string is in `bn.json`, with tests that both languages have the same keys and that Bengali text really is Bengali. **You should read every Bengali line once.**
+6. **Vercel project** `schemematch-web` (Mumbai); the API allows its addresses.
+
+**Bugs found by using it in the browser (not by the tests):**
+
+| Found | Fix |
+|---|---|
+| **False "why" reasons:** a widow was told "divorced women…" and "unmarried women over 35" (twice) for Sanjay Gandhi | The engine now takes reasons only from parts of the rule that passed, once each, never the state gate |
+| **Other ways to qualify shown as requirements:** a widow had to "also confirm" orphans, devadasis… | New `kind: "alternative"` (GUIDE rule 7). Hidden when someone qualifies; shown as "may still qualify if…" when they don't. Also fixes a hidden false negative: PMMVY via an e-Shram card |
+| A Maharashtra family saw all **9 West Bengal schemes** as "not eligible" | Counted in one line: "9 schemes are only for other states" |
+| **Answers in the URL:** clicking before the page was ready put every answer in the address bar | No input names, POST only, button disabled until ready (checked in the server HTML and the browser) |
+| Two language links were too small to tap (under 32px) | Every control is now at least 44px |
+| The form box lost focus while typing (found in code review, before it ever ran) | Moved the field component out; a test fails if it comes back |
+
+**My own slips, all caught before pushing:**
+- a commit that wouldn't build alone (history rebuilt so every commit passes);
+- "12 West Bengal schemes" in a message (it's 9);
+- a format check whose failure my command hid.
+
+**How we checked it:**
+- engine 572 · API 67 · web 18 · pipeline 52, all passing; every commit passes on its own;
+- the Sunita persona in the real browser, in both languages: her **11 schemes**;
+- phone width: no sideways scrolling; no console errors.
+
+---
+
 ## Running totals
 
 | Thing | Count | How to check |
@@ -519,8 +575,9 @@ One failure was **our** schema's fault: it allows no OR at the top. One label (M
 | PRs merged | 12 | GitHub |
 | Golden schemes | 30 (15 central · 6 MH · 9 WB) + 10 held-out (5 central · 3 MH · 2 WB) | `pipeline/catalog.csv` |
 | Hand-written test cases | 174 | `packages/engine/test/profiles/` |
-| Engine tests | 566 | `pnpm turbo run test` |
-| API tests | 51 (+7 that need a database) | same; the 7 run in CI's db job |
+| Engine tests | 572 | `pnpm turbo run test` |
+| API tests | 67 (+7 that need a database) | same; the 7 run in CI's db job |
+| Web tests | 18 | same |
 | Database tests | 38 | `supabase test db` |
 | Engine code coverage | 100% | CI enforces it |
 | Human-reviewed schemes | 0 of 30 | `reviewed_by` in each file |
@@ -532,8 +589,10 @@ One failure was **our** schema's fault: it allows no OR at the top. One label (M
 
 ## Next step
 
-**Yours:** the 5 discovery conversations (kit ready in DISCOVERY.md §0). Paste your notes in chat after each one.
+**Yours:**
+1. Create the second Supabase account + `schemematch-staging` (Step 14).
+2. Read the Bengali strings in `apps/web/messages/bn.json`.
+3. Merge `feat/staging-db`, then `feat/web-shell`.
+4. The 5 discovery calls.
 
-**Mine, next:**
-- Week 4: web dashboard, worker login, and where the database lives;
-- later, prompt v2 on a fresh held-out set.
+**Mine, next:** worker login (Supabase Auth) and organisation rules, once the staging database exists.

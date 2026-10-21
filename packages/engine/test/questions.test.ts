@@ -15,6 +15,8 @@ const unknown = (slug: string, missing: SchemeResult["missing"]): SchemeResult =
   failed: null,
   missing,
   also_confirm: [],
+  other_ways: [],
+  other_state: false,
 });
 
 describe("nextQuestion", () => {

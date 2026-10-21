@@ -56,6 +56,7 @@ flowchart LR
 - Zod validation on every input; parameterised queries only.
 - Dependency updates via Dependabot; `pnpm audit` in CI (warn, not block).
 - Logs: structured, no profile payloads, no IPs beyond the rate limiter.
+- URLs: answers never go into a URL. The web form has no input names, posts only, and is disabled until hydrated, with a test. Install IDs travel in headers.
 - Breach plan: RUNBOOK §incident — rotate keys, assess, notify affected org within 72 h.
 
 ## 6. Security testing
