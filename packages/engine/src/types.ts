@@ -105,6 +105,11 @@ export type Tri = "PASS" | "FAIL" | "UNKNOWN";
 export interface UnmodelledCriterion {
   text: string;
   source_quote: string;
+  /**
+   * "requirement" (default): something the person must also have ("not an income-tax payer").
+   * "alternative": another way to qualify that no field can express ("or is an orphan").
+   */
+  kind?: "requirement" | "alternative";
 }
 
 /** The parts of a scheme the engine needs. Extra fields (texts, documents) are ignored. */
@@ -122,12 +127,20 @@ export interface Scheme {
 export interface SchemeResult {
   slug: string;
   result: Tri;
-  /** Source quotes of every condition that passed — the "why you qualify". */
+  /**
+   * The "why you qualify": source quotes of the conditions that made the scheme PASS, once
+   * each. Empty unless the result is PASS. A condition that passed inside an OR-branch that
+   * failed is not a reason, and neither is the state gate (it is not a quote from the source).
+   */
   reasons: string[];
   /** The first condition that made the scheme fail — the "closest miss". */
   failed: Condition | null;
   /** Unanswered fields that could still change an UNKNOWN result. */
   missing: Field[];
-  /** Criteria the user must confirm themselves (from `unmodelled`). */
+  /** Requirements the user must confirm themselves (`unmodelled` items of kind requirement). */
   also_confirm: string[];
+  /** Other ways to qualify that no field can check (`unmodelled` items of kind alternative). */
+  other_ways: string[];
+  /** True when this is another state's scheme and the person's state is known to differ. */
+  other_state: boolean;
 }
