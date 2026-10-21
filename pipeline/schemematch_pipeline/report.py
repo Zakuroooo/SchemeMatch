@@ -12,7 +12,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-from .extract import CONFIG, PIPELINE
+from .extract import CONFIG, PIPELINE, SETS
 from .fetch import split_header
 from .score import LABELS, SchemeScore, score_scheme, totals
 from .validate import ROOT, Validated, validate
@@ -20,8 +20,8 @@ from .validate import ROOT, Validated, validate
 TOP_EXAMPLES = 3
 
 
-def golden_set() -> list[dict]:
-    return [json.loads(p.read_text()) for p in sorted((PIPELINE / "golden/schemes").glob("*.json"))]
+def golden_set(which: str = "dev") -> list[dict]:
+    return [json.loads(p.read_text()) for p in sorted((PIPELINE / SETS[which]).glob("*.json"))]
 
 
 def score_model(model_dir: Path, golden: list[dict]) -> tuple[list[SchemeScore], list[dict], dict[str, str]]:
@@ -65,8 +65,8 @@ def _git_commit() -> str:
         return "unknown"
 
 
-def build_report(run_dir: Path, golden: list[dict] | None = None, notes: str | None = None) -> str:
-    golden = golden or golden_set()
+def build_report(run_dir: Path, golden: list[dict] | None = None, notes: str | None = None, which: str = "dev") -> str:
+    golden = golden or golden_set(which)
     models = sorted(p.name for p in run_dir.iterdir() if p.is_dir())
     prompt = {json.loads(p.read_text()).get("prompt_version") for p in run_dir.glob("*/*.json")} - {None}
     lines = [
@@ -76,8 +76,13 @@ def build_report(run_dir: Path, golden: list[dict] | None = None, notes: str | N
         + f" · Prompt: `{', '.join(sorted(prompt)) or 'n/a'}` · Code: `{_git_commit()}`",
         f"Settings: temperature {CONFIG['temperature']}, reasoning_effort {CONFIG['reasoning_effort']}, "
         f"max_completion_tokens {CONFIG['max_completion_tokens']}, max_request_tokens {CONFIG['max_request_tokens']}",
-        f"Golden: {len(golden)} schemes, **AI-drafted and AI-checked (human review pending)**. This is the dev set; "
-        "the held-out 10 are not labelled yet, so these are not final numbers.",
+        (
+            f"Golden: {len(golden)} schemes, **AI-drafted and AI-checked (human review pending)**. This is the dev set; "
+            "final numbers come from the held-out set."
+            if which == "dev"
+            else f"Golden: the **held-out {len(golden)}**, labelled before any model saw them and never used to change "
+            "the prompt. Labels are AI-drafted and AI-checked (human review pending). These are the final numbers."
+        ),
         "",
         "| Model | Rows | P | R | F1 | Exact % | Quote/validator rejects | Too large / failed | ₹/scheme (list price) | s/scheme |",
         "|---|---|---|---|---|---|---|---|---|---|",
@@ -131,10 +136,11 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("run_dir", type=Path)
     ap.add_argument("--out", type=Path, default=ROOT / f"reports/eval-{datetime.date.today().isoformat()}.md")
     ap.add_argument("--notes", type=Path, help="hand-written spot-check notes and next steps, appended at the end")
+    ap.add_argument("--set", choices=sorted(SETS), default="dev")
     args = ap.parse_args(argv)
     args.out.parent.mkdir(parents=True, exist_ok=True)
     notes = args.notes.read_text(encoding="utf-8") if args.notes else None
-    args.out.write_text(build_report(args.run_dir, notes=notes), encoding="utf-8")
+    args.out.write_text(build_report(args.run_dir, notes=notes, which=args.set), encoding="utf-8")
     print(args.out)
     return 0
 

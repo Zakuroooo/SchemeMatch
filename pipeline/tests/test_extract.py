@@ -10,6 +10,7 @@ from schemematch_pipeline.strict_schema import output_schema
 from schemematch_pipeline.validate import ROOT, normalise
 
 GOLDEN = [json.loads(p.read_text()) for p in sorted((ROOT / "pipeline/golden/schemes").glob("*.json"))]
+HELDOUT = [json.loads(p.read_text()) for p in sorted((ROOT / "pipeline/golden/heldout").glob("*.json"))]
 
 
 def _objects(node):
@@ -33,7 +34,7 @@ def test_strict_schema_follows_groq_strict_rules():
 
 def test_correct_answers_are_allowed_by_the_strict_schema():
     v = Draft202012Validator(output_schema())
-    answers = [{k: g[k] for k in ("eligibility", "unmodelled", "ambiguous")} for g in GOLDEN]
+    answers = [{k: g[k] for k in ("eligibility", "unmodelled", "ambiguous")} for g in GOLDEN + HELDOUT]
     answers += [json.loads(p.read_text()) for p in (ROOT / "pipeline/fewshot/examples").glob("*.json")]
     for a in answers:
         assert not list(v.iter_errors(a))
@@ -41,7 +42,8 @@ def test_correct_answers_are_allowed_by_the_strict_schema():
 
 def test_prompt_contains_no_golden_rule_quote():
     prompt = normalise(SYSTEM + json.dumps(fewshot_messages(), ensure_ascii=False))
-    leaked = [c.quote for g in GOLDEN for c in flatten(g["eligibility"]) if len(c.quote) >= 25 and normalise(c.quote) in prompt]
+    labelled = GOLDEN + HELDOUT
+    leaked = [c.quote for g in labelled for c in flatten(g["eligibility"]) if len(c.quote) >= 25 and normalise(c.quote) in prompt]
     assert leaked == []
 
 
