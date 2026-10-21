@@ -3,12 +3,12 @@
 
 > Want the detailed *how* of each step (commands, files, bugs, checks)? See **[PROGRESS.md](PROGRESS.md)**, the build log.
 
-> **Where we are (2026-10-21):** Week 3's building work is done. 30 schemes are labelled, the engine and API are **live** in Mumbai, screenings save **exactly once** (local database for now), and the AI pipeline has its honest final score: **F1 0.53** on 10 held-out schemes it never saw (below our 0.90 target). The 5 discovery conversations are next, and they're yours.
+> **Where we are (2026-10-21):** Week 4 has started. Field workers now have a **screen** in English and Bengali (Chapter 12). Using it found and fixed false reasons and an answers-in-the-URL leak. The staging database waits on your second Supabase account. The AI's honest score: **F1 0.53** on 10 unseen schemes.
 
 | Week | 1 | 2 | 3 | 4 | 5 | 6 |
 |---|---|---|---|---|---|---|
 | Focus | Data + engine | Engine + API | AI pipeline + interviews | Web dashboard | Mobile + voice | Polish + demo |
-| Status | ✅ done | ✅ done (+ API live) | ⏳ in progress | ⬜ | ⬜ | ⬜ |
+| Status | ✅ done | ✅ done (+ API live) | ✅ done (discovery calls are yours) | ⏳ in progress | ⬜ | ⬜ |
 
 ---
 
@@ -382,6 +382,23 @@ sequenceDiagram
 
 **Honest limit:** staging has no database yet, so saving answers "not set up yet" there. That gets decided in Week 4.
 
+### Chapter 12: A screen for field workers (Week 4)
+**What Meena sees now:** a form in English or Bengali. She fills what she knows, leaves the rest blank, presses **Check schemes**, and sees:
+- **likely eligible**, with the official quotes that explain why, plus what to confirm at the office;
+- **what to ask next**;
+- **not eligible**, with the closest miss, and "may still qualify if…" when another way in exists.
+
+**Why the browser talks to the API directly:** if our web server asked on everyone's behalf, the API would see one address for all users, and one busy hour would block everyone. So the API keeps a short **allowlist** of web pages allowed to read its answers (CORS).
+
+> Hinglish: Server sabki taraf se puchhe toh sab ek hi "insaan" lagte hain; isliye browser khud API se baat karta hai.
+
+**Using it found what tests didn't:**
+- A widow was told "divorced women…" as a reason. **That's false**, and the engine had been doing it for every OR rule. Fixed.
+- A tap before the page was ready put her **answers in the web address**. Addresses get saved in history and logs, so it's now impossible.
+- A Maharashtra family saw 9 West Bengal schemes as "not eligible". Now it's one line.
+
+**Lesson:** tests check what you thought of. Using the real thing, like a real person would, finds what you didn't think of.
+
 ---
 
 ## 6. Five ideas you must be able to explain
@@ -420,6 +437,8 @@ These are the best interview stories, because each one is a real problem you sol
 | 8 | The validator could leave an **empty AND-group**, which lets everyone pass | Dropping bad rules emptied a group (caught by an automated security review) | Drop the empty group too, and record why | Removing a rule can make eligibility *wider*; check what's left |
 | 9 | The scorer marked correct AI answers as **wrong grouping** | It compared tree shapes, not meaning: a one-rule group equals that rule | Simplify both trees before comparing | Before trusting a score, read some answers by hand; graders have bugs too |
 | 10 | Logs quietly recorded each visitor's **network address** | The logging library does it by default, and the privacy doc assumed it didn't | Redact it; a test proves it (it failed before the fix) | Check what libraries do by default; write the test first |
+| 11 | The app gave a widow **false reasons** ("divorced women…") | The engine collected every passing condition, even inside OR-branches that failed | Reasons only from the parts that passed | A list of true facts can still tell a false story; check *which* facts |
+| 12 | A quick tap put the family's **answers in the web address** | The browser sent the form itself before React was ready | No field names, POST only, button off until ready | Think about the moment *before* your code runs |
 
 > Hinglish: Galti hona normal hai. Interview mein bolo: kya toota, kyun toota, kaise pakda, aur dobara na ho isliye kya test likha.
 
@@ -467,7 +486,7 @@ flowchart LR
 | The plan | [BUILD-PLAN.md](BUILD-PLAN.md) |
 | How to deploy and run | [RUNBOOK.md](RUNBOOK.md) |
 
-**Numbers today (all measured in the repo):** 30 schemes · 174 hand-written test cases · 566 engine tests · 51 API tests (+7 with a database) · 38 database tests · 52 pipeline tests · 100% engine code coverage.
+**Numbers today (all measured in the repo):** 30 schemes · 174 hand-written test cases · 572 engine tests · 67 API tests (+7 with a database) · 18 web tests · 38 database tests · 52 pipeline tests · 100% engine code coverage.
 
 ---
 
@@ -502,6 +521,7 @@ flowchart LR
 
 | Date | Step | What changed |
 |---|---|---|
+| 2026-10-21 | Web app | Screening form in English + Bengali; fixed false reasons, alternatives, answers-in-URL (Chapter 12) |
 | 2026-10-21 | Held-out exam | Final AI score F1 0.53 (big model) on 10 unseen schemes; discovery kit ready; district names now match any case |
 | 2026-10-20 | Week 3 step 2 | `POST /screenings`: exactly-once saving, delete-my-data, tested against the real database |
 | 2026-10-20 | Audit | Checked everything; fixed IP logging, honest rate-limit and staging notes, 9 placeholder texts, stale docs ([PROGRESS step 11](PROGRESS.md)) |

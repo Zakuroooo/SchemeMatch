@@ -35,6 +35,14 @@ flowchart LR
 - **Rate limit is per instance only:** the limiter keeps its count in memory, so each Vercel instance counts separately. Measured 2026-10-20: 70 sequential requests → 59 allowed, 11 got 429; 70 parallel requests → all 200. Move the count to Upstash Redis before any real traffic.
 - **Rules are AI-checked, not human-reviewed.** The bundled 30 schemes have not had your review (`reviewed_by` is empty), so this staging API is for testing only, not for real users (PRD V1-2).
 
+### Web app on Vercel (`schemematch-web`, set up 2026-10-21)
+- **Project settings:** root `apps/web`; framework Next.js; build `cd ../.. && pnpm turbo run build --filter @schemematch/web` (builds the engine first); Node 22; region `bom1`; no login wall (no private data).
+- **`NEXT_PUBLIC_API_URL`:** Production → the staging API. Preview for branch `feat/web-shell` → that branch's API preview (`schemematch-api-git-feat-web-shell-…`), because only that branch has the CORS code until it merges.
+  - After merging, delete the branch-specific value.
+- **API `WEB_ORIGINS`** (Production + Preview): the web production URL, plus the pattern `^https://schemematch-web-[a-z0-9-]+-zakuroooos-projects\.vercel\.app$` for previews.
+  - Without it, browsers can't read the API's answers.
+- **Merge order:** `feat/staging-db` first, then `feat/web-shell` (it is stacked on it).
+
 ### Deploy lessons (each one cost a failed deploy)
 1. Vercel finds the Fastify entry by a **direct `import ... from "fastify"`** in `src/index.ts`.
 2. Vercel compiles `.ts` to `.js` but **does not rewrite import paths**. Import local files with `.js` paths, and give shared packages a compiled `dist/` (`packages/engine`).

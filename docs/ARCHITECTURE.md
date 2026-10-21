@@ -178,10 +178,28 @@ All inputs validated with **Zod**; errors return clear 400s; rate-limited per IP
 **Built so far (`apps/api`, Weeks 2–3; live on Vercel `bom1`):** `GET /health`, `GET /schemes?state=`, `POST /eligibility`, `POST /screenings`, `DELETE /screenings`.
 - **Screenings** are saved through a `ScreeningStore`. `SupabaseScreeningStore` uses the server-only `SUPABASE_SECRET_KEY` and the database function `save_screening`. Its unique `idempotency_key` makes saving exactly once even for parallel retries (tested: 5 at once → 1 row; a check-then-insert version made 5). On staging there is no database yet, so these routes answer **503 `STORAGE_UNAVAILABLE`**. Hosting is decided in Week 4.
 - The profile schema is **strict**: any key that isn't a profile field (`name`, `phone`, `aadhaar`, …) is rejected with a 400, and errors never echo values back.
-- Responses carry the reasons (source quotes), the "must also confirm" items, the closest miss, the next question and the disclaimer.
+- Responses carry:
+  - the reasons: the source quotes of what made a scheme pass, once each; never a quote from a failed OR-branch, never the state gate;
+  - the "must also confirm" requirements;
+  - other ways to qualify (unmodelled items of kind `alternative`);
+  - whether a miss is just "another state's scheme";
+  - the closest miss, the next question and the disclaimer.
+- **CORS:** only origins in `WEB_ORIGINS` may read answers from a browser (exact, or one full-match pattern for this project's previews). The web app calls the API from the browser on purpose: a server-side call would put every user behind one IP, sharing one rate limit.
+- Daily `GET /cron/keepalive` (guarded by `CRON_SECRET`) makes one real database read, so a free Supabase project doesn't pause.
 - Schemes come from a `SchemeRepository` interface. `SupabaseSchemeRepository` reads with the anon key, so RLS limits it to live schemes and their current rule version (60 s cache); `FileSchemeRepository` reads the golden files for offline work. `supabase/seed.sql` is generated from the golden files, and an integration test proves the database serves exactly what the files contain.
 - Rate limiting is in-memory (60/min per IP). On Vercel this counts **per instance**, so a burst spread over instances isn't blocked (measured; see RUNBOOK). Upstash is still planned. Profiles are redacted from logs.
 - The live API serves a **bundled copy** of the golden schemes (no hosted database yet); Supabase runs locally and in CI.
+
+### Web app (`apps/web`, Week 4)
+- **Stack:** Next.js 16 App Router, next-intl (English `/en` and Bengali `/bn`, both prerendered), Tailwind 4.
+- **The screening form** asks every engine field once, with the engine's own allowed answers, imported from `@schemematch/engine` so it can't drift.
+  - A blank stays out of the profile ("not answered" ≠ "no").
+- **Results:** likely eligible with reasons and must-confirm items; what to ask next; the closest miss; other ways to qualify. Other states' schemes are counted, not listed.
+  - Scheme texts are English-only for now, and the page says so in Bengali.
+- **Privacy in the form:** answers can never reach a URL.
+  - inputs have no `name`, the form method is POST, and the button stays disabled until React handles the submit;
+  - found live: an early click had put every answer in the query string.
+- **Accessibility:** every control is labelled and at least 44px tall; `lang` attributes mark the English scheme text inside Bengali pages.
 
 ## 8. Security & privacy
 - DPDP-style minimisation: no name/phone/Aadhaar; district-level analytics only.
