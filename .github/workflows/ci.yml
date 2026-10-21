@@ -27,6 +27,8 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm format:check
       - run: pnpm turbo run lint typecheck test
+      # A production build catches what tests can't: server/client mistakes, prerender errors.
+      - run: pnpm turbo run build --filter @schemematch/web
 
   db:
     name: Database, RLS and API integration tests
