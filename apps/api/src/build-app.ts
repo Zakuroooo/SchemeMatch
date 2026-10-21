@@ -1,5 +1,6 @@
 import { timingSafeEqual } from "node:crypto";
 import Fastify, { type FastifyError, type FastifyServerOptions } from "fastify";
+import cors from "@fastify/cors";
 import rateLimit from "@fastify/rate-limit";
 import {
   hasZodFastifySchemaValidationErrors,
@@ -30,6 +31,11 @@ export interface AppOptions {
    * Without one, the cron route refuses everyone.
    */
   cronSecret?: string;
+  /**
+   * Web pages allowed to call the API from a browser (CORS). Exact origins, or patterns for
+   * preview deploys. Empty = no browser page may call it, which is the safe default.
+   */
+  webOrigins?: (string | RegExp)[];
   logger?: FastifyServerOptions["logger"];
   /** Requests per minute per client IP. */
   rateLimitPerMinute?: number;
@@ -62,6 +68,7 @@ export async function buildApp({
   repo,
   screenings,
   cronSecret,
+  webOrigins = [],
   logger = false,
   rateLimitPerMinute = 60,
   clientIpHeader,
@@ -90,6 +97,20 @@ export async function buildApp({
 
   app.setValidatorCompiler(validatorCompiler);
   app.setSerializerCompiler(serializerCompiler);
+
+  // Browsers only let a page read our answers if we name its origin here. Other callers
+  // (curl, the mobile app) don't use CORS and are unaffected: this is not access control.
+  await app.register(cors, {
+    origin: (origin, done) => {
+      const allowed =
+        origin !== undefined &&
+        webOrigins.some((o) => (typeof o === "string" ? o === origin : o.test(origin)));
+      done(null, allowed);
+    },
+    methods: ["GET", "POST", "DELETE"],
+    allowedHeaders: ["content-type", "idempotency-key", "x-install-id"],
+    maxAge: 600,
+  });
 
   await app.register(rateLimit, {
     max: rateLimitPerMinute,

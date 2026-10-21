@@ -7,8 +7,22 @@ import { SupabaseSchemeRepository } from "./supabase-repository.js";
 import { SupabaseScreeningStore } from "./supabase-screening-store.js";
 
 const port = Number(process.env.PORT ?? 3001);
-const { SUPABASE_URL, SUPABASE_ANON_KEY, SUPABASE_SECRET_KEY, CLIENT_IP_HEADER, CRON_SECRET } =
-  process.env;
+const {
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY,
+  SUPABASE_SECRET_KEY,
+  CLIENT_IP_HEADER,
+  CRON_SECRET,
+  WEB_ORIGINS,
+} = process.env;
+
+// WEB_ORIGINS: comma-separated. An entry starting with ^ is a full-match pattern for preview
+// deploys, e.g. ^https://schemematch-web-[a-z0-9-]+-zakuroooos-projects\.vercel\.app$
+const webOrigins = (WEB_ORIGINS ?? "")
+  .split(",")
+  .map((s) => s.trim())
+  .filter(Boolean)
+  .map((s) => (s.startsWith("^") ? new RegExp(s) : s));
 
 // Database when configured; otherwise the golden schemes bundled at build time.
 const repo: SchemeRepository =
@@ -27,6 +41,7 @@ const app = await buildApp({
   repo,
   ...(screenings ? { screenings } : {}),
   ...(CRON_SECRET ? { cronSecret: CRON_SECRET } : {}),
+  webOrigins,
   logger: { level: "info" },
   ...(CLIENT_IP_HEADER ? { clientIpHeader: CLIENT_IP_HEADER } : {}),
 });
