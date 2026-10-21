@@ -219,6 +219,7 @@ export async function buildApp({
             slug: r.slug,
             title: bySlug.get(r.slug)!.text.en.title,
             missing: r.missing,
+            other_ways: r.other_ways,
           })),
         not_eligible: screening.results
           .filter((r) => r.result === "FAIL")
@@ -226,6 +227,9 @@ export async function buildApp({
             slug: r.slug,
             title: bySlug.get(r.slug)!.text.en.title,
             closest_miss: r.failed?.source_quote ?? null,
+            // another state's scheme: the person lives elsewhere, so nothing else matters
+            other_state: r.other_state,
+            other_ways: r.other_ways,
           })),
         next_question: screening.next_question,
         disclaimer: DISCLAIMER,
@@ -252,7 +256,6 @@ export async function buildApp({
       if (!screenings) return reply.code(503).send(storageMissing);
       const profile = cleanProfile(req.body.profile);
       const schemes = await repo.listLive();
-      const stateOf = new Map(schemes.map((s) => [s.slug, s.state]));
       const result = evaluateAll(schemes, profile);
       try {
         const saved = await screenings.save({
@@ -261,7 +264,7 @@ export async function buildApp({
           installId: req.body.install_id,
           channel: "app",
           profile,
-          matches: result.results.map((r) => toMatch(r, stateOf.get(r.slug) ?? null)),
+          matches: result.results.map(toMatch),
         });
         return reply.code(saved.created ? 201 : 200).send({ ...saved, disclaimer: DISCLAIMER });
       } catch (err) {
