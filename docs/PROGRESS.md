@@ -564,7 +564,10 @@ Then I push the schema and run every test against staging.
 **How we checked it:**
 - engine 572 · API 67 · web 18 · pipeline 52, all passing; every commit passes on its own;
 - the Sunita persona in the real browser, in both languages: her **11 schemes**;
-- phone width: no sideways scrolling; no console errors.
+- phone width: no sideways scrolling; no console errors;
+- **live after merge** (https://schemematch-web-zakuroooos-projects.vercel.app):
+  - the browser calls the production API directly, and CORS allows only our addresses (a random site and a look-alike are refused);
+  - the same 11 schemes in English and Bengali, a clean URL, no console errors.
 
 ---
 

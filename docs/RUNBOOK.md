@@ -37,8 +37,11 @@ flowchart LR
 
 ### Web app on Vercel (`schemematch-web`, set up 2026-10-21)
 - **Project settings:** root `apps/web`; framework Next.js; build `cd ../.. && pnpm turbo run build --filter @schemematch/web` (builds the engine first); Node 22; region `bom1`; no login wall (no private data).
-- **`NEXT_PUBLIC_API_URL`:** Production → the staging API. Preview for branch `feat/web-shell` → that branch's API preview (`schemematch-api-git-feat-web-shell-…`), because only that branch has the CORS code until it merges.
-  - After merging, delete the branch-specific value.
+- **Live:** https://schemematch-web-zakuroooos-projects.vercel.app (`/en`, `/bn`), region `bom1`.
+  - Checked end to end on 2026-10-21: Sunita's 11 schemes in both languages, the browser calling the API directly (CORS), a clean URL, no console errors, and phone width with no sideways scroll.
+- **`NEXT_PUBLIC_API_URL`:** Production and Preview → the staging API.
+  - Before PR #17 merged, branch `feat/web-shell` pointed at its own API preview, because only it had the CORS code. That branch value now equals production and is safe to delete in the dashboard; the Vercel tools here can't delete env vars.
+  - A branch that changes the API and the web app together needs the same trick again.
 - **API `WEB_ORIGINS`** (Production + Preview): the web production URL, plus the pattern `^https://schemematch-web-[a-z0-9-]+-zakuroooos-projects\.vercel\.app$` for previews.
   - Without it, browsers can't read the API's answers.
 - **Merge order:** `feat/staging-db` first, then `feat/web-shell` (it is stacked on it).
