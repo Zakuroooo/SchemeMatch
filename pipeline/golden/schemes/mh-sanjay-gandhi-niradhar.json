@@ -92,35 +92,43 @@
     },
     {
       "text": "People unable to support themselves due to severe illness (TB, cancer, AIDS, leprosy)",
-      "source_quote": "unable to sustain themselves due to severe illnesses such as tuberculosis, cancer, AIDS, leprosy"
+      "source_quote": "unable to sustain themselves due to severe illnesses such as tuberculosis, cancer, AIDS, leprosy",
+      "kind": "alternative"
     },
     {
       "text": "Women who were victims of abuse or rescued from prostitution",
-      "source_quote": "Women who have been victims of abuse or rescued from prostitution"
+      "source_quote": "Women who have been victims of abuse or rescued from prostitution",
+      "kind": "alternative"
     },
     {
       "text": "Wives of prisoners serving sentences",
-      "source_quote": "Wives of prisoners serving sentences"
+      "source_quote": "Wives of prisoners serving sentences",
+      "kind": "alternative"
     },
     {
       "text": "Women undergoing divorce proceedings",
-      "source_quote": "Women undergoing divorce proceedings"
+      "source_quote": "Women undergoing divorce proceedings",
+      "kind": "alternative"
     },
     {
       "text": "Orphaned children",
-      "source_quote": "Orphaned children"
+      "source_quote": "Orphaned children",
+      "kind": "alternative"
     },
     {
       "text": "Transgender individuals",
-      "source_quote": "Transgender individuals"
+      "source_quote": "Transgender individuals",
+      "kind": "alternative"
     },
     {
       "text": "Devadasis",
-      "source_quote": "Devadasis"
+      "source_quote": "Devadasis",
+      "kind": "alternative"
     },
     {
       "text": "People suffering from sickle cell disease",
-      "source_quote": "Individuals suffering from sickle cell disease"
+      "source_quote": "Individuals suffering from sickle cell disease",
+      "kind": "alternative"
     }
   ],
   "ambiguous": [

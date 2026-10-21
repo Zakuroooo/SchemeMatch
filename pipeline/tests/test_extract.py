@@ -34,7 +34,15 @@ def test_strict_schema_follows_groq_strict_rules():
 
 def test_correct_answers_are_allowed_by_the_strict_schema():
     v = Draft202012Validator(output_schema())
-    answers = [{k: g[k] for k in ("eligibility", "unmodelled", "ambiguous")} for g in GOLDEN + HELDOUT]
+    # The golden files may mark unmodelled items with kind "alternative"; prompt v1's output
+    # schema has no such field yet (adding it is a prompt v2 change), so compare without it.
+    def without_kind(items):
+        return [{k: v for k, v in u.items() if k != "kind"} for u in items]
+
+    answers = [
+        {"eligibility": g["eligibility"], "unmodelled": without_kind(g["unmodelled"]), "ambiguous": g["ambiguous"]}
+        for g in GOLDEN + HELDOUT
+    ]
     answers += [json.loads(p.read_text()) for p in (ROOT / "pipeline/fewshot/examples").glob("*.json")]
     for a in answers:
         assert not list(v.iter_errors(a))
