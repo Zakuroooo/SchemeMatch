@@ -3,7 +3,7 @@
 
 > **[STORY.md](STORY.md)** explains the project as a story (the *why*). **This file** is the detailed diary (the *how*). Read STORY first if you're new.
 
-**Latest:** Step 15, the web app in English + Bengali (2026-10-21) · Step 14 (staging database) waits on your Supabase account · **Next:** `POST /screenings` and the staging database decision
+**Latest:** Step 16, browser end-to-end tests (2026-10-23) · Step 14 (staging database) waits on your Supabase account · **Next:** worker login, once the staging database exists
 
 ---
 
@@ -571,16 +571,51 @@ Then I push the schema and run every test against staging.
 
 ---
 
+## Step 16: Browser end-to-end tests (Week 4, branch `test/web-e2e`, 2026-10-23)
+
+**Goal:** the hand check from Step 15 (Sunita in a real browser) found bugs that unit tests missed. Make a robot repeat it on every push.
+
+**What we built:**
+1. **Playwright** (1.64.0) in `apps/web/e2e/`. `playwright.config.ts` starts two real servers:
+   - the API with its bundled golden schemes (Supabase settings forced blank, so it never touches a database);
+   - a **production build** of the web app, pointed at that API. `NEXT_PUBLIC_` values are fixed at build time, so the build happens inside the test run.
+2. Every test runs twice: **desktop Chrome** and a **phone** (Pixel 7 size). 9 tests × 2 = 18:
+   - Sunita in English: 11 schemes, Sanjay Gandhi shows "Destitute widows" but not the divorced or orphan lines, "9 schemes are only for other states", disclaimer, URL stays `/en`, and the browser itself sends typed answers to the API;
+   - Sunita in Bengali: `lang="bn"`, 11 schemes, the English-only note, scheme names marked `lang="en"`;
+   - a blank answer is **not sent** (`{state, age}` only), so the result asks the next question;
+   - "thirty" in Age is pointed out and **no request** is made;
+   - network down → the plain "could not reach the server" sentence;
+   - the language switcher;
+   - no sideways scrolling before and after results;
+   - **axe** finds no WCAG 2 A/AA problems in either language, with results on screen.
+3. CI job **e2e**: builds the engine and API, installs Chromium, runs the suite, and uploads traces only when it fails.
+
+**What went wrong:**
+- Next.js adds its own empty `role="alert"` (the route announcer), so "find the alert" matched two things. Tests now find an alert by its text.
+- "Find the section with this heading" also matched the outer Results section. Now it takes the heading's own parent.
+
+**How we know the tests can fail:** I broke the app on purpose and ran the suite:
+- made the English-only note faint grey → axe failed on `color-contrast`;
+- made a blank BPL answer go out as "no" → the blank-answer test failed.
+
+Both were put back.
+
+**Also fixed while here (stale docs):** this file's header still said "Next: `POST /screenings`" (built in Step 12); "PRs merged" said 12 (it's 17); the next-step list said "merge `feat/web-shell`" (already merged); README said "Week 3"; TESTING.md's CI list missed the web build; STORY's change log quoted F1 0.87 without saying it's on the pages the model answered (0.78 over all 30).
+
+**How we checked it:** e2e 18 passing (also with `CI=1`), web unit 18, lint, typecheck, format.
+
+---
+
 ## Running totals
 
 | Thing | Count | How to check |
 |---|---|---|
-| PRs merged | 12 | GitHub |
+| PRs merged | 17 | GitHub |
 | Golden schemes | 30 (15 central · 6 MH · 9 WB) + 10 held-out (5 central · 3 MH · 2 WB) | `pipeline/catalog.csv` |
 | Hand-written test cases | 174 | `packages/engine/test/profiles/` |
 | Engine tests | 572 | `pnpm turbo run test` |
 | API tests | 67 (+7 that need a database) | same; the 7 run in CI's db job |
-| Web tests | 18 | same |
+| Web tests | 18 unit + 18 browser end-to-end | `pnpm turbo run test`; `pnpm --filter @schemematch/web e2e` |
 | Database tests | 38 | `supabase test db` |
 | Engine code coverage | 100% | CI enforces it |
 | Human-reviewed schemes | 0 of 30 | `reviewed_by` in each file |
@@ -595,7 +630,7 @@ Then I push the schema and run every test against staging.
 **Yours:**
 1. Create the second Supabase account + `schemematch-staging` (Step 14).
 2. Read the Bengali strings in `apps/web/messages/bn.json`.
-3. Merge `feat/staging-db`, then `feat/web-shell`.
+3. Merge `docs/web-live`, then `test/web-e2e`.
 4. The 5 discovery calls.
 
 **Mine, next:** worker login (Supabase Auth) and organisation rules, once the staging database exists.

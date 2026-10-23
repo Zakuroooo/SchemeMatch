@@ -399,6 +399,17 @@ sequenceDiagram
 
 **Lesson:** tests check what you thought of. Using the real thing, like a real person would, finds what you didn't think of.
 
+### Chapter 13: A robot that uses the app every day (Week 4)
+Checking the app by hand in a browser found real bugs, but a person can't repeat that after every change. So now a **robot browser** (Playwright) does it on every push:
+- it starts the real API and the real web app on one machine, with no fake answers;
+- it fills Sunita's form in **English and Bengali**, on a **laptop screen and a phone screen**;
+- it checks her 11 schemes, the true reasons, a clean web address, what happens with a blank answer, a typo in a number and a dead network;
+- an accessibility checker (**axe**) looks for missing labels and text that is too faint to read.
+
+**How we know the robot isn't just saying "pass":** we broke the app on purpose twice: faint grey text, and a blank answer sent as "no". The robot caught both.
+
+> Hinglish: Test tab hi kaam ka hai jab woh galti pakad sake; isliye jaan-boojh kar galti daal ke dekha.
+
 ---
 
 ## 6. Five ideas you must be able to explain
@@ -459,7 +470,10 @@ flowchart LR
 - ✅ Held-out 10 labelled and run once: final AI score F1 0.53 (Chapter 10)
 - ⏳ **Your part:** talk to 5 real people (NGO workers, ASHA workers, CSC operators). Everything else is ready in [DISCOVERY.md](DISCOVERY.md) §0
 
-**Week 4:** web dashboard, worker login, and where the database lives on staging.
+**Week 4 status:**
+- ✅ Web app in English + Bengali, live (Chapter 12)
+- ✅ Robot browser tests on every push (Chapter 13)
+- ⏳ Worker login and saving families: waiting for the staging database (your second Supabase account)
 
 **Waiting on you:**
 - Book the 5 discovery conversations.
@@ -522,11 +536,12 @@ flowchart LR
 
 | Date | Step | What changed |
 |---|---|---|
+| 2026-10-23 | Browser tests | Playwright + axe on every push, desktop and phone (Chapter 13) |
 | 2026-10-21 | Web app | Screening form in English + Bengali; fixed false reasons, alternatives, answers-in-URL (Chapter 12) |
 | 2026-10-21 | Held-out exam | Final AI score F1 0.53 (big model) on 10 unseen schemes; discovery kit ready; district names now match any case |
 | 2026-10-20 | Week 3 step 2 | `POST /screenings`: exactly-once saving, delete-my-data, tested against the real database |
 | 2026-10-20 | Audit | Checked everything; fixed IP logging, honest rate-limit and staging notes, 9 placeholder texts, stale docs ([PROGRESS step 11](PROGRESS.md)) |
-| 2026-10-20 | Week 3 step 1 | AI pipeline built; first eval: big model F1 0.87, small 0.59 (dev set) |
+| 2026-10-20 | Week 3 step 1 | AI pipeline built; first eval (dev set): big model F1 0.87, small 0.59 on pages they answered (0.78 / 0.43 over all 30) |
 | 2026-10-20 | Build log | [PROGRESS.md](PROGRESS.md) added: the detailed how of every step |
 | 2026-10-20 | Story doc | This file created |
 | 2026-10-20 | Step 2c | Schemes 16–30 labelled; 5 WB schemes marked unlisted (PR #10) |
