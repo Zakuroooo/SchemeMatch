@@ -30,6 +30,30 @@ jobs:
       # A production build catches what tests can't: server/client mistakes, prerender errors.
       - run: pnpm turbo run build --filter @schemematch/web
 
+  e2e:
+    name: Web end-to-end (Playwright)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4.4.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      # The engine's dist and the API's bundled schemes are what the two servers load.
+      - run: pnpm turbo run build --filter @schemematch/engine --filter @schemematch/api
+      - run: pnpm --filter @schemematch/web exec playwright install --with-deps chromium
+      # Starts the real API and a production build of the web app, then drives Chromium.
+      - run: pnpm --filter @schemematch/web e2e
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-traces
+          path: apps/web/test-results/
+          retention-days: 7
+
   db:
     name: Database, RLS and API integration tests
     runs-on: ubuntu-latest

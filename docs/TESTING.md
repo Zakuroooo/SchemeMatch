@@ -18,10 +18,10 @@ flowchart TB
 | DB / RLS | SQL tests via Supabase local (pgTAP or Vitest) | worker A cannot read org B's screenings; anon cannot write schemes | every push |
 | Pipeline | pytest | schema validator, quote check, eval metric maths on tiny fixtures | every push |
 | Mobile | Jest + React Native Testing Library | screens, offline banner, queue logic | every push |
-| Web E2E | Playwright | screening flow, language switch, review UI | PR to main |
+| Web E2E | Playwright (desktop + phone Chromium), real API on the same machine | screening flow in English and Bengali, blank answers, errors, language switch, phone width; review UI later | every push |
 | App E2E | Maestro (on Android emulator / phone) | language → questions → results, **airplane mode** | before a release |
 | Load | k6 | warm vs cold p50/p95/p99 at 10/50 req/s | before publishing numbers |
-| Accessibility | axe (web), manual TalkBack pass (app) | contrast, labels, focus order | before a release |
+| Accessibility | axe inside the web E2E (WCAG 2 A/AA), manual TalkBack pass (app) | contrast, labels, focus order | every push (web), before a release (app) |
 
 *Maestro choice is provisional — confirm Expo support via context7 when the app exists.*
 
@@ -32,7 +32,7 @@ flowchart TB
 - A failing profile is never "fixed" by editing the expectation unless the source text proves the expectation wrong — note the source line in the commit message.
 
 ## 3. Merge gates (GitHub Actions)
-CI jobs on every pull request: **js** (format check, lint, typecheck, unit tests with engine coverage) · **db** (Supabase start, `db lint`, pgTAP, API integration tests against the local DB) · **pipeline** (pytest, source hash check) · **secrets** (gitleaks). The build runs on Vercel at deploy time. Red = no merge. Coverage target for `packages/engine`: 100% of branches (it is small; anything less means an untested rule path). No global coverage target elsewhere — test behaviour, not lines.
+CI jobs on every pull request: **js** (format check, lint, typecheck, unit tests with engine coverage, web production build) · **e2e** (Playwright: the real API + the web build in Chromium, with axe) · **db** (Supabase start, `db lint`, pgTAP, API integration tests against the local DB) · **pipeline** (pytest, source hash check) · **secrets** (gitleaks). Vercel builds again at deploy time. Red = no merge. Coverage target for `packages/engine`: 100% of branches (it is small; anything less means an untested rule path). No global coverage target elsewhere — test behaviour, not lines.
 
 ## 4. Checking AI-written tests
 Red flags (see PLAYBOOK §6): tests that assert what the code does rather than what the spec says · expectations changed in the same commit as the code · mocks of the thing under test · snapshot tests nobody read. Ask "which line of DATA.md / the source text does this test prove?"
