@@ -38,6 +38,12 @@ describe("nextQuestion", () => {
     expect(nextQuestion([done])).toBeNull();
   });
 
+  it("never asks a skipped field again, and moves to the next best one", () => {
+    const results = [unknown("a", ["age"]), unknown("b", ["age", "gender"])];
+    expect(nextQuestion(results, ["age"])).toBe("gender");
+    expect(nextQuestion(results, ["age", "gender"])).toBeNull();
+  });
+
   it("priority list names every profile field exactly once", () => {
     expect([...QUESTION_PRIORITY].sort()).toEqual([...FIELDS].sort());
   });
