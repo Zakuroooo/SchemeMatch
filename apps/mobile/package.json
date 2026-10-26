@@ -17,6 +17,7 @@
     "@expo/metro-runtime": "~57.0.16",
     "@schemematch/engine": "workspace:*",
     "expo": "~57.0.27",
+    "expo-build-properties": "~57.0.22",
     "expo-constants": "~57.0.21",
     "expo-linking": "~57.0.12",
     "expo-localization": "~57.0.2",
@@ -46,6 +47,14 @@
     ],
     "moduleNameMapper": {
       "^@/(.*)$": "<rootDir>/src/$1"
+    }
+  },
+  "expo": {
+    "autolinking": {
+      "exclude": [
+        "react-native-reanimated",
+        "react-native-worklets"
+      ]
     }
   }
 }
