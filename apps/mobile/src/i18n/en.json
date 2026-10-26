@@ -1,0 +1,110 @@
+{
+  "app": {
+    "title": "SchemeMatch",
+    "tagline": "Find the government schemes you may be eligible for.",
+    "offline": "Works without internet.",
+    "testing": "Testing version: the scheme rules were checked by AI, not yet by people."
+  },
+  "language": {
+    "title": "Choose your language",
+    "en": "English",
+    "bn": "বাংলা"
+  },
+  "questions": {
+    "state": "Which state do you live in?",
+    "district": "Which district do you live in?",
+    "age": "How old are you?",
+    "gender": "Are you a woman, a man, or other?",
+    "marital_status": "What is your marital status?",
+    "annual_family_income": "How much does your family earn in a year? (₹)",
+    "caste_category": "Which social category are you in?",
+    "occupation": "What work do you do?",
+    "land_acres": "How much land do you own? (acres)",
+    "disability_percent": "Do you have a disability? What percent? (0 if none)",
+    "is_student": "Are you studying now?",
+    "education_level": "Which class or course are you in?",
+    "household_size": "How many people live in your household?",
+    "has_bpl_card": "Do you have a BPL card?",
+    "children_count": "How many children do you have?",
+    "is_pregnant_or_lactating": "Are you pregnant or breastfeeding?"
+  },
+  "options": {
+    "yesno": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "state": {
+      "MH": "Maharashtra",
+      "WB": "West Bengal",
+      "XX": "Another state"
+    },
+    "gender": {
+      "female": "Woman",
+      "male": "Man",
+      "other": "Other"
+    },
+    "marital_status": {
+      "single": "Never married",
+      "married": "Married",
+      "widow": "Widowed",
+      "divorced": "Divorced",
+      "abandoned": "Deserted"
+    },
+    "caste_category": {
+      "SC": "Scheduled Caste (SC)",
+      "ST": "Scheduled Tribe (ST)",
+      "OBC": "Other Backward Class (OBC)",
+      "General": "General",
+      "EWS": "Economically Weaker Section (EWS)"
+    },
+    "education_level": {
+      "class_1": "Class 1",
+      "class_2": "Class 2",
+      "class_3": "Class 3",
+      "class_4": "Class 4",
+      "class_5": "Class 5",
+      "class_6": "Class 6",
+      "class_7": "Class 7",
+      "class_8": "Class 8",
+      "class_9": "Class 9",
+      "class_10": "Class 10",
+      "class_11": "Class 11",
+      "class_12": "Class 12",
+      "diploma": "Diploma",
+      "undergraduate": "Undergraduate (UG)",
+      "postgraduate": "Postgraduate (PG)"
+    }
+  },
+  "flow": {
+    "step": "Question {n}",
+    "next": "Next",
+    "dontKnow": "Don't know",
+    "back": "Back",
+    "seeResults": "See results now",
+    "typeHere": "Type your answer",
+    "invalid": "Please enter a number from {min} to {max}.",
+    "invalidText": "Please write at least {min} letters.",
+    "dontKnowHint": "\"Don't know\" is fine: it is never taken as \"no\"."
+  },
+  "results": {
+    "title": "Your results",
+    "eligible": "You may qualify for {count}",
+    "none": "No scheme matched yet.",
+    "needInfo": "{count} more need answers",
+    "answerMore": "Answer more questions",
+    "notEligible": "Not eligible: {count}",
+    "otherStates": "{count} schemes are only for other states.",
+    "disclaimer": "You are likely eligible — please confirm at the office. SchemeMatch is not an official government app.",
+    "englishOnly": "Scheme names and details are in English for now.",
+    "why": "Why you may qualify",
+    "alsoConfirm": "Also confirm at the office",
+    "otherWays": "May still qualify if any of these is true:",
+    "howToApply": "How to apply",
+    "official": "Open the official page",
+    "missed": "Missed:",
+    "startAgain": "Start again",
+    "details": "Details",
+    "otherStates_one": "1 scheme is only for another state.",
+    "needInfo_one": "1 more needs answers"
+  }
+}
