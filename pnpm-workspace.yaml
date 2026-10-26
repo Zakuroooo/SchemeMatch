@@ -1,3 +1,33 @@
 packages:
   - "apps/*"
   - "packages/*"
+
+# Supply-chain rule: never install a package version younger than 14 days (in minutes),
+# including dependencies of dependencies. Freshly published versions are the riskiest.
+minimumReleaseAge: 20160
+# Security fixes beat the age rule: each exception is one exact version, with its reason.
+minimumReleaseAgeExclude:
+  # Next.js advisories (2 critical RCE, 1 high DoS) on <=16.4.0; fixed in 16.4.1.
+  - next@16.4.2
+  - "@next/env@16.4.2"
+  - "@next/eslint-plugin-next@16.4.2"
+  - "@next/swc-darwin-arm64@16.4.2"
+  - "@next/swc-darwin-x64@16.4.2"
+  - "@next/swc-linux-arm64-gnu@16.4.2"
+  - "@next/swc-linux-arm64-musl@16.4.2"
+  - "@next/swc-linux-x64-gnu@16.4.2"
+  - "@next/swc-linux-x64-musl@16.4.2"
+  - "@next/swc-win32-arm64-msvc@16.4.2"
+  - "@next/swc-win32-x64-msvc@16.4.2"
+  # fastify header validation bypass (low) on <5.12.6.
+  - fastify@5.12.7
+  # fast-uri spoofing / host confusion (moderate) on <3.1.9 and <4.2.3 (used by fastify's ajv).
+  - fast-uri@3.1.9 || 4.2.3
+  # undici DoS (high) and SRI bypass (moderate) on <8.12.2; only in tests (jsdom).
+  - undici@8.12.2
+
+# Force fixed versions of packages we only get through other packages.
+overrides:
+  "fast-uri@>=3 <3.1.9": 3.1.9
+  "fast-uri@>=4 <4.2.3": 4.2.3
+  "undici@>=8 <8.12.2": 8.12.2

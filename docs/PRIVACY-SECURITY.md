@@ -54,7 +54,11 @@ flowchart LR
 - Secrets only in Vercel/Supabase env vars; `.env` git-ignored; gitleaks in CI; never pasted into chat.
 - Supabase RLS default-deny on every table; service-role key never in the app bundle.
 - Zod validation on every input; parameterised queries only.
-- Dependency updates via Dependabot; `pnpm audit` in CI (warn, not block).
+- Dependencies:
+  - pnpm refuses any package version younger than 14 days, including dependencies of dependencies (`minimumReleaseAge` in `pnpm-workspace.yaml`). Brand-new releases are where hijacked packages show up.
+  - A security fix beats that rule: it is allowed as one **exact** version, with its reason written next to it.
+  - `pnpm audit --audit-level high` runs in CI: a high or critical advisory blocks the merge.
+  - No Dependabot yet; updates are by hand.
 - Logs: structured, no profile payloads, no IPs beyond the rate limiter.
 - URLs: answers never go into a URL. The web form has no input names, posts only, and is disabled until hydrated, with a test. Install IDs travel in headers.
 - Breach plan: RUNBOOK §incident — rotate keys, assess, notify affected org within 72 h.

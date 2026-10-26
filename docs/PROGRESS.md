@@ -3,7 +3,7 @@
 
 > **[STORY.md](STORY.md)** explains the project as a story (the *why*). **This file** is the detailed diary (the *how*). Read STORY first if you're new.
 
-**Latest:** Step 16, browser end-to-end tests (2026-10-23) · Step 14 (staging database) waits on your Supabase account · **Next:** worker login, once the staging database exists
+**Latest:** Step 17, package safety: a 14-day rule and the Next.js security fix (2026-10-26) · Step 14 (staging database) waits on your Supabase account · **Next:** worker login, once the staging database exists
 
 ---
 
@@ -603,6 +603,31 @@ Both were put back.
 **Also fixed while here (stale docs):** this file's header still said "Next: `POST /screenings`" (built in Step 12); "PRs merged" said 12 (it's 17); the next-step list said "merge `feat/web-shell`" (already merged); README said "Week 3"; TESTING.md's CI list missed the web build; STORY's change log quoted F1 0.87 without saying it's on the pages the model answered (0.78 over all 30).
 
 **How we checked it:** e2e 18 passing (also with `CI=1`), web unit 18, lint, typecheck, format.
+
+---
+
+## Step 17: Package safety (branch `chore/min-release-age`, 2026-10-26)
+
+**How it was found:** while setting up the mobile app, its packages pulled in releases only a few days old. That led to two checks of the whole repo.
+
+**What was wrong:**
+1. **"Versions at least 2 weeks old" was only half true.** I applied it to the versions I picked by hand (Next, React, Tailwind). Everything with a `^` range got the newest release. **63 of 500** locked packages were younger than 14 days, including vitest, eslint, fastify, zod, supabase-js and turbo.
+2. **Known security holes:**
+   - **Next.js 16.3.8, which runs the live web app, had 2 critical "remote code execution" advisories and 1 high "denial of service" advisory.** Our code uses none of the affected features (`next/image`, `"use cache"`, Server Actions), so the real risk was probably low. But we patch anyway; we don't bet on "probably".
+   - Smaller ones in fastify (low), fast-uri (moderate, inside fastify) and undici (high, test tools only).
+3. **A false line in PRIVACY-SECURITY.md:** "Dependabot; `pnpm audit` in CI". Neither existed.
+
+**What we changed:**
+- `minimumReleaseAge: 20160` in `pnpm-workspace.yaml`: pnpm now **refuses** any version younger than 14 days, at every depth. Lowered the ranges that started too new, and re-resolved the lockfile from scratch (a normal install kept old young entries). The scan now shows **0** packages younger than 14 days, apart from the exceptions below.
+- **Security fixes beat the age rule:** each one is allowed as one **exact** version, with its reason: Next 16.4.2 (and its helper packages), fastify 5.12.7, fast-uri 3.1.9 / 4.2.3, undici 8.12.2. `overrides` forces the fixed versions of the packages we only get through other packages.
+- CI runs `pnpm audit --audit-level high`: a high or critical advisory now **blocks** the merge.
+- PRIVACY-SECURITY.md now says what is true.
+
+**Lesson:** the age rule and the security rule pull in opposite directions. The age rule alone pulled fastify and undici *back* into versions with known holes. You need both, plus an explicit, written exception.
+
+> Hinglish: Naya package = risk, purana package with known bug = bhi risk. Dono rules chahiye, aur exception likh ke.
+
+**How we checked it:** `pnpm audit`: no known vulnerabilities. Engine 572 · API 67 · web 18 unit + 18 browser tests · web build · lint · typecheck · format, all passing.
 
 ---
 
