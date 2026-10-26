@@ -31,3 +31,15 @@ overrides:
   "fast-uri@>=3 <3.1.9": 3.1.9
   "fast-uri@>=4 <4.2.3": 4.2.3
   "undici@>=8 <8.12.2": 8.12.2
+
+# Advisories accepted on purpose (approved by Pranay, 2026-10-26). Only for code that never
+# reaches a user's phone or our servers; each entry says why. Everything else still blocks
+# the merge (CI audit).
+auditConfig:
+  ignoreGhsas:
+    # node-forge <=1.4.0, no fixed version exists. Only Expo's command-line tool uses it,
+    # for iOS code signing on the developer's machine; we sign no iOS builds.
+    - GHSA-86w9-cpqp-85rv
+    # zod 3.x in Expo's command-line tool: memory use on huge input. The input is our own
+    # local config files. Our API uses zod 4.6.6, which is fixed.
+    - GHSA-mrhx-c7xc-m3w5

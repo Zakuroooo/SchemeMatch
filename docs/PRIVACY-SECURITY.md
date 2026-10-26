@@ -58,6 +58,7 @@ flowchart LR
   - pnpm refuses any package version younger than 14 days, including dependencies of dependencies (`minimumReleaseAge` in `pnpm-workspace.yaml`). Brand-new releases are where hijacked packages show up.
   - A security fix beats that rule: it is allowed as one **exact** version, with its reason written next to it.
   - `pnpm audit --audit-level high` runs in CI: a high or critical advisory blocks the merge.
+  - Accepted on purpose, by Pranay (2026-10-26): 2 advisories in Expo's command-line tool only (node-forge, which has no fix; zod 3). That tool runs on the developer's machine and is never inside the app. Listed with reasons under `auditConfig` in `pnpm-workspace.yaml`.
   - No Dependabot yet; updates are by hand.
 - Logs: structured, no profile payloads, no IPs beyond the rate limiter.
 - URLs: answers never go into a URL. The web form has no input names, posts only, and is disabled until hydrated, with a test. Install IDs travel in headers.
