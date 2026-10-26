@@ -57,3 +57,22 @@ Exact prompt = `SCENE + style phrase + TAIL`:
 - Concepts: `gen.py` (fast, HF Space). HD finals: Kaggle T4 notebook with a **non-anime** SDXL/Flux checkpoint (confirm licence allows commercial/portfolio use).
 - Upscale: `hd.sh`/`worldvid.sh` currently use **anime** Real-ESRGAN models → switch to `realesrgan-x4plus` (general) for this project; `.esr/models` was not found on disk — verify the install first.
 - Citizen app ships **no** large images (< 30 MB APK target); art there is small SVG/WebP only.
+
+## Round 3 — app object renders (2026-10-26)
+- **Why:** the app redesign needs premium pictures. Objects only, never people (rule above).
+- **Tool:** Kaggle T4 kernel `pranaysarkar04/schemematch-app-assets`, source in [`tools/kaggle/app-assets/run.py`](../../tools/kaggle/app-assets/run.py) (exact prompts there). Same model and licence as Round 1b: SDXL base 1.0 + fp16-fix VAE, DPM++ 2M Karras, 32 steps, CFG 6.0, 1024×1024, seed 11.
+- **Matrix:** 10 objects (coin, card, women = bangles + marigold, pension = piggy bank, family = clay house, gas, bank = passbook, shield, papers + wax seal, glass ribbon) × 2 lights (warm cream, dark) = 20.
+- **Verdict (read by eye, every image):**
+  - Kept: coin, women, pension, family, papers and ribbon (both lights), dark bank. Resized to 640 px JPEG for the design canvas.
+  - Rejected: card (both: fake printed text), warm bank (faint fake text), gas (both: a blue vase, not a cylinder), shield (a bowl and an orb).
+  - The whole dark set came out on grey or lavender, not black.
+
+## Round 3b — re-renders of the rejects (2026-10-26)
+Stricter prompts: a "completely blank, unprinted" card, a "red steel LPG cylinder with a regulator", a "heraldic shield", "pitch black background" and "typography, label, print" in the negative prompt; seeds 11 and 23. Same kernel, version 2. 28 images.
+- **Kept:** warm bank (seed 23, a blank notebook), warm card (11), warm gas (11, a red cylinder with a regulator); dark bank (23), card (23), family (23), papers (23), pension (11), ribbon (11), women (11). The dark set is now really black.
+- **Rejected:**
+  - every shield (both lights, both seeds): a crowned eagle crest, which looks like a real national emblem. This app must never look official.
+  - dark coin (both seeds): a Bitcoin symbol;
+  - dark gas: a horizontal tank and a fire extinguisher;
+  - warm gas seed 23: looks like an extinguisher.
+- **Next:** an umbrella for insurance, a dark gas cylinder, a dark coin with "no symbols".
