@@ -25,6 +25,8 @@ jobs:
           node-version-file: .nvmrc
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      # Known vulnerabilities: high or critical blocks the merge (low and moderate are listed).
+      - run: pnpm audit --audit-level high
       - run: pnpm format:check
       - run: pnpm turbo run lint typecheck test
       # A production build catches what tests can't: server/client mistakes, prerender errors.
