@@ -536,6 +536,7 @@ flowchart LR
 
 | Date | Step | What changed |
 |---|---|---|
+| 2026-10-26 | Package safety | Next.js security fix (2 critical advisories); packages younger than 14 days now refused; audit blocks merges ([PROGRESS step 17](PROGRESS.md)) |
 | 2026-10-23 | Browser tests | Playwright + axe on every push, desktop and phone (Chapter 13) |
 | 2026-10-21 | Web app | Screening form in English + Bengali; fixed false reasons, alternatives, answers-in-URL (Chapter 12) |
 | 2026-10-21 | Held-out exam | Final AI score F1 0.53 (big model) on 10 unseen schemes; discovery kit ready; district names now match any case |
