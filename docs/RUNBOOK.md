@@ -44,7 +44,15 @@ flowchart LR
   - A branch that changes the API and the web app together needs the same trick again.
 - **API `WEB_ORIGINS`** (Production + Preview): the web production URL, plus the pattern `^https://schemematch-web-[a-z0-9-]+-zakuroooos-projects\.vercel\.app$` for previews.
   - Without it, browsers can't read the API's answers.
-- **Merge order:** `feat/staging-db` first, then `feat/web-shell` (it is stacked on it).
+
+### Citizen app on a real Android phone (`apps/mobile`, Expo SDK 57)
+Needs: Java 17, the Android SDK (`ANDROID_HOME`), and the phone connected over adb. No Expo account and no Play Store app needed.
+1. **Phone, once:** Settings → About phone → tap **Build number** 7 times. Then Developer options → **USB debugging** on. Plug in and tap **Allow** on the phone.
+2. **Wireless, optional:** with the cable in, run `adb tcpip 5555`, then `adb connect <phone-ip>:5555` (phone and Mac on the same Wi-Fi). Turn Wireless debugging off when done: on a shared Wi-Fi the port is visible to others.
+3. **Build and install:** in `apps/mobile`, run `ANDROID_HOME=… JAVA_HOME=$(/usr/libexec/java_home -v 17) npx expo run:android`.
+   - The first build downloads Gradle and its libraries (about 10–15 minutes).
+   - `android/` is generated and git-ignored.
+4. **The offline test needs the cable:** airplane mode turns Wi-Fi off, which drops wireless adb. Turning Wi-Fi back on would make the phone online again and the test would mean nothing.
 
 ### Deploy lessons (each one cost a failed deploy)
 1. Vercel finds the Fastify entry by a **direct `import ... from "fastify"`** in `src/index.ts`.

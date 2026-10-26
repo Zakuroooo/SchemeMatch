@@ -3,7 +3,7 @@
 
 > **[STORY.md](STORY.md)** explains the project as a story (the *why*). **This file** is the detailed diary (the *how*). Read STORY first if you're new.
 
-**Latest:** Step 17, package safety: a 14-day rule and the Next.js security fix (2026-10-26) · Step 14 (staging database) waits on your Supabase account · **Next:** worker login, once the staging database exists
+**Latest:** Step 18, the citizen app on a real phone (2026-10-26) · Step 14 (staging database) waits on your Supabase account · **Next:** worker login, once the staging database exists
 
 ---
 
@@ -631,6 +631,50 @@ Both were put back.
 
 ---
 
+## Step 18: The citizen app, offline (Week 5 step 1, branch `feat/mobile-app`, 2026-10-26)
+
+**Goal:** Sunita checks her schemes on her own phone, in her language, with no internet.
+
+**What we built (`apps/mobile`):**
+1. **Expo SDK 57** (React Native 0.86.3), with expo-router. SDK 58 needs React Native 0.88.0, which was only 11 days old, so it breaks our 14-day rule. We build the app ourselves, so being one SDK behind costs nothing.
+2. **Offline by design:** the engine and the 30 golden schemes are bundled in the app (`src/generated/schemes.json`, with a 12-character content hash as its version).
+   - `scripts/bundle-schemes.mjs` makes it from the golden files.
+   - A test checks it equals them exactly.
+3. **Question flow** (`src/lib/flow.ts`, pure functions):
+   - the state comes first;
+   - then the engine's `nextQuestion` picks the question that can change the most results;
+   - "Don't know" keeps the field unanswered and is never asked again. The engine gained an optional `skip` list for this (coverage still 100%);
+   - Back undoes the last answer;
+   - "Answer more" re-asks only the skipped questions.
+4. **Screens:** language → one question per screen → results → scheme card (why, confirm at the office, other ways to qualify, how to apply, official link).
+   - Big tap targets (56 px).
+   - Marigold buttons with dark text, for contrast.
+   - The disclaimer on results and on every card.
+5. **Answer limits** match the API's profile schema. A test reads the API's schema file, so they can't drift apart. Typed numbers accept Bengali digits and Indian commas (১,২০,০০০).
+6. **Answers live in memory only.** Nothing is saved or sent yet.
+
+**Tests:** 38 (Jest + React Native Testing Library):
+- the flow walks Sunita, in the exact order the app asks, to her 11 schemes;
+- "don't know" never makes a scheme fail;
+- every screen in both languages;
+- English/Bengali key parity, and every option has a label.
+
+**On a real phone** (Android 14, over adb):
+- the language screen, then Sunita in Bengali: **9 questions** to her **11 schemes**;
+- the Sanjay Gandhi card shows only "BPL" and "aged 18 to 65" as reasons. Marital status was never asked, because it could not change any result.
+- **App size: 41 MB → 27.7 MB** (release APK, arm64). Expo leaves code shrinking off by default, and expo-router pulled in two native animation libraries (reanimated, worklets) that our JavaScript never uses (checked in the bundle). We turned on R8 code and resource shrinking (`expo-build-properties`) and excluded the two from native linking. The shrunk build was walked through again on the phone: same 9 questions, same 11 schemes.
+- **Airplane-mode test passed.** The release build has everything inside it. Over USB: airplane mode on, Wi-Fi off, "network unreachable". Then Sunita in English: 9 questions, **11 schemes**, airplane icon in the status bar.
+
+**What went wrong:**
+- Expo's template added a `.claude/` folder, an `AGENTS.md` and Expo's own LICENSE. All removed.
+- **Android builds froze the 8 GB Mac.** Gradle (2 GB heap, parallel workers) plus a Kotlin compiler process filled memory, and macOS swapped to disk (3.3 of 4 GB). `~/.gradle/gradle.properties` now limits it: a 1.5 GB heap, 2 workers, no parallel build, no daemon left running after a build.
+- My first check that `node-forge` isn't in the app was **wrong**: the release bundle is Hermes bytecode, and plain `grep` skipped it as binary. Redone with `grep -a`, with a known word as a control: node-forge 0, reanimated 0.
+- The first Gradle builds timed out downloading. After the Wi-Fi switch they worked. I first blamed my tool's sandbox; that was wrong.
+- The mobile app's React 19.2 types leaked into the web app's typecheck through the shared copy; both now use 19.3 types.
+- `pnpm audit` found 2 high advisories inside Expo's command-line tool (node-forge, no fix exists; zod 3). You approved ignoring exactly those two, with reasons in `pnpm-workspace.yaml`.
+
+---
+
 ## Running totals
 
 | Thing | Count | How to check |
@@ -638,8 +682,9 @@ Both were put back.
 | PRs merged | 17 | GitHub |
 | Golden schemes | 30 (15 central · 6 MH · 9 WB) + 10 held-out (5 central · 3 MH · 2 WB) | `pipeline/catalog.csv` |
 | Hand-written test cases | 174 | `packages/engine/test/profiles/` |
-| Engine tests | 572 | `pnpm turbo run test` |
+| Engine tests | 573 | `pnpm turbo run test` |
 | API tests | 67 (+7 that need a database) | same; the 7 run in CI's db job |
+| App (mobile) tests | 38 | `pnpm --filter @schemematch/mobile test` |
 | Web tests | 18 unit + 18 browser end-to-end | `pnpm turbo run test`; `pnpm --filter @schemematch/web e2e` |
 | Database tests | 38 | `supabase test db` |
 | Engine code coverage | 100% | CI enforces it |
