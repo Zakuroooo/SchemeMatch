@@ -76,3 +76,14 @@ Stricter prompts: a "completely blank, unprinted" card, a "red steel LPG cylinde
   - dark gas: a horizontal tank and a fire extinguisher;
   - warm gas seed 23: looks like an extinguisher.
 - **Next:** an umbrella for insurance, a dark gas cylinder, a dark coin with "no symbols".
+
+## Round 4 — palette-matched sets for the chosen palettes (2026-10-27)
+Pranay picked palettes 11 (Lumière: cream, burgundy, dusty pink) and 04 (stone grey, charcoal, signal red), and asked for no irrelevant images. **Rule from here: every picture shows what its text is about.** The glass ribbon and the bangles were dropped.
+- **Kernel v4:** 9 objects (hero still life, coins on a passbook, reading glasses on coins, house, gas, passbook, umbrella over a house, ration-card booklet, papers) × looks `rose` and `stone` × seeds 11 and 23 = 36. Exact prompts are in git history of `tools/kaggle/app-assets/run.py`.
+- **Kept 14:** rose bank 11, dbt 23, family 23, gas 11, pension 11, papers 11, rationcard 23; stone bank 11, dbt 23, family 11, pension 11, papers 11, rationcard 11, umbrella 23.
+- **Rejected:**
+  - every hero: random bottles and vases, no gas cylinder. The hero is now composed in the layout from three approved images instead.
+  - rose umbrella: houses with umbrella-shaped roofs;
+  - stone gas: a horizontal tank and an extinguisher;
+  - rose rationcard 11: printed lines that read as text.
+- **Kernel v5 (round 4b):** stone gas and rose umbrella, seeds 5, 17, 29 and 41. Kept rose umbrella 41 and stone gas 29; rejected gas 41 (fake text "SQUAT INGREAL"), gas 5 (three objects), gas 17 (barrel-like), umbrella 29 (roof again).
