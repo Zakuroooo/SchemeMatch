@@ -2,6 +2,7 @@ import { FIELDS, type Profile } from "@schemematch/engine";
 import { fireEvent, render, screen } from "@testing-library/react-native";
 import type { ReactNode } from "react";
 import { Linking } from "react-native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import LanguageScreen from "../app/index";
 import QuestionScreen from "../app/question";
 import ResultsScreen from "../app/results";
@@ -35,11 +36,18 @@ const SUNITA: Profile = {
   caste_category: "OBC",
 };
 
+const METRICS = {
+  frame: { x: 0, y: 0, width: 390, height: 844 },
+  insets: { top: 0, left: 0, right: 0, bottom: 0 },
+};
+
 function show(ui: ReactNode, { lang = "en", flow = START }: { lang?: Lang; flow?: Flow } = {}) {
   return render(
-    <I18nProvider initial={lang}>
-      <ScreeningProvider initial={flow}>{ui}</ScreeningProvider>
-    </I18nProvider>,
+    <SafeAreaProvider initialMetrics={METRICS}>
+      <I18nProvider initial={lang}>
+        <ScreeningProvider initial={flow}>{ui}</ScreeningProvider>
+      </I18nProvider>
+    </SafeAreaProvider>,
   );
 }
 
@@ -48,8 +56,9 @@ beforeEach(() => mockPush.mockClear());
 describe("language screen", () => {
   it("asks in both languages and opens the questions in the chosen one", () => {
     show(<LanguageScreen />);
-    expect(screen.getByText("Choose your language")).toBeTruthy();
-    expect(screen.getByText("আপনার ভাষা বেছে নিন")).toBeTruthy();
+    expect(screen.getByText(/আপনার ভাষা বেছে নিন/)).toBeTruthy();
+    expect(screen.getByText(/Choose your language/)).toBeTruthy();
+    expect(screen.getByText("Checks 30 schemes")).toBeTruthy(); // not "in 2 minutes": that isn't measured
     fireEvent.press(screen.getByRole("button", { name: "বাংলা" }));
     expect(mockPush).toHaveBeenCalledWith("/question");
   });
@@ -98,15 +107,17 @@ describe("question screen", () => {
 describe("results screen", () => {
   it("shows Sunita her 11 schemes, the other-state count and the disclaimer", () => {
     show(<ResultsScreen />, { flow: { answers: SUNITA, skipped: [], history: [] } });
-    expect(screen.getByRole("header", { name: "You may qualify for 11" })).toBeTruthy();
-    expect(screen.getAllByRole("button", { name: /›$/ })).toHaveLength(11);
+    expect(screen.getByText("11")).toBeTruthy();
+    expect(screen.getByRole("header", { name: "schemes you may qualify for" })).toBeTruthy();
+    // 4 picture tiles plus 7 rows, each opening its scheme card.
+    expect(screen.getAllByRole("button", { name: /\. Details$/ })).toHaveLength(11);
     expect(screen.getByText("9 schemes are only for other states.")).toBeTruthy();
     expect(screen.getByText(/not an official government app/)).toBeTruthy();
   });
 
   it("in Bengali, says scheme texts are English for now", () => {
     show(<ResultsScreen />, { lang: "bn", flow: { answers: SUNITA, skipped: [], history: [] } });
-    expect(screen.getByText("আপনি 11টি প্রকল্পের যোগ্য হতে পারেন")).toBeTruthy();
+    expect(screen.getByRole("header", { name: "টি প্রকল্পের যোগ্য হতে পারেন" })).toBeTruthy();
     expect(screen.getByText("প্রকল্পের নাম ও বিবরণ আপাতত ইংরেজিতে।")).toBeTruthy();
   });
 
@@ -124,10 +135,11 @@ describe("scheme screen", () => {
     mockSlug = "mh-sanjay-gandhi-niradhar";
     const open = jest.spyOn(Linking, "openURL").mockResolvedValue(true);
     show(<SchemeScreen />, { flow: { answers: SUNITA, skipped: [], history: [] } });
-    expect(screen.getByText("• Destitute widows")).toBeTruthy();
+    expect(screen.getByText("Destitute widows")).toBeTruthy();
     expect(screen.queryByText(/divorced women not receiving alimony/)).toBeNull(); // she isn't divorced
-    expect(screen.queryByText("• Orphaned children")).toBeTruthy(); // listed as another way in…
-    expect(screen.getByText("May still qualify if any of these is true:")).toBeTruthy(); // …under its own heading
+    expect(screen.getByText("Orphaned children")).toBeTruthy(); // listed as another way in…
+    expect(screen.getByText("MAY STILL QUALIFY IF ANY OF THESE IS TRUE:")).toBeTruthy(); // …under its own heading
+    expect(screen.queryByText("WHY YOU MAY QUALIFY")).toBeTruthy();
     fireEvent.press(screen.getByRole("button", { name: "Open the official page" }));
     expect(open).toHaveBeenCalledWith(
       expect.stringMatching(/^https:\/\/sjsa\.maharashtra\.gov\.in\//),

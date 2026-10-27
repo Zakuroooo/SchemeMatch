@@ -3,7 +3,11 @@
     "title": "SchemeMatch",
     "tagline": "Find the government schemes you may be eligible for.",
     "offline": "Works without internet.",
-    "testing": "Testing version: the scheme rules were checked by AI, not yet by people."
+    "testing": "Testing version: the scheme rules were checked by AI, not yet by people.",
+    "badge": "Checks 30 schemes",
+    "headA": "Find what you are",
+    "headB": "owed.",
+    "checksTitle": "What we check for you"
   },
   "language": {
     "title": "Choose your language",
@@ -84,7 +88,8 @@
     "typeHere": "Type your answer",
     "invalid": "Please enter a number from {min} to {max}.",
     "invalidText": "Please write at least {min} letters.",
-    "dontKnowHint": "\"Don't know\" is fine: it is never taken as \"no\"."
+    "dontKnowHint": "\"Don't know\" is fine: it is never taken as \"no\".",
+    "whyTitle": "Why we ask"
   },
   "results": {
     "title": "Your results",
@@ -105,6 +110,51 @@
     "startAgain": "Start again",
     "details": "Details",
     "otherStates_one": "1 scheme is only for another state.",
-    "needInfo_one": "1 more needs answers"
+    "needInfo_one": "1 more needs answers",
+    "count": "schemes you may qualify for",
+    "count_one": "scheme you may qualify for",
+    "more": "More for you",
+    "needInfoTitle": "Need more answers",
+    "notEligibleTitle": "Not eligible",
+    "applyTitle": "How to apply",
+    "docsTitle": "Documents",
+    "docsMissing": "Not in our data yet. Ask at the office or check the official page."
+  },
+  "checks": {
+    "pension": "Pensions",
+    "gas": "Free gas",
+    "bank": "Bank & cover"
+  },
+  "why": {
+    "state": "Many schemes are only for people of one state.",
+    "district": "A few schemes cover only some districts.",
+    "age": "Most schemes have an age limit.",
+    "gender": "Some schemes are only for women.",
+    "marital_status": "Some pensions are for widows or single women.",
+    "annual_family_income": "Many schemes have a family income limit.",
+    "caste_category": "Some schemes are for SC, ST or OBC families.",
+    "occupation": "Some schemes are for workers in certain trades.",
+    "land_acres": "Some farmer schemes depend on the land you own.",
+    "disability_percent": "Some schemes are for people with a disability.",
+    "is_student": "Scholarships are for students.",
+    "education_level": "Scholarships depend on the class or course.",
+    "household_size": "Some limits depend on how many people live in the house.",
+    "has_bpl_card": "Some schemes are only for BPL families.",
+    "children_count": "Some schemes depend on the number of children.",
+    "is_pregnant_or_lactating": "Some schemes are for pregnant or breastfeeding women."
+  },
+  "categories": {
+    "pension": "Pension",
+    "education": "Education",
+    "livelihood": "Work",
+    "women": "Women",
+    "insurance": "Insurance",
+    "housing": "Housing",
+    "family": "Family",
+    "farming": "Farming",
+    "banking": "Banking",
+    "maternity": "Motherhood",
+    "household": "Household",
+    "savings": "Savings"
   }
 }

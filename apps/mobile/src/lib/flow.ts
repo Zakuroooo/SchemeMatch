@@ -31,6 +31,20 @@ export function currentQuestion(schemes: readonly CatalogScheme[], flow: Flow): 
   return nextQuestion(evaluateAll(schemes, flow.answers).results, flow.skipped);
 }
 
+/**
+ * How far along the person is, 0 to 1, for the progress bar. The total isn't known in advance
+ * (each answer can make other questions pointless), so it is estimated as: answered so far,
+ * out of answered plus the fields that could still change a result.
+ */
+export function progress(schemes: readonly CatalogScheme[], flow: Flow): number {
+  const open = new Set<Field>();
+  for (const r of evaluateAll(schemes, flow.answers).results)
+    if (r.result === "UNKNOWN")
+      for (const f of r.missing) if (!flow.skipped.includes(f)) open.add(f);
+  const done = flow.history.length;
+  return done + open.size === 0 ? 1 : done / (done + open.size);
+}
+
 export function answer(flow: Flow, field: Field, value: Answer): Flow {
   return {
     answers: { ...flow.answers, [field]: value },

@@ -3,6 +3,8 @@ import { LANGUAGES, translate } from "@/i18n";
 import bn from "@/i18n/bn.json";
 import en from "@/i18n/en.json";
 import { QUESTIONS } from "@/lib/questions";
+import { SCHEMES } from "@/lib/schemes";
+import { categoryPicture, questionPicture } from "@/ui/images";
 
 type Tree = { [key: string]: string | Tree };
 const keys = (t: Tree, prefix = ""): string[] =>
@@ -45,5 +47,27 @@ describe("messages", () => {
       "1 scheme is only for another state.",
     );
     expect(translate("en", "no.such.key")).toBe("no.such.key");
+  });
+
+  it("every question says why it is asked, in both languages", () => {
+    for (const l of LANGUAGES)
+      for (const f of FIELDS) expect(translate(l, `why.${f}`)).not.toBe(`why.${f}`);
+  });
+
+  it("every scheme category has a name in both languages and a picture or icon", () => {
+    for (const c of new Set(SCHEMES.map((s) => s.category))) {
+      for (const l of LANGUAGES)
+        expect(translate(l, `categories.${c}`)).not.toBe(`categories.${c}`);
+      expect(categoryPicture(c)).toBeTruthy();
+    }
+  });
+});
+
+describe("question pictures", () => {
+  it("appear only on questions they actually show", () => {
+    const withPicture = FIELDS.filter((f) => questionPicture(f) !== null).sort();
+    expect(withPicture).toEqual(
+      ["annual_family_income", "children_count", "has_bpl_card", "household_size"].sort(),
+    );
   });
 });
