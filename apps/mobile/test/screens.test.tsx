@@ -1,5 +1,6 @@
 import { FIELDS, type Profile } from "@schemematch/engine";
-import { fireEvent, render, screen } from "@testing-library/react-native";
+import { act, fireEvent, render, screen } from "@testing-library/react-native";
+import { randomUUID } from "node:crypto";
 import type { ReactNode } from "react";
 import { Linking } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -9,7 +10,10 @@ import ResultsScreen from "../app/results";
 import SchemeScreen from "../app/scheme/[slug]";
 import { I18nProvider, type Lang } from "@/i18n";
 import { START, type Flow } from "@/lib/flow";
+import { memoryStore, type QueueStore } from "@/lib/sync/store";
+import { createSync, type Sync } from "@/lib/sync/sync";
 import { ScreeningProvider } from "@/state/screening";
+import { SyncProvider } from "@/state/sync";
 
 const mockPush = jest.fn();
 let mockSlug = "";
@@ -41,17 +45,37 @@ const METRICS = {
   insets: { top: 0, left: 0, right: 0, bottom: 0 },
 };
 
+// The server: offline unless a test says otherwise. Screens must work the same either way.
+let store: QueueStore;
+let sync: Sync;
+let server: jest.Mock<Promise<Response>, [string, RequestInit]>;
+
 function show(ui: ReactNode, { lang = "en", flow = START }: { lang?: Lang; flow?: Flow } = {}) {
   return render(
     <SafeAreaProvider initialMetrics={METRICS}>
       <I18nProvider initial={lang}>
-        <ScreeningProvider initial={flow}>{ui}</ScreeningProvider>
+        <SyncProvider sync={sync}>
+          <ScreeningProvider initial={flow}>{ui}</ScreeningProvider>
+        </SyncProvider>
       </I18nProvider>
     </SafeAreaProvider>,
   );
 }
 
-beforeEach(() => mockPush.mockClear());
+beforeEach(() => {
+  mockPush.mockClear();
+  store = memoryStore();
+  server = jest.fn<Promise<Response>, [string, RequestInit]>(() =>
+    Promise.reject(new TypeError("Network request failed")),
+  );
+  sync = createSync({
+    store,
+    fetch: server as unknown as typeof fetch,
+    apiUrl: "https://api.example.test",
+    uuid: randomUUID,
+  });
+});
+afterEach(() => sync.stop());
 
 describe("language screen", () => {
   it("asks in both languages and opens the questions in the chosen one", () => {
@@ -132,6 +156,41 @@ describe("results screen", () => {
     });
     fireEvent.press(screen.getByRole("button", { name: "Answer more questions" }));
     expect(mockPush).toHaveBeenCalledWith("/question");
+  });
+});
+
+describe("saving and deleting", () => {
+  it("saves only when asked, says so, and keeps it on the phone while offline", async () => {
+    show(<ResultsScreen />, { flow: { answers: SUNITA, skipped: [], history: [] } });
+    expect(await store.all()).toEqual([]); // showing results saves nothing
+    expect(screen.getByText(/No name or phone number/)).toBeTruthy();
+    await act(async () => {
+      fireEvent.press(screen.getByRole("button", { name: "Save my answers" }));
+    });
+    expect(await screen.findByRole("alert")).toHaveTextContent(/Saved on this phone/);
+    expect(screen.queryByRole("button", { name: "Save my answers" })).toBeNull(); // no double save
+    expect(await store.all()).toEqual([expect.objectContaining({ profile: SUNITA })]);
+  });
+
+  it("offers no save before any answer", () => {
+    show(<ResultsScreen />, { flow: { answers: {}, skipped: ["state"], history: ["state"] } });
+    expect(screen.queryByRole("button", { name: "Save my answers" })).toBeNull();
+  });
+
+  it("Delete my data asks once, clears the phone, and says the server copy is pending offline", async () => {
+    await sync.save(SUNITA);
+    show(<LanguageScreen />, { lang: "bn" });
+    fireEvent.press(screen.getByRole("button", { name: "আমার তথ্য মুছুন" }));
+    fireEvent.press(screen.getByRole("button", { name: "বাতিল" })); // a stray tap changes nothing
+    expect(await store.all()).toHaveLength(1);
+    fireEvent.press(screen.getByRole("button", { name: "আমার তথ্য মুছুন" }));
+    await act(async () => {
+      fireEvent.press(screen.getByRole("button", { name: "হ্যাঁ, মুছুন" }));
+    });
+    expect(await screen.findByRole("alert")).toHaveTextContent(/সার্ভারে পৌঁছানো যায়নি/);
+    expect(await store.all()).toEqual([]);
+    const del = server.mock.calls.find(([, init]) => init.method === "DELETE");
+    expect(del?.[1].headers).toEqual({ "x-install-id": expect.stringMatching(/^[0-9a-f-]{36}$/) });
   });
 });
 

@@ -6,6 +6,7 @@ import { summarize, type Match } from "@/lib/flow";
 import { SCHEMES } from "@/lib/schemes";
 import { useScreening } from "@/state/screening";
 import { Button } from "@/ui/Button";
+import { SaveAnswers } from "@/ui/DataControls";
 import { Icon } from "@/ui/Icon";
 import { CategoryPicture } from "@/ui/Picture";
 import { Screen } from "@/ui/Screen";
@@ -146,6 +147,8 @@ export default function ResultsScreen() {
           {t("results.otherStates", { count: s.otherStates })}
         </Text>
       )}
+
+      {Object.keys(flow.answers).length > 0 && <SaveAnswers profile={flow.answers} />}
 
       <Button
         label={t("results.startAgain")}

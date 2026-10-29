@@ -8,7 +8,7 @@ import {
 import type { CatalogScheme } from "./schemes";
 
 /**
- * Where the person is in the questions. Kept in memory only: nothing here is saved yet.
+ * Where the person is in the questions. Kept in memory; written to the phone only on Save (lib/sync).
  * `skipped` = "don't know": the field stays unanswered (UNKNOWN to the engine, never "no").
  */
 export interface Flow {

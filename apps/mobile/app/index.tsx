@@ -2,6 +2,7 @@ import { router } from "expo-router";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { LANGUAGES, num, translate, useI18n, type Lang } from "@/i18n";
 import { useScreening } from "@/state/screening";
+import { DeleteMyData } from "@/ui/DataControls";
 import { Icon } from "@/ui/Icon";
 import { IMAGES } from "@/ui/images";
 import { Screen } from "@/ui/Screen";
@@ -113,6 +114,7 @@ export default function LanguageScreen() {
       </View>
 
       <Text style={[styles.foot, bn && { fontFamily: fonts.bnBody }]}>{t("app.testing")}</Text>
+      <DeleteMyData />
     </Screen>
   );
 }

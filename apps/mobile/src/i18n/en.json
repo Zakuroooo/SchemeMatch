@@ -164,5 +164,21 @@
     "maternity": "Motherhood",
     "household": "Household",
     "savings": "Savings"
+  },
+  "data": {
+    "saveTitle": "Save these answers?",
+    "saveNote": "No name or phone number. They are kept on this phone and sent to SchemeMatch when you are online. You can delete them any time from the first screen.",
+    "save": "Save my answers",
+    "saving": "Saving…",
+    "saved": "Saved on this phone. They will be sent when you are online.",
+    "saveFailed": "Could not save on this phone. Please try again.",
+    "delete": "Delete my data",
+    "deleteConfirm": "Delete all saved answers, from this phone and from our server?",
+    "deleteYes": "Yes, delete",
+    "cancel": "Cancel",
+    "deleting": "Deleting…",
+    "deleted": "Deleted from this phone and from our server.",
+    "deletedLocal": "Deleted from this phone. Nothing had been sent to our server.",
+    "deletedPending": "Deleted from this phone. Our server could not be reached, so its copy will be deleted the next time you are online."
   }
 }
