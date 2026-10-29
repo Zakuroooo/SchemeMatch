@@ -10,9 +10,9 @@
 
 | Data | Where | Stored? | Why | Retention |
 |---|---|---|---|---|
-| Profile answers (age, income, district, category…) | App device | Only if user taps **Save** | Show results again | Until user deletes |
+| Profile answers (age, income, district, category…) | App device (SQLite queue, app-private storage) | Only if user taps **Save** (built: opt-in Save card on results) | Send to the server when online | Until the server confirms it (then removed from the phone), or until **Delete my data** |
 | Profile answers | Server `screenings` | Only on Save (app) or by a field worker (dashboard), **no name/phone/ID**. Built: local and CI only; staging has no database yet | Results, demand analytics | 12 months, then aggregated and deleted (the clean-up job is planned, not built) |
-| Install ID (random UUID made on the device) | Server `screenings` | Yes, with each app screening | Delete my data | Deleted with the screenings. Sent in a header, never a URL, and never logged |
+| Install ID (random UUID made on the device with `expo-crypto`) | App device + server `screenings` | Made on the first Save | Delete my data | Deleted with the screenings; **Delete my data** also replaces it with a new one, so later saves can't be linked to deleted ones. Sent in a header, never a URL, and never logged |
 | Voice audio | Sarvam API in transit | **Never stored** by us | STT | Discarded after transcription |
 | Worker account (email, org, role) | Supabase Auth | Yes | Login, RLS | While account active |
 | Analytics events | Server | Yes, no user ID, district-level | Product metrics | 12 months |
@@ -23,7 +23,7 @@
 ## 3. Consent and user rights
 - First launch: a short consent screen **in the chosen language, read aloud**, saying what is asked, that nothing identifying is stored, and that results are guidance, not a government decision.
 - Separate opt-in for "help improve SchemeMatch" (anonymous analytics).
-- **Delete my data** button: clears device data and deletes any saved server screenings linked to the device's random install ID.
+- **Delete my data** button (built in the app, first screen): clears the queue on the device (SQLite `secure_delete`, so rows are overwritten) and deletes the server screenings linked to the install ID. Offline, the server delete is remembered and retried on every sync, and the screen says so.
 - Field-worker flow: the worker confirms verbal consent from the family before saving (checkbox, logged).
 
 ## 4. Threat model (light STRIDE)

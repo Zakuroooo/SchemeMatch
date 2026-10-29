@@ -152,13 +152,18 @@ Audio for fixed questions is generated once and cached (saves free credits).
 
 ```mermaid
 flowchart LR
-    A[Save a screening] --> Q[(Local queue<br/>SQLite on device)]
-    Q -->|online| S[POST /screenings<br/>with idempotency key]
-    S -->|201 or duplicate| D[Remove from queue]
-    S -->|network error| B[Retry with back-off]
+    A[Tap Save<br/>opt-in] --> Q[(Local queue<br/>SQLite on device)]
+    Q -->|app start, foreground,<br/>after Save, retry timer| S[POST /screenings<br/>Idempotency-Key header]
+    S -->|201 or 200| D[Remove from queue]
+    S -->|409 or other 4xx| X[Log status and drop]
+    S -->|503, 5xx, 429, network error, 15 s timeout| B[Keep; retry after<br/>30 s, 1, 2, 4 min… max 1 h]
+    B --> Q
+    DEL[Delete my data] --> C[Clear queue, new install ID]
+    C --> R[DELETE /screenings<br/>X-Install-Id header]
+    R -->|not 200| P[Remember; retry on every sync]
 ```
 
-The **idempotency key** (a UUID made on the device) means a retry never creates a duplicate screening — the same "exactly once" idea from your internship XP fix.
+The **idempotency key** (a UUID made on the device) means a retry never creates a duplicate screening — the same "exactly once" idea from your internship XP fix. Code: `apps/mobile/src/lib/sync/` (the queue rules are pure functions in `queue.ts`). A send that returns after "Delete my data" writes nothing back, so a deleted screening can't reappear.
 
 ## 7. API (v1)
 

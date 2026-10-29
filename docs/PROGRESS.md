@@ -3,7 +3,7 @@
 
 > **[STORY.md](STORY.md)** explains the project as a story (the *why*). **This file** is the detailed diary (the *how*). Read STORY first if you're new.
 
-**Latest:** Step 19, the app redesign in palette 04 (2026-10-29) · Step 14 (staging database) waits on your Supabase account · **Next:** worker login, once the staging database exists
+**Latest:** Step 20, saved screenings that sync (2026-10-29; the phone check is pending) · Step 14 (staging database) waits on your Supabase account · **Next:** read-aloud (`expo-speech`), after your go-ahead
 
 ---
 
@@ -718,16 +718,62 @@ Both were put back.
 
 ---
 
+## Step 20: Saved screenings that sync (Week 5 step 2, branch `feat/mobile-sync`, 2026-10-29)
+
+**Goal:** Sunita can save her screening on the phone, even offline. It reaches the server later, exactly once, and "Delete my data" removes it everywhere.
+
+**One change from the brief, on purpose:** the brief said "save when results are shown". `PRIVACY-SECURITY.md` §2 says answers are stored "only if user taps **Save**", and the brief also said to follow that doc. So saving is **opt-in**: a Save card on the results screen says what is kept (no name or phone) and where it goes, before she taps. A test checks that showing results saves nothing. If you want automatic saving, the consent screen (§3) has to come first.
+
+**How we did it (`apps/mobile/src/lib/sync/`):**
+1. **Install ID:** a random UUID from `expo-crypto`, made on the first Save and kept in SQLite. Never a name, phone or Aadhaar.
+2. **Queue (`queue.ts`, pure functions):** each row has its idempotency key (UUID), install ID, profile (engine fields only, `onlyEngineFields`), created time, status (`queued` or `retrying`), attempts and next try time.
+   - What the server's answer means: **201 / 200** done, remove it; **409** log and drop; **503**, network error, 408, 429 or 5xx: keep and retry; any other 4xx: drop (retrying can't fix a bad request).
+   - Back-off: 30 s, 1 min, 2 min, 4 min… at most 1 hour.
+3. **Storage (`sqlite-store.ts`):** `expo-sqlite` 57.0.4, with `PRAGMA secure_delete` so deleted rows are overwritten, not left in the file's free space.
+4. **Sync (`sync.ts`):**
+   - Save writes the row and returns at once; sending starts in the background. A test proves Save returns even when the network never answers.
+   - Sends run on app start, when the app comes back to the front, after each Save, and on a retry timer.
+   - Each request times out after 15 s and then counts as a network error.
+   - The key goes in the `Idempotency-Key` header, answers only in the body, never in the URL.
+5. **Delete my data (first screen, with one confirm step):**
+   - clears the queue at once and starts a **new** install ID, so later saves can't be linked to the deleted ones;
+   - calls `DELETE /screenings` with `X-Install-Id`;
+   - offline, or a 503: the old ID is kept in a "pending deletes" list and retried on every sync. The screen says honestly that the server copy will be deleted next time she is online.
+6. **Two lanes:** network work runs one batch at a time; quick local writes have their own lane, so Save never waits behind a slow request.
+
+**What went wrong (caught before commit):**
+- **A race I wrote, then found by reading my own code:** if "Delete my data" ran while a send was in flight and the server answered 503, the send would write the row **back** into the emptied queue. Fixed with a counter that Delete bumps; a send that comes back after a delete writes nothing. Sabotage: removing the check makes the test fail.
+- A second race: pending deletes were saved with a read-then-overwrite, so a Delete tapped while an older delete was in flight could be lost. Now it re-reads and removes only the IDs that finished.
+- My first test expected the explicit `sync()` to report the row as sent; Save had already sent it in the background. The test was wrong, not the code.
+- `role="alert"` on a `View` isn't found by screen readers or tests; moved to the `Text`.
+- Under a full parallel `turbo` run, one web test timed out at 5 s (machine load). It passes alone and with `--concurrency=2`; not related to this change.
+
+**How we checked it:**
+- **App tests: 41 → 73.** Queue pure functions (14), sync with a fake server (15: 201, a lost answer then 200 on retry with the same key and still one copy on the server, 409, 503 retried only when due, network error back-off 30 s / 1 min / 2 min, timeout, the timer retrying on its own, never blocking, delete online, offline, 503 and never-saved, and a send in flight during delete), and 3 screen tests (save is opt-in, no save with no answers, delete asks once).
+- **Sabotage, each caught:** no delete guard (1 test fails), a new key on every retry (6), keeping the install ID after delete (1), retrying a 409 (2).
+- `pnpm turbo run lint typecheck test` 13/13, `pnpm format:check`, `pnpm audit --audit-level high` passes (the two new packages add no advisories).
+- **Not checked yet: the real phone.** This cloud session can't reach it. What to test is below.
+
+**Phone check, pending (for Pranay, release build, with the API at its default staging URL):**
+1. Sunita's walk: results show, and **nothing is saved** until you tap "Save my answers". Then "Saved on this phone" appears and the button goes away.
+2. Airplane mode: Save still works at once, with no spinner or freeze.
+3. Airplane off: the app retries in the background. Staging answers 503 (no database yet), so the row stays queued; the app must stay fast and never show an error.
+4. Close and reopen the app: no crash, and the saved row is still queued (`adb shell run-as com.zakuroooo.schemematch ls files/SQLite` shows `schemematch.db`).
+5. First screen → "Delete my data" → Cancel does nothing → again → "Yes, delete". Offline it says the server copy will be deleted next time; online with staging it says the same (503). Bengali text fits.
+6. Release APK size compared with 30.3 MB.
+
+---
+
 ## Running totals
 
 | Thing | Count | How to check |
 |---|---|---|
-| PRs merged | 17 | GitHub |
+| PRs merged | 22 | GitHub |
 | Golden schemes | 30 (15 central · 6 MH · 9 WB) + 10 held-out (5 central · 3 MH · 2 WB) | `pipeline/catalog.csv` |
 | Hand-written test cases | 174 | `packages/engine/test/profiles/` |
 | Engine tests | 573 | `pnpm turbo run test` |
 | API tests | 67 (+7 that need a database) | same; the 7 run in CI's db job |
-| App (mobile) tests | 41 | `pnpm --filter @schemematch/mobile test` |
+| App (mobile) tests | 73 | `pnpm --filter @schemematch/mobile test` |
 | Web tests | 18 unit + 18 browser end-to-end | `pnpm turbo run test`; `pnpm --filter @schemematch/web e2e` |
 | Database tests | 38 | `supabase test db` |
 | Engine code coverage | 100% | CI enforces it |
@@ -741,9 +787,9 @@ Both were put back.
 ## Next step
 
 **Yours:**
-1. Create the second Supabase account + `schemematch-staging` (Step 14).
-2. Read the Bengali strings in `apps/web/messages/bn.json`.
-3. Merge `docs/web-live`, then `test/web-e2e`.
-4. The 5 discovery calls.
+1. Open and merge the `feat/mobile-sync` PR, then do the phone check in step 20.
+2. Create the second Supabase account + `schemematch-staging` (Step 14). Saving then works end to end.
+3. Read the Bengali strings in `apps/web/messages/bn.json` and `apps/mobile/src/i18n/bn.json`.
+4. Human review of the 30 golden schemes, and the 5 discovery calls.
 
-**Mine, next:** worker login (Supabase Auth) and organisation rules, once the staging database exists.
+**Mine, next (after your go-ahead):** read-aloud with `expo-speech` (Week 5 step 3). Worker login waits on the staging database.

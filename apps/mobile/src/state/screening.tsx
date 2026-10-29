@@ -13,7 +13,7 @@ interface Screening {
 
 const ScreeningContext = createContext<Screening | null>(null);
 
-/** Holds the answers in memory only. Nothing is written to the phone or sent anywhere yet. */
+/** Holds the answers in memory. They are written to the phone only when the person taps Save. */
 export function ScreeningProvider({ children, initial }: { children: ReactNode; initial?: Flow }) {
   const [flow, setFlow] = useState<Flow>(initial ?? START);
   const value = useMemo<Screening>(

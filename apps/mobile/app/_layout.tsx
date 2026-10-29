@@ -9,12 +9,17 @@ import { PlayfairDisplay_500Medium_Italic } from "@expo-google-fonts/playfair-di
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
+import { useState } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { I18nProvider } from "@/i18n";
+import { phoneSync } from "@/lib/sync/phone";
 import { ScreeningProvider } from "@/state/screening";
+import { SyncProvider } from "@/state/sync";
 import { colors } from "@/ui/theme";
 
 export default function RootLayout() {
+  // One sync service for the app's lifetime. Saved screenings are sent in the background.
+  const [sync] = useState(phoneSync);
   // The font files ship inside the app, so this works offline. Until they load, the splash stays.
   const [loaded] = useFonts({
     Inter_400Regular,
@@ -29,16 +34,18 @@ export default function RootLayout() {
   return (
     <SafeAreaProvider>
       <I18nProvider>
-        <ScreeningProvider>
-          <StatusBar style="dark" />
-          <Stack
-            screenOptions={{
-              headerShown: false,
-              animation: "slide_from_right",
-              contentStyle: { backgroundColor: colors.bg },
-            }}
-          />
-        </ScreeningProvider>
+        <SyncProvider sync={sync}>
+          <ScreeningProvider>
+            <StatusBar style="dark" />
+            <Stack
+              screenOptions={{
+                headerShown: false,
+                animation: "slide_from_right",
+                contentStyle: { backgroundColor: colors.bg },
+              }}
+            />
+          </ScreeningProvider>
+        </SyncProvider>
       </I18nProvider>
     </SafeAreaProvider>
   );

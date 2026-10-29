@@ -3,12 +3,12 @@
 
 > Want the detailed *how* of each step (commands, files, bugs, checks)? See **[PROGRESS.md](PROGRESS.md)**, the build log.
 
-> **Where we are (2026-10-21):** Week 4 has started. Field workers now have a **screen** in English and Bengali (Chapter 12). Using it found and fixed false reasons and an answers-in-the-URL leak. The staging database waits on your second Supabase account. The AI's honest score: **F1 0.53** on 10 unseen schemes.
+> **Where we are (2026-10-29):** Week 5. The citizen app works offline on a real phone, has a real design, and can now **save a screening that syncs later, exactly once** (Chapter 16; the phone check is pending). The staging database still waits on your second Supabase account, so the server answers "not set up yet" and the app keeps saved screenings until it can send them. The AI's honest score: **F1 0.53** on 10 unseen schemes.
 
 | Week | 1 | 2 | 3 | 4 | 5 | 6 |
 |---|---|---|---|---|---|---|
 | Focus | Data + engine | Engine + API | AI pipeline + interviews | Web dashboard | Mobile + voice | Polish + demo |
-| Status | ✅ done | ✅ done (+ API live) | ✅ done (discovery calls are yours) | ⏳ in progress | ⬜ | ⬜ |
+| Status | ✅ done | ✅ done (+ API live) | ✅ done (discovery calls are yours) | ⏳ worker login waits on the database | ⏳ in progress | ⬜ |
 
 ---
 
@@ -158,6 +158,14 @@ timeline
                : API built, schemes moved into the database
     2026-10-20 : API live on the internet (Mumbai)
                : Schemes 16 to 30 labelled
+               : AI pipeline, saving screenings exactly once
+    2026-10-21 : Web app in English and Bengali
+               : Held-out exam, AI F1 0.53
+    2026-10-23 : Browser tests on every push
+    2026-10-26 : Package safety rules
+               : Citizen app offline on a real phone
+    2026-10-29 : App redesign
+               : Saved screenings that sync
 ```
 
 Each chapter below covers: **what** we built, **why**, and **what to say in an interview**.
@@ -439,6 +447,22 @@ So we did it the way designers do:
 
 **What a user sees now:** a calm grey screen, a red tick, three pictures of real things (money in a passbook, a gas cylinder, a house), big Bengali questions with a line on *why we ask*, and results as picture cards.
 
+### Chapter 16: Saved for later, sent exactly once (Week 5)
+**The problem:** Sunita gets her results in a village with no signal. She wants them kept, and the NGO wants to count which schemes people need. But the phone is offline, and when it comes back the network is weak: a request can be sent twice, or its answer lost.
+
+**What we built:**
+- A **Save my answers** button on the results. Saving is her choice: the card says first that no name or phone is kept, and where the answers go.
+- Saving puts the answers in a small **queue on the phone** (a SQLite database). That takes a moment and needs no internet.
+- In the background, the phone sends each saved screening when it can. Each one carries its own **idempotency key**, the same idea as Chapter 11, so even if the answer gets lost and the phone tries again, the server keeps **one** copy.
+- If the server says "not set up yet" (503, today on staging) or there is no network, the phone waits and tries again: 30 seconds, then 1 minute, 2, 4… up to an hour. The screen never waits for any of this.
+- **Delete my data** on the first screen clears the phone at once and asks the server to delete too. If the phone is offline, it remembers to finish the job next time it is online, and it says so honestly.
+
+> Hinglish: Phone pe pehle save karo, internet aaye tab bhejo; same key ke saath bhejoge toh server pe kabhi duplicate nahi banega.
+
+**A bug we caught in our own code:** if Sunita tapped Delete while a send was still on its way, the failed send would put her answers **back** into the emptied queue. Now a send that returns after a delete writes nothing. We proved the test catches it by removing the fix: the test failed.
+
+**Honest limit:** this is tested with 73 automated tests, but **not yet on Pranay's phone**. That check is listed in PROGRESS step 20.
+
 ---
 
 ## 6. Five ideas you must be able to explain
@@ -506,7 +530,9 @@ flowchart LR
 
 **Week 5 status:**
 - ✅ Citizen app: language → questions → results → scheme card, offline, English + Bengali (Chapter 14)
-- ⏳ Saved screenings that sync later, read-aloud and voice
+- ✅ Redesign in palette 04 (Chapter 15)
+- ✅ Saved screenings that sync later, exactly once, plus delete my data (Chapter 16; phone check pending)
+- ⏳ Read-aloud and voice
 
 **Waiting on you:**
 - Book the 5 discovery conversations.
@@ -535,7 +561,7 @@ flowchart LR
 | The plan | [BUILD-PLAN.md](BUILD-PLAN.md) |
 | How to deploy and run | [RUNBOOK.md](RUNBOOK.md) |
 
-**Numbers today (all measured in the repo):** 30 schemes · 174 hand-written test cases · 573 engine tests · 67 API tests (+7 with a database) · 18 web tests + 18 browser tests · 41 app tests · 38 database tests · 52 pipeline tests · 100% engine code coverage.
+**Numbers today (all measured in the repo):** 30 schemes · 174 hand-written test cases · 573 engine tests · 67 API tests (+7 with a database) · 18 web tests + 18 browser tests · 73 app tests · 38 database tests · 52 pipeline tests · 100% engine code coverage.
 
 ---
 
@@ -570,6 +596,7 @@ flowchart LR
 
 | Date | Step | What changed |
 |---|---|---|
+| 2026-10-29 | Saved screenings | Opt-in Save, on-phone queue, exactly-once sync with back-off, delete my data (Chapter 16) |
 | 2026-10-29 | App redesign | Palette 04, bundled fonts, relevant pictures only (Chapter 15) |
 | 2026-10-26 | Citizen app | Expo app, offline, English + Bengali; tested on a real Android phone (Chapter 14) |
 | 2026-10-26 | Package safety | Next.js security fix (2 critical advisories); packages younger than 14 days now refused; audit blocks merges ([PROGRESS step 17](PROGRESS.md)) |
