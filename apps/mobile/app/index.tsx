@@ -1,6 +1,6 @@
 import { router } from "expo-router";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
-import { LANGUAGES, translate, useI18n, type Lang } from "@/i18n";
+import { LANGUAGES, num, translate, useI18n, type Lang } from "@/i18n";
 import { useScreening } from "@/state/screening";
 import { Icon } from "@/ui/Icon";
 import { IMAGES } from "@/ui/images";
@@ -96,6 +96,20 @@ export default function LanguageScreen() {
             </View>
           ))}
         </View>
+      </View>
+
+      <View style={styles.steps}>
+        <Text style={styles.caps}>{t("app.stepsTitle").toUpperCase()}</Text>
+        {(["step1", "step2", "step3"] as const).map((k, i) => (
+          <View key={k} style={styles.stepRow}>
+            <View style={styles.stepNum}>
+              <Text style={styles.stepNumText}>{num(lang, i + 1)}</Text>
+            </View>
+            <Text style={[styles.stepText, bn && { fontFamily: fonts.bnBody }]}>
+              {t(`app.${k}`)}
+            </Text>
+          </View>
+        ))}
       </View>
 
       <Text style={[styles.foot, bn && { fontFamily: fonts.bnBody }]}>{t("app.testing")}</Text>
@@ -229,6 +243,19 @@ const styles = StyleSheet.create({
   glyphText: { fontSize: 18, color: colors.ink },
   langText: { fontSize: 16, color: colors.ink },
   checks: { gap: 8 },
+  steps: { gap: 8 },
+  stepRow: { flexDirection: "row", alignItems: "center", gap: 10 },
+  stepNum: {
+    width: 26,
+    height: 26,
+    borderRadius: 999,
+    borderWidth: 1,
+    borderColor: colors.accentText,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  stepNumText: { fontFamily: fonts.display, fontSize: 13, color: colors.accentText },
+  stepText: { flex: 1, fontFamily: fonts.body, fontSize: 14, color: colors.ink },
   checkRow: { flexDirection: "row", gap: 10 },
   checkTile: {
     flex: 1,

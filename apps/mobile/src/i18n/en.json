@@ -7,7 +7,11 @@
     "badge": "Checks 30 schemes",
     "headA": "Find what you are",
     "headB": "owed.",
-    "checksTitle": "What we check for you"
+    "checksTitle": "What we check for you",
+    "stepsTitle": "How it works",
+    "step1": "Answer a few questions",
+    "step2": "See what you may get, and why",
+    "step3": "Apply at the office"
   },
   "language": {
     "title": "Choose your language",
@@ -118,7 +122,11 @@
     "notEligibleTitle": "Not eligible",
     "applyTitle": "How to apply",
     "docsTitle": "Documents",
-    "docsMissing": "Not in our data yet. Ask at the office or check the official page."
+    "docsMissing": "Not in our data yet. Ask at the office or check the official page.",
+    "showNotEligible": "Show {count} not eligible",
+    "showNotEligible_one": "Show 1 not eligible",
+    "hide": "Hide",
+    "showMore": "Show {count} more"
   },
   "checks": {
     "pension": "Pensions",

@@ -27,8 +27,14 @@ export function translate(lang: Lang, key: string, params: Params = {}): string 
   const text = (params.count === 1 && get(`${key}_one`)) || get(key);
   if (typeof text !== "string") return key;
   return text.replace(/\{(\w+)\}/g, (all, name: string) =>
-    params[name] === undefined ? all : String(params[name]),
+    params[name] === undefined ? all : num(lang, params[name]),
   );
+}
+
+/** Numbers in the reader's script: Bengali text gets Bengali digits (১১, not 11). */
+export function num(lang: Lang, value: string | number): string {
+  const s = String(value);
+  return lang === "bn" ? s.replace(/[0-9]/g, (d) => String.fromCharCode(0x09e6 + Number(d))) : s;
 }
 
 /** The phone's language if we have it, else English. */

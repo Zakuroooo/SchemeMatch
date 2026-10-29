@@ -56,6 +56,26 @@ export function categoryPicture(category: string): Picture {
   }
 }
 
+/** A drawn icon for each question that has no fitting render, so no question screen is bare. */
+export const QUESTION_ICONS: Record<Field, IconName> = {
+  state: "pin",
+  district: "pin",
+  age: "calendar",
+  gender: "person",
+  marital_status: "rings",
+  annual_family_income: "file",
+  caste_category: "people",
+  occupation: "tools",
+  land_acres: "sprout",
+  disability_percent: "access",
+  is_student: "cap",
+  education_level: "cap",
+  household_size: "people",
+  has_bpl_card: "file",
+  children_count: "people",
+  is_pregnant_or_lactating: "heart",
+};
+
 /** A picture for a question, only where one shows what is asked. Most questions have none. */
 export function questionPicture(field: Field): ImageSourcePropType | null {
   switch (field) {
