@@ -12,14 +12,14 @@ import {
 } from "@/lib/sync/queue";
 
 const ID = "6f1c2a9e-3b4d-4e5f-8a7b-9c0d1e2f3a4b";
-const KEY = "0b7e8c1d-2f3a-4b5c-9d6e-7f8091a2b3c4";
+const RETRY_ID = "0b7e8c1d-2f3a-4b5c-9d6e-7f8091a2b3c4";
 
 describe("queue rows", () => {
   it("a new row keeps only engine fields that were answered", () => {
     const profile = { state: "MH", age: 38, gender: undefined, name: "Sunita" } as Profile;
-    const row = newScreening(ID, profile, 1_000, KEY);
+    const row = newScreening(ID, profile, 1_000, RETRY_ID);
     expect(row).toEqual({
-      key: KEY,
+      key: RETRY_ID,
       installId: ID,
       profile: { state: "MH", age: 38 },
       createdAt: 1_000,
@@ -31,10 +31,15 @@ describe("queue rows", () => {
   });
 
   it("a failure keeps the same key and waits longer each time", () => {
-    const first = afterFailure(newScreening(ID, {}, 0, KEY), 0);
-    expect(first).toMatchObject({ key: KEY, status: "retrying", attempts: 1, nextTryAt: 30_000 });
+    const first = afterFailure(newScreening(ID, {}, 0, RETRY_ID), 0);
+    expect(first).toMatchObject({
+      key: RETRY_ID,
+      status: "retrying",
+      attempts: 1,
+      nextTryAt: 30_000,
+    });
     const second = afterFailure(first, 30_000);
-    expect(second).toMatchObject({ key: KEY, attempts: 2, nextTryAt: 30_000 + 60_000 });
+    expect(second).toMatchObject({ key: RETRY_ID, attempts: 2, nextTryAt: 30_000 + 60_000 });
   });
 });
 

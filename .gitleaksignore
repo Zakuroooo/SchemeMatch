@@ -4,3 +4,6 @@
 375abd61831613a1cb1599263f03009d5bc5211d:apps/api/test/screenings.test.ts:generic-api-key:16
 # A made-up cron secret written into a test (the test now generates it at run time).
 a48b79da1823fc92838f95554325d00c900ab612:apps/api/test/cron.test.ts:generic-api-key:6
+# A made-up UUID used as an idempotency key in the mobile queue test, not a credential
+# (renamed to RETRY_ID in a later commit so it no longer looks like a key).
+c74a16162c42dc327c0467098f56e3e285501009:apps/mobile/test/sync-queue.test.ts:generic-api-key:15
