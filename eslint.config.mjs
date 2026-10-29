@@ -11,10 +11,18 @@ export default defineConfig(
     "**/.turbo/**",
     "**/.next/**",
     "**/next-env.d.ts",
+    "**/.expo/**",
+    "apps/mobile/android/**",
+    "apps/mobile/ios/**",
     "tools/**",
   ]),
   js.configs.recommended,
   tseslint.configs.recommended,
+  {
+    files: ["apps/mobile/**/*.{ts,tsx}"],
+    plugins: { "react-hooks": reactHooks },
+    rules: { ...reactHooks.configs.recommended.rules },
+  },
   {
     files: ["apps/web/**/*.{ts,tsx}"],
     plugins: { "react-hooks": reactHooks, "@next/next": nextPlugin },

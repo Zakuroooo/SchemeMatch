@@ -27,12 +27,19 @@ export const QUESTION_PRIORITY: readonly Field[] = [
 // Every field is in QUESTION_PRIORITY exactly once (enforced by a test).
 const rank = (f: Field) => QUESTION_PRIORITY.indexOf(f);
 
-/** The unanswered field that appears in the most still-undecided schemes. */
-export function nextQuestion(results: readonly SchemeResult[]): Field | null {
+/**
+ * The unanswered field that appears in the most still-undecided schemes.
+ * `skip` holds fields the person chose not to answer ("don't know"): they stay unanswered
+ * (UNKNOWN, never "no") and are not asked again.
+ */
+export function nextQuestion(
+  results: readonly SchemeResult[],
+  skip: readonly Field[] = [],
+): Field | null {
   const counts = new Map<Field, number>();
   for (const r of results) {
     if (r.result !== "UNKNOWN") continue;
-    for (const f of r.missing) counts.set(f, (counts.get(f) ?? 0) + 1);
+    for (const f of r.missing) if (!skip.includes(f)) counts.set(f, (counts.get(f) ?? 0) + 1);
   }
   let best: Field | null = null;
   let bestN = 0;

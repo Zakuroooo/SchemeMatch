@@ -57,3 +57,33 @@ Exact prompt = `SCENE + style phrase + TAIL`:
 - Concepts: `gen.py` (fast, HF Space). HD finals: Kaggle T4 notebook with a **non-anime** SDXL/Flux checkpoint (confirm licence allows commercial/portfolio use).
 - Upscale: `hd.sh`/`worldvid.sh` currently use **anime** Real-ESRGAN models → switch to `realesrgan-x4plus` (general) for this project; `.esr/models` was not found on disk — verify the install first.
 - Citizen app ships **no** large images (< 30 MB APK target); art there is small SVG/WebP only.
+
+## Round 3 — app object renders (2026-10-26)
+- **Why:** the app redesign needs premium pictures. Objects only, never people (rule above).
+- **Tool:** Kaggle T4 kernel `pranaysarkar04/schemematch-app-assets`, source in [`tools/kaggle/app-assets/run.py`](../../tools/kaggle/app-assets/run.py) (exact prompts there). Same model and licence as Round 1b: SDXL base 1.0 + fp16-fix VAE, DPM++ 2M Karras, 32 steps, CFG 6.0, 1024×1024, seed 11.
+- **Matrix:** 10 objects (coin, card, women = bangles + marigold, pension = piggy bank, family = clay house, gas, bank = passbook, shield, papers + wax seal, glass ribbon) × 2 lights (warm cream, dark) = 20.
+- **Verdict (read by eye, every image):**
+  - Kept: coin, women, pension, family, papers and ribbon (both lights), dark bank. Resized to 640 px JPEG for the design canvas.
+  - Rejected: card (both: fake printed text), warm bank (faint fake text), gas (both: a blue vase, not a cylinder), shield (a bowl and an orb).
+  - The whole dark set came out on grey or lavender, not black.
+
+## Round 3b — re-renders of the rejects (2026-10-26)
+Stricter prompts: a "completely blank, unprinted" card, a "red steel LPG cylinder with a regulator", a "heraldic shield", "pitch black background" and "typography, label, print" in the negative prompt; seeds 11 and 23. Same kernel, version 2. 28 images.
+- **Kept:** warm bank (seed 23, a blank notebook), warm card (11), warm gas (11, a red cylinder with a regulator); dark bank (23), card (23), family (23), papers (23), pension (11), ribbon (11), women (11). The dark set is now really black.
+- **Rejected:**
+  - every shield (both lights, both seeds): a crowned eagle crest, which looks like a real national emblem. This app must never look official.
+  - dark coin (both seeds): a Bitcoin symbol;
+  - dark gas: a horizontal tank and a fire extinguisher;
+  - warm gas seed 23: looks like an extinguisher.
+- **Next:** an umbrella for insurance, a dark gas cylinder, a dark coin with "no symbols".
+
+## Round 4 — palette-matched sets for the chosen palettes (2026-10-27)
+Pranay picked palettes 11 (Lumière: cream, burgundy, dusty pink) and 04 (stone grey, charcoal, signal red), and asked for no irrelevant images. **Rule from here: every picture shows what its text is about.** The glass ribbon and the bangles were dropped.
+- **Kernel v4:** 9 objects (hero still life, coins on a passbook, reading glasses on coins, house, gas, passbook, umbrella over a house, ration-card booklet, papers) × looks `rose` and `stone` × seeds 11 and 23 = 36. Exact prompts are in git history of `tools/kaggle/app-assets/run.py`.
+- **Kept 14:** rose bank 11, dbt 23, family 23, gas 11, pension 11, papers 11, rationcard 23; stone bank 11, dbt 23, family 11, pension 11, papers 11, rationcard 11, umbrella 23.
+- **Rejected:**
+  - every hero: random bottles and vases, no gas cylinder. The hero is now composed in the layout from three approved images instead.
+  - rose umbrella: houses with umbrella-shaped roofs;
+  - stone gas: a horizontal tank and an extinguisher;
+  - rose rationcard 11: printed lines that read as text.
+- **Kernel v5 (round 4b):** stone gas and rose umbrella, seeds 5, 17, 29 and 41. Kept rose umbrella 41 and stone gas 29; rejected gas 41 (fake text "SQUAT INGREAL"), gas 5 (three objects), gas 17 (barrel-like), umbrella 29 (roof again).

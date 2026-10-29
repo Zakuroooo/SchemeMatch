@@ -410,6 +410,23 @@ Checking the app by hand in a browser found real bugs, but a person can't repeat
 
 > Hinglish: Test tab hi kaam ka hai jab woh galti pakad sake; isliye jaan-boojh kar galti daal ke dekha.
 
+### Chapter 14: The app in Sunita's hand (Week 5)
+**What Sunita does now:** she opens the app, taps **বাংলা**, and answers one question per screen with big buttons. If she doesn't know something, she taps **জানি না** ("don't know"), and that never counts as "no". Then she sees "you may qualify for 11", each with why, what to confirm at the office, and how to apply.
+
+**Two ideas that make it work:**
+- **The same engine, inside the phone.** The rule engine and all 30 schemes are packed into the app. So it gives the same answers as the website, with **no internet**. A test checks the packed schemes are exactly the golden files.
+- **Only ask what matters.** After every answer, the engine asks: "which question could still change a result?" Sunita answered **9 questions, not 16**. It never asked if she is married: she already qualifies for Sanjay Gandhi through her BPL card and age, so that answer couldn't change anything.
+
+> Hinglish: Jo sawaal result nahi badal sakta, woh poochna hi kyun? Engine khud decide karta hai agla sawaal.
+
+**Tested on a real phone** (Pranay's Android 14 phone, connected to the laptop by cable and over Wi-Fi):
+- her 11 schemes in Bengali, and only her true reasons on each card;
+- **in airplane mode**, with Wi-Fi off and no network at all: the same 11 schemes. This was the Week 5 goal.
+
+**Found on the way:**
+- A safety check showed the live website's Next.js had **2 critical security holes**. Patched within the day (PROGRESS step 17).
+- "Use packages at least 2 weeks old" was only half followed; now pnpm enforces it for every package.
+
 ---
 
 ## 6. Five ideas you must be able to explain
@@ -475,6 +492,10 @@ flowchart LR
 - ✅ Robot browser tests on every push (Chapter 13)
 - ⏳ Worker login and saving families: waiting for the staging database (your second Supabase account)
 
+**Week 5 status:**
+- ✅ Citizen app: language → questions → results → scheme card, offline, English + Bengali (Chapter 14)
+- ⏳ Saved screenings that sync later, read-aloud and voice
+
 **Waiting on you:**
 - Book the 5 discovery conversations.
 - Human review of the 30 golden schemes (use [VERIFY.md](../pipeline/golden/VERIFY.md)).
@@ -495,13 +516,14 @@ flowchart LR
 | Engine | [packages/engine/src/](../packages/engine/src/) |
 | Hand-written test cases | [packages/engine/test/profiles/](../packages/engine/test/profiles/) |
 | API | [apps/api/src/](../apps/api/src/) |
+| Citizen app (Expo) | [apps/mobile/](../apps/mobile/) |
 | Database setup | [supabase/migrations/](../supabase/migrations/) |
 | AI pipeline | [pipeline/schemematch_pipeline/](../pipeline/schemematch_pipeline/) |
 | Eval reports | [reports/](../reports/) |
 | The plan | [BUILD-PLAN.md](BUILD-PLAN.md) |
 | How to deploy and run | [RUNBOOK.md](RUNBOOK.md) |
 
-**Numbers today (all measured in the repo):** 30 schemes · 174 hand-written test cases · 572 engine tests · 67 API tests (+7 with a database) · 18 web tests · 38 database tests · 52 pipeline tests · 100% engine code coverage.
+**Numbers today (all measured in the repo):** 30 schemes · 174 hand-written test cases · 573 engine tests · 67 API tests (+7 with a database) · 18 web tests + 18 browser tests · 38 app tests · 38 database tests · 52 pipeline tests · 100% engine code coverage.
 
 ---
 
@@ -536,6 +558,7 @@ flowchart LR
 
 | Date | Step | What changed |
 |---|---|---|
+| 2026-10-26 | Citizen app | Expo app, offline, English + Bengali; tested on a real Android phone (Chapter 14) |
 | 2026-10-26 | Package safety | Next.js security fix (2 critical advisories); packages younger than 14 days now refused; audit blocks merges ([PROGRESS step 17](PROGRESS.md)) |
 | 2026-10-23 | Browser tests | Playwright + axe on every push, desktop and phone (Chapter 13) |
 | 2026-10-21 | Web app | Screening form in English + Bengali; fixed false reasons, alternatives, answers-in-URL (Chapter 12) |
