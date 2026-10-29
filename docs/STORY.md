@@ -427,6 +427,18 @@ Checking the app by hand in a browser found real bugs, but a person can't repeat
 - A safety check showed the live website's Next.js had **2 critical security holes**. Patched within the day (PROGRESS step 17).
 - "Use packages at least 2 weeks old" was only half followed; now pnpm enforces it for every package.
 
+### Chapter 15: From 0/10 to a real design (Week 5)
+Pranay looked at the first app and said: "this is 0/10, no one will use it". He was right. It worked, but it looked like a form.
+
+So we did it the way designers do:
+1. **Look at the best:** 10 popular Indian and global apps. What do they share? The money is the hero, one question at a time, one strong colour, lots of space.
+2. **Many options, cheaply:** 16 colour palettes on the same screens, side by side. Pranay picked **stone grey, charcoal and one signal red**.
+3. **Pictures that mean something:** about 120 object pictures generated on a free GPU, every one checked by eye. Rejected: fake text, an emblem that looks official, Bitcoin coins. Pranay's rule: *if a picture doesn't show what the words say, it doesn't go in.*
+
+> Hinglish: Sundar dikhna kaafi nahi; tasveer wahi dikhaye jo likha hai, warna hata do.
+
+**What a user sees now:** a calm grey screen, a red tick, three pictures of real things (money in a passbook, a gas cylinder, a house), big Bengali questions with a line on *why we ask*, and results as picture cards.
+
 ---
 
 ## 6. Five ideas you must be able to explain
@@ -523,7 +535,7 @@ flowchart LR
 | The plan | [BUILD-PLAN.md](BUILD-PLAN.md) |
 | How to deploy and run | [RUNBOOK.md](RUNBOOK.md) |
 
-**Numbers today (all measured in the repo):** 30 schemes · 174 hand-written test cases · 573 engine tests · 67 API tests (+7 with a database) · 18 web tests + 18 browser tests · 38 app tests · 38 database tests · 52 pipeline tests · 100% engine code coverage.
+**Numbers today (all measured in the repo):** 30 schemes · 174 hand-written test cases · 573 engine tests · 67 API tests (+7 with a database) · 18 web tests + 18 browser tests · 41 app tests · 38 database tests · 52 pipeline tests · 100% engine code coverage.
 
 ---
 
@@ -558,6 +570,7 @@ flowchart LR
 
 | Date | Step | What changed |
 |---|---|---|
+| 2026-10-29 | App redesign | Palette 04, bundled fonts, relevant pictures only (Chapter 15) |
 | 2026-10-26 | Citizen app | Expo app, offline, English + Bengali; tested on a real Android phone (Chapter 14) |
 | 2026-10-26 | Package safety | Next.js security fix (2 critical advisories); packages younger than 14 days now refused; audit blocks merges ([PROGRESS step 17](PROGRESS.md)) |
 | 2026-10-23 | Browser tests | Playwright + axe on every push, desktop and phone (Chapter 13) |

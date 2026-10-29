@@ -30,14 +30,34 @@ const PATHS = {
     "M12 14c0-3-2.5-5-6-5 0 3.5 2.5 5.5 6 5z",
   ],
   heart: ["M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"],
+  pin: ["M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"],
+  calendar: ["M4 6h16v14H4z", "M4 10h16", "M8 3v4M16 3v4"],
+  person: ["M5 21c1-4 3.5-6 7-6s6 2 7 6"],
+  people: [
+    "M3 20c.7-3 2.6-4.5 5-4.5s4.3 1.5 5 4.5",
+    "M13.5 15.8c.7-.2 1.5-.3 2.5-.3 2.4 0 4.3 1.5 5 4.5",
+  ],
+  rings: [],
+  access: ["M12 7v6h5l2 5", "M9 9.5a5 5 0 1 0 6.5 7"],
 } as const;
 
 /** Icons that also draw a circle (outline) or a dot. */
-const CIRCLES: Partial<Record<IconName, { r: number; cy?: number }[]>> = {
+const CIRCLES: Partial<Record<IconName, { r: number; cx?: number; cy?: number }[]>> = {
   globe: [{ r: 9 }],
   question: [{ r: 9 }, { r: 0.7, cy: 17 }],
   info: [{ r: 9 }, { r: 0.7, cy: 7.5 }],
   offline: [{ r: 1, cy: 20 }],
+  pin: [{ r: 2.5, cy: 9.5 }],
+  person: [{ r: 4, cy: 8 }],
+  people: [
+    { r: 3, cx: 8, cy: 9 },
+    { r: 2.5, cx: 16, cy: 9.5 },
+  ],
+  rings: [
+    { r: 5, cx: 9, cy: 13 },
+    { r: 5, cx: 15, cy: 11 },
+  ],
+  access: [{ r: 1.5, cy: 4 }],
 };
 
 export type IconName = keyof typeof PATHS;
@@ -55,7 +75,7 @@ export function Icon({
 }) {
   return (
     <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" accessible={false}>
-      {PATHS[name].map((d) => (
+      {(PATHS[name] as readonly string[]).map((d) => (
         <Path
           key={d}
           d={d}
@@ -66,7 +86,14 @@ export function Icon({
         />
       ))}
       {(CIRCLES[name] ?? []).map((c, i) => (
-        <Circle key={i} cx={12} cy={c.cy ?? 12} r={c.r} stroke={color} strokeWidth={weight} />
+        <Circle
+          key={i}
+          cx={c.cx ?? 12}
+          cy={c.cy ?? 12}
+          r={c.r}
+          stroke={color}
+          strokeWidth={weight}
+        />
       ))}
     </Svg>
   );

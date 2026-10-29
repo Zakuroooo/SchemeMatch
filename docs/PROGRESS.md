@@ -3,7 +3,7 @@
 
 > **[STORY.md](STORY.md)** explains the project as a story (the *why*). **This file** is the detailed diary (the *how*). Read STORY first if you're new.
 
-**Latest:** Step 18, the citizen app on a real phone (2026-10-26) · Step 14 (staging database) waits on your Supabase account · **Next:** worker login, once the staging database exists
+**Latest:** Step 19, the app redesign in palette 04 (2026-10-29) · Step 14 (staging database) waits on your Supabase account · **Next:** worker login, once the staging database exists
 
 ---
 
@@ -675,6 +675,49 @@ Both were put back.
 
 ---
 
+## Step 19: The app redesign (Week 5, branch `feat/mobile-app`, 2026-10-26 to 10-29)
+
+**Why:** Pranay rated the first app design 0/10: plain, boxy, big empty spaces. He was right; it was a working skeleton with no design.
+
+**How we got to a design (on a shared design canvas):**
+1. Studied 10 popular apps' store screenshots (PhonePe, CRED, Jupiter, UMANG, Duolingo, Google Pay, Swiggy, Zepto, Airbnb, Headspace) and wrote down what fits Sunita: the money as the hero, one question per screen with a 🔊 button, a big success number, three colours, real or object pictures, and never official-looking emblems.
+2. Two rounds of directions were rejected ("boring, cluttered, the colours eww"). Then Pranay shared 13 colour references. The shared recipe: a deep base, a light neutral, **one** loud accent, one hero object, big editorial type with tiny spaced capitals.
+3. Built all 13 palettes plus 3 more on the same compact screens. He picked 11 and 04, then **04: stone grey, charcoal, signal red**.
+
+**Pictures, and the rule they taught us:** generated on Kaggle (SDXL, a free T4 GPU), objects only, never people.
+- Five rounds of renders: about 120 images, every one checked by eye. Every prompt and verdict is in `docs/design-refs/PROMPTS.md`.
+- Rejected, and why:
+  - fake printed text (cards, a passbook, a gas cylinder, and later the glasses, caught only at full zoom on the phone);
+  - a crowned eagle crest that looks like a national emblem;
+  - Bitcoin symbols;
+  - a vase drawn instead of a gas cylinder.
+- Pranay's rule: **no irrelevant images.** A picture appears only where it shows what the text says (coins on a passbook for "money to your bank", a red umbrella over a house for life cover). Otherwise there is a drawn SVG icon.
+
+**What changed in the app:**
+- palette tokens with computed contrast (all pass WCAG AA);
+- fonts bundled for offline use: Playfair Display, Inter, Noto Serif and Sans Bengali;
+- SVG icons drawn in code (`react-native-svg`);
+- the language screen: a hero made of three relevant pictures, language pills, "what we check" and "how it works";
+- each question: a picture or icon, compact answers, and a true **"why we ask"** line in both languages;
+- results: a big count, 4 picture tiles plus a slim list, and the not-eligible list folded;
+- scheme card: a picture band, the benefit in the display face, ticked reasons, long lists folded;
+- Bengali digits everywhere in Bengali (১১).
+
+**Honesty fixes the mockups glossed over:**
+- "checked in 2 minutes" was never measured, so it's now "Checks 30 schemes";
+- no money amounts, since our data has none as numbers;
+- no "Listen" button until read-aloud works;
+- the question counter is an estimate, not "3 / 9".
+
+**What went wrong:**
+- importing the font packages bundled **49 font files (12 MB)**; now each weight is imported on its own (8 files, 2.4 MB). APK: 30.3 MB.
+- the hero badge was hidden from screen readers along with the decorative pictures. A test caught it.
+- my theme comment had wrong contrast numbers; now they're computed.
+
+**How we checked it:** 41 app tests, typecheck, lint, format. On Pranay's phone: every screen in Bengali, and Sunita's walk still gives 9 questions and 11 schemes.
+
+---
+
 ## Running totals
 
 | Thing | Count | How to check |
@@ -684,7 +727,7 @@ Both were put back.
 | Hand-written test cases | 174 | `packages/engine/test/profiles/` |
 | Engine tests | 573 | `pnpm turbo run test` |
 | API tests | 67 (+7 that need a database) | same; the 7 run in CI's db job |
-| App (mobile) tests | 38 | `pnpm --filter @schemematch/mobile test` |
+| App (mobile) tests | 41 | `pnpm --filter @schemematch/mobile test` |
 | Web tests | 18 unit + 18 browser end-to-end | `pnpm turbo run test`; `pnpm --filter @schemematch/web e2e` |
 | Database tests | 38 | `supabase test db` |
 | Engine code coverage | 100% | CI enforces it |

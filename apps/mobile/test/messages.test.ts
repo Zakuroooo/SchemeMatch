@@ -47,6 +47,7 @@ describe("messages", () => {
       "1 scheme is only for another state.",
     );
     expect(translate("en", "no.such.key")).toBe("no.such.key");
+    expect(translate("bn", "flow.step", { n: 12 })).toBe("প্রশ্ন ১২"); // Bengali digits in Bengali
   });
 
   it("every question says why it is asked, in both languages", () => {

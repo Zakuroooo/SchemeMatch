@@ -68,10 +68,10 @@ describe("question screen", () => {
   it("starts with the state, in Bengali, and moves on after a tap", () => {
     show(<QuestionScreen />, { lang: "bn" });
     expect(screen.getByRole("header", { name: "আপনি কোন রাজ্যে থাকেন?" })).toBeTruthy();
-    expect(screen.getByText("প্রশ্ন 1")).toBeTruthy();
+    expect(screen.getByText("প্রশ্ন ১")).toBeTruthy();
     fireEvent.press(screen.getByRole("button", { name: "মহারাষ্ট্র" }));
     expect(screen.queryByText("আপনি কোন রাজ্যে থাকেন?")).toBeNull();
-    expect(screen.getByText("প্রশ্ন 2")).toBeTruthy();
+    expect(screen.getByText("প্রশ্ন ২")).toBeTruthy();
   });
 
   it("refuses a number it can't read, then accepts a real one", () => {
@@ -112,12 +112,17 @@ describe("results screen", () => {
     // 4 picture tiles plus 7 rows, each opening its scheme card.
     expect(screen.getAllByRole("button", { name: /\. Details$/ })).toHaveLength(11);
     expect(screen.getByText("9 schemes are only for other states.")).toBeTruthy();
+    // The not-eligible list is folded until asked for.
+    expect(screen.queryByText(/Indira Gandhi National Widow Pension Scheme/)).toBeNull();
+    fireEvent.press(screen.getByRole("button", { name: "Show 10 not eligible" }));
+    expect(screen.getByText(/Indira Gandhi National Widow Pension Scheme/)).toBeTruthy();
     expect(screen.getByText(/not an official government app/)).toBeTruthy();
   });
 
   it("in Bengali, says scheme texts are English for now", () => {
     show(<ResultsScreen />, { lang: "bn", flow: { answers: SUNITA, skipped: [], history: [] } });
     expect(screen.getByRole("header", { name: "টি প্রকল্পের যোগ্য হতে পারেন" })).toBeTruthy();
+    expect(screen.getByText("১১")).toBeTruthy(); // Bengali digits
     expect(screen.getByText("প্রকল্পের নাম ও বিবরণ আপাতত ইংরেজিতে।")).toBeTruthy();
   });
 
@@ -137,6 +142,9 @@ describe("scheme screen", () => {
     show(<SchemeScreen />, { flow: { answers: SUNITA, skipped: [], history: [] } });
     expect(screen.getByText("Destitute widows")).toBeTruthy();
     expect(screen.queryByText(/divorced women not receiving alimony/)).toBeNull(); // she isn't divorced
+    // Other ways in are folded after 3; "show more" reveals the rest.
+    expect(screen.queryByText("Orphaned children")).toBeNull();
+    fireEvent.press(screen.getByRole("button", { name: "Show 5 more" }));
     expect(screen.getByText("Orphaned children")).toBeTruthy(); // listed as another way in…
     expect(screen.getByText("MAY STILL QUALIFY IF ANY OF THESE IS TRUE:")).toBeTruthy(); // …under its own heading
     expect(screen.queryByText("WHY YOU MAY QUALIFY")).toBeTruthy();

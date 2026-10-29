@@ -9,7 +9,7 @@ import { SCHEMES } from "@/lib/schemes";
 import { useScreening } from "@/state/screening";
 import { Button } from "@/ui/Button";
 import { Icon } from "@/ui/Icon";
-import { questionPicture } from "@/ui/images";
+import { QUESTION_ICONS, questionPicture } from "@/ui/images";
 import { Screen } from "@/ui/Screen";
 import { TAP, colors, typeFor } from "@/ui/theme";
 
@@ -49,8 +49,13 @@ export default function QuestionScreen() {
         </Text>
       </View>
 
-      {picture && (
+      {/* A render where one shows what is asked, else the question's drawn icon. */}
+      {picture ? (
         <Image source={picture} style={styles.picture} accessibilityIgnoresInvertColors />
+      ) : (
+        <View style={styles.iconTile} accessibilityElementsHidden importantForAccessibility="no">
+          <Icon name={QUESTION_ICONS[field]} size={56} color={colors.accentText} weight={1.4} />
+        </View>
       )}
 
       <Text
@@ -197,6 +202,13 @@ const styles = StyleSheet.create({
   fill: { height: 4, borderRadius: 4, backgroundColor: colors.accent },
   step: { fontSize: 12, color: colors.muted },
   picture: { width: "100%", height: 200, borderRadius: 24 },
+  iconTile: {
+    height: 150,
+    borderRadius: 24,
+    backgroundColor: colors.tint,
+    alignItems: "center",
+    justifyContent: "center",
+  },
   question: { fontSize: 28, lineHeight: 36, color: colors.ink, marginTop: 4 },
   questionBn: { fontSize: 25, lineHeight: 38 },
   answers: { gap: 10 },

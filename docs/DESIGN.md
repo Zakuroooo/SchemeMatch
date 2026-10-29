@@ -38,17 +38,22 @@ flowchart TD
 
 All five get one shared grade (warm, slightly desaturated, ink-blue shadows) so they read as one set.
 
-## 4. Design tokens (starting point — tune in the build)
+## 4. Design tokens: citizen app (chosen 2026-10-27)
+Picked by Pranay on the design canvas from 16 palettes (13 from his references, 3 extra): **04 "Better experiences"**. The earlier cream and marigold tokens were rejected.
 
-| Token | Dark | Light (inverted sections) | Use |
-|---|---|---|---|
-| `--bg` | `#0B0F14` deep ink | `#F4F1EA` paper | page ground |
-| `--fg` | `#EDEAE3` | `#14181D` | text |
-| `--accent` | `#F2A93B` marigold | `#C77A0A` | "you qualify", primary buttons (warm, Indian, not tech-blue) |
-| `--ok` | `#3FB68B` | `#1E8A63` | eligible |
-| `--muted` | `#8A93A0` | `#5D6672` | secondary text |
+| Token | Value | Use |
+|---|---|---|
+| `bg` | `#E9E8E6` stone grey | screen ground |
+| `ink` / `deep` | `#2A2A2A` charcoal | text, primary buttons, the first result tile |
+| `muted` | `#5A5A5A` | secondary text (5.6:1 on bg) |
+| `accent` | `#E10600` signal red | progress, ticks, number circles: used sparingly |
+| `accentText` | `#C40500` | red text on bg (5.1:1) |
+| `line` / `tint` | `#CFCDC9` / `#D6D4D0` | hairlines, picture tiles |
 
-- **Type:** display = a characterful grotesk (e.g. "Clash Display" or "Space Grotesk" fallback) used sparingly; body = "Inter"-class sans; **Devanagari/Bengali** via Noto Sans Devanagari / Noto Sans Bengali — must be tested, not assumed.
+- **Rule:** three colours (grey, charcoal, one red), lots of space, one picture per idea.
+- **Type:** display = Playfair Display (italic for the one accent word); body = Inter; Bengali = Noto Serif Bengali (questions, headings) and Noto Sans Bengali (body). Bengali text never falls back to a Latin font and uses Bengali digits. All fonts ship inside the app (offline).
+- **Pictures:** Kaggle SDXL object renders, "stone" set, grey studio light with a red accent. **Only where the picture shows what the text says**; otherwise a drawn SVG icon. Every image is checked at full zoom for fake text or emblems (PROMPTS.md).
+- **Code:** `apps/mobile/src/ui/theme.ts` holds these values; contrast ratios are computed there.
 - **Motion:** GSAP + ScrollTrigger on the landing only; respect `prefers-reduced-motion`.
 - **3D:** React Three Fiber on the landing hero; lazy-loaded; a static image fallback on low-end devices.
 

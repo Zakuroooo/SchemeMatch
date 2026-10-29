@@ -1,6 +1,7 @@
 import { router } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { useI18n } from "@/i18n";
+import { useState } from "react";
+import { num, useI18n } from "@/i18n";
 import { summarize, type Match } from "@/lib/flow";
 import { SCHEMES } from "@/lib/schemes";
 import { useScreening } from "@/state/screening";
@@ -21,11 +22,13 @@ export default function ResultsScreen() {
   const tiles = s.eligible.slice(0, 4);
   const rows = s.eligible.slice(4);
   const caps = { fontFamily: type.body };
+  // The not-eligible list is long and rarely needed, so it stays folded until asked for.
+  const [showMissed, setShowMissed] = useState(false);
   return (
     <Screen>
       <Text style={[styles.caps, caps]}>{t("results.title").toUpperCase()}</Text>
       <View style={styles.count}>
-        <Text style={styles.number}>{s.eligible.length}</Text>
+        <Text style={styles.number}>{num(lang, s.eligible.length)}</Text>
         <Text accessibilityRole="header" style={[styles.countLabel, { fontFamily: type.display }]}>
           {t("results.count", { count: s.eligible.length })}
         </Text>
@@ -119,15 +122,23 @@ export default function ResultsScreen() {
 
       {s.notEligible.length > 0 && (
         <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { fontFamily: type.strong }]}>
-            {t("results.notEligible", { count: s.notEligible.length })}
-          </Text>
-          {s.notEligible.map(({ scheme, result }) => (
-            <Text key={scheme.slug} style={styles.missed}>
-              <Text style={styles.missedTitle}>{scheme.text.en.title}</Text>
-              {result.failed ? ` · ${result.failed.source_quote}` : ""}
-            </Text>
-          ))}
+          <Button
+            variant="quiet"
+            label={
+              showMissed
+                ? t("results.hide")
+                : t("results.showNotEligible", { count: s.notEligible.length })
+            }
+            icon={<Icon name="chevron" size={16} />}
+            onPress={() => setShowMissed((v) => !v)}
+          />
+          {showMissed &&
+            s.notEligible.map(({ scheme, result }) => (
+              <Text key={scheme.slug} style={styles.missed}>
+                <Text style={styles.missedTitle}>{scheme.text.en.title}</Text>
+                {result.failed ? ` · ${result.failed.source_quote}` : ""}
+              </Text>
+            ))}
         </View>
       )}
       {s.otherStates > 0 && (

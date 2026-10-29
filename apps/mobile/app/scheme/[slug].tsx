@@ -1,4 +1,5 @@
 import { Redirect, router, useLocalSearchParams } from "expo-router";
+import { useState } from "react";
 import { Linking, Pressable, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useI18n } from "@/i18n";
@@ -60,6 +61,7 @@ export default function SchemeScreen() {
           title={t("results.otherWays").toUpperCase()}
           items={result.other_ways}
           type={type.body}
+          fold
         />
 
         <View style={styles.pair}>
@@ -91,22 +93,29 @@ export default function SchemeScreen() {
   );
 }
 
+/** A titled list. With `fold`, a long list shows its first 3 items and a "show more" button. */
 function Card({
   title,
   items,
   tick = false,
+  fold = false,
   type,
 }: {
   title: string;
   items: string[];
   tick?: boolean;
+  fold?: boolean;
   type: string;
 }) {
+  const { t } = useI18n();
+  const [open, setOpen] = useState(false);
   if (items.length === 0) return null;
+  const folded = fold && !open && items.length > 3;
+  const shown = folded ? items.slice(0, 3) : items;
   return (
     <View style={styles.card}>
       <Text style={[styles.caps, { fontFamily: type }]}>{title}</Text>
-      {items.map((i) => (
+      {shown.map((i) => (
         <View key={i} style={styles.item}>
           {tick ? (
             <View style={styles.tick}>
@@ -118,6 +127,13 @@ function Card({
           <Text style={styles.itemText}>{i}</Text>
         </View>
       ))}
+      {folded && (
+        <Button
+          variant="quiet"
+          label={t("results.showMore", { count: items.length - 3 })}
+          onPress={() => setOpen(true)}
+        />
+      )}
     </View>
   );
 }
@@ -145,7 +161,8 @@ const styles = StyleSheet.create({
   },
   caps: { fontSize: 10, letterSpacing: 2.2, color: colors.muted },
   title: { fontFamily: fonts.display, fontSize: 26, lineHeight: 32, color: colors.ink },
-  benefit: { fontFamily: fonts.body, fontSize: 15, lineHeight: 22, color: colors.ink },
+  // What you get is the most important line on the card, so it gets the display face.
+  benefit: { fontFamily: fonts.display, fontSize: 21, lineHeight: 28, color: colors.accentText },
   card: {
     borderRadius: 20,
     backgroundColor: colors.surface,
