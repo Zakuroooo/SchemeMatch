@@ -70,7 +70,7 @@ public record Condition(String field, String op, Object value, String sourceQuot
     private Object normalise(Object v) {
         if (v instanceof Number n) return n.doubleValue();
         if (FREE_TEXT.contains(field)) {
-            return v.toString().strip().replaceAll("\\s+", " ").toLowerCase(Locale.ROOT);
+            return v.toString().replaceAll("(?U)\\s+", " ").strip().toLowerCase(Locale.ROOT);
         }
         return v;
     }

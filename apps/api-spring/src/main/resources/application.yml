@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: schemematch-api-spring
+  main:
+    banner-mode: "off"
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+    factory:
+      constraints:
+        read:
+          max-document-length: 1048576 # 1 MiB, the same body limit as the Fastify API
+  mvc:
+    log-resolved-exception: false # its messages contain the values a person sent
+  # Without the `postgres` profile there is no database at all.
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.jdbc.autoconfigure.DataSourceAutoConfiguration
+      - org.springframework.boot.flyway.autoconfigure.FlywayAutoConfiguration
+
+server:
+  port: ${PORT:3002}
+  forward-headers-strategy: none # client-sent IP headers are ignored
+  error:
+    include-message: never
+
+schemematch:
+  rate-limit-per-minute: 60
+  client-ip-header: ${CLIENT_IP_HEADER:}
+  cron-secret: ${CRON_SECRET:}
+  web-origins: ${WEB_ORIGINS:}
+
+# These loggers can print request bodies, headers or SQL values when someone turns on debug
+# logging for everything. Naming them here keeps them quiet even then.
+logging:
+  level:
+    org.springframework.web: INFO
+    org.springframework.validation: INFO
+    org.springframework.jdbc: INFO
+    org.hibernate.validator: INFO
+    org.apache.coyote: INFO
+    org.apache.tomcat: INFO
+    org.apache.catalina: INFO
+    org.postgresql: INFO

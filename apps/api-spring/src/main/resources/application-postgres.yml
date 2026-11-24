@@ -1,0 +1,11 @@
+spring:
+  autoconfigure:
+    exclude: [] # the database auto-configuration is on again
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5433/schemematch}
+    username: ${DATABASE_USER:schemematch}
+    password: ${DATABASE_PASSWORD:}
+    hikari:
+      connection-timeout: 5000
+      data-source-properties:
+        logServerErrorDetail: false # Postgres error details can contain the row
