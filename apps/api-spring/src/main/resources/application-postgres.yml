@@ -2,10 +2,12 @@ spring:
   autoconfigure:
     exclude: [] # the database auto-configuration is on again
   datasource:
-    url: ${DATABASE_URL:jdbc:postgresql://localhost:5433/schemematch}
-    username: ${DATABASE_USER:schemematch}
-    password: ${DATABASE_PASSWORD:}
+    url: ${LOCAL_DB_URL:jdbc:postgresql://localhost:5432/schemematch}
+    username: ${LOCAL_DB_USER:schemematch}
+    password: ${LOCAL_DB_PASSWORD:}
     hikari:
       connection-timeout: 5000
       data-source-properties:
         logServerErrorDetail: false # Postgres error details can contain the row
+  flyway:
+    baseline-on-migrate: false # refuse any database that Flyway did not create itself
