@@ -48,7 +48,8 @@ import tools.jackson.databind.json.JsonMapper;
 class PostgresIT {
 
     @ServiceConnection
-    static final PostgreSQLContainer DATABASE = new PostgreSQLContainer("postgres:17-alpine");
+    static final PostgreSQLContainer DATABASE = new PostgreSQLContainer("postgres:17-alpine")
+            .withTmpFs(Map.of("/var/lib/postgresql/data", "rw")); // data in memory: fast, no disk
 
     static {
         DATABASE.start(); // Testcontainers removes it when the tests end
