@@ -10,3 +10,6 @@ apps/mobile/ios/
 apps/mobile/.expo/
 pipeline/runs/
 pipeline/.venv/
+# Maven build output and the engine-parity fixture
+apps/api-spring/target/
+apps/api-spring/src/test/resources/
