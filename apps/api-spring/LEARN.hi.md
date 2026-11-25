@@ -97,7 +97,8 @@ public class EligibilityService {
 hai. Service nahi badalti. Test mein fake de sakte ho.
 
 `ScreeningRepository` sirf database ke saath hota hai. Isliye service `Optional<ScreeningRepository>`
-maangti hai. Khaali ho to save par **503** (= service available nahi).
+maangti hai. Khaali ho to save par **503** (= service available nahi). Database band ho to bhi 503: baad mein wahi
+request chal sakti hai.
 
 ## 8. Saare annotations
 
@@ -169,7 +170,7 @@ isliye dono ka check ek hi jagah hota hai.
 
 - `Test` wali files `./mvnw test` mein. `IT` (= integration test) wali `./mvnw verify` mein.
 - **Parity test** (= dono engine ka same answer): TypeScript engine ke apne cases padhta hai.
-- **Mutation check** (= jaan-boojh kar code todo; test fail hona chahiye). Chhe baar toda; sab pakde gaye.
+- **Mutation check** (= jaan-boojh kar code todo; test fail hona chahiye). Saat baar toda; sab pakde gaye.
 - Log wala break `PostgresIT` ne pakda. MockMvc log test ki memory khatam hui, usne wahan kuch sabit nahi kiya.
 
 > **Boot 3 tutorials se farq.** Starter `spring-boot-starter-webmvc` hai, `-web` nahi. Jackson 3 ka
@@ -187,8 +188,8 @@ Sab `src/main/java/in/schemematch/api/` mein.
 | Route that saves | `controller/ScreeningController.java:37` |
 | Profile rules | `web/ProfileRequest.java:17` |
 | Strict JSON | `config/StrictJsonConfig.java:22` |
-| Error handling | `web/ApiExceptionHandler.java:30` |
-| 409 handler | `web/ApiExceptionHandler.java:119` |
+| Error handling | `web/ApiExceptionHandler.java:32` |
+| 409 handler | `web/ApiExceptionHandler.java:121` |
 | Rate limit count | `web/RateLimitFilter.java:63` |
 | Run engine on all schemes | `service/EligibilityService.java:32` |
 | 503 when no database | `service/ScreeningService.java:29` |

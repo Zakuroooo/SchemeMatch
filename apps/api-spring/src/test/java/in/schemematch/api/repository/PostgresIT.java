@@ -191,6 +191,16 @@ class PostgresIT {
     }
 
     @Test
+    void aNulCharacterIs400AndIsNeverStored() throws Exception {
+        for (String field : List.of("district", "occupation")) {
+            HttpResponse<String> r = save(UUID.randomUUID(), install,
+                    "{\"" + field + "\":\"ab\\u0000cd\"}");
+            assertThat(r.statusCode()).isEqualTo(400);
+        }
+        assertThat(count("screenings")).isZero();
+    }
+
+    @Test
     void deleteMyDataRemovesThatInstallAndItsMatchesOnly() throws Exception {
         save(UUID.randomUUID(), install, PROFILE);
         save(UUID.randomUUID(), install, PROFILE);

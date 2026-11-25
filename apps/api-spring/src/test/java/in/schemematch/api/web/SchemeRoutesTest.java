@@ -169,6 +169,21 @@ class SchemeRoutesTest {
                 .andExpect(jsonPath("$.error.details[0].path").value("/profile/" + field));
     }
 
+    /** PostgreSQL cannot store a NUL character or half of a surrogate pair. */
+    @ParameterizedTest
+    @CsvSource({"district,ab\\u0000cd", "occupation,ab\\u0000cd",
+        "district,ab\\ud800cd", "occupation,ab\\ud800cd"})
+    void refusesTextTheDatabaseCannotStore(String field, String value) throws Exception {
+        profile("{\"" + field + "\":\"" + value + "\"}").andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.error.code").value("VALIDATION_ERROR"))
+                .andExpect(jsonPath("$.error.details[0].path").value("/profile/" + field));
+    }
+
+    @Test
+    void acceptsIndianScriptsAndEmoji() throws Exception {
+        profile("{\"district\":\"पुणे\",\"occupation\":\"শিক্ষক 😀\"}").andExpect(status().isOk());
+    }
+
     @Test
     void acceptsEveryFieldAtOnce() throws Exception {
         profile("""

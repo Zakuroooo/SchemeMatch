@@ -2,6 +2,7 @@ package in.schemematch.api.web;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -10,6 +11,8 @@ import in.schemematch.api.repository.BundledSchemeRepository;
 import in.schemematch.api.repository.SchemeRepository;
 import javax.sql.DataSource;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -47,6 +50,14 @@ class NoDatabaseTest {
                 .andExpect(jsonPath("$.error.code").value("STORAGE_UNAVAILABLE"));
         mvc.perform(delete("/screenings").header("x-install-id", ScreeningRoutesTest.INSTALL))
                 .andExpect(status().isServiceUnavailable());
+    }
+
+    /** No cron secret is set here, so even a header that would equal "Bearer " + "" is refused. */
+    @ParameterizedTest
+    @ValueSource(strings = {"Bearer ", "Bearer", "", "Bearer undefined"})
+    void cronRefusesEveryoneWhenNoSecretIsSet(String authorization) throws Exception {
+        mvc.perform(get("/cron/keepalive").header("authorization", authorization))
+                .andExpect(status().isUnauthorized());
     }
 
     @Test

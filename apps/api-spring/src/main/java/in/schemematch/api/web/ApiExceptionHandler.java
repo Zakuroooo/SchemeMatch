@@ -8,9 +8,11 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSourceResolvable;
+import org.springframework.dao.DataAccessResourceFailureException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.transaction.CannotCreateTransactionException;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.method.ParameterErrors;
 import org.springframework.validation.method.ParameterValidationResult;
@@ -123,6 +125,15 @@ public class ApiExceptionHandler {
     @ExceptionHandler
     ResponseEntity<ErrorBody> noStorage(StorageUnavailableException e) {
         return error(HttpStatus.SERVICE_UNAVAILABLE, "STORAGE_UNAVAILABLE", e.getMessage());
+    }
+
+    /** Not our bug and not the client's: the same request can work later. */
+    @ExceptionHandler({CannotCreateTransactionException.class,
+        DataAccessResourceFailureException.class})
+    ResponseEntity<ErrorBody> databaseDown(Exception e) {
+        log.error("database unreachable: {}", e.getClass().getName());
+        return error(HttpStatus.SERVICE_UNAVAILABLE, "STORAGE_UNAVAILABLE",
+                "The database cannot be reached. Try again later.");
     }
 
     /** Only class and place are logged: a message (e.g. from SQL) could contain a profile. */

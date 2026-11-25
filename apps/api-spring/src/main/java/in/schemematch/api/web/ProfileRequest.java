@@ -16,7 +16,8 @@ import java.util.TreeMap;
  */
 public record ProfileRequest(
         @Pattern(regexp = "[A-Z]{2}", message = "two-letter state code, e.g. MH") String state,
-        @Size(min = 2, max = 60) String district,
+        @Size(min = 2, max = 60)
+                @Pattern(regexp = STORABLE, message = "a character is not allowed") String district,
         @Min(0) @Max(120) Integer age,
         @Pattern(regexp = "female|male|other", message = "not an allowed value") String gender,
         @Pattern(regexp = "single|married|widow|divorced|abandoned",
@@ -24,7 +25,8 @@ public record ProfileRequest(
         @DecimalMin("0") @DecimalMax("1000000000") Double annualFamilyIncome,
         @Pattern(regexp = "SC|ST|OBC|General|EWS", message = "not an allowed value")
                 String casteCategory,
-        @Size(min = 2, max = 60) String occupation,
+        @Size(min = 2, max = 60)
+                @Pattern(regexp = STORABLE, message = "a character is not allowed") String occupation,
         @DecimalMin("0") @DecimalMax("100000") Double landAcres,
         @DecimalMin("0") @DecimalMax("100") Double disabilityPercent,
         Boolean isStudent,
@@ -34,6 +36,9 @@ public record ProfileRequest(
         Boolean hasBplCard,
         @Min(0) @Max(30) Integer childrenCount,
         Boolean isPregnantOrLactating) {
+
+    /** No NUL character and no half surrogate pair: PostgreSQL refuses to store them. */
+    private static final String STORABLE = "[^\\x00\\p{Cs}]*";
 
     /** The answers as the engine wants them: field name to answer, unanswered ones left out. */
     public Map<String, Object> answers() {

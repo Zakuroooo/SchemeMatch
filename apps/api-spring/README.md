@@ -70,11 +70,11 @@ The API listens on port 3002.
 | Route | Answers |
 | --- | --- |
 | `GET /health` | 200 |
-| `GET /schemes?state=WB` | 200, 400 |
-| `POST /eligibility` | 200, 400, 413, 415 |
+| `GET /schemes?state=WB` | 200, 400, 503 |
+| `POST /eligibility` | 200, 400, 413, 415, 503 |
 | `POST /screenings` with `Idempotency-Key` | 201 new, 200 retry, 400, 409, 413, 415, 503 |
 | `DELETE /screenings` with `X-Install-Id` | 200, 400, 503 |
-| `GET /cron/keepalive` with a secret | 200, 401 |
+| `GET /cron/keepalive` with a secret | 200, 401, 503 |
 
 Any route can also answer 404, 429 or 500, as `{"error":{"code","message","details"?}}`.
 
@@ -85,6 +85,8 @@ Any route can also answer 404, 429 or 500, as `{"error":{"code","message","detai
 - Wrong JSON, a too large body and a wrong content type keep their status but use other codes.
 - A type error or unknown key is reported alone, before the range checks run.
 - Every request counts toward the rate limit, except preflights. Schemes are not cached.
+- A database that cannot be reached gives 503 (Fastify: 500). `district` and `occupation` refuse a
+  NUL character or half a surrogate pair with 400, because PostgreSQL cannot store them.
 - The 429 message says "60 seconds" where Fastify says "1 minute".
 
 ## Limits
