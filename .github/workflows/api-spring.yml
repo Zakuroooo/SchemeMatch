@@ -1,0 +1,45 @@
+name: API (Spring)
+
+# Runs only when the Java module, or a file it shares with the TypeScript engine, changes.
+on:
+  push:
+    branches: [main]
+    paths: &paths
+      - "apps/api-spring/**"
+      - "apps/api/src/generated/schemes.json"
+      - "packages/engine/src/**"
+      - "packages/engine/test/profiles/**"
+      - "pipeline/golden/schemes/**"
+      - ".github/workflows/api-spring.yml"
+  pull_request:
+    paths: *paths
+
+concurrency:
+  group: api-spring-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Build and test (Java 17)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: apps/api-spring
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # If the TypeScript engine's answers change, the saved ones must be made again.
+      - run: node scripts/make-parity-fixture.mjs && git diff --exit-code src/test/resources
+      - uses: actions/setup-java@v4
+        with:
+          distribution: zulu
+          java-version: 17
+          cache: maven
+      - run: ./mvnw -B verify
+      - run: docker build -f Dockerfile ../..

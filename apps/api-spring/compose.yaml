@@ -1,0 +1,30 @@
+# Local only: the API with its own PostgreSQL.  docker compose up --build
+name: schemematch-spring
+services:
+  api:
+    build:
+      context: ../..
+      dockerfile: apps/api-spring/Dockerfile
+    environment:
+      SPRING_PROFILES_ACTIVE: postgres
+      LOCAL_DB_URL: jdbc:postgresql://db:5432/schemematch
+    ports:
+      - "127.0.0.1:3002:3002"
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: schemematch
+      POSTGRES_USER: schemematch
+      # No password: the port is not published, so only the api container can reach it.
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-h", "127.0.0.1", "-U", "schemematch"]
+      interval: 2s
+      retries: 30
+volumes:
+  data:

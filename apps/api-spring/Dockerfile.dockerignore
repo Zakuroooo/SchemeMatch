@@ -1,0 +1,4 @@
+*
+!apps/api-spring
+apps/api-spring/target
+!apps/api/src/generated/schemes.json
