@@ -113,4 +113,16 @@ class RateLimitFilterTest {
             pool.shutdownNow();
         }
     }
+
+    @Test
+    void remembersALimitedNumberOfClientsAndKeepsTheActiveOnes() throws Exception {
+        RateLimitFilter f = filter(1, "x-real-ip");
+        hit(f, "x-real-ip", "busy");
+        for (int i = 0; i < 10_100; i++) {
+            hit(f, "x-real-ip", "client-" + i);
+            if (i % 5_000 == 0) hit(f, "x-real-ip", "busy");
+        }
+        assertThat(f.trackedClients()).isEqualTo(10_000);
+        assertThat(hit(f, "x-real-ip", "busy").getStatus()).isEqualTo(429);
+    }
 }

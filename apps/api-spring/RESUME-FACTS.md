@@ -1,7 +1,7 @@
 # Measured facts (25 Nov 2026, `./mvnw clean verify` on Pranay's Mac: BUILD SUCCESS)
 
 - Java 17, Spring Boot 4.1.2, PostgreSQL 17 (test container). JUnit Jupiter is **6.0.3**, not 5.
-- **363 tests pass, 0 skipped**: 353 in Surefire, 10 in Failsafe against real PostgreSQL.
+- **364 tests pass, 0 skipped**: 354 in Surefire, 10 in Failsafe against real PostgreSQL.
 - Parity with the TypeScript engine: the shared hand-written cases, **167 scheme cases + 7
   personas = 174**, plus full answers for 28 profiles x 30 schemes saved from the TypeScript engine.
 - Concurrency: 20 simultaneous HTTP retries with one idempotency key gave one 201, nineteen 200,

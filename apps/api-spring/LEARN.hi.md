@@ -190,7 +190,7 @@ Sab `src/main/java/in/schemematch/api/` mein.
 | Strict JSON | `config/StrictJsonConfig.java:22` |
 | Error handling | `web/ApiExceptionHandler.java:32` |
 | 409 handler | `web/ApiExceptionHandler.java:121` |
-| Rate limit count | `web/RateLimitFilter.java:63` |
+| Rate limit count | `web/RateLimitFilter.java:72` |
 | Run engine on all schemes | `service/EligibilityService.java:32` |
 | 503 when no database | `service/ScreeningService.java:29` |
 | Interface | `repository/SchemeRepository.java:7` |

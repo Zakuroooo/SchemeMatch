@@ -7,7 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.Clock;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -23,11 +23,20 @@ import tools.jackson.databind.json.JsonMapper;
 public class RateLimitFilter extends OncePerRequestFilter {
 
     private static final long WINDOW_MS = 60_000;
-    private static final int SWEEP_ABOVE = 10_000;
+    private static final int MAX_CLIENTS = 10_000;
 
     private record Window(long startedAt, int count) {}
 
-    private final Map<String, Window> windows = new HashMap<>();
+    /**
+     * Least recently used first. Above the cap the oldest client is forgotten, so many addresses
+     * cannot fill the memory, and no request has to scan the whole map.
+     */
+    private final Map<String, Window> windows = new LinkedHashMap<>(16, 0.75f, true) {
+        @Override
+        protected boolean removeEldestEntry(Map.Entry<String, Window> eldest) {
+            return size() > MAX_CLIENTS;
+        }
+    };
     private final AppProperties properties;
     private final Clock clock;
     private final JsonMapper json;
@@ -61,15 +70,17 @@ public class RateLimitFilter extends OncePerRequestFilter {
 
     /** Counts one request. `synchronized`: two threads must not read the same old count. */
     private synchronized Window hit(String client, long now) {
-        if (windows.size() > SWEEP_ABOVE) {
-            windows.values().removeIf(w -> now - w.startedAt() >= WINDOW_MS);
-        }
         Window old = windows.get(client);
         Window next = old == null || now - old.startedAt() >= WINDOW_MS
                 ? new Window(now, 1)
                 : new Window(old.startedAt(), old.count() + 1);
         windows.put(client, next);
         return next;
+    }
+
+    /** For tests. */
+    synchronized int trackedClients() {
+        return windows.size();
     }
 
     private String clientOf(HttpServletRequest request) {
