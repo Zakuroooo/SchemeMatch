@@ -31,15 +31,21 @@ overrides:
   "fast-uri@>=3 <3.1.9": 3.1.9
   "fast-uri@>=4 <4.2.3": 4.2.3
   "undici@>=8 <8.12.2": 8.12.2
+  # node-forge: signature forgery and DoS on <=1.4.0 (Expo's command-line tool).
+  "node-forge@<=1.4.0": 1.4.3
+  # decode-uri-component: DoS on <=0.5.0 (expo-router reads links with it through query-string).
+  "decode-uri-component@<=0.5.0": 0.5.1
+
+# decode-uri-component 0.5.1 is an ES module; query-string 7 (the version expo-router uses) loads
+# it with require(), which gives an object with `default`. The patch accepts both shapes.
+patchedDependencies:
+  query-string@7.1.3: patches/query-string@7.1.3.patch
 
 # Advisories accepted on purpose (approved by Pranay, 2026-10-26). Only for code that never
 # reaches a user's phone or our servers; each entry says why. Everything else still blocks
 # the merge (CI audit).
 auditConfig:
   ignoreGhsas:
-    # node-forge <=1.4.0, no fixed version exists. Only Expo's command-line tool uses it,
-    # for iOS code signing on the developer's machine; we sign no iOS builds.
-    - GHSA-86w9-cpqp-85rv
     # zod 3.x in Expo's command-line tool: memory use on huge input. The input is our own
     # local config files. Our API uses zod 4.6.6, which is fixed.
     - GHSA-mrhx-c7xc-m3w5
