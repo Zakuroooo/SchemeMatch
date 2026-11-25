@@ -172,7 +172,7 @@ database, so both requests meet the same check.
 - Files ending in `Test` run in `./mvnw test`. Files ending in `IT` (= integration test) run in `./mvnw verify`.
 - **Parity test** (= both engines must give the same answer): it reads the TypeScript engine's own cases.
 - **Mutation check** (= break code on purpose; a test must fail). Six breaks were tried; all were caught.
-- The log break was caught by `PostgresIT`, not by the faster MockMvc log test.
+- The log break was caught by `PostgresIT`. The MockMvc log test ran out of memory, so it proved nothing there.
 
 > **Differs from Boot 3 tutorials.** Starter: `spring-boot-starter-webmvc`, not `-web`. Jackson 3 is
 > `tools.jackson`, not `com.fasterxml.jackson` (its annotations keep the old name). `@MockitoBean`, not

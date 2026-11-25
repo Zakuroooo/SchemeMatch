@@ -170,7 +170,7 @@ isliye dono ka check ek hi jagah hota hai.
 - `Test` wali files `./mvnw test` mein. `IT` (= integration test) wali `./mvnw verify` mein.
 - **Parity test** (= dono engine ka same answer): TypeScript engine ke apne cases padhta hai.
 - **Mutation check** (= jaan-boojh kar code todo; test fail hona chahiye). Chhe baar toda; sab pakde gaye.
-- Log wala break `PostgresIT` ne pakda, tez wale MockMvc log test ne nahi.
+- Log wala break `PostgresIT` ne pakda. MockMvc log test ki memory khatam hui, usne wahan kuch sabit nahi kiya.
 
 > **Boot 3 tutorials se farq.** Starter `spring-boot-starter-webmvc` hai, `-web` nahi. Jackson 3 ka
 > package `tools.jackson` hai (uske annotations ka purana naam hai). `@MockBean` nahi, `@MockitoBean`.

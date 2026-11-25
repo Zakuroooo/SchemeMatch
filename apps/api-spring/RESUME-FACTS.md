@@ -12,7 +12,7 @@
   and the same image without a database gave 503. The container runs as a non-root user.
 - Mutation checks: 6 deliberate breaks (`>=` to `>`, no transaction, no unique constraint, no
   `synchronized`, number coercion on, log settings removed) were each caught by a test. The log one is
-  caught by `PostgresIT` only.
+  caught by `PostgresIT`; the MockMvc log test ran out of memory without those settings, so it proves nothing there.
 
 ## Do not claim
 - Not deployed. The live API is still Fastify. No users and no load or speed numbers.

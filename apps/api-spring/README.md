@@ -85,6 +85,7 @@ Any route can also answer 404, 429 or 500, as `{"error":{"code","message","detai
 - Wrong JSON, a too large body and a wrong content type keep their status but use other codes.
 - A type error or unknown key is reported alone, before the range checks run.
 - Every request counts toward the rate limit, except preflights. Schemes are not cached.
+- The 429 message says "60 seconds" where Fastify says "1 minute".
 
 ## Limits
 

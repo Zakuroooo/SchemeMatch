@@ -4,7 +4,7 @@ name: API (Spring)
 on:
   push:
     branches: [main]
-    paths: &paths
+    paths:
       - "apps/api-spring/**"
       - "apps/api/src/generated/schemes.json"
       - "packages/engine/src/**"
@@ -12,7 +12,13 @@ on:
       - "pipeline/golden/schemes/**"
       - ".github/workflows/api-spring.yml"
   pull_request:
-    paths: *paths
+    paths:
+      - "apps/api-spring/**"
+      - "apps/api/src/generated/schemes.json"
+      - "packages/engine/src/**"
+      - "packages/engine/test/profiles/**"
+      - "pipeline/golden/schemes/**"
+      - ".github/workflows/api-spring.yml"
 
 concurrency:
   group: api-spring-${{ github.ref }}
@@ -33,7 +39,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version-file: .nvmrc
       # If the TypeScript engine's answers change, the saved ones must be made again.
       - run: node scripts/make-parity-fixture.mjs && git diff --exit-code src/test/resources
       - uses: actions/setup-java@v4
